@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 專屬商品：為您量身打造的水晶 - 水晶魔法商店</title>
+    <link rel="stylesheet" href="../style01.css"> 
+    
+    <style>
+        .shop-intro {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #e0f7fa; /* 淺藍綠色背景 */
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .shop-intro h1 {
+            color: #00838f; /* 深藍綠色 */
+        }
+
+        .product-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        .category-card {
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .category-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .category-info h3 {
+            color: #4a148c; /* 紫色 */
+            margin-top: 0;
+        }
+        
+        /* 客製化區塊樣式 */
+        .custom-service {
+            text-align: center;
+            background-color: #fff8e1; /* 淺橘色背景 */
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+
+        .custom-service h2 {
+            color: #d84315; /* 深橘色 */
+            margin-top: 0;
+            font-size: 2em;
+        }
+
+        .custom-link {
+            display: inline-block;
+            background-color: #ff7043;
+            color: white;
+            padding: 12px 25px;
+            margin-top: 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .custom-link:hover {
+            background-color: #e64a19;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="main-nav">
+        <h1><a href="../index.html">🔮 水晶魔法</a></h1>
+
+        <ul class="main-menu">
+            <li><a href="type.html">水晶種類</a></li>
+            <li><a href="effect.html">功效解讀</a></li>
+            <li><a href="care.html">淨化保養</a></li>
+        </ul>
+
+        <div class="auth-buttons">
+            <a href="login.html" class="nav-button login">登入</a>
+            <a href="register.html" class="nav-button register">註冊</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    
+    <section class="shop-intro">
+        <h1>🎁 專屬您的能量飾品與療癒工具</h1>
+        <p>在這裡，您可以找到我們精心挑選的高品質原礦，以及由專業療癒師手工製作的獨家能量飾品。讓水晶的力量融入您的日常生活。</p>
+    </section>
+
+    <section id="categories" class="content-section">
+        <h2>🛍️ 精選商品分類</h2>
+        
+        <div class="product-categories">
+            
+            <article class="category-card">
+                <img src="../images/shop_bracelet.jpg" alt="水晶手鍊"> 
+                <div class="category-info">
+                    <h3>能量手鍊與飾品</h3>
+                    <p>根據脈輪或特定功效設計的手鍊、項鍊。隨身佩戴，平衡每日氣場。</p>
+                    <a href="product_list.html?cat=bracelet" class="detail-link">立即選購 »</a>
+                </div>
+            </article>
+
+            <article class="category-card">
+                <img src="../images/shop_raw_crystal.jpg" alt="水晶原礦與擺件">
+                <div class="category-info">
+                    <h3>高品質原礦與擺件</h3>
+                    <p>未經雕琢的天然能量，適合用於空間淨化、冥想，或作為風水擺件。</p>
+                    <a href="product_list.html?cat=raw" class="detail-link">探索原礦 »</a>
+                </div>
+            </article>
+
+            <article class="category-card">
+                <img src="../images/shop_tools.jpg" alt="淨化工具與課程">
+                <div class="category-info">
+                    <h3>淨化工具與教學課程</h3>
+                    <p>聖木、頌缽、白水晶碎石等淨化工具，以及水晶療癒入門線上課程。</p>
+                    <a href="product_list.html?cat=tools" class="detail-link">了解課程 »</a>
+                </div>
+            </article>
+            
+        </div>
+    </section>
+
+    <section id="custom-made" class="custom-service">
+        <h2>✨ 為您量身打造：獨一無二的客製化手鍊</h2>
+        <p>根據您的生日、命盤和當前能量需求，由我們的專家為您設計專屬的水晶組合，讓能量達到最完美契合。</p>
+        <a href="custom_order.html" class="custom-link">預約客製化諮詢 »</a>
+    </section>
+    
+</main>
+
+<footer>
+    <p>&copy; 2025 水晶魔法版權所有 | <a href="contact.html">聯絡我們</a></p>
+</footer>
+
+<script>
+    // 禁用右鍵選單 (保持與首頁一致)
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+</script>
+
+<a href="crystal.html" class="back-to-home-link">← 返回首頁</a> 
+
+</body>
+</html>
