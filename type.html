@@ -19,9 +19,11 @@
             color: #4a148c;
         }
 
+        /* **** 關鍵修改區域：將 Grid 改為垂直堆疊且佔滿寬度 **** */
         .crystal-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            /* 移除 grid 佈局 */
+            display: flex;
+            flex-direction: column; /* 強制垂直堆疊 */
             gap: 30px;
             margin-top: 20px;
         }
@@ -32,26 +34,69 @@
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
-            text-align: center;
+            
+            /* 將卡片內容改為 Flex 佈局，使圖片和文字並排 */
+            display: flex; 
+            align-items: center; /* 垂直居中 */
+            text-align: left; /* 文本左對齊 */
+            width: 100%; /* 確保卡片佔滿整行 */
+            min-height: 150px; /* 最小高度，視覺上更一致 */
         }
-
+        
+        /* 設置圖片的尺寸，並與文字區分開 */
+        .crystal-card img {
+            width: 150px; /* 固定圖片寬度 */
+            min-width: 150px; /* 防止圖片被壓縮 */
+            height: 150px; /* 固定圖片高度 */
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 20px; /* 圖片右邊留白 */
+            margin-bottom: 0; /* 移除舊有的 margin-bottom */
+        }
+        
+        .card-info {
+            flex-grow: 1; /* 讓文字區塊佔滿剩餘空間 */
+        }
+        
+        /* 調整響應式佈局：在小螢幕上將卡片變回垂直堆疊 */
+        @media (max-width: 768px) {
+            .crystal-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .crystal-card img {
+                width: 100%; 
+                max-width: 250px; /* 在小螢幕上限制圖片寬度 */
+                height: auto;
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+        /* **** 結束關鍵修改區域 **** */
+        
         .crystal-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .crystal-card img {
-            width: 100%;
-            max-height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 15px;
         }
 
         .crystal-card h3 {
             color: #6a1b9a; 
             margin-top: 0;
             margin-bottom: 5px;
+        }
+
+        .crystal-meta {
+            margin-bottom: 8px;
+        }
+
+        .meta-tag {
+            display: inline-block;
+            background-color: #f0f0f0;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            color: #333;
+            margin-right: 5px;
         }
 
         .tag-line {
@@ -183,6 +228,8 @@
                     <a href="titanium.html" class="detail-link">深入能量解析與運用技巧 »</a>
                 </div>
             </article>
+        </div>
+    </section>
     
     <section id="protection-types" class="content-section">
         <h2>🛡️ 能量防護與接地水晶</h2>
@@ -247,7 +294,6 @@
 </body>
 
 </html>
-
 
 
 
