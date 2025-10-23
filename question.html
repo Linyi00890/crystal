@@ -110,7 +110,7 @@
                 <span class="icon">+</span>
             </button>
             <div class="accordion-content">
-                <p>A: 傳統上遵循**「左進右出」**原則：</p>
+                <p>A: 傳統上遵循「左進右出」原則：</p>
                 <ul>
                     <li><strong>左手（吸納）：</strong> 適合招財、招桃花、求智慧等**吸納**正面能量的水晶（如黃水晶、粉晶、紫水晶）。</li>
                     <li><strong>右手（排出）：</strong> 適合擋煞、避邪、排除病氣等**釋放/排出**負面能量的水晶（如黑曜石、黑碧璽、茶晶）。</li>
@@ -154,8 +154,8 @@
             <div class="accordion-content">
                 <p>A: 雖然從科學上來說是物理碰撞所致，但在能量解讀上，這通常被視為：</p>
                 <ul>
-                    <li>水晶為您**擋下**了一次嚴重的負面能量或災禍。</li>
-                    <li>水晶的能量已經**耗盡**，無法再為您工作。</li>
+                    <li>水晶為您擋下了一次嚴重的負面能量或災禍。</li>
+                    <li>水晶的能量已經耗盡，無法再為您工作。</li>
                 </ul>
                 <p>建議將破損的水晶帶回大地（例如埋入盆栽或土壤中），感謝它的付出後，尋找新的水晶夥伴。</p>
             </div>
@@ -180,7 +180,7 @@
 
     <div class="call-to-action-note" style="text-align: center; margin-top: 40px; padding: 20px; background-color: #e0f2f1; border-radius: 5px;">
         <p>還有其他疑問或想找尋您的命定水晶嗎？</p>
-        <a href="../index.html#guide" class="cta-button">前往挑選指南 »</a>
+        <a href="pick.html#guide" class="cta-button">前往挑選指南 »</a>
         <a href="contact.html" class="cta-button" style="background-color: #6a1b9a;">聯絡客服諮詢 »</a>
     </div>
 
@@ -206,19 +206,18 @@
                     content.style.maxHeight = '0';
                     content.style.padding = '0 20px'; 
                 } else {
-                    // 關閉所有其他已展開的項目
+
                     closeAllOtherAccordions(header); 
 
-                    // 展開當前項目
                     content.classList.add('show');
-                    // 設置 max-height 為內容的實際高度 + padding
+     
                     content.style.maxHeight = content.scrollHeight + 40 + 'px'; 
                     content.style.padding = '20px'; 
                 }
             });
         });
 
-        // 輔助函數：關閉所有其他已展開的下拉表單
+
         function closeAllOtherAccordions(currentHeader) {
             accordionHeaders.forEach(header => {
                 if (header !== currentHeader && header.classList.contains('active')) {
@@ -232,7 +231,7 @@
             });
         }
         
-        // 禁用右鍵選單 (保持與首頁一致)
+
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
@@ -244,3 +243,4 @@
 </body>
 
 </html>
+
