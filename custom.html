@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>預約客製化諮詢 - 水晶魔法</title>
+    <link rel="stylesheet" href="../style01.css"> 
+    
+    <style>
+        .custom-header {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #fffde7; 
+            border-bottom: 5px solid #ff8a65; 
+            margin-bottom: 30px;
+        }
+        
+        .custom-header h1 {
+            color: #ff8a65; 
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .custom-header p {
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .custom-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .custom-form-section {
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .custom-form-section h2 {
+            color: #6a1b9a; 
+            border-bottom: 2px solid #6a1b9a;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+        
+        .form-group textarea {
+            min-height: 180px;
+            resize: vertical;
+        }
+        
+        .submit-button {
+            width: 100%;
+            background-color: #ff8a65; 
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: #ff5722;
+        }
+        
+        .note {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #f3e5f5; 
+            border-left: 5px solid #6a1b9a;
+            border-radius: 5px;
+            font-size: 0.9em;
+            color: #4a148c;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="main-nav">
+        <h1><a href="../index.html">🔮 水晶魔法</a></h1>
+        <ul class="main-menu">
+            <li><a href="type.html">水晶種類</a></li>
+            <li><a href="effect.html">功效解讀</a></li>
+            <li><a href="care.html">淨化保養</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <a href="login.html" class="nav-button login">登入</a>
+            <a href="register.html" class="nav-button register">註冊</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    
+    <section class="custom-header">
+        <h1>💎 預約客製化諮詢</h1>
+        <p>為您量身打造獨一無二的能量飾品或空間擺件。請填寫您的需求細節，我們將在 48 小時內聯繫您。</p>
+    </section>
+
+    <div class="custom-container">
+        <section class="custom-form-section">
+            <h2>客製化需求表單</h2>
+            
+            <form action="/api/submit_custom_order" method="POST">
+                
+                <div class="form-group">
+                    <label for="name">您的姓名 *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">電子郵件 * (我們的設計師將通過此郵件與您聯繫)</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product_type">客製化產品類型 *</label>
+                    <select id="product_type" name="product_type" required>
+                        <option value="">請選擇您想要的產品類型</option>
+                        <option value="bracelet">手鍊/手鐲</option>
+                        <option value="necklace">項鍊/吊墜</option>
+                        <option value="raw">空間原礦/擺件</option>
+                        <option value="other">其他 (請在下方詳細說明)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="goal">主要客製化目標 * (例如：招正財、提升人緣、情緒穩定)</label>
+                    <input type="text" id="goal" name="goal" placeholder="請填寫一個或多個主要目標" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="budget">預算範圍 (臺幣)</label>
+                    <select id="budget" name="budget">
+                        <option value="1000-3000">NT$ 1,000 - 3,000</option>
+                        <option value="3000-6000">NT$ 3,000 - 6,000</option>
+                        <option value="6000-10000">NT$ 6,000 - 10,000</option>
+                        <option value="10000+">NT$ 10,000 以上 (高階訂製)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="details">詳細設計要求與需求描述 * (例如：偏好顏色、不喜歡的水晶、手圍尺寸等)</label>
+                    <textarea id="details" name="details" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-button">提交客製化需求</button>
+            </form>
+            
+            <div class="note">
+                <p>我們將依據您的目標與預算，提供專業的水晶組合搭配建議與設計草圖。客製化設計服務費將另行報價。</p>
+            </div>
+            
+        </section>
+    </div>
+
+</main>
+
+<footer>
+    <p>&copy; 2025 水晶魔法版權所有 | 
+</footer>
+
+</body>
+</html>
