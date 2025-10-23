@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新會員註冊 - 水晶魔法</title>
+    <link rel="stylesheet" href="../style01.css"> 
+    
+    <style>
+        .auth-container {
+            max-width: 450px;
+            margin: 60px auto;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .auth-container h1 {
+            color: #4a148c; 
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ff8a65;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        .submit-button {
+            width: 100%;
+            background-color: #ff8a65; 
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: #ff5722;
+        }
+
+        .auth-links {
+            margin-top: 25px;
+            font-size: 0.9em;
+        }
+        
+        .auth-links a {
+            color: #6a1b9a;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        
+        .auth-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .privacy-note {
+            font-size: 0.8em;
+            color: #777;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="main-nav">
+        <h1><a href="../index.html">🔮 水晶魔法</a></h1>
+        <ul class="main-menu">
+            <li><a href="type.html">水晶種類</a></li>
+            <li><a href="effect.html">功效解讀</a></li>
+            <li><a href="care.html">淨化保養</a></li>
+        </ul>
+        </nav>
+</header>
+
+<main>
+    
+    <section class="auth-container">
+        <h1>免費註冊新會員</h1>
+        
+        <form action="/api/register" method="POST">
+            
+            <div class="form-group">
+                <label for="username">設定使用者名稱</label>
+                <input type="text" id="username" name="username" placeholder="用於網站顯示" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">電子郵件 *</label>
+                <input type="email" id="email" name="email" placeholder="請使用常用信箱" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">設定密碼 * (至少8位)</label>
+                <input type="password" id="password" name="password" required minlength="8">
+            </div>
+            
+            <div class="form-group">
+                <label for="confirm_password">確認密碼 *</label>
+                <input type="password" id="confirm_password" name="confirm_password" required minlength="8">
+            </div>
+            
+            <button type="submit" class="submit-button">完成註冊</button>
+            
+            <p class="privacy-note">
+                點擊「完成註冊」即表示您同意我們的<a href="terms.html" target="_blank">服務條款</a>與<a href="privacy.html" target="_blank">隱私權政策</a>。
+            </p>
+            
+        </form>
+        
+        <div class="auth-links">
+            <a href="login.html">已經有帳號？立即登入</a>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2025 水晶魔法版權所有 | <a href="contact.html">聯絡我們</a></p>
+</footer>
+
+</body>
+</html>
