@@ -87,13 +87,13 @@
         }
 
         .hero-section h1 {
-            font-size: 1em;
+            font-size: 1em; /* 注意: 您這裡設定為 1em，可能太小，建議檢查 */
             margin-bottom: 15px;
             font-weight: 700;
             letter-spacing: 2px;
             background: linear-gradient(
                 45deg, 
-                #2d0d5f, 
+                #2d0d5f 
             );
             -webkit-background-clip: text; 
             background-clip: text;
@@ -142,8 +142,10 @@
             background-color: #ff5722;
         }
 
+        /* 關鍵：Grid 排版樣式，將卡片分散排列 */
         .guide-grid {
             display: grid;
+            /* 調整為 3 列，在小螢幕時自動調整為 1 列或 2 列 */
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
             gap: 30px;
             padding: 30px 50px;
@@ -188,70 +190,24 @@
             font-size: 0.95em;
             align-self: flex-start;
         }
+        
+        /* 每個區塊的顏色樣式 (維持不變) */
+        .layer-1 { background-color: #ffffff; border-top-color: #8c8c8c; }
+        .layer-1 h2 { color: #444444; border-left-color: #aaaaaa; }
+        .layer-2 { background-color: #f3e5f5; border-top-color: #6a1b9a; }
+        .layer-2 h2 { color: #6a1b9a; border-left-color: #9c27b0; }
+        .layer-3 { background-color: #fce4ec; border-top-color: #e91e63; }
+        .layer-3 h2 { color: #c2185b; border-left-color: #f06292; }
+        .layer-4 { background-color: #fffde7; border-top-color: #ffc107; }
+        .layer-4 h2 { color: #ffa000; border-left-color: #ffeb3b; }
+        .layer-5 { background-color: #e1f5fe; border-top-color: #03a9f4; }
+        .layer-5 h2 { color: #0288d1; border-left-color: #4fc3f7; }
+        .layer-6 { background-color: #ffe0b2; border-top-color: #ff9800; }
+        .layer-6 h2 { color: #f57c00; border-left-color: #ffb74d; }
+        .layer-7 { background-color: #e0f2f1; border-top-color: #009688; }
+        .layer-7 h2 { color: #00796b; border-left-color: #4db6ac; }
 
-        .layer-1 {
-            background-color: #ffffff; 
-            border-top-color: #8c8c8c; 
-        }
-        .layer-1 h2 {
-            color: #444444; 
-            border-left-color: #aaaaaa; 
-        }
-
-        .layer-2 {
-            background-color: #f3e5f5; 
-            border-top-color: #6a1b9a; 
-        }
-        .layer-2 h2 {
-            color: #6a1b9a; 
-            border-left-color: #9c27b0; 
-        }
-
-        .layer-3 {
-            background-color: #fce4ec; 
-            border-top-color: #e91e63;
-        }
-        .layer-3 h2 {
-            color: #c2185b; 
-            border-left-color: #f06292;
-        }
-
-        .layer-4 {
-            background-color: #fffde7; 
-            border-top-color: #ffc107; 
-        }
-        .layer-4 h2 {
-            color: #ffa000; 
-            border-left-color: #ffeb3b; 
-        }
-
-        .layer-5 {
-            background-color: #e1f5fe; 
-            border-top-color: #03a9f4; 
-        }
-        .layer-5 h2 {
-            color: #0288d1; 
-            border-left-color: #4fc3f7;
-        }
-
-        .layer-6 {
-            background-color: #ffe0b2; 
-            border-top-color: #ff9800; 
-        }
-        .layer-6 h2 {
-            color: #f57c00; 
-            border-left-color: #ffb74d; 
-        }
-
-        .layer-7 {
-            background-color: #e0f2f1; 
-            border-top-color: #009688; 
-        }
-        .layer-7 h2 {
-            color: #00796b; 
-            border-left-color: #4db6ac; 
-        }
-
+        /* 每個區塊的按鈕顏色 (維持不變) */
         .layer-1 .cta-button, .layer-1 .cta-button:hover { background-color: #607d8b; }
         .layer-2 .cta-button, .layer-2 .cta-button:hover { background-color: #6a1b9a; }
         .layer-3 .cta-button, .layer-3 .cta-button:hover { background-color: #d81b60; }
@@ -308,24 +264,24 @@
     
     <section id="hero" class="hero-section">
         <div class="hero-content">
-            <h1>歡迎進入晶彩世界，從這裡開始</h1>
+            <h1 style="font-size: 2.8em; margin-bottom: 5px;">水晶入門：開啟你的能量之旅</h1>
             <p>專業、友善、無壓力！新手第一次接觸水晶的完全指南。</p>
             <a href="quiz.html" class="cta-button">立即尋找你的命定水晶</a>
         </div>
     </section>
     
-    <section id="intro" class="guide-item layer-1">
-    <div>
-        <h2>🔮 1. 水晶介紹：起源、科學與療癒</h2>
+    <div class="guide-grid"> 
         
-        <div class="card-image-wrapper">
-            <img src="picture/crystal01.jpeg" alt="水晶原礦圖片" class="card-image" width="300"  height="180">
-        </div>
-        
-        <p>從地球深處而來的療癒密碼。了解水晶是如何形成的、它們的礦物學定義，以及人類使用水晶的悠久歷史與文化意義。</p>
-    </div>
-    <a href="origin.html" class="cta-button">深入探索水晶的基礎知識 »</a>
-    </section>
+        <section id="intro" class="guide-item layer-1">
+            <div>
+                <h2>🔮 1. 水晶介紹：起源、科學與療癒</h2>
+                <div class="card-image-wrapper">
+                    <img src="picture/crystal01.jpeg" alt="水晶原礦圖片" class="card-image" width="300"  height="180" style="width: 100%; height: auto; border-radius: 5px;">
+                </div>
+                <p>從地球深處而來的療癒密碼。了解水晶是如何形成的、它們的礦物學定義，以及人類使用水晶的悠久歷史與文化意義。</p>
+            </div>
+            <a href="origin.html" class="cta-button">深入探索水晶的基礎知識 »</a>
+        </section>
         
         <section id="types" class="guide-item layer-2">
             <div>
@@ -382,5 +338,4 @@
 </footer>
 
 </body>
-
 </html>
