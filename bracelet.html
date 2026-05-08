@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>能量手鍊與飾品 - 產品列表</title>
-    <link rel="stylesheet" href="../style01.css"> 
+    <title>能量手鍊與飾品 - 產品列表 | CrystalMagic</title>
+    <link rel="stylesheet" href="styles.css"> 
     
     <style>
+        /* 這裡保留產品頁專屬的微調，其他大樣式會從 styles.css 抓取 */
         .page-header {
             text-align: center;
-            padding: 40px 20px;
-            background-color: #fce4ec; 
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); 
             border-bottom: 5px solid #ec407a;
         }
 
@@ -18,15 +19,22 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            padding: 30px;
+            padding: 40px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .product-item {
             background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .product-item:hover {
+            transform: translateY(-10px);
         }
 
         .product-item img {
@@ -36,82 +44,92 @@
         }
 
         .product-details {
-            padding: 15px;
+            padding: 20px;
         }
 
         .product-details h4 {
             color: #ad1457;
-            margin-top: 0;
-            margin-bottom: 5px;
-        }
-
-        .product-price {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #ff8a65;
+            font-size: 1.2rem;
             margin-bottom: 10px;
         }
 
-        .add-to-cart {
+        .product-price {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #ff8a65;
+            margin: 15px 0;
+        }
+
+        .view-detail {
             display: inline-block;
-            background-color: #ec407a;
+            background-color: #6a1b9a;
             color: white;
-            padding: 10px 20px;
+            padding: 10px 25px;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            border-radius: 25px;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .view-detail:hover {
+            background-color: #ec407a;
         }
     </style>
 </head>
 <body>
 
-<header>
-    </header>
+<header class="main-header">
+    <div class="logo">🔮 CrystalMagic</div>
+    <div class="auth-buttons">
+        <a href="index.html" class="nav-button login">回首頁</a>
+        <a href="quiz.html" class="nav-button register">能量測驗</a>
+    </div>
+</header>
 
 <main>
     <section class="page-header">
-        <h1>✨ 能量手鍊與飾品 (Bracelet)</h1>
+        <h1>✨ 能量手鍊與飾品</h1>
         <p>為您精選來自世界各地的療癒寶石，將愛、財富和保護的能量隨身攜帶。</p>
     </section>
 
     <section class="product-grid">
         
         <article class="product-item">
-            <img src="../images/product_rose_quartz_bracelet.jpg" alt="玫瑰粉晶手鍊">
+            <img src="picture/pink.jpg" alt="玫瑰粉晶手鍊">
             <div class="product-details">
-                <h4>戀愛之心：粉晶與月光石手鍊</h4>
+                <h4>戀愛之心：粉晶手鍊</h4>
                 <p>專注心輪療癒，提升個人魅力與人緣，招正桃花。</p>
                 <div class="product-price">NT$ 1,280</div>
-                <a href="single_product.html?id=101" class="add-to-cart">查看詳情</a>
+                <a href="#" class="view-detail">查看詳情</a>
             </div>
         </article>
         
         <article class="product-item">
-            <img src="../images/product_citrine_bracelet.jpg" alt="黃水晶鈦晶手鍊">
+            <img src="picture/yellow.jpg" alt="黃水晶手鍊">
             <div class="product-details">
-                <h4>王者財富：鈦晶與黃晶複合手鍊</h4>
+                <h4>王者財富：黃晶手鍊</h4>
                 <p>強勢招正財，增強事業野心與決斷力，適合職場菁英。</p>
                 <div class="product-price">NT$ 3,990</div>
-                <a href="single_product.html?id=102" class="add-to-cart">查看詳情</a>
+                <a href="#" class="view-detail">查看詳情</a>
             </div>
         </article>
         
         <article class="product-item">
-            <img src="../images/product_obsidian_bracelet.jpg" alt="黑曜石項鍊">
+            <img src="picture/obsidian.jpg" alt="黑曜石項鍊">
             <div class="product-details">
-                <h4>大地護盾：黑曜石編織項鍊</h4>
+                <h4>大地護盾：黑曜石項鍊</h4>
                 <p>強效辟邪擋煞、吸收負能量，保持氣場清淨穩定。</p>
                 <div class="product-price">NT$ 980</div>
-                <a href="single_product.html?id=103" class="add-to-cart">查看詳情</a>
+                <a href="#" class="view-detail">查看詳情</a>
             </div>
         </article>
         
-        </section>
-
+    </section>
 </main>
 
-<footer>
-    </footer>
+<footer class="footer">
+    <p>&copy; 2026 CrystalMagic. 每一顆水晶都承載著大地的祝福。</p>
+</footer>
 
 </body>
 </html>
