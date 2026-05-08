@@ -4,107 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>聯絡我們 - 水晶魔法客服諮詢</title>
-    <link rel="stylesheet" href="../style01.css"> 
+    <link rel="stylesheet" href="styles.css"> 
     
     <style>
-        .contact-header {
-            text-align: center;
-            padding: 50px 20px;
-            background-color: #f3e5f5; 
-            border-bottom: 5px solid #6a1b9a; 
-            margin-bottom: 30px;
-        }
-        
-        .contact-header h1 {
-            color: #4a148c;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
+        /* 聯絡頁面專屬佈局 */
         .contact-container {
             display: flex;
             gap: 40px;
             max-width: 1000px;
-            margin: 0 auto;
+            margin: 40px auto;
             padding: 0 20px;
         }
 
         .contact-form, .contact-info {
             flex: 1;
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
             background-color: white;
         }
 
         .contact-form h2 {
-            border-bottom: 2px solid #ff8a65;
+            border-bottom: 3px solid #ff8a65;
             padding-bottom: 10px;
             color: #6a1b9a;
-            margin-top: 0;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: bold;
-            color: #555;
+            color: #4a148c;
         }
 
         .form-group input, .form-group textarea, .form-group select {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ddd;
-            border-radius: 5px;
-            box-sizing: border-box; 
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #ba68c8;
         }
         
         .form-group textarea {
             resize: vertical;
-            min-height: 150px;
+            min-height: 120px;
         }
 
-        .submit-button {
-            display: inline-block;
+        /* 這裡使用 styles.css 裡面的按鈕風格，或是單獨定義 */
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
             background-color: #ff8a65;
             color: white;
-            padding: 12px 25px;
             border: none;
-            border-radius: 5px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
             cursor: pointer;
-            font-size: 1.1em;
-            transition: background-color 0.3s;
+            transition: 0.3s;
         }
 
-        .submit-button:hover {
-            background-color: #ff5722;
+        .btn-submit:hover {
+            background-color: #ff7043;
+            transform: translateY(-2px);
         }
 
         .contact-info h2 {
-            border-bottom: 2px solid #6a1b9a;
+            border-bottom: 3px solid #6a1b9a;
             padding-bottom: 10px;
             color: #ff8a65;
-            margin-top: 0;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .info-item {
             margin-bottom: 20px;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border-left: 4px solid #6a1b9a;
-            border-radius: 5px;
+            padding: 15px;
+            background-color: #f3e5f5;
+            border-left: 6px solid #6a1b9a;
+            border-radius: 8px;
         }
 
         .info-item strong {
             display: block;
             color: #4a148c;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
         }
         
         @media (max-width: 768px) {
@@ -116,9 +111,16 @@
 </head>
 <body>
 
+<header class="main-header">
+    <div class="logo">🔮 CrystalMagic</div>
+    <div class="auth-buttons">
+        <a href="index.html" class="nav-button login">回首頁</a>
+        <a href="quiz.html" class="nav-button register">能量測驗</a>
+    </div>
+</header>
+
 <main>
-    
-    <section class="contact-header">
+    <section class="page-header">
         <h1>📨 聯絡客服諮詢</h1>
         <p>無論是產品疑問、能量諮詢或合作提案，我們都很樂意為您服務。</p>
     </section>
@@ -127,36 +129,35 @@
         
         <div class="contact-form">
             <h2>表單快速提問</h2>
-            
-            <form action="submit_form.php" method="POST">
+            <form onsubmit="alert('感謝您的訊息！這是一個範例網頁，暫不具備後端送出功能。'); return false;">
                 
                 <div class="form-group">
                     <label for="name">您的姓名 *</label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name" placeholder="例如：王小明" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="email">電子郵件 *</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" placeholder="example@email.com" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="topic">諮詢主題 *</label>
                     <select id="topic" name="topic" required>
                         <option value="">請選擇主題...</option>
-                        <option value="product">產品資訊/訂單問題</option>
+                        <option value="product">產品資訊 / 訂單問題</option>
                         <option value="energy">水晶能量諮詢</option>
-                        <option value="cooperation">合作提案/媒體聯繫</option>
+                        <option value="cooperation">合作提案 / 媒體聯繫</option>
                         <option value="other">其他</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
                     <label for="message">您的訊息 *</label>
-                    <textarea id="message" name="message" required></textarea>
+                    <textarea id="message" name="message" placeholder="請詳細描述您的需求..." required></textarea>
                 </div>
                 
-                <button type="submit" class="submit-button">送出諮詢訊息</button>
+                <button type="submit" class="btn-submit">送出諮詢訊息</button>
             </form>
         </div>
 
@@ -165,33 +166,32 @@
             
             <div class="info-item">
                 <strong>客服信箱 (推薦)</strong>
-                <p>**********@gmail.com</p>
-                <p>我們保證在 24 小時內回覆您的信件。</p>
+                <p>service.crystal@gmail.com</p>
+                <p><small>我們保證在 24 小時內回覆您的信件。</small></p>
             </div>
             
             <div class="info-item">
                 <strong>官方 LINE 客服</strong>
-                <p>ID: @**********</p>
-                <p>即時訊息回覆，適用於緊急訂單問題。</p>
+                <p>ID: @crystal_magic</p>
+                <p><small>即時訊息回覆，適用於緊急問題。</small></p>
             </div>
 
             <div class="info-item">
                 <strong>服務時間</strong>
-                <p>週一至週五：09:00 - 18:00 (臺灣時間)</p>
-                <p>例假日及國定假日暫停服務。</p>
+                <p>週一至週五：09:00 - 18:00</p>
+                <p><small>例假日及國定假日暫停服務。</small></p>
             </div>
             
-            <p style="text-align: center; margin-top: 30px;">
-                <small>為了提供更優質的服務，建議使用上方的表單填寫詳細資訊。</small>
-            </p>
+            <div style="text-align: center; margin-top: 30px; color: #888;">
+                <p>✨ 祝您今日充滿正能量 ✨</p>
+            </div>
         </div>
         
     </section>
-
 </main>
 
-<footer>
-    <p>&copy; 2025 水晶魔法版權所有 | <a href="contact.html">聯絡我們</a></p>
+<footer class="footer">
+    <p>&copy; 2026 CrystalMagic. 每一顆水晶都承載著大地的祝福。</p>
 </footer>
 
 </body>
