@@ -1,12 +1,17 @@
+/* --- CrystalMagic Origin 專屬樣式表 --- */
+
 body {
     font-family: 'Noto Sans TC', sans-serif;
     background-color: #f7f7f7;
-    margin: 0;
+    margin: 0 auto; /* 居中顯示 */
     color: #333;
     line-height: 1.6;
+    /* 關鍵：鎖定電腦版寬度，防止手機版自動重排 */
+    width: 1200px; 
+    overflow-x: auto;
 }
 
-
+/* 導覽列 */
 .navbar {
     background-color: #ffffff;
     display: flex;
@@ -17,76 +22,108 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 1200px; /* 同樣固定寬度 */
+    box-sizing: border-box;
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: bold;
     color: #6a1b9a;
+    letter-spacing: 1px;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 20px;
+    gap: 30px; /* 增加間距 */
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links a {
     text-decoration: none;
     color: #555;
-    font-weight: bold;
-    transition: color 0.3s;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 5px 0;
 }
 
 .nav-links a:hover, .nav-links a.active {
     color: #6a1b9a;
+    border-bottom: 2px solid #6a1b9a;
 }
 
-
+/* Hero 橫幅區 */
 #hero {
     text-align: center;
-    padding: 80px 20px;
+    padding: 100px 20px;
     background: linear-gradient(135deg, #f3e5f5 0%, #e1f5fe 100%);
-    border-radius: 0 0 50px 50px;
+    border-radius: 0 0 80px 80px; /* 圓角更有設計感 */
+    width: 1200px;
+    box-sizing: border-box;
 }
 
 #hero h1 {
     color: #4a148c;
-    margin-bottom: 10px;
-    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-size: 3rem; /* 增大標題 */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
+#hero p {
+    font-size: 1.2rem;
+    color: #666;
+}
 
+/* 手風琴容器 */
 #accordion-container {
-    max-width: 900px;
-    margin: 50px auto;
-    padding: 0 20px;
+    width: 900px; /* 固定寬度 */
+    margin: 60px auto;
 }
 
 .section-title {
     text-align: center;
-    color: #6a1b9a;
-    margin-bottom: 30px;
+    color: #4a148c;
+    margin-bottom: 40px;
+    font-size: 2rem;
+    position: relative;
 }
 
+.section-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #6a1b9a;
+    margin: 15px auto;
+    border-radius: 2px;
+}
 
+/* 手風琴項目 */
 .accordion-item {
     background: #ffffff;
-    margin-bottom: 15px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
     overflow: hidden;
-    border: 1px solid #eee;
+    border: 1px solid #f0f0f0;
+    transition: transform 0.3s ease;
+}
+
+.accordion-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
 }
 
 .accordion-header {
     width: 100%;
-    padding: 20px;
+    padding: 25px 30px;
     background: #ffffff;
     border: none;
     text-align: left;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: all 0.3s;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -95,60 +132,77 @@ body {
 .accordion-header h3 {
     margin: 0;
     color: #6a1b9a;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    font-weight: 600;
 }
 
-.accordion-header:hover {
-    background-color: #f3e5f5;
+/* 箭頭符號 */
+.accordion-header::after {
+    content: '▼';
+    font-size: 0.8rem;
+    color: #bbb;
+    transition: 0.4s;
 }
 
+.accordion-item.active .accordion-header::after {
+    transform: rotate(180deg);
+    color: #6a1b9a;
+}
 
+/* 內容區塊動畫 */
 .accordion-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease-out, padding 0.4s ease;
-    background-color: #fafafa;
+    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+    background-color: #fcfaff;
 }
-
 
 .accordion-item.active .accordion-content {
-    max-height: 1000px; 
-    padding: 20px;
-    border-top: 1px solid #eee;
+    max-height: 1200px; /* 足夠大的展開高度 */
+    border-top: 1px solid #f0f0f0;
 }
 
-.accordion-item.active .accordion-header {
-    background-color: #f3e5f5;
+.accordion-inner-padding {
+    padding: 30px;
 }
 
+.accordion-content p {
+    margin-bottom: 15px;
+    color: #444;
+}
 
+.accordion-content strong {
+    color: #6a1b9a;
+}
+
+/* 頁尾樣式 */
 .main-footer {
     text-align: center;
-    padding: 60px 0;
-    background: #f0f2f5;
-    margin-top: 50px;
+    padding: 80px 0;
+    background: #ffffff;
+    margin-top: 80px;
+    border-top: 1px solid #eee;
+    width: 1200px;
+    box-sizing: border-box;
 }
 
 .back-btn {
     display: inline-block;
-    margin-top: 20px;
-    padding: 12px 30px;
-    background: #6a1b9a;
+    margin-top: 25px;
+    padding: 14px 40px;
+    background: linear-gradient(135deg, #7b1fa2, #4a148c);
     color: white;
     text-decoration: none;
-    border-radius: 30px;
+    border-radius: 50px;
     font-weight: bold;
-    transition: transform 0.3s, background 0.3s;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(106, 27, 154, 0.2);
 }
 
 .back-btn:hover {
-    background: #4a148c;
     transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(106, 27, 154, 0.4);
+    filter: brightness(1.1);
 }
 
-
-@media (max-width: 600px) {
-    .navbar { padding: 15px 20px; }
-    .nav-links { display: none; } 
-    #hero h1 { font-size: 1.8rem; }
-}
+/* 移除原有的 @media 區塊，確保手機不會觸發重排 */
