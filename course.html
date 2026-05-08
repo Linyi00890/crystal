@@ -3,144 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>淨化工具與教學課程 - 產品列表</title>
-    <link rel="stylesheet" href="../style01.css"> 
+    <title>淨化工具與教學課程 - 產品列表 | CrystalMagic</title>
+    <link rel="stylesheet" href="styles.css"> 
     
     <style>
         .page-header {
             text-align: center;
-            padding: 40px 20px;
-            background-color: #f3e5f5; 
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1f5fe 100%); 
             border-bottom: 5px solid #673ab7;
+        }
+
+        .section-title {
+            text-align: center; 
+            color: #4527a0; 
+            margin: 60px 0 25px;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #ff8a65;
+            margin: 10px auto;
         }
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            padding: 30px;
+            padding: 0 5%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .product-item {
             background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             overflow: hidden;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            transition: 0.3s;
+        }
+
+        .product-item:hover {
+            transform: translateY(-8px);
         }
 
         .course-item {
-            border: 2px solid #673ab7;
+            border: 2px solid #b39ddb;
         }
 
         .product-item img {
             width: 100%;
-            height: 250px;
+            height: 220px;
             object-fit: cover;
         }
 
         .product-details {
-            padding: 15px;
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .product-details h4 {
-            color: #4527a0; 
-            margin-top: 0;
-            margin-bottom: 5px;
-        }
-
-        .product-price {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #673ab7;
+            color: #4a148c;
+            font-size: 1.25rem;
             margin-bottom: 10px;
         }
 
-        .add-to-cart {
+        .product-price {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #ff8a65;
+            margin: 15px 0;
+        }
+
+        .view-detail {
             display: inline-block;
             background-color: #673ab7;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 0;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            border-radius: 30px;
+            font-weight: bold;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .view-detail:hover {
+            background-color: #ff8a65;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e1f5fe;
+            color: #0288d1;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-<header>
-    </header>
+<header class="main-header">
+    <div class="logo">🔮 CrystalMagic</div>
+    <div class="auth-buttons">
+        <a href="index.html" class="nav-button login">回首頁</a>
+        <a href="quiz.html" class="nav-button register">能量測驗</a>
+    </div>
+</header>
 
 <main>
     <section class="page-header">
-        <h1>📚 淨化工具與療癒課程</h1>
-        <p>掌握水晶保養的關鍵知識，使用專業工具為您的能量空間進行深度清理。</p>
+        <h1>✨ 淨化工具與療癒課程</h1>
+        <p>提供專業的能量清理方案，從實體工具到深度課程，全方位守護您的身心靈空間。</p>
     </section>
-    
-    <h2 style="text-align: center; color: #4527a0; margin: 30px 0 15px;">🛒 實體淨化工具</h2>
 
+    <h2 class="section-title">🛒 01 實體淨化工具</h2>
     <section class="product-grid">
-        
         <article class="product-item">
-            <img src="../images/tool_palo_santo.jpg" alt="秘魯聖木">
+            <img src="picture/palo_santo.jpg" alt="秘魯聖木">
             <div class="product-details">
-                <h4>秘魯聖木：強效淨化與祝福</h4>
-                <p>用於空間、人體和水晶的煙燻淨化，提升正能量頻率。</p>
+                <div>
+                    <span class="badge">空間淨化</span>
+                    <h4>頂級秘魯聖木 (原木條)</h4>
+                    <p>古老部落傳承，煙燻淨化首選，能有效轉化負能量，帶來神聖祝福。</p>
+                </div>
                 <div class="product-price">NT$ 350</div>
-                <a href="single_product.html?id=301" class="add-to-cart">加入購物車</a>
+                <a href="#" class="view-detail">立即購買</a>
             </div>
         </article>
-        
         <article class="product-item">
-            <img src="../images/tool_tumble_stone.jpg" alt="白水晶碎石">
+            <img src="picture/tumble_stone.jpg" alt="白水晶碎石">
             <div class="product-details">
-                <h4>高頻白水晶碎石 (500g)</h4>
-                <p>用於製作聚寶盆、填裝淨化消磁碗，是基礎淨化必備品。</p>
+                <div>
+                    <span class="badge">水晶消磁</span>
+                    <h4>高頻白水晶碎石 (500g)</h4>
+                    <p>如同讓手鍊洗澡，用於每日配戴後的消磁恢復，保持能量透明純淨。</p>
+                </div>
                 <div class="product-price">NT$ 480</div>
-                <a href="single_product.html?id=302" class="add-to-cart">加入購物車</a>
-            </div>
-        </article>
-        
-        <article class="product-item">
-            <img src="../images/tool_singing_bowl.jpg" alt="尼泊爾頌缽">
-            <div class="product-details">
-                <h4>手工尼泊爾頌缽 (7脈輪音頻)</h4>
-                <p>透過聲波振動進行深層能量清理和療癒，輔助冥想。</p>
-                <div class="product-price">NT$ 2,990</div>
-                <a href="single_product.html?id=303" class="add-to-cart">查看詳情</a>
+                <a href="#" class="view-detail">立即購買</a>
             </div>
         </article>
     </section>
-    
-    <h2 style="text-align: center; color: #4527a0; margin: 30px 0 15px;">👩‍🏫 專業教學課程 (線上)</h2>
-    
+
+    <h2 class="section-title">🕯️ 02 療癒香氛系列</h2>
+    <section class="product-grid">
+        <article class="product-item">
+            <img src="picture/candle.jpg" alt="大豆蠟燭">
+            <div class="product-details">
+                <div>
+                    <span class="badge">氣氛營造</span>
+                    <h4>脈輪能量大豆蠟燭</h4>
+                    <p>搭配對應水晶與天然精油，點燃後釋放柔和光芒，安定紛亂情緒。</p>
+                </div>
+                <div class="product-price">NT$ 750</div>
+                <a href="#" class="view-detail">查看詳情</a>
+            </div>
+        </article>
+    </section>
+
+    <h2 class="section-title">⛩️ 03 能量祭壇道具</h2>
+    <section class="product-grid">
+        <article class="product-item">
+            <img src="picture/singing_bowl.jpg" alt="頌缽">
+            <div class="product-details">
+                <div>
+                    <span class="badge">聲波療癒</span>
+                    <h4>手工尼泊爾頌缽 (手工製)</h4>
+                    <p>渾厚深層的振動頻率，可用於脈輪清理與深度冥想，平衡內在磁場。</p>
+                </div>
+                <div class="product-price">NT$ 2,990</div>
+                <a href="#" class="view-detail">立即結緣</a>
+            </div>
+        </article>
+    </section>
+
+    <h2 class="section-title">👩‍🏫 04 專業教學課程 (線上)</h2>
     <section class="product-grid">
         <article class="product-item course-item">
-            <img src="../images/course_beginner.jpg" alt="水晶療癒入門課">
+            <img src="picture/course_beginner.jpg" alt="入門課">
             <div class="product-details">
-                <h4>🔮 水晶能量療癒入門課 (初階)</h4>
-                <p>從零開始了解脈輪、水晶特性與基礎淨化手法，取得結業證書。</p>
+                <div>
+                    <span class="badge" style="background:#f3e5f5; color:#6a1b9a;">熱門預約</span>
+                    <h4>水晶能量療癒入門 (初階)</h4>
+                    <p>從零開始學習感受水晶頻率、基礎消磁手法，建立正確的能量觀念。</p>
+                </div>
                 <div class="product-price">NT$ 1,800</div>
-                <a href="single_product.html?id=401" class="add-to-cart">立即報名</a>
-            </div>
-        </article>
-
-        <article class="product-item course-item">
-            <img src="../images/course_advanced.jpg" alt="水晶能量佈局課">
-            <div class="product-details">
-                <h4>🗺️ 進階水晶能量佈局與風水應用</h4>
-                <p>學習複雜的七星陣佈局、居家風水能量調整及高階冥想技術。</p>
-                <div class="product-price">NT$ 4,500</div>
-                <a href="single_product.html?id=402" class="add-to-cart">立即報名</a>
+                <a href="#" class="view-detail">立即報名</a>
             </div>
         </article>
     </section>
 
+    <h2 class="section-title">📖 05 能量實踐指南 (E-Book)</h2>
+    <section class="product-grid">
+        <article class="product-item">
+            <img src="picture/ebook.jpg" alt="電子書">
+            <div class="product-details">
+                <div>
+                    <span class="badge">即時下載</span>
+                    <h4>21天水晶連結冥想指南</h4>
+                    <p>隨時隨地開啟數位閱讀，引導您透過冥想與自身水晶達成深度連結。</p>
+                </div>
+                <div class="product-price">NT$ 299</div>
+                <a href="#" class="view-detail">購買下載</a>
+            </div>
+        </article>
+    </section>
+
+    <h2 class="section-title">🎧 06 高頻療癒音頻</h2>
+    <section class="product-grid">
+        <article class="product-item">
+            <img src="picture/audio.jpg" alt="療癒音樂">
+            <div class="product-details">
+                <div>
+                    <span class="badge">數位內容</span>
+                    <h4>432Hz 宇宙頻率療癒專輯</h4>
+                    <p>專為睡眠與深度放鬆設計，消除壓力，幫助您進入修復性睡眠。</p>
+                </div>
+                <div class="product-price">NT$ 150</div>
+                <a href="#" class="view-detail">立即試聽</a>
+            </div>
+        </article>
+    </section>
 </main>
 
-<footer>
-    </footer>
+<footer class="footer">
+    <p>&copy; 2026 CrystalMagic. 每一顆水晶都承載著大地的祝福。</p>
+</footer>
 
 </body>
 </html>
