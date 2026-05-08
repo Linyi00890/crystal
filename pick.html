@@ -2,127 +2,262 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🛍️ 挑選指南：如何找到你的命定水晶 - 水晶魔法</title>
-    <link rel="stylesheet" href="../style01.css"> 
+    <meta name="viewport" content="width=1200">
+    <title>挑選指南：如何找到你的命定水晶 - 水晶魔法 | CrystalMagic</title>
     
     <style>
+        /* 全局樣式設定 */
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #fdfaf9;
+            margin: 0 auto;
+            color: #333;
+            line-height: 1.8;
+            width: 1200px; /* 強制固定寬度 */
+            overflow-x: auto;
+        }
+
+        /* 統一導覽列 (已移除登入按鈕) */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            width: 1200px;
+            box-sizing: border-box;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #d84315; /* 採用暖橘色調 */
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff8a65;
+        }
+
+        /* 頁面標題區 (Hero) */
         .guide-intro {
             text-align: center;
-            padding: 40px 20px;
-            background-color: #fce4ec; 
-            border-radius: 8px;
-            margin-bottom: 30px;
+            padding: 90px 50px;
+            background: linear-gradient(135deg, #fce4ec 0%, #fff3e0 100%);
+            border-bottom: 4px solid #ffab91;
+            width: 1200px;
+            box-sizing: border-box;
         }
         
         .guide-intro h1 {
-            color: #4a148c; 
+            color: #4a148c;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
         }
 
+        .guide-intro p {
+            font-size: 1.25rem;
+            max-width: 850px;
+            margin: 0 auto;
+            color: #5d4037;
+        }
+
+        /* 內容區容器 */
+        .container {
+            padding: 60px 100px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #bf360c;
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+            font-weight: bold;
+        }
+
+        /* 挑選方法網格 */
         .picking-methods {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
+            grid-template-columns: repeat(3, 1fr); /* 固定三列展示 */
+            gap: 30px;
         }
 
         .method-box {
             background-color: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            border-top: 5px solid #ff8a65; 
-            transition: box-shadow 0.3s;
+            padding: 40px 30px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-top: 6px solid #ff8a65;
+            transition: all 0.3s ease;
+            text-align: center;
         }
 
         .method-box:hover {
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 138, 101, 0.15);
         }
 
         .method-box h3 {
-            color: #ff8a65; 
+            color: #d84315;
             margin-top: 0;
-            font-size: 1.4em;
-            border-bottom: 1px dashed #ddd;
-            padding-bottom: 10px;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
         }
 
-        .method-box p strong {
+        .method-box p {
+            font-size: 1.05rem;
+            color: #666;
+            text-align: left;
+        }
+
+        .method-box strong {
             color: #6a1b9a;
         }
-  
+
+        /* 測驗推薦區 */
         .quiz-promo {
             text-align: center;
-            background-color: #fff3e0; 
-            padding: 40px;
-            border-radius: 10px;
-            margin-top: 50px;
-            border: 2px dashed #ff8a65;
+            background-color: #fff8f1;
+            padding: 60px;
+            border-radius: 30px;
+            margin-top: 60px;
+            border: 2px dashed #ffab91;
         }
 
         .quiz-promo h2 {
-            color: #d84315; 
-            margin-top: 0;
+            color: #d84315;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        /* 呼籲行動按鈕 (CTA) */
+        .cta-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 18px 45px;
+            background: linear-gradient(135deg, #ff8a65, #d84315);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            box-shadow: 0 5px 20px rgba(216, 67, 21, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(216, 67, 21, 0.4);
+            filter: brightness(1.1);
+        }
+
+        /* 頁尾 */
+        .main-footer {
+            text-align: center;
+            padding: 70px 0;
+            background: #fff;
+            margin-top: 80px;
+            border-top: 1px solid #eee;
+            width: 1200px;
+            box-sizing: border-box;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 35px;
+            background: #4a148c;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #6a1b9a;
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
 
+<nav class="navbar">
+    <a href="index.html" class="logo">🔮 CrystalMagic</a>
+    <ul class="nav-links">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="origin.html">水晶起源</a></li>
+        <li><a href="pick.html" style="color:#d84315; border-bottom: 2px solid #d84315;">挑選指南</a></li>
+        <li><a href="pages.html">淨化保養</a></li>
+    </ul>
+</nav>
+
 <main>
-    
     <section class="guide-intro">
         <h1>🛍️ 挑選指南：找到與您頻率共振的命定水晶</h1>
-        <p>挑選水晶就像是找尋靈魂伴侶，沒有絕對的對錯。遵循您的直覺、了解您的需求，才能找到那個最能幫助您的能量石。</p>
+        <p>挑選水晶就像找尋靈魂伴侶。當您準備好時，適合您的水晶自然會出現。遵循直覺與了解需求，讓能量石成為您最好的夥伴。</p>
     </section>
 
-    <section id="methods-detail" class="content-section">
-        <h2>🔍 核心挑選方法詳解</h2>
+    <div class="container">
+        <h2 class="section-title">🔍 三大核心挑選法詳解</h2>
         
         <div class="picking-methods">
-            
             <article class="method-box">
-                <h3>1. 需求導向法 (理性分析)</h3>
-                <p><strong>方法：</strong> 先確認您目前最需要改善或加強的領域，例如「改善人際關係」、「增加財運」、「提升專注力」等。</p>
-                <p><strong>優點：</strong> 目標明確，能快速找到具有特定功效的水晶。您可參考我們的<a href="effect.html" style="color: #6a1b9a;">功效解讀表</a>。</p>
+                <h3>1. 需求導向法</h3>
+                <p><strong>適合對象：</strong> 目標明確的理性行動派。</p>
+                <p><strong>如何操作：</strong> 條列出目前生活中最想強化的部分，如「招財」、「防小人」或「穩定情緒」，再對應特定水晶。</p>
+                <p><strong>優點：</strong> 邏輯清晰，能針對性解決當下的生命課題。</p>
             </article>
 
             <article class="method-box">
-                <h3>2. 直覺選擇法 (心靈指引)</h3>
-                <p><strong>方法：</strong> 在沒有預設立場的情況下，讓您的眼睛在水晶中掃過，第一眼被哪個顏色或形狀吸引，或是哪個摸起來最溫暖/順眼，就選擇它。</p>
-                <p><strong>優點：</strong> 這是最能體現「水晶在選你」的方法，您的潛意識往往知道身體最需要什麼樣的能量。</p>
+                <h3>2. 直覺吸引法</h3>
+                <p><strong>適合對象：</strong> 感知敏銳、相信緣分者。</p>
+                <p><strong>如何操作：</strong> 放鬆心情，第一眼讓你感到舒服、溫暖，或是視線不由自主停留最久的那顆水晶，就是您的選擇。</p>
+                <p><strong>優點：</strong> 這通常代表您的潛意識正需要該水晶的特定振動頻率。</p>
             </article>
 
             <article class="method-box">
-                <h3>3. 命盤/星座對應法 (玄學參考)</h3>
-                <p><strong>方法：</strong> 根據您的星座守護石、出生日期對應的脈輪或五行元素，來篩選出與您個人命盤能量最和諧的水晶。</p>
-                <p><strong>優點：</strong> 能量匹配度高，有助於彌補個人命盤中較弱的能量。建議：*這可以作為參考，不必是唯一標準。</p>
+                <h3>3. 五行與脈輪對應</h3>
+                <p><strong>適合對象：</strong> 喜歡結合玄學與系統分析者。</p>
+                <p><strong>如何操作：</strong> 根據您的星座（如火象星座配紅瑪瑙）、出生月份，或是目前阻塞的脈輪（如喉輪配海藍寶）來挑選。</p>
+                <p><strong>優點：</strong> 能輔助平衡個人先天命盤中較為不足的能量場。</p>
             </article>
         </div>
-    </section>
 
-    <section id="matching-quiz" class="quiz-promo">
-        <h2>✨ 仍在猶豫不決？來做個快速配對吧！</h2>
-        <p>只需回答幾個關於您當前狀態和願望的小問題，系統就能為您推薦三種最適合您的能量水晶。</p>
-        <a href="quiz.html" class="cta-button">立即開始命定水晶配對測試 »</a>
-        <p style="font-size: 0.85em; margin-top: 15px; color: #795548;">*測試結果僅供參考，最終決定權仍在您的直覺。</p>
-    </section>
-    
+        <section id="matching-quiz" class="quiz-promo">
+            <h2>✨ 仍在猶豫不決？</h2>
+            <p>我們設計了一套能量演算法，只需回答 5 個問題，即可為您推薦三款最契合的命定水晶。</p>
+            <a href="quiz.html" class="cta-button">立即開啟：命定水晶配對測試 »</a>
+            <p style="font-size: 0.9rem; margin-top: 20px; color: #8d6e63;">* 測試結果將結合您的潛意識與能量需求，建議空腹或靜心時施測。</p>
+        </section>
+
+        <div style="text-align: center;">
+            <a href="index.html" class="back-btn">← 返回首頁探索更多</a>
+        </div>
+    </div>
 </main>
 
-<footer>
-    <p>&copy; 2025 水晶魔法版權所有 | <a href="contact.html">聯絡我們</a></p>
+<footer class="main-footer">
+    <p>&copy; 2026 CrystalMagic 水晶魔法版權所有 | 願每顆水晶都能與您的心靈共鳴</p>
 </footer>
 
-<script>
-
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
-</script>
-
-<a href="crystal.html" class="back-to-home-link">← 返回首頁</a> 
-
 </body>
-
 </html>
-
