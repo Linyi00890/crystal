@@ -1,1 +1,172 @@
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background-color: #f0f2f5;
+    color: #444;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
 
+
+.quiz-header {
+    background: linear-gradient(135deg, #6a1b9a 0%, #ad1457 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+    margin-bottom: 40px;
+}
+
+.quiz-header h1 {
+    margin: 0;
+    font-size: 2em;
+    letter-spacing: 1px;
+}
+
+.quiz-header p {
+    opacity: 0.9;
+    margin-top: 10px;
+}
+
+
+.quiz-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+.question-block {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+
+.question-block:hover {
+    transform: translateY(-3px);
+}
+
+.question-block h2 {
+    font-size: 1.2em;
+    color: #6a1b9a;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-left: 5px solid #ff8a65;
+    padding-left: 15px;
+}
+
+
+.question-block label {
+    display: block;
+    background: #f8f9fa;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #eee;
+}
+
+.question-block label:hover {
+    background: #f3e5f5;
+    border-color: #ba68c8;
+}
+
+.question-block input[type="radio"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+
+.submit-button {
+    display: block;
+    width: 100%;
+    background-color: #ff8a65;
+    color: white;
+    border: none;
+    padding: 18px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #ff5722;
+    box-shadow: 0 5px 15px rgba(255, 138, 101, 0.4);
+}
+
+
+.result-section {
+    margin-top: 40px;
+    padding: 30px;
+    background: white;
+    border-radius: 20px;
+    border: 3px solid #ba68c8;
+    text-align: center;
+    animation: fadeIn 0.8s ease;
+}
+
+.result-section h2 {
+    color: #ad1457;
+}
+
+.crystal-result-card {
+    margin-top: 20px;
+}
+
+#crystalName {
+    font-size: 1.8em;
+    color: #6a1b9a;
+    margin-bottom: 15px;
+}
+
+#crystalImage {
+    max-width: 250px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    margin: 20px 0;
+}
+
+#crystalDescription {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 25px;
+    padding: 0 20px;
+}
+
+
+.hidden {
+    display: none;
+}
+
+
+.back-to-home-link {
+    display: block;
+    text-align: center;
+    margin: 40px 0;
+    color: #666;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-to-home-link:hover {
+    color: #6a1b9a;
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+@media (max-width: 600px) {
+    .quiz-header { padding: 40px 15px; }
+    .question-block { padding: 20px; }
+}
