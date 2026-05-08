@@ -3,115 +3,259 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>高品質原礦與空間擺件 - 產品列表</title>
-    <link rel="stylesheet" href="../style01.css"> 
+    <title>高品質原礦與空間擺件 - 水晶魔法 | CrystalMagic</title>
+    <link rel="stylesheet" href="styles.css"> 
     
     <style>
+        /* 原礦頁面專屬風格 */
         .page-header {
             text-align: center;
-            padding: 40px 20px;
-            background-color: #e8f5e9; 
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%); 
             border-bottom: 5px solid #4caf50;
         }
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            padding: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
 
         .product-item {
             background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
             overflow: hidden;
-            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #f0f0f0;
+        }
+
+        .product-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
         }
 
         .product-item img {
             width: 100%;
-            height: 250px;
+            height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* 能量標籤樣式 */
+        .status-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: rgba(255, 255, 255, 0.95);
+            color: #2e7d32;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #e8f5e9;
         }
 
         .product-details {
-            padding: 15px;
+            padding: 25px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .product-details h4 {
             color: #1b5e20; 
-            margin-top: 0;
-            margin-bottom: 5px;
+            font-size: 1.3rem;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+
+        .product-details p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            height: 3.2em; /* 保持描述文字高度一致 */
+            overflow: hidden;
+        }
+
+        .price-row {
+            margin-top: auto;
+            margin-bottom: 20px;
+            border-top: 1px dashed #eee;
+            padding-top: 15px;
         }
 
         .product-price {
-            font-size: 1.2em;
+            font-size: 1.4rem;
             font-weight: bold;
-            color: #4caf50;
-            margin-bottom: 10px;
+            color: #2e7d32;
         }
 
-        .add-to-cart {
-            display: inline-block;
-            background-color: #4caf50;
+        .view-detail-btn {
+            display: block;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
             color: white;
-            padding: 10px 20px;
+            padding: 12px 25px;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2);
+        }
+
+        .view-detail-btn:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .back-to-shop {
+            text-align: center;
+            margin: 60px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 15px;
         }
     </style>
 </head>
 <body>
 
-<header>
-    </header>
+<header class="main-header">
+    <div class="logo">🔮 CrystalMagic</div>
+    <nav class="auth-buttons">
+        <a href="index.html" class="nav-button login">回首頁</a>
+        <a href="exclusive.html" class="nav-button register">返回分類</a>
+    </nav>
+</header>
 
 <main>
     <section class="page-header">
-        <h1>🏠 高品質原礦與空間擺件 (Raw Crystal)</h1>
-        <p>探索大地之母的純粹力量，為您的生活空間帶來穩定與豐盛的能量。</p>
+        <h1>🏠 高品質原礦與空間擺件</h1>
+        <p>為您的居家與辦公環境注入大地能量，營造和諧安穩的氣場。</p>
     </section>
 
     <section class="product-grid">
         
         <article class="product-item">
-            <img src="../images/product_amethyst_geode.jpg" alt="巴西紫晶洞">
+            <div class="image-container">
+                <img src="picture/product_amethyst_geode.jpg" alt="巴西紫晶洞">
+                <span class="status-tag">✨ 聚財鎮宅</span>
+            </div>
             <div class="product-details">
-                <h4>頂級巴西紫晶洞 (聚財、安神)</h4>
-                <p>鎮宅、聚財、淨化周遭能量，為空間帶來平靜與智慧。</p>
-                <div class="product-price">NT$ 8,800 起</div>
-                <a href="single_product.html?id=201" class="add-to-cart">查看詳情</a>
+                <h4>頂級巴西紫晶洞</h4>
+                <p>強效淨化空間磁場，具備極佳的招財與聚氣功效，是客廳與玄關的最佳守護。</p>
+                <div class="price-row">
+                    <div class="product-price">NT$ 8,800 <small>起</small></div>
+                </div>
+                <a href="single_product.html?id=201" class="view-detail-btn">探索能量詳情</a>
             </div>
         </article>
         
         <article class="product-item">
-            <img src="../images/product_clear_quartz_cluster.jpg" alt="白水晶簇">
+            <div class="image-container">
+                <img src="picture/product_clear_quartz_cluster.jpg" alt="白水晶簇">
+                <span class="status-tag">💎 能量消磁</span>
+            </div>
             <div class="product-details">
-                <h4>全功能淨化：馬達加斯加白水晶簇</h4>
-                <p>能量放大器，可為手鍊飾品充電，淨化居家或辦公室磁場。</p>
-                <div class="product-price">NT$ 1,500</div>
-                <a href="single_product.html?id=202" class="add-to-cart">查看詳情</a>
+                <h4>全效馬達加斯加白水晶簇</h4>
+                <p>純淨的晶體能自動清理負面能量，是為您的手鍊飾品充電與消磁的首選。</p>
+                <div class="price-row">
+                    <div class="product-price">NT$ 1,500</div>
+                </div>
+                <a href="single_product.html?id=202" class="view-detail-btn">探索能量詳情</a>
             </div>
         </article>
         
         <article class="product-item">
-            <img src="../images/product_citrine_tree.jpg" alt="黃水晶發財樹">
+            <div class="image-container">
+                <img src="picture/product_citrine_tree.jpg" alt="黃水晶發財樹">
+                <span class="status-tag">💰 事業亨通</span>
+            </div>
             <div class="product-details">
                 <h4>招財進寶：黃水晶發財樹</h4>
-                <p>提升事業與財富運勢，為店面或辦公室帶來積極財氣。</p>
-                <div class="product-price">NT$ 2,580</div>
-                <a href="single_product.html?id=203" class="add-to-cart">查看詳情</a>
+                <p>細緻編織的黃水晶葉片象徵果實纍纍，能激發創造力並帶來豐沛的商業財氣。</p>
+                <div class="price-row">
+                    <div class="product-price">NT$ 2,580</div>
+                </div>
+                <a href="single_product.html?id=203" class="view-detail-btn">探索能量詳情</a>
             </div>
         </article>
-        
-        </section>
+
+        <article class="product-item">
+            <div class="image-container">
+                <img src="picture/product_crystal_sphere.jpg" alt="水晶球">
+                <span class="status-tag">⭕ 圓滿和諧</span>
+            </div>
+            <div class="product-details">
+                <h4>天然拉長石/粉晶球</h4>
+                <p>球體象徵圓滿，能均勻地向四面八方放射能量，適合放置於臥室或冥想空間。</p>
+                <div class="price-row">
+                    <div class="product-price">NT$ 1,200 <small>起</small></div>
+                </div>
+                <a href="single_product.html?id=204" class="view-detail-btn">探索能量詳情</a>
+            </div>
+        </article>
+
+        <article class="product-item">
+            <div class="image-container">
+                <img src="picture/product_crystal_point.jpg" alt="水晶柱">
+                <span class="status-tag">🚀 能量引導</span>
+            </div>
+            <div class="product-details">
+                <h4>單向/六角能量療癒晶柱</h4>
+                <p>強大的指向性能量，幫助集中注意力並排除思緒雜點，是辦公桌上的靈感源泉。</p>
+                <div class="price-row">
+                    <div class="product-price">NT$ 850 <small>起</small></div>
+                </div>
+                <a href="single_product.html?id=205" class="view-detail-btn">探索能量詳情</a>
+            </div>
+        </article>
+
+        <article class="product-item">
+            <div class="image-container">
+                <img src="picture/product_raw_specimen.jpg" alt="原石標本">
+                <span class="status-tag">🌿 大地呼吸</span>
+            </div>
+            <div class="product-details">
+                <h4>各類未經雕琢天然原石</h4>
+                <p>包含螢石、青金石等未經打磨的礦石，完整保留大地的振動與最原始的療癒力。</p>
+                <div class="price-row">
+                    <div class="product-price">NT$ 450 <small>起</small></div>
+                </div>
+                <a href="single_product.html?id=206" class="view-detail-btn">探索能量詳情</a>
+            </div>
+        </article>
+
+    </section>
+
+    <div class="back-to-shop">
+        <p>找不到您心儀的能量原礦？</p>
+        <a href="exclusive.html" style="color: #2e7d32; font-weight: bold; text-decoration: none;">← 點擊返回查看「能量手鍊」或「療癒工具」</a>
+    </div>
 
 </main>
 
-<footer>
-    </footer>
+<footer class="footer">
+    <p>&copy; 2026 CrystalMagic 版權所有 | 每顆原礦都代表地球的一份祝福。</p>
+</footer>
 
 </body>
 </html>
