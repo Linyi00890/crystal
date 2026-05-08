@@ -3,194 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎁 專屬商品：為您量身打造的水晶 - 水晶魔法商店</title>
-    <link rel="stylesheet" href="../style01.css"> 
+    <title>🎁 專屬商品：水晶分類與推薦 - 水晶魔法 | CrystalMagic</title>
+    <link rel="stylesheet" href="styles.css"> 
     
     <style>
-        .shop-intro {
+        /* 專屬商品頁專屬風格 */
+        .page-header {
             text-align: center;
-            padding: 40px 20px;
-            background-color: #e0f7fa; 
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
-        
-        .shop-intro h1 {
-            color: #00838f; 
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #e0f7fa 0%, #e1f5fe 100%); 
+            border-bottom: 5px solid #00acc1;
         }
 
-        .product-categories {
+        .category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
-            margin-top: 20px;
-            margin-bottom: 40px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
 
         .category-card {
             background-color: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         .category-card img {
             width: 100%;
-            height: 200px;
+            height: 250px;
             object-fit: cover;
         }
 
         .category-info {
-            padding: 20px;
-            text-align: center;
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .category-info h3 {
-            color: #4a148c; 
-            margin-top: 0;
+            color: #00838f;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
         }
 
-        .custom-service {
+        /* 標籤樣式 */
+        .meta-container {
+            margin-bottom: 15px;
+        }
+
+        .meta-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .product-type { background-color: #e1f5fe; color: #0288d1; }
+        .feature { background-color: #f3e5f5; color: #7b1fa2; }
+        .focus { background-color: #fff3e0; color: #ef6c00; }
+
+        .category-description {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .detail-link {
+            margin-top: auto;
+            color: #00acc1;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .detail-link:hover {
+            color: #ff7043;
+            padding-left: 5px;
+        }
+
+        /* 客製化區塊 */
+        .custom-banner {
             text-align: center;
-            background-color: #fff8e1; 
-            padding: 40px;
-            border-radius: 10px;
-            margin-top: 50px;
+            background: linear-gradient(135deg, #fffde7 0%, #fff8e1 100%);
+            padding: 50px 20px;
+            border-radius: 25px;
+            max-width: 1100px;
+            margin: 60px auto;
+            border: 2px dashed #ffb74d;
         }
 
-        .custom-service h2 {
-            color: #d84315; 
-            margin-top: 0;
-            font-size: 2em;
+        .custom-banner h2 {
+            color: #d84315;
+            margin-bottom: 15px;
         }
 
-        .custom-link {
+        .btn-custom {
             display: inline-block;
             background-color: #ff7043;
             color: white;
-            padding: 12px 25px;
-            margin-top: 20px;
+            padding: 15px 35px;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            border-radius: 35px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(255,112,67,0.3);
+            transition: 0.3s;
         }
-        
-        .custom-link:hover {
-            background-color: #e64a19;
+
+        .btn-custom:hover {
+            background-color: #f4511e;
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
 
+<header class="main-header">
+    <div class="logo">🔮 CrystalMagic</div>
+    <div class="auth-buttons">
+        <a href="index.html" class="nav-button login">回首頁</a>
+        <a href="quiz.html" class="nav-button register">能量測驗</a>
+    </div>
+</header>
+
 <main>
-    
-    <section class="shop-intro">
+    <section class="page-header">
         <h1>🎁 專屬您的能量飾品與療癒工具</h1>
-        <p>在這裡，您可以找到我們精心挑選的高品質原礦，以及由專業療癒師手工製作的獨家能量飾品。讓水晶的力量融入您的日常生活。</p>
+        <p>挑選最契合您靈魂頻率的水晶，開啟您的能量覺醒之旅。</p>
     </section>
 
-    <section id="categories" class="content-section">
-        <h2>🛍️ 精選商品分類</h2>
-        
-        <div class="product-categories">
-            
-            <article class="category-card bracelet">
-                <img src="../images/shop_bracelet.jpg" alt="能量手鍊"> 
-                
-                <div class="category-info">
-                    <h3>✨ 能量手鍊與飾品</h3>
-                    
-                    <div class="category-meta">
-                        <span class="meta-tag product-type">佩戴型</span>
-                        <span class="meta-tag feature">平衡氣場</span>
-                        <span class="meta-tag focus">日常穿搭</span>
-                    </div>
-                    
-                    <p class="category-description">
-                        我們的獨家設計，將水晶能量融入每日穿搭。根據脈輪或特定功效（如愛情、財富、健康）精心搭配，隨身佩戴，平衡每日氣場。
-                    </p>
-                    
-                    <a href="bracelet.html?cat=bracelet" class="detail-link">探索所有手鍊與飾品 »</a>
+    <div class="category-grid">
+        <article class="category-card">
+            <img src="picture/shop_bracelet.jpg" alt="能量手鍊">
+            <div class="category-info">
+                <h3>✨ 能量手鍊與飾品</h3>
+                <div class="meta-container">
+                    <span class="meta-tag product-type">佩戴型</span>
+                    <span class="meta-tag feature">平衡氣場</span>
+                    <span class="meta-tag focus">日常穿搭</span>
                 </div>
-            </article>
+                <p class="category-description">
+                    精選天然水晶，由療癒師親自設計。根據不同脈輪需求搭配，隨身佩戴，讓好運與平靜隨影而行。
+                </p>
+                <a href="bracelet.html" class="detail-link">探索所有飾品 »</a>
+            </div>
+        </article>
 
-            <article class="category-card raw-crystal">
-                <img src="../images/shop_raw_crystal.jpg" alt="水晶原礦與擺件"> 
-                
-                <div class="category-info">
-                    <h3>🏠 高品質原礦與空間擺件</h3>
-                    
-                    <div class="category-meta">
-                        <span class="meta-tag product-type">空間型</span>
-                        <span class="meta-tag feature">能量放大</span>
-                        <span class="meta-tag focus">風水佈局/淨化</span>
-                    </div>
-                    
-                    <p class="category-description">
-                        提供未經多餘雕琢的天然原礦、晶簇、晶洞。能量最強、最純粹，適合用於空間淨化、提升磁場、冥想或作為風水擺件。
-                    </p>
-                    
-                    <a href="natural.html?cat=raw" class="detail-link">探索所有原礦與擺件 »</a>
+        <article class="category-card">
+            <img src="picture/shop_raw_crystal.jpg" alt="水晶原礦">
+            <div class="category-info">
+                <h3>🏠 高品質原礦與擺件</h3>
+                <div class="meta-container">
+                    <span class="meta-tag product-type">空間型</span>
+                    <span class="meta-tag feature">能量放大</span>
+                    <span class="meta-tag focus">風水/淨化</span>
                 </div>
-            </article>
+                <p class="category-description">
+                    保留大地最原始的頻率，適合居家風水佈局、辦公室能量防護或專業冥想使用，穩定空間磁場。
+                </p>
+                <a href="natural.html" class="detail-link">探索原礦系列 »</a>
+            </div>
+        </article>
 
-            <article class="category-card tools-course">
-                <img src="../images/shop_tools.jpg" alt="淨化工具與課程"> 
-                
-                <div class="category-info">
-                    <h3>📚 淨化工具與療癒課程</h3>
-                    
-                    <div class="category-meta">
-                        <span class="meta-tag product-type">工具/服務</span>
-                        <span class="meta-tag feature">能量保養</span>
-                        <span class="meta-tag focus">知識學習/實用</span>
-                    </div>
-                    
-                    <p class="category-description">
-                        提供聖木、鼠尾草、頌缽等實體淨化工具，以及由專業導師帶領的水晶療癒入門與進階線上課程。
-                    </p>
-                    
-                    <a href="course.html?cat=tools" class="detail-link">探索工具與課程選項 »</a>
+        <article class="category-card">
+            <img src="picture/shop_tools.jpg" alt="工具與課程">
+            <div class="category-info">
+                <h3>📚 淨化工具與課程</h3>
+                <div class="meta-container">
+                    <span class="meta-tag product-type">數位+實體</span>
+                    <span class="meta-tag feature">能量保養</span>
+                    <span class="meta-tag focus">知識學習</span>
                 </div>
-            </article>
-            
-        </div>
-    </section>
+                <p class="category-description">
+                    提供聖木、頌缽等專業淨化器材，以及水晶連結入門課程。學會如何與您的水晶溝通並發揮其最大潛力。
+                </p>
+                <a href="course.html" class="detail-link">探索工具與課程 »</a>
+            </div>
+        </article>
+    </div>
 
-    <section id="custom-made" class="custom-service">
+    <section class="custom-banner">
         <h2>✨ 為您量身打造：獨一無二的客製化手鍊</h2>
-        <p>根據您的生日、命盤和當前能量需求，由我們的專家為您設計專屬的水晶組合，讓能量達到最完美契合。</p>
-        <a href="custom.html" class="custom-link">預約客製化諮詢 »</a>
+        <p>根據您的生日、命盤和當前能量需求，由專家設計專屬組合。</p>
+        <a href="custom.html" class="btn-custom">立即預約諮詢</a>
     </section>
-    
 </main>
 
-<footer>
-    <p>&copy; 2025 水晶魔法版權所有 | 
+<footer class="footer">
+    <p>&copy; 2026 CrystalMagic 版權所有 | 每一顆水晶都承載著大地的祝福。</p>
 </footer>
 
-<script>
-
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
-</script>
-
-<a href="crystal.html" class="back-to-home-link">← 返回首頁</a> 
-
 </body>
-
 </html>
-
-
-
-
-
-
