@@ -7,15 +7,7 @@ const initAccordion = () => {
             
 
             item.classList.toggle('active');
-            
-            // 如果你希望一次只能打開一個選單，請取消下方註釋：
-            /*
-            document.querySelectorAll('.accordion-item').forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.classList.remove('active');
-                }
-            });
-            */
+
         });
     });
 };
