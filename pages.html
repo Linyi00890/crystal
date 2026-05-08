@@ -2,163 +2,297 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💧 水晶淨化與保養指南 - 水晶魔法</title>
-    <link rel="stylesheet" href="../style01.css"> 
+    <meta name="viewport" content="width=1200">
+    <title>水晶淨化與保養指南 - 水晶魔法 | CrystalMagic</title>
+    
     <style>
-
-        .care-intro {
-            text-align: center;
-            padding: 40px 20px;
-            background-color: #e8f5e9;
-            border-radius: 8px;
-            margin-bottom: 30px;
+        /* 全局基礎設定 */
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f4f7f6;
+            margin: 0 auto;
+            color: #333;
+            line-height: 1.8;
+            width: 1200px; /* 固定寬度 */
+            overflow-x: auto;
         }
-        
-        .care-intro h1 {
+
+        /* 統一導覽列 (移除登入按鈕) */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            width: 1200px;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #2e7d32;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
             color: #2e7d32;
         }
 
+        /* 頁面標題區 */
+        .care-intro {
+            text-align: center;
+            padding: 80px 50px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+            border-bottom: 5px solid #81c784;
+        }
+        
+        .care-intro h1 {
+            color: #1b5e20;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+
+        .care-intro p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #444;
+        }
+
+        /* 內容容器 */
+        .container {
+            padding: 60px 80px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #2e7d32;
+            margin-bottom: 40px;
+            font-size: 2rem;
+        }
+
+        /* 淨化方法卡片網格 */
         .purification-methods {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
+            grid-template-columns: repeat(2, 1fr); /* 固定兩列展示 */
+            gap: 30px;
+            margin-top: 30px;
         }
 
         .method-card {
             background-color: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
         }
 
         .method-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         }
 
         .method-card h3 {
-            color: #6a1b9a; 
-            border-bottom: 2px solid #ce93d8;
-            padding-bottom: 10px;
+            color: #4a148c;
+            border-left: 5px solid #8e24aa;
+            padding-left: 15px;
             margin-top: 0;
+            font-size: 1.4rem;
         }
 
         .method-card ul {
-            list-style: disc;
-            margin-left: 20px;
-            padding-left: 0;
-        }
-
-        .warning {
-            color: #d32f2f;
-            font-weight: bold;
-            background-color: #ffebee;
-            padding: 15px;
-            border-radius: 5px;
+            padding-left: 20px;
             margin-top: 20px;
         }
 
-        .crystal-maintenance h2 {
-            margin-top: 40px;
-            color: #4a148c;
+        .method-card li {
+            margin-bottom: 10px;
+        }
+
+        /* 警告區塊 */
+        .warning-box {
+            background-color: #fff5f5;
+            border: 2px dashed #ff8a80;
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 50px;
+        }
+
+        .warning-box h3 {
+            color: #d32f2f;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* 日常保養清單 */
+        .maintenance-list {
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 50px;
+        }
+
+        .maintenance-list dt {
+            font-weight: bold;
+            color: #2e7d32;
+            font-size: 1.2rem;
+            margin-top: 25px;
+        }
+
+        .maintenance-list dd {
+            margin-left: 0;
+            color: #666;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 15px;
+        }
+
+        /* 頁尾 */
+        .footer {
+            text-align: center;
+            padding: 60px 0;
+            background: #fff;
+            margin-top: 80px;
+            border-top: 1px solid #eee;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 40px;
+            background: #2e7d32;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #1b5e20;
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
 
+<header class="main-header">
+    <a href="index.html" class="logo">🔮 CrystalMagic</a>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="origin.html">水晶起源</a></li>
+            <li><a href="exclusive.html">能量飾品</a></li>
+            <li><a href="natural.html">空間原礦</a></li>
+        </ul>
+    </nav>
+</header>
+
 <main>
-    
     <section class="care-intro">
-        <h1>💧 維持水晶能量：淨化與保養完整指南</h1>
-        <p>水晶在吸收環境中的負能量後，需要定期淨化才能恢復其純淨的能量頻率。學會正確的淨化和保養方式，讓您的水晶夥伴長久發揮效用。</p>
+        <h1>💧 水晶淨化與保養完整指南</h1>
+        <p>水晶如同能量的「海綿」，會吸收環境與情緒的波動。定期淨化能重置水晶的頻率，讓它維持在最純淨的保護狀態。</p>
     </section>
 
-    <section id="purification" class="content-section">
-        <h2>🌀 水晶常用的五大淨化方法</h2>
-        
-        <div class="purification-methods">
-            
-            <article class="method-card">
-                <h3>1. 晶洞/晶簇/碎石淨化 (推薦懶人法)</h3>
-                <p><strong>原理：</strong> 利用更高頻率、持續穩定的白水晶或紫水晶能量，環繞並清除小水晶的雜訊。</p>
-                <ul>
-                    <li><strong>操作：</strong> 將您的水晶飾品或原礦直接放在晶洞、晶簇或裝滿白水晶碎石的碗中。</li>
-                    <li><strong>時長：</strong> 建議靜置 4 小時以上，最好是過夜。</li>
-                    <li><strong>適用：</strong> 適用於所有水晶，是最安全、最溫和的方法。</li>
-                </ul>
-            </article>
+    <div class="container">
+        <section id="purification">
+            <h2 class="section-title">🌀 五大推薦淨化法</h2>
+            <div class="purification-methods">
+                <article class="method-card">
+                    <h3>1. 晶簇與碎石法 (最安全)</h3>
+                    <p>利用高頻穩定的白水晶簇或碎石，持續清理小水晶的負向磁場。</p>
+                    <ul>
+                        <li><strong>操作：</strong> 將飾品放置於晶簇上或碎石碗中。</li>
+                        <li><strong>時長：</strong> 靜置 4-8 小時，建議隔夜。</li>
+                        <li><strong>優點：</strong> 適合所有水晶，完全無損害。</li>
+                    </ul>
+                </article>
 
-            <article class="method-card">
-                <h3>2. 月光/日光照射淨化 (自然能量)</h3>
-                <p><strong>原理：</strong> 藉由自然光（尤其是月光）的溫和能量來為水晶充電。</p>
-                <ul>
-                    <li><strong>月光：</strong> 適合所有水晶。推薦在滿月前後，將水晶放置於窗邊或戶外 2-3 小時。</li>
-                    <li><strong>日光：</strong> 僅適用於硬度高、顏色穩定的水晶 (如白水晶)。**警告：** 紫水晶、粉晶、黃水晶等有色水晶長時間曝曬會褪色！</li>
-                </ul>
-            </article>
+                <article class="method-card">
+                    <h3>2. 月光能量法 (最溫和)</h3>
+                    <p>藉由月亮的陰柔能量為水晶充電，特別適合提升直覺力的水晶。</p>
+                    <ul>
+                        <li><strong>操作：</strong> 滿月前後放置於窗邊接受月光照射。</li>
+                        <li><strong>時長：</strong> 至少 2 小時以上。</li>
+                        <li><strong>優點：</strong> 適合粉晶、拉長石、月光石等。</li>
+                    </ul>
+                </article>
 
-            <article class="method-card">
-                <h3>3. 煙燻/焚香淨化 (氣味淨化)</h3>
-                <p><strong>原理：</strong> 利用燃燒聖木、鼠尾草或高品質的檀香所產生的煙霧，透過氣場循環清除水晶附著的負能量。</p>
-                <ul>
-                    <li><strong>操作：</strong> 點燃香草後，讓煙霧緩慢地環繞水晶 1-2 分鐘。</li>
-                    <li><strong>適用：</strong> 適用於所有水晶，但需確保在通風良好的環境下進行。</li>
-                </ul>
-            </article>
-            
-            <article class="method-card">
-                <h3>4. 聲音淨化法 (音頻震動)</h3>
-                <p><strong>原理：</strong> 透過頌缽、音叉等發出的穩定高頻震動，達到共振並重新校準水晶的能量場。</p>
-                <ul>
-                    <li><strong>操作：</strong> 將水晶放置於頌缽旁，輕輕敲擊或摩擦頌缽 3-5 分鐘。</li>
-                    <li><strong>適用：</strong> 溫和且有效，特別適合已編織的手鍊或不適合碰水的礦石。</li>
-                </ul>
-            </article>
+                <article class="method-card">
+                    <h3>3. 神聖煙燻法 (最迅速)</h3>
+                    <p>燃燒白色鼠尾草或秘魯聖木，利用煙霧帶走附著的沈重能量。</p>
+                    <ul>
+                        <li><strong>操作：</strong> 讓煙霧環繞水晶每一個切面約 1 分鐘。</li>
+                        <li><strong>時長：</strong> 煙霧完全包覆後即可。</li>
+                        <li><strong>注意：</strong> 需在通風良好的環境下進行。</li>
+                    </ul>
+                </article>
+
+                <article class="method-card">
+                    <h3>4. 音頻震動法 (最高效)</h3>
+                    <p>利用頌缽或音叉的穩定震動頻率，瞬間校準水晶的能量分子。</p>
+                    <ul>
+                        <li><strong>操作：</strong> 將水晶放於頌缽旁，敲擊發出共振音。</li>
+                        <li><strong>時長：</strong> 持續 3-5 次完整的餘音。</li>
+                        <li><strong>優點：</strong> 特別適合不宜碰水、體積巨大的原礦。</li>
+                    </ul>
+                </article>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ 淨化地雷：請務必避免</h3>
+                <p><strong>❌ 嚴禁鹽水泡法：</strong> 鹽分會滲入微小裂縫，長期會導致水晶霧化或結構崩裂（如方解石、螢石）。</p>
+                <p><strong>❌ 避免烈日曝曬：</strong> 紫水晶、粉晶、黃水晶等有色水晶，在陽光下曝曬過久會導致永久性褪色。</p>
+            </div>
+        </section>
+
+        <section id="maintenance">
+            <h2 class="section-title">💎 日常存放與保養原則</h2>
+            <div class="maintenance-list">
+                <dl>
+                    <dt>1. 避免化學侵蝕</dt>
+                    <dd>噴灑香水、洗澡或游泳前應取下水晶，化學藥劑與氯水會損害晶面光澤。</dd>
+                    
+                    <dt>2. 獨立收納存放</dt>
+                    <dd>不同種類的水晶硬度不同，混放易造成細微刮痕。建議分裝在專屬絨布袋中。</dd>
+                    
+                    <dt>3. 情緒衝擊後的處理</dt>
+                    <dd>若出入醫院、參加葬禮或情緒極度崩潰後，建議當天立即進行深度淨化。</dd>
+                    
+                    <dt>4. 維持物理清潔</dt>
+                    <dd>表面若沾染指紋或油脂，可用拭鏡布沾微量清水輕拭，保持晶體透亮度。</dd>
+                </dl>
+            </div>
+        </section>
+
+        <div style="text-align: center;">
+            <a href="index.html" class="back-btn">← 返回首頁探索更多能量</a>
         </div>
-        
-        <div class="warning">
-            ⚠️ **重要警告：請避免使用以下方法！**
-            <p><strong>❌ 鹽水浸泡：</strong> 會損害許多水晶的表面結構，導致侵蝕、失去光澤，尤其不適用於方解石、天青石等軟礦石。</p>
-            <p><strong>❌ 流水/自來水沖洗：</strong> 雖然快速，但有許多硬度低的礦石（如天青石、月光石、鋰輝石）會溶於水或結構受損。建議只用此法淨化硬度高、無裂痕的石英類。</p>
-        </div>
-    </section>
-
-    <section id="maintenance" class="crystal-maintenance">
-        <h2>💎 水晶的日常保養與存放原則</h2>
-        
-        <dl>
-            <dt>1. 避免碰撞與刮傷：</dt>
-            <dd>水晶硬度雖高，但碰撞仍可能產生裂痕或缺角。建議在劇烈運動、洗澡、做家事時取下。</dd>
-            
-            <dt>2. 遠離化學物質：</dt>
-            <dd>香水、化妝品、清潔劑等化學物質會侵蝕水晶表面，使其失去光澤。</dd>
-            
-            <dt>3. 獨立存放：</dt>
-            <dd>不同硬度的水晶互相摩擦可能會造成損傷。建議將水晶獨立收納在絨布袋或珠寶盒中。</dd>
-            
-            <dt>4. 定期充電：</dt>
-            <dd>若長時間不佩戴，建議每隔數週進行一次淨化與充電，讓水晶保持在最佳狀態。</dd>
-        </dl>
-    </section>
-    
+    </div>
 </main>
 
-<footer>
-    <p>&copy; 2025 水晶魔法版權所有 | <a href="contact.html">聯絡我們</a></p>
+<footer class="footer">
+    <p>&copy; 2026 CrystalMagic 水晶魔法版權所有 | 純淨心靈，由此開啟。</p>
 </footer>
 
-<script>
-
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
-</script>
-
-<a href="crystal.html" class="back-to-home-link">← 返回首頁</a> 
-
 </body>
-
 </html>
