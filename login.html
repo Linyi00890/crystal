@@ -3,19 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>會員登入 - 水晶魔法 | CrystalMagic</title>
+    <title>會員登入 | CrystalMagic 水晶魔法</title>
     <link rel="stylesheet" href="styles.css"> 
     
     <style>
-        /* 登入頁專屬樣式 */
+        /* --- 完美版專屬樣式 --- */
+        :root {
+            --primary-purple: #6a1b9a;
+            --accent-orange: #ff8a65;
+            --glass-white: rgba(255, 255, 255, 0.9);
+        }
+
         body {
-            background: linear-gradient(135deg, #f3e5f5 0%, #e1f5fe 100%);
+            margin: 0;
+            padding: 0;
             min-height: 100vh;
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+            /* 動態能量背景 */
+            background: linear-gradient(-45deg, #f3e5f5, #e1f5fe, #fff3e0, #fce4ec);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             display: flex;
             flex-direction: column;
         }
 
-        .auth-wrapper {
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .login-wrapper {
             flex: 1;
             display: flex;
             align-items: center;
@@ -23,162 +41,191 @@
             padding: 20px;
         }
 
-        .auth-container {
+        .login-card {
+            background: var(--glass-white);
+            backdrop-filter: blur(10px); /* 磨砂玻璃效果 */
             width: 100%;
-            max-width: 420px;
-            padding: 40px;
-            background-color: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            padding: 50px 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             text-align: center;
         }
 
-        .auth-container h1 {
-            color: #4a148c; 
-            margin-bottom: 30px;
-            font-size: 2rem;
-            position: relative;
-        }
-
-        .auth-container h1::after {
-            content: '';
+        .login-card .brand-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
             display: block;
-            width: 50px;
-            height: 4px;
-            background: #ff8a65;
-            margin: 10px auto 0;
-            border-radius: 2px;
         }
 
-        .form-group {
+        .login-card h1 {
+            color: var(--primary-purple);
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .login-card p {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 35px;
+        }
+
+        /* 表單樣式優化 */
+        .input-group {
+            position: relative;
             margin-bottom: 25px;
             text-align: left;
         }
 
-        .form-group label {
+        .input-group label {
             display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #6a1b9a;
-            font-size: 0.95rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            font-size: 0.85rem;
+            padding-left: 5px;
         }
 
-        .form-group input {
+        .input-group input {
             width: 100%;
-            padding: 14px;
-            border: 1px solid #e0e0e0;
+            padding: 14px 16px;
+            border: 1.5px solid #eee;
             border-radius: 12px;
-            box-sizing: border-box;
             font-size: 1rem;
-            transition: 0.3s;
-            background-color: #fcfaff;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+            box-sizing: border-box;
         }
 
-        .form-group input:focus {
+        .input-group input:focus {
             outline: none;
-            border-color: #6a1b9a;
-            background-color: #fff;
+            border-color: var(--primary-purple);
             box-shadow: 0 0 0 4px rgba(106, 27, 154, 0.1);
+            background: #fff;
         }
 
-        .submit-button {
+        /* 忘記密碼 */
+        .forgot-pass {
+            text-align: right;
+            margin-top: -15px;
+            margin-bottom: 25px;
+        }
+
+        .forgot-pass a {
+            color: #999;
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+
+        .forgot-pass a:hover { color: var(--accent-orange); }
+
+        /* 登入按鈕 */
+        .login-btn {
             width: 100%;
-            background: linear-gradient(to right, #6a1b9a, #4a148c);
+            background: linear-gradient(135deg, #7b1fa2, #4a148c);
             color: white;
-            padding: 15px;
+            padding: 16px;
             border: none;
-            border-radius: 30px;
-            cursor: pointer;
+            border-radius: 14px;
             font-size: 1.1rem;
             font-weight: bold;
-            transition: 0.3s ease;
-            box-shadow: 0 5px 15px rgba(106, 27, 154, 0.3);
-            margin-top: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(74, 20, 140, 0.2);
         }
 
-        .submit-button:hover {
+        .login-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(106, 27, 154, 0.4);
+            box-shadow: 0 12px 25px rgba(74, 20, 140, 0.3);
+            filter: brightness(1.1);
         }
 
-        .auth-links {
+        .login-btn:active { transform: translateY(0); }
+
+        /* 註冊引導 */
+        .register-lead {
             margin-top: 30px;
             font-size: 0.9rem;
-            color: #777;
-            border-top: 1px solid #eee;
-            padding-top: 20px;
-        }
-        
-        .auth-links a {
-            color: #ff8a65;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        
-        .auth-links a:hover {
-            color: #e64a19;
-            text-decoration: underline;
+            color: #666;
         }
 
-        .divider {
-            color: #ddd;
-            margin: 0 10px;
+        .register-lead a {
+            color: var(--accent-orange);
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .register-lead a:hover { border-bottom: 1.5px solid var(--accent-orange); }
+
+        /* 返回首頁按鈕 */
+        .home-link {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            color: var(--primary-purple);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
         }
     </style>
 </head>
 <body>
 
-<header class="main-header">
-    <div class="logo">🔮 CrystalMagic</div>
-    <div class="auth-buttons">
-        <a href="index.html" class="nav-button login">回首頁</a>
-    </div>
-</header>
+    <a href="index.html" class="home-link">← 返回首頁</a>
 
-<main class="auth-wrapper">
-    
-    <section class="auth-container">
-        <h1>會員登入</h1>
-        
-        <form onsubmit="handleLogin(event)">
+    <main class="login-wrapper">
+        <section class="login-card">
+            <span class="brand-icon">🔮</span>
+            <h1>歡迎回來</h1>
+            <p>連結您的專屬水晶能量</p>
             
-            <div class="form-group">
-                <label for="email">電子郵件</label>
-                <input type="email" id="email" name="email" placeholder="example@email.com" required>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <label for="email">電子郵件</label>
+                    <input type="email" id="email" placeholder="輸入您的 Email" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">密碼</label>
+                    <input type="password" id="password" placeholder="輸入您的密碼" required>
+                </div>
+
+                <div class="forgot-pass">
+                    <a href="#">忘記密碼？</a>
+                </div>
+                
+                <button type="submit" class="login-btn">開啟連結</button>
+            </form>
+            
+            <div class="register-lead">
+                還不是會員？<a href="register.html">探索新能量</a>
             </div>
+        </section>
+    </main>
+
+    <footer class="footer" style="background:transparent; color:#888;">
+        <p>&copy; 2026 CrystalMagic. 每一份連結都是宇宙的安排。</p>
+    </footer>
+
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            const btn = event.target.querySelector('.login-btn');
             
-            <div class="form-group">
-                <label for="password">密碼</label>
-                <input type="password" id="password" name="password" placeholder="請輸入密碼" required>
-            </div>
-            
-            <button type="submit" class="submit-button">開啟能量之旅</button>
-            
-        </form>
-        
-        <div class="auth-links">
-            <a href="register.html">尚未註冊？立即加入</a>
-            <span class="divider">|</span>
-            <a href="#">忘記密碼？</a>
-        </div>
-    </section>
+            // 增加視覺反饋
+            btn.innerText = '正在召喚能量...';
+            btn.style.opacity = '0.7';
+            btn.style.pointerEvents = 'none';
 
-</main>
-
-<footer class="footer">
-    <p>&copy; 2026 CrystalMagic 版權所有 | 守護您的每一份能量</p>
-</footer>
-
-<script>
-    function handleLogin(event) {
-        event.preventDefault();
-        const email = document.getElementById('email').value;
-        // 這裡可以模擬登入邏輯
-        alert('歡迎回來！正在連結您的能量檔案...\n(模擬登入成功，即將跳轉回首頁)');
-        window.location.href = 'index.html';
-    }
-</script>
-
+            setTimeout(() => {
+                alert('登入成功！即將帶領您進入水晶世界。');
+                window.location.href = 'index.html';
+            }, 1500);
+        }
+    </script>
 </body>
 </html>
