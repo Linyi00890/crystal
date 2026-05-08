@@ -2,130 +2,268 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>黃水晶 (Citrine) 詳細能量解析 - 水晶魔法</title>
-    <link rel="stylesheet" href="../style01.css"> 
+    <meta name="viewport" content="width=1200">
+    <title>黃水晶 (Citrine) 詳細能量解析 - 水晶魔法 | CrystalMagic</title>
     
     <style>
+        /* 全局設定 */
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #fcfaf2; /* 淡淡的暖色調底色 */
+            margin: 0 auto;
+            color: #333;
+            line-height: 1.8;
+            width: 1200px;
+            overflow-x: auto;
+        }
+
+        /* 統一導覽列 */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 1200px;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #f9a825; /* 黃水晶主題色 */
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #f9a825;
+        }
+
+        /* 頂部標題區 - 陽光與豐盛感 */
         .detail-header {
             text-align: center;
-            padding: 50px 20px;
-            background-color: #fff8e1; 
-            border-bottom: 5px solid #ffb300; 
-            margin-bottom: 30px;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #fff9c4 0%, #ffecb3 100%);
+            border-bottom: 5px solid #ffb300;
+            width: 1200px;
+            box-sizing: border-box;
         }
         
         .detail-header h1 {
-            color: #f9a825; 
-            font-size: 2.5em;
-            margin-bottom: 5px;
+            color: #5d4037; /* 深棕色文字搭配黃底較易閱讀 */
+            font-size: 3rem;
+            margin-bottom: 10px;
         }
 
-        .crystal-stats {
+        .stat-container {
             display: flex;
             justify-content: center;
-            gap: 40px;
-            margin-top: 20px;
-            font-size: 1.1em;
-            color: #666;
+            gap: 20px;
+            margin-top: 30px;
         }
 
-        .crystal-stats span strong {
-            color: #f9a825;
+        .stat-pill {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 25px;
+            border-radius: 50px;
+            border: 1px solid #ffd54f;
+            color: #bf360c;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
         }
-        
+
+        /* 內容容器 */
+        .content-container {
+            width: 1000px;
+            margin: 50px auto;
+        }
+
         .content-section {
             background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            margin-bottom: 25px;
+            padding: 45px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
         }
 
         .content-section h2 {
-            border-left: 5px solid #ff8a65; 
-            padding-left: 15px;
-            color: #ff8a65;
-            margin-bottom: 20px;
+            color: #ef6c00;
+            border-left: 6px solid #ffb300;
+            padding-left: 20px;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
         }
-        
+
+        /* 功效網格 */
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
             margin-top: 20px;
         }
 
         .feature-item {
-            padding: 15px;
-            background-color: #f7f7f7;
-            border-radius: 8px;
-            border: 1px dashed #ccc;
+            padding: 30px;
+            background-color: #fffde7;
+            border-radius: 15px;
+            border-left: 4px solid #ffb300;
+            transition: 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 179, 0, 0.15);
         }
 
         .feature-item strong {
-            color: #4a148c;
+            color: #bf360c;
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* 應用技巧 */
+        .tips-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tips-list li {
+            padding: 15px 0;
+            border-bottom: 1px dashed #ffe082;
+            display: flex;
+            align-items: center;
+        }
+
+        .tips-list li::before {
+            content: '💰';
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* 底部按鈕 */
+        .back-btn {
+            display: inline-block;
+            background: #ffb300;
+            color: #5d4037;
+            padding: 15px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255,179,0,0.3);
+        }
+
+        .back-btn:hover {
+            background: #ffa000;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255,179,0,0.4);
+        }
+
+        /* 頁尾 */
+        .main-footer {
+            text-align: center;
+            padding: 60px 0;
+            background: #fff;
+            margin-top: 60px;
+            border-top: 1px solid #eee;
+            width: 1200px;
         }
     </style>
 </head>
 <body>
 
+<header class="main-header">
+    <a href="index.html" class="logo">🔮 CrystalMagic</a>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="origin.html">水晶起源</a></li>
+            <li><a href="type.html" style="color: #f9a825; font-weight: bold;">水晶種類</a></li>
+            <li><a href="care.html">淨化保養</a></li>
+        </ul>
+    </nav>
+</header>
+
 <main>
-    
     <section class="detail-header">
         <h1>黃水晶 (Citrine)</h1>
-        <p>💰 財富之石：豐盛、喜悅、自信</p>
+        <p>「商人之石：豐盛顯化、自信勇氣與陽光般的能量中心」</p>
         
-        <div class="crystal-stats">
-            <span><strong>分類：</strong> 石英家族</span>
-            <span><strong>硬度：</strong> 摩氏 7</span>
-            <span><strong>脈輪：</strong> 太陽神經叢 (Solar Plexus)</span>
+        <div class="stat-container">
+            <div class="stat-pill">分類：石英家族</div>
+            <div class="stat-pill">硬度：摩氏 7</div>
+            <div class="stat-pill">脈輪：太陽神經叢</div>
         </div>
     </section>
 
-    <section id="origin" class="content-section">
-        <h2>🔬 起源與礦物學基礎</h2>
-        <p>天然黃水晶非常罕見。市場上大多數的黃水晶，是將紫水晶或煙水晶在攝氏 450°C-560°C 的高溫下加熱處理後形成的。這種熱處理是永久且穩定的，在能量學上其功效並不受影響。</p>
-        <p><strong>能量特性：</strong> 黃水晶的黃色光對應人體的太陽神經叢，這是掌控個人意志力、自信和行動力的中心。它被認為是一種無需淨化就能持續發揮正面作用的水晶。</p>
-    </section>
+    <div class="content-container">
+        <section class="content-section">
+            <h2>🔬 起源與礦物學基礎</h2>
+            <p>天然黃水晶在自然界中極其罕見，其色澤來自微量的鐵元素。市面上常見的黃水晶多由紫水晶經高溫熱處理而成，雖然生成方式不同，但在能量學上同樣具備穩定且強大的振動頻率。</p>
+            <p><strong>能量特性：</strong> 黃水晶對應「太陽神經叢」（胃輪），這是我們勇氣、自信與物質顯化力的源頭。它具備強大的自我淨化能力，能將負面能量轉化為正向能量，如同陽光驅散迷霧。</p>
+        </section>
 
-    <section id="benefits-detailed" class="content-section">
-        <h2>✨ 核心能量功效與療癒應用</h2>
-        
-        <div class="feature-grid">
-            <div class="feature-item">
-                <strong>招主/偏財運：</strong> 黃水晶被視為財富的象徵，特別能吸引偏財，並有助於商業交易的成功與豐盛。
+        <section class="content-section">
+            <h2>✨ 核心能量功效</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <strong>豐盛與財富吸引</strong>
+                    被譽為「財富之石」，特別有助於招來偏財與意外之財，並能增強商業運勢，適合創業者與業務人員。
+                </div>
+                <div class="feature-item">
+                    <strong>重塑自信與個人力量</strong>
+                    幫助消除自我懷疑與恐懼，讓人感到充滿活力與決斷力，在面對困難時展現勇氣。
+                </div>
+                <div class="feature-item">
+                    <strong>帶來喜悅與樂觀</strong>
+                    其溫暖的色澤能消解鬱結的心情，帶來積極正向的思想，舒緩焦慮與壓力帶來的疲勞。
+                </div>
+                <div class="feature-item">
+                    <strong>輔助消化與生命力</strong>
+                    在生理能量層面，黃水晶被認為與胃部健康相關，有助於舒緩腸胃不適，增進整體代謝活力。
+                </div>
             </div>
-            <div class="feature-item">
-                <strong>增強自信與勇氣：</strong> 激發太陽神經叢的能量，幫助佩戴者清除恐懼與擔憂，提升自信心和決斷力。
-            </div>
-            <div class="feature-item">
-                <strong>帶來喜悅與樂觀：</strong> 散發溫暖的黃色光芒，能驅散負面情緒，帶來積極和樂觀的能量。
-            </div>
-            <div class="feature-item">
-                <strong>助消化與健康：</strong> 在身體層面，它被認為能協助消化系統運作，舒緩胃部不適。
-            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>💰 佩戴與應用技巧</h2>
+            <ul class="tips-list">
+                <li><strong>左手佩戴：</strong> 遵循「左進右出」原則，建議戴在左手，以吸納黃水晶帶來的豐盛能量與自信。</li>
+                <li><strong>財位佈置：</strong> 將黃水晶球或聚寶盆放置在居家或辦公室的明財位，能凝聚財氣，促進商機。</li>
+                <li><strong>事業輔助：</strong> 在重要談判或會議中隨身佩戴，能幫助思緒清晰，穩定立場並展現權威感。</li>
+                <li><strong>脈輪療癒：</strong> 冥想時將黃水晶置於腹部上方，能清除太陽神經叢的阻塞，找回內在的意志力。</li>
+            </ul>
+        </section>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="type.html" class="back-btn">← 返回水晶百科清單</a>
         </div>
-    </section>
-
-    <section id="usage-tips" class="content-section">
-        <h2>💰 佩戴與應用技巧</h2>
-        <ul>
-            <li><strong>商店與辦公室：</strong> 在櫃檯或收銀機旁擺放黃水晶球或聚寶盆，有助於生意興隆，吸引財富。</li>
-            <li><strong>佩戴方向：</strong> 作為吸納性水晶，建議佩戴於**左手**，以吸收財富、自信和積極的能量。</li>
-            <li><strong>搭配使用：</strong> 可搭配綠幽靈或鈦晶等正財水晶，組成更全面的財富水晶組合。</li>
-            <li><strong>冥想使用：</strong> 將其放在太陽神經叢位置，有助於清除能量阻塞，提高個人力量和意志力。</li>
-        </ul>
-    </section>
-    
-    <div style="text-align: center; margin-top: 40px;">
-        <a href="type.html" class="cta-button">← 返回水晶種類清單</a>
     </div>
-
 </main>
 
-<footer>
-    <p>&copy; 2025 水晶魔法版權所有 | <a href="contact.html">聯絡我們</a></p>
+<footer class="main-footer">
+    <p>&copy; 2026 CrystalMagic 版權所有 | 在豐盛中遇見自信的自己</p>
 </footer>
 
 <script>
