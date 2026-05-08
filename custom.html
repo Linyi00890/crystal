@@ -3,145 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>預約客製化諮詢 - 水晶魔法</title>
-    <link rel="stylesheet" href="../style01.css"> 
+    <title>預約客製化諮詢 - 水晶魔法 | CrystalMagic</title>
+    <link rel="stylesheet" href="styles.css"> 
     
     <style>
-        .custom-header {
+        /* 客製化頁面專屬風格 */
+        .page-header {
             text-align: center;
-            padding: 50px 20px;
-            background-color: #fffde7; 
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #fffde7 0%, #fff9c4 100%); 
             border-bottom: 5px solid #ff8a65; 
-            margin-bottom: 30px;
-        }
-        
-        .custom-header h1 {
-            color: #ff8a65; 
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        
-        .custom-header p {
-            color: #555;
-            max-width: 700px;
-            margin: 0 auto;
         }
 
         .custom-container {
             max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
 
         .custom-form-section {
-            padding: 30px;
+            padding: 40px;
             background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
 
         .custom-form-section h2 {
             color: #6a1b9a; 
-            border-bottom: 2px solid #6a1b9a;
-            padding-bottom: 10px;
-            margin-bottom: 25px;
+            border-bottom: 3px solid #6a1b9a;
+            padding-bottom: 12px;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: bold;
-            color: #333;
+            color: #4a148c;
         }
 
-        .form-group input[type="text"],
-        .form-group input[type="email"],
-        .form-group textarea,
-        .form-group select {
+        .form-group input, .form-group textarea, .form-group select {
             width: 100%;
             padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 1em;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #ff8a65;
+            box-shadow: 0 0 8px rgba(255,138,101,0.2);
         }
         
         .form-group textarea {
-            min-height: 180px;
+            min-height: 150px;
             resize: vertical;
         }
         
-        .submit-button {
+        .btn-custom-submit {
             width: 100%;
             background-color: #ff8a65; 
             color: white;
-            padding: 15px;
+            padding: 16px;
             border: none;
-            border-radius: 6px;
+            border-radius: 35px;
             cursor: pointer;
-            font-size: 1.1em;
+            font-size: 1.2rem;
             font-weight: bold;
-            transition: background-color 0.3s;
+            transition: 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255,138,101,0.3);
         }
 
-        .submit-button:hover {
-            background-color: #ff5722;
+        .btn-custom-submit:hover {
+            background-color: #ff7043;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255,138,101,0.4);
         }
         
-        .note {
-            margin-top: 25px;
-            padding: 15px;
+        .note-box {
+            margin-top: 30px;
+            padding: 20px;
             background-color: #f3e5f5; 
-            border-left: 5px solid #6a1b9a;
-            border-radius: 5px;
-            font-size: 0.9em;
+            border-left: 6px solid #6a1b9a;
+            border-radius: 10px;
+            font-size: 0.95rem;
             color: #4a148c;
+            line-height: 1.6;
+        }
+
+        .note-box i {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
+<header class="main-header">
+    <div class="logo">🔮 CrystalMagic</div>
+    <div class="auth-buttons">
+        <a href="index.html" class="nav-button login">回首頁</a>
+        <a href="quiz.html" class="nav-button register">能量測驗</a>
+    </div>
+</header>
+
 <main>
-    
-    <section class="custom-header">
+    <section class="page-header">
         <h1>💎 預約客製化諮詢</h1>
-        <p>為您量身打造獨一無二的能量飾品或空間擺件。請填寫您的需求細節，我們將在 48 小時內聯繫您。</p>
+        <p>為您量身打造獨一無二的能量飾品。請填寫您的需求，設計師將在 48 小時內聯繫您。</p>
     </section>
 
     <div class="custom-container">
         <section class="custom-form-section">
             <h2>客製化需求表單</h2>
             
-            <form action="/api/submit_custom_order" method="POST">
+            <form onsubmit="alert('您的客製化需求已收到！我們的設計師會盡快與您聯繫。'); return false;">
                 
                 <div class="form-group">
                     <label for="name">您的姓名 *</label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name" placeholder="請輸入姓名" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="email">電子郵件 * (我們的設計師將通過此郵件與您聯繫)</label>
-                    <input type="email" id="email" name="email" required>
+                    <label for="email">電子郵件 *</label>
+                    <input type="email" id="email" name="email" placeholder="example@email.com" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="product_type">客製化產品類型 *</label>
                     <select id="product_type" name="product_type" required>
                         <option value="">請選擇您想要的產品類型</option>
-                        <option value="bracelet">手鍊/手鐲</option>
-                        <option value="necklace">項鍊/吊墜</option>
-                        <option value="raw">空間原礦/擺件</option>
+                        <option value="bracelet">能量手鍊 / 手鐲</option>
+                        <option value="necklace">開運項鍊 / 吊墜</option>
+                        <option value="raw">空間原礦擺件</option>
                         <option value="other">其他 (請在下方詳細說明)</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="goal">主要客製化目標 * (例如：招正財、提升人緣、情緒穩定)</label>
-                    <input type="text" id="goal" name="goal" placeholder="請填寫一個或多個主要目標" required>
+                    <label for="goal">主要客製化目標 *</label>
+                    <input type="text" id="goal" name="goal" placeholder="例如：招正財、提升人緣、情緒穩定" required>
                 </div>
 
                 <div class="form-group">
@@ -155,24 +164,24 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="details">詳細設計要求與需求描述 * (例如：偏好顏色、不喜歡的水晶、手圍尺寸等)</label>
-                    <textarea id="details" name="details" required></textarea>
+                    <label for="details">詳細設計要求與描述 *</label>
+                    <textarea id="details" name="details" placeholder="請告訴我們您的手圍尺寸、偏好顏色，或特別在意的水晶品種..." required></textarea>
                 </div>
                 
-                <button type="submit" class="submit-button">提交客製化需求</button>
+                <button type="submit" class="btn-custom-submit">提交客製化需求</button>
             </form>
             
-            <div class="note">
-                <p>我們將依據您的目標與預算，提供專業的水晶組合搭配建議與設計草圖。客製化設計服務費將另行報價。</p>
+            <div class="note-box">
+                <i>✨ 溫馨提醒：</i>
+                <p>我們將依據您的目標與預算，提供專業的水晶搭配建議。客製化設計服務包含一次免費調整草圖，後續修改將另行酌收工本費。</p>
             </div>
             
         </section>
     </div>
-
 </main>
 
-<footer>
-    <p>&copy; 2025 水晶魔法版權所有 | 
+<footer class="footer">
+    <p>&copy; 2026 CrystalMagic. 專屬於您的能量管家。</p>
 </footer>
 
 </body>
