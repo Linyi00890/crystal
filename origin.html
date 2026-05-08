@@ -1,41 +1,217 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>水晶魔法：探索療癒世界 - 完整介紹</title>
-    <link rel="stylesheet" href="origin.css"> 
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=1200">
+    <title>水晶起源與療癒指南 - 水晶魔法 | CrystalMagic</title>
+    
+    <style>
+        /* 全局樣式設定 */
+        :root {
+            --primary-purple: #6a1b9a;
+            --accent-green: #4caf50;
+            --soft-bg: #f8f9fa;
+        }
+
+        body {
+            width: 1200px; /* 強制固定寬度 */
+            margin: 0 auto;
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+            background-color: var(--soft-bg);
+            color: #333;
+            overflow-x: auto;
+        }
+
+        /* 導覽列 - 移除登入按鈕 */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--primary-purple);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            margin: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-purple);
+            border-bottom: 2px solid var(--primary-purple);
+        }
+
+        /* Hero 區塊 */
+        #hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1f5fe 100%);
+        }
+
+        #hero h1 {
+            font-size: 3rem;
+            color: var(--primary-purple);
+            margin-bottom: 20px;
+        }
+
+        /* 手風琴容器 */
+        .content-wrapper {
+            padding: 60px 100px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #4a148c;
+            font-size: 2rem;
+        }
+
+        .accordion-item {
+            background: #fff;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            width: 100%;
+            padding: 25px 35px;
+            background: #fff;
+            border: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            text-align: left;
+            transition: background 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: #fcfaff;
+        }
+
+        .accordion-header h3 {
+            margin: 0;
+            color: var(--primary-purple);
+            font-size: 1.3rem;
+        }
+
+        .accordion-header::after {
+            content: '▼';
+            font-size: 0.8rem;
+            color: #bbb;
+            transition: 0.3s;
+        }
+
+        .accordion-item.active .accordion-header::after {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            padding: 0 35px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.3s ease;
+            background: #fff;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 800px; /* 足夠大的高度以容納內容 */
+            padding-bottom: 30px;
+        }
+
+        .accordion-content p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        /* 列表與清單 */
+        .accordion-content ul, .accordion-content dl {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .accordion-content li {
+            margin-bottom: 10px;
+        }
+
+        dt {
+            font-weight: bold;
+            color: #d32f2f;
+            margin-top: 15px;
+        }
+
+        /* 頁尾 */
+        .main-footer {
+            text-align: center;
+            padding: 60px 0;
+            background: #fff;
+            margin-top: 50px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: var(--primary-purple);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(106, 27, 154, 0.3);
+        }
+    </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="logo">🔮 水晶魔法指南</div>
+        <div class="logo">🔮 CrystalMagic 指南</div>
         <ul class="nav-links">
             <li><a href="index.html">首頁</a></li>
             <li><a href="origin.html" class="active">水晶起源</a></li>
             <li><a href="type.html">水晶種類</a></li>
-            <li><a href="quiz.html">能量測驗</a></li>
+            <li><a href="natural.html">空間原礦</a></li>
         </ul>
     </nav>
 
-    <main class="content-wrapper">
+    <main>
         <section id="hero">
             <h1>探索水晶的療癒世界</h1>
-            <p>從地球深處而來，每顆水晶都蘊藏著獨特頻率。</p>
+            <p>從地球深處而來，每顆水晶都蘊藏著獨特頻率，守護您的靈魂能量。</p>
         </section>
 
-        <section id="accordion-container">
+        <section class="content-wrapper">
             <h2 class="section-title">✨ 水晶療癒指南：分步探索 ✨</h2>
 
-            <div class="accordion-item">
-                <button class="accordion-header">
+            <div class="accordion-item active"> <button class="accordion-header">
                     <h3>1. 🔮 水晶是什麼？：基礎與起源</h3>
                 </button>
                 <div class="accordion-content">
-                    <p><strong>科學定義：</strong> 水晶是指其內部原子和分子以高度有序的晶格結構排列的固體材料。這種規律的結構賦予了水晶穩定且獨特的振動頻率，科學上稱之為「壓電效應」。</p>
-                    <p><strong>歷史與文化：</strong> 水晶的使用歷史可追溯到數千年前的古文明，如古埃及人將其用於護身符和儀式，古希臘人相信水晶是永恆的冰塊。</p>
-                    <p><strong>能量特性：</strong> 水晶的主要特性是放大、儲存和傳輸能量。</p>
+                    <p><strong>科學定義：</strong> 水晶是指其內部原子以高度有序的晶格結構排列。這種規律的結構賦予了水晶穩定且獨特的振動頻率，科學上稱為「壓電效應」，這也是為什麼水晶能用於手錶與電子設備。</p>
+                    <p><strong>歷史與文化：</strong> 亞特蘭提斯文明被傳說是以水晶作為主要能源；而在古埃及，皇室成員會配戴青金石來連接神聖智慧。</p>
+                    <p><strong>能量特性：</strong> 水晶就像一個能量放大器，它可以吸收、儲存並精煉你的意圖，將其反射回你的日常生活中。</p>
                 </div>
             </div>
 
@@ -44,10 +220,12 @@
                     <h3>2. 💎 水晶的種類：色彩與命名</h3>
                 </button>
                 <div class="accordion-content">
-                    <p>水晶種類繁多，我們根據其顏色與主要能量分為幾大類：</p>
+                    <p>每一種色彩的水晶都代表不同的能量頻率，可以依據你當下的需求來選擇：</p>
                     <ul>
-                        <li><strong>白水晶</strong>：所有脈輪。主淨化、提升專注力。</li>
-                        <li><strong>紫水晶</strong>：眉心輪、頂輪。主智慧、穩定情緒。</li>
+                        <li><strong>白水晶 (Clear Quartz)</strong>：水晶之王，對應所有脈輪。主淨化、提升專注力、放大其他水晶能量。</li>
+                        <li><strong>紫水晶 (Amethyst)</strong>：對應頂輪。主智慧、開發靈感、緩解焦慮與穩定情緒。</li>
+                        <li><strong>粉晶 (Rose Quartz)</strong>：對應心輪。主愛情、自我認同、療癒情感創傷。</li>
+                        <li><strong>黃水晶 (Citrine)</strong>：對應太陽神經叢。主財運、自信、喜悅與事業成功。</li>
                     </ul>
                 </div>
             </div>
@@ -57,9 +235,19 @@
                     <h3>3. ✨ 水晶的功效：對應七大脈輪</h3>
                 </button>
                 <div class="accordion-content">
+                    <p>透過將水晶放置在身體對應的脈輪位置，可以幫助能量流動順暢：</p>
                     <dl>
-                        <dt>🔴 1. 底輪 (Root Chakra)：</dt>
-                        <dd>穩定、安全感。對應水晶：紅瑪瑙、黑曜石。</dd>
+                        <dt>🔴 底輪 (Root Chakra)</dt>
+                        <dd>位置：脊椎底部。對應水晶：<strong>黑曜石、紅瑪瑙</strong>。提供安全感與接地氣。</dd>
+                        
+                        <dt>🧡 臍輪 (Sacral Chakra)</dt>
+                        <dd>位置：下腹部。對應水晶：<strong>虎眼石、金沙石</strong>。激發創造力與熱情。</dd>
+                        
+                        <dt>💛 太陽輪 (Solar Plexus Chakra)</dt>
+                        <dd>位置：胃部。對應水晶：<strong>黃水晶</strong>。增強個人力量與行動力。</dd>
+                        
+                        <dt>💚 心輪 (Heart Chakra)</dt>
+                        <dd>位置：胸口。對應水晶：<strong>東菱玉、粉晶</strong>。開啟愛與包容的能力。</dd>
                     </dl>
                 </div>
             </div>
@@ -67,10 +255,28 @@
     </main>
 
     <footer class="main-footer">
-        <p>&copy; 2026 水晶魔法版權所有</p>
-        <a href="index.html" class="back-btn">← 返回首頁</a>
+        <p>&copy; 2026 CrystalMagic 水晶魔法版權所有</p>
+        <a href="index.html" class="back-btn">← 返回首頁探索更多</a>
     </footer>
 
-    <script src="script.js"></script> 
+    <script>
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const accordionItem = button.parentElement;
+                
+                // 切換 active 類別
+                accordionItem.classList.toggle('active');
+                
+                // (選做) 如果希望一次只能開啟一個，請取消下方註釋
+                /*
+                document.querySelectorAll('.accordion-item').forEach(item => {
+                    if (item !== accordionItem) {
+                        item.classList.remove('active');
+                    }
+                });
+                */
+            });
+        });
+    </script>
 </body>
 </html>
