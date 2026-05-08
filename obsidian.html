@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1200">
-    <title>黑曜石 (Obsidian) 詳細能量解析 - 水晶魔法 | CrystalMagic</title>
+    <title>黑曜石 (Obsidian) 全方位能量指南 - 水晶魔法 | CrystalMagic</title>
     
     <style>
         /* 全局基礎設定 */
         body {
             font-family: 'Noto Sans TC', sans-serif;
-            background-color: #f5f5f5; /* 極簡淺灰背景 */
+            background-color: #f5f5f5;
             margin: 0 auto;
             color: #333;
             line-height: 1.8;
-            width: 1200px; /* 統一固定寬度 */
+            width: 1200px;
             overflow-x: auto;
         }
 
-        /* 統一導覽列 (與其他頁面對齊) */
+        /* 導覽列 */
         .main-header {
             display: flex;
             justify-content: space-between;
@@ -39,46 +39,20 @@
             text-decoration: none;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 35px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #666;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #000;
-        }
-
-        /* 頂部標題區 - 黑曜石專屬深邃設計 */
+        /* 頂部標題區 */
         .detail-header {
             text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(135deg, #424242 0%, #212121 100%);
-            border-bottom: 5px solid #000;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #424242 0%, #000000 100%);
+            color: #fff;
             width: 1200px;
             box-sizing: border-box;
-            color: #fff;
         }
         
         .detail-header h1 {
-            color: #fff;
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        .detail-header p {
-            color: #bdbdbd;
-            font-size: 1.2rem;
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
         }
 
         .stat-container {
@@ -95,10 +69,9 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
             color: #fff;
             font-weight: bold;
-            backdrop-filter: blur(5px);
         }
 
-        /* 內容區塊容器 */
+        /* 內容容器 */
         .content-container {
             width: 1000px;
             margin: 50px auto;
@@ -106,7 +79,7 @@
 
         .content-section {
             background-color: white;
-            padding: 40px;
+            padding: 45px;
             border-radius: 25px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             margin-bottom: 40px;
@@ -116,61 +89,94 @@
             color: #212121;
             border-left: 6px solid #000;
             padding-left: 20px;
-            margin-top: 0;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             font-size: 1.8rem;
         }
 
-        /* 功效網格 (2x2) */
+        /* 品種展示區 (New) */
+        .variety-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .variety-card {
+            text-align: center;
+            padding: 20px;
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 15px;
+        }
+
+        .variety-card h3 {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        /* 核心功效 (2x2) */
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 25px;
-            margin-top: 20px;
         }
 
         .feature-item {
-            padding: 25px;
+            padding: 30px;
             background-color: #fafafa;
             border-radius: 15px;
-            border: 1px solid #eee;
-            transition: 0.3s;
-        }
-
-        .feature-item:hover {
-            transform: translateY(-5px);
-            background-color: #fff;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            border-color: #000;
+            border-left: 4px solid #444;
         }
 
         .feature-item strong {
-            color: #000;
             display: block;
             font-size: 1.2rem;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            color: #000;
         }
 
-        /* 技巧清單 */
-        .tips-list {
-            list-style: none;
-            padding: 0;
+        /* 能量組合區 (New) */
+        .combo-box {
+            background: #212121;
+            color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 20px;
         }
 
-        .tips-list li {
-            padding: 15px 0;
-            border-bottom: 1px dashed #ddd;
-            display: flex;
-            align-items: center;
+        .combo-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #444;
         }
 
-        .tips-list li::before {
-            content: '🌑';
-            margin-right: 15px;
+        .combo-item:last-child { border: none; }
+
+        .tag {
+            background: #444;
+            padding: 2px 10px;
+            border-radius: 4px;
             font-size: 0.8rem;
+            margin-right: 10px;
         }
 
-        /* 按鈕設計 */
+        /* FAQ 區塊 (New) */
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-q {
+            font-weight: bold;
+            color: #d32f2f;
+            display: block;
+        }
+
+        .faq-a {
+            color: #666;
+            padding-left: 20px;
+        }
+
         .back-btn {
             display: inline-block;
             background: #212121;
@@ -180,22 +186,17 @@
             text-decoration: none;
             font-weight: bold;
             transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .back-btn:hover {
-            background: #000;
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.3);
         }
 
-        /* 頁尾 */
         .main-footer {
             text-align: center;
             padding: 60px 0;
             background: #fff;
-            margin-top: 60px;
-            border-top: 1px solid #eee;
             width: 1200px;
         }
     </style>
@@ -205,81 +206,103 @@
 <header class="main-header">
     <a href="index.html" class="logo">🔮 CrystalMagic</a>
     <nav>
-        <ul class="nav-links">
-            <li><a href="index.html">首頁</a></li>
-            <li><a href="origin.html">水晶起源</a></li>
-            <li><a href="type.html" style="color: #000; font-weight: bold;">水晶種類</a></li>
-            <li><a href="contact.html">聯絡諮詢</a></li>
+        <ul style="display:flex; list-style:none; gap:30px;">
+            <li><a href="type.html" style="text-decoration:none; color:#333;">返回種類</a></li>
+            <li><a href="care.html" style="text-decoration:none; color:#333;">淨化指南</a></li>
         </ul>
     </nav>
 </header>
 
 <main>
     <section class="detail-header">
-        <h1>黑曜石 (Obsidian)</h1>
-        <p>⚡ 能量吸塵器：極致避邪、吸納負能、排除病氣</p>
-        
+        <h1>黑曜石 Obsidian</h1>
+        <p>「深邃的靈魂之鏡，最強大的負能量終結者」</p>
         <div class="stat-container">
-            <div class="stat-pill">分類：火山玻璃 (非晶質)</div>
-            <div class="stat-pill">硬度：摩氏 5 - 5.5</div>
-            <div class="stat-pill">脈輪：海底輪 (Root Chakra)</div>
+            <div class="stat-pill">脈輪：海底輪</div>
+            <div class="stat-pill">五行：水</div>
+            <div class="stat-pill">硬度：5 - 5.5</div>
         </div>
     </section>
 
     <div class="content-container">
         <section class="content-section">
-            <h2>🔬 起源與礦物學基礎</h2>
-            <p>黑曜石並非傳統意義上的水晶，而是由火山岩漿迅速冷卻後形成的<strong>天然玻璃</strong>。因為冷卻速度極快，礦物晶體來不及生長，因此它具有獨特的「非晶質」結構，斷口處銳利如刃。</p>
-            <p><strong>能量特性：</strong> 黑曜石擁有極強的<strong>「吸納性」</strong>。它就像是一台大功率的能量吸塵器，能夠快速吸收環境中的負面能量、病氣或邪氣，是公認的最強護身寶石之一。</p>
+            <h2>🔬 礦物學基礎：火山的禮物</h2>
+            <p>黑曜石並非晶體結構的水晶，而是火山噴發後，岩漿在冷卻過程中迅速凝固而形成的<strong>天然玻璃</strong>。這種「非晶質」的特性讓它擁有一種非常直接且猛烈的能量感，自古以來便被作為祭祀、避邪與切削工具之用。</p>
+            
+            <h3>常見品種圖鑑</h3>
+            <div class="variety-grid">
+                <div class="variety-card"><h3>純黑黑曜石</h3><p>能量最純粹直接</p></div>
+                <div class="variety-card"><h3>彩虹眼黑曜石</h3><p>帶有圓型彩色光暈</p></div>
+                <div class="variety-card"><h3>金曜石</h3><p>帶金色閃光，偏招財</p></div>
+                <div class="variety-card"><h3>冰種黑曜石</h3><p>質地通透如黑冰</p></div>
+            </div>
         </section>
 
         <section class="content-section">
             <h2>🛡️ 核心能量功效</h2>
             <div class="feature-grid">
                 <div class="feature-item">
-                    <strong>強效避邪擋煞</strong>
-                    黑曜石的能量沉穩深邃，能有效阻擋外界惡意、小人干擾及各種負面磁場的侵襲。
+                    <strong>極致避邪與化煞</strong>
+                    能有效阻擋外界惡意、負面流言及空間中的病氣。它是進出醫院、公墓等場所的首選護身符。
                 </div>
                 <div class="feature-item">
-                    <strong>排除病氣與濁氣</strong>
-                    對於長期熬夜、疲勞或進出醫院等場所的人，能協助吸納體內的負面能量，改善運勢。
+                    <strong>吸納身心病氣</strong>
+                    如同能量吸塵器，黑曜石能吸走體內的濁氣與負面壓力，對改善長期疲勞與負面情緒有顯著效果。
                 </div>
                 <div class="feature-item">
-                    <strong>輔助睡眠與鎮靜</strong>
-                    將黑曜石放在床頭或枕下，有助於平穩情緒、減少多夢，讓思緒回歸平靜。
+                    <strong>輔助深度睡眠</strong>
+                    對於經常做噩夢、心思過重的人，黑曜石能穩定磁場，讓使用者感受到「接地」的安全感。
                 </div>
                 <div class="feature-item">
-                    <strong>直面內心真相</strong>
-                    在心理層面，黑曜石能像鏡子般反映出潛意識中的陰影，幫助使用者面對恐懼並獲得成長。
+                    <strong>自我療癒與反省</strong>
+                    幫助我們看清自己的缺點，直面潛意識中的恐懼，從而達到心靈上的突破與轉化。
                 </div>
             </div>
         </section>
 
         <section class="content-section">
-            <h2>🛠️ 佩戴與淨化技巧</h2>
-            <ul class="tips-list">
-                <li><strong>佩戴方向：</strong> 由於黑曜石主要是「吸收」能量，強烈建議佩戴在<strong>右手</strong>，以協助將體內的負能量與濁氣排出。</li>
-                <li><strong>淨化頻率：</strong> 黑曜石因吸收力極強，磁場容易飽和。建議<strong>每週至少淨化一次</strong>。</li>
-                <li><strong>推薦淨化法：</strong> 適合日光淨化或流水淨化；若顏色變得暗沉，代表已吸納過多負能，需加長消磁時間。</li>
-                <li><strong>空間擺放：</strong> 放在家門口玄關或窗台，能起到鎮宅、擋煞與過濾進屋能量的作用。</li>
-            </ul>
+            <h2>🔗 能量疊加：推薦組合</h2>
+            <div class="combo-box">
+                <div class="combo-item">
+                    <span class="tag">強效護身</span> <strong>黑曜石 + 黑碧璽</strong>：雙重防線，將負能量吸收並轉化，最適合敏感體質者。
+                </div>
+                <div class="combo-item">
+                    <span class="tag">事業穩定</span> <strong>金曜石 + 鈦晶</strong>：在提升財運的同時，確保情緒穩定，不被競爭壓力擊垮。
+                </div>
+                <div class="combo-item">
+                    <span class="tag">深度淨化</span> <strong>黑曜石 + 白水晶</strong>：一吸一排，快速清理混亂的個人磁場。
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>❓ 常見問題 Q&A</h2>
+            <div class="faq-item">
+                <span class="faq-q">Q：為什麼黑曜石一定要戴右手？</span>
+                <p class="faq-a">A：人體的磁場通常是「左進右出」。黑曜石的功能是「排除」與「吸收」，戴在右手能順應磁場將體內的負能量導出體外。</p>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">Q：睡覺可以戴著嗎？</span>
+                <p class="faq-a">A：可以，但如果黑曜石太大或能量太強，部分人可能會覺得過於沉重。建議放在枕頭下方即可。</p>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">Q：為什麼我戴了黑曜石覺得很累？</span>
+                <p class="faq-a">A：可能它已經吸飽了負能量。黑曜石需要非常頻繁的淨化（建議每3-5天一次），請立即進行消磁。</p>
+            </div>
         </section>
 
         <div style="text-align: center; margin-top: 50px;">
-            <a href="type.html" class="back-btn">← 返回水晶種類清單</a>
+            <a href="type.html" class="back-btn">← 返回水晶百科清單</a>
         </div>
     </div>
 </main>
 
 <footer class="main-footer">
-    <p>&copy; 2026 CrystalMagic | 在深邃中守護您的每一刻純淨</p>
+    <p>&copy; 2026 CrystalMagic | 黑曜石：您的能量守護盾</p>
 </footer>
 
 <script>
-    // 禁用右鍵選單
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
+    document.addEventListener('contextmenu', e => e.preventDefault());
 </script>
 
 </body>
