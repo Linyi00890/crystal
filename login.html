@@ -3,116 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>會員登入 - 水晶魔法</title>
-    <link rel="stylesheet" href="../style01.css"> 
+    <title>會員登入 - 水晶魔法 | CrystalMagic</title>
+    <link rel="stylesheet" href="styles.css"> 
     
     <style>
+        /* 登入頁專屬樣式 */
+        body {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1f5fe 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .auth-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
         .auth-container {
-            max-width: 400px;
-            margin: 60px auto;
+            width: 100%;
+            max-width: 420px;
             padding: 40px;
             background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
         .auth-container h1 {
             color: #4a148c; 
             margin-bottom: 30px;
-            border-bottom: 2px solid #ff8a65;
-            padding-bottom: 10px;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .auth-container h1::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: #ff8a65;
+            margin: 10px auto 0;
+            border-radius: 2px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-align: left;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: bold;
-            color: #555;
+            color: #6a1b9a;
+            font-size: 0.95rem;
         }
 
         .form-group input {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
+            padding: 14px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
             box-sizing: border-box;
-            font-size: 1em;
+            font-size: 1rem;
+            transition: 0.3s;
+            background-color: #fcfaff;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #6a1b9a;
+            background-color: #fff;
+            box-shadow: 0 0 0 4px rgba(106, 27, 154, 0.1);
         }
 
         .submit-button {
             width: 100%;
-            background-color: #6a1b9a; 
+            background: linear-gradient(to right, #6a1b9a, #4a148c);
             color: white;
             padding: 15px;
             border: none;
-            border-radius: 6px;
+            border-radius: 30px;
             cursor: pointer;
-            font-size: 1.1em;
+            font-size: 1.1rem;
             font-weight: bold;
-            transition: background-color 0.3s;
+            transition: 0.3s ease;
+            box-shadow: 0 5px 15px rgba(106, 27, 154, 0.3);
+            margin-top: 10px;
         }
 
         .submit-button:hover {
-            background-color: #4a148c;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(106, 27, 154, 0.4);
         }
 
         .auth-links {
-            margin-top: 25px;
-            font-size: 0.9em;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #777;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
         }
         
         .auth-links a {
             color: #ff8a65;
             text-decoration: none;
-            margin: 0 10px;
+            font-weight: bold;
+            transition: 0.3s;
         }
         
         .auth-links a:hover {
+            color: #e64a19;
             text-decoration: underline;
+        }
+
+        .divider {
+            color: #ddd;
+            margin: 0 10px;
         }
     </style>
 </head>
 <body>
 
-<main>
+<header class="main-header">
+    <div class="logo">🔮 CrystalMagic</div>
+    <div class="auth-buttons">
+        <a href="index.html" class="nav-button login">回首頁</a>
+    </div>
+</header>
+
+<main class="auth-wrapper">
     
     <section class="auth-container">
         <h1>會員登入</h1>
         
-        <form action="/api/login" method="POST">
+        <form onsubmit="handleLogin(event)">
             
             <div class="form-group">
                 <label for="email">電子郵件</label>
-                <input type="email" id="email" name="email" placeholder="請輸入您的電子郵件" required>
+                <input type="email" id="email" name="email" placeholder="example@email.com" required>
             </div>
             
             <div class="form-group">
                 <label for="password">密碼</label>
-                <input type="password" id="password" name="password" placeholder="請輸入您的密碼" required>
+                <input type="password" id="password" name="password" placeholder="請輸入密碼" required>
             </div>
             
-            <button type="submit" class="submit-button">登入</button>
+            <button type="submit" class="submit-button">開啟能量之旅</button>
             
         </form>
         
         <div class="auth-links">
-            <a href="register.html">還沒有帳號？立即註冊</a>
-            |
-            <a href="forgot_password.html">忘記密碼？</a>
+            <a href="register.html">尚未註冊？立即加入</a>
+            <span class="divider">|</span>
+            <a href="#">忘記密碼？</a>
         </div>
     </section>
 
 </main>
 
-<footer>
-    <p>&copy; 2025 水晶魔法版權所有 | <a href="contact.html">聯絡我們</a></p>
+<footer class="footer">
+    <p>&copy; 2026 CrystalMagic 版權所有 | 守護您的每一份能量</p>
 </footer>
+
+<script>
+    function handleLogin(event) {
+        event.preventDefault();
+        const email = document.getElementById('email').value;
+        // 這裡可以模擬登入邏輯
+        alert('歡迎回來！正在連結您的能量檔案...\n(模擬登入成功，即將跳轉回首頁)');
+        window.location.href = 'index.html';
+    }
+</script>
 
 </body>
 </html>
