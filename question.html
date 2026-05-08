@@ -2,40 +2,117 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>❓ 常見問題：新手 Q&A 快速解答 - 水晶魔法</title>
-    <link rel="stylesheet" href="../style01.css"> 
+    <meta name="viewport" content="width=1200">
+    <title>常見問題：新手 Q&A 快速解答 - 水晶魔法 | CrystalMagic</title>
     
     <style>
+        /* 全局設定 */
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0 auto;
+            color: #333;
+            line-height: 1.8;
+            width: 1200px;
+            overflow-x: auto;
+        }
+
+        /* 統一導覽列 (移除登入功能) */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            width: 1200px;
+            box-sizing: border-box;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #1565c0;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #1565c0;
+        }
+
+        /* 頁面標題區 */
         .faq-intro {
             text-align: center;
-            padding: 40px 20px;
-            background-color: #e3f2fd; 
-            border-radius: 8px;
-            margin-bottom: 30px;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-bottom: 4px solid #90caf9;
+            width: 1200px;
+            box-sizing: border-box;
         }
         
         .faq-intro h1 {
-            color: #1565c0; 
+            color: #0d47a1;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
         }
 
-        #accordion-container {
-            padding: 30px 0;
+        .faq-intro p {
+            font-size: 1.2rem;
+            color: #1565c0;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
+        /* 容器佈局 */
+        .container {
+            width: 900px; /* Q&A 內容集中顯示較好閱讀 */
+            margin: 50px auto;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #1565c0;
+            margin-bottom: 40px;
+            font-size: 2rem;
+        }
+
+        /* 手風琴樣式 */
         .accordion-item {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            margin-bottom: 10px;
+            border: none;
+            border-radius: 15px;
+            margin-bottom: 15px;
             overflow: hidden;
             background-color: white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
+        }
+
+        .accordion-item:hover {
+            box-shadow: 0 6px 20px rgba(21, 101, 192, 0.1);
         }
 
         .accordion-header {
             width: 100%;
-            padding: 20px;
-            background-color: #e1f5fe; 
+            padding: 25px 30px;
+            background-color: #fff;
             color: #1565c0;
             border: none;
             text-align: left;
@@ -43,151 +120,222 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 1.1em;
-            transition: background-color 0.3s;
+            font-size: 1.15rem;
             font-weight: bold;
-        }
-
-        .accordion-header:hover {
-            background-color: #b3e5fc;
-        }
-
-        .accordion-header h3 {
-            margin: 0;
-            font-size: 1em;
+            transition: 0.3s;
         }
 
         .accordion-header .icon {
-            font-size: 1.5em;
-            transition: transform 0.3s;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #e3f2fd;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-size: 1.4rem;
+            transition: 0.3s;
         }
 
         .accordion-header.active {
-            background-color: #81d4fa;
+            background-color: #1565c0;
+            color: #fff;
         }
 
         .accordion-header.active .icon {
-            transform: rotate(45deg); 
+            transform: rotate(45deg);
+            background: rgba(255,255,255,0.2);
+            color: #fff;
         }
 
         .accordion-content {
-            padding: 0 20px;
-            max-height: 0; 
+            padding: 0 30px;
+            max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            transition: max-height 0.4s ease, padding 0.4s ease;
             background-color: #fff;
         }
 
-        .accordion-content.show {
-            max-height: 500px; 
-            padding: 20px;
+        .accordion-content p {
+            margin: 20px 0;
+            color: #555;
         }
 
-        .accordion-content p {
-            margin: 10px 0;
+        .accordion-content ul {
+            padding-left: 20px;
+            color: #666;
+        }
+
+        .accordion-content li {
+            margin-bottom: 10px;
         }
 
         .accordion-content strong {
-            color: #4a148c;
+            color: #0d47a1;
+        }
+
+        /* 呼籲區塊 (CTA) */
+        .cta-section {
+            text-align: center;
+            margin-top: 60px;
+            padding: 50px;
+            background: white;
+            border-radius: 20px;
+            border: 2px dashed #bbdefb;
+        }
+
+        .cta-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .primary-cta {
+            background: #1565c0;
+            color: white;
+            box-shadow: 0 4px 15px rgba(21, 101, 192, 0.3);
+        }
+
+        .primary-cta:hover {
+            background: #0d47a1;
+            transform: translateY(-3px);
+        }
+
+        .secondary-cta {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .secondary-cta:hover {
+            background: #bbdefb;
+        }
+
+        /* 頁尾 */
+        .footer {
+            text-align: center;
+            padding: 50px 0;
+            background: #fff;
+            margin-top: 80px;
+            border-top: 1px solid #eee;
+            width: 1200px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #777;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #1565c0;
         }
     </style>
 </head>
 <body>
 
+<nav class="navbar">
+    <a href="index.html" class="logo">🔮 CrystalMagic</a>
+    <ul class="nav-links">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="origin.html">水晶起源</a></li>
+        <li><a href="pick.html">挑選指南</a></li>
+        <li><a href="question.html" style="color: #1565c0; font-weight: bold;">常見問題</a></li>
+    </ul>
+</nav>
+
 <main>
-    
     <section class="faq-intro">
         <h1>❓ 新手常見問題與迷思破解</h1>
-        <p>在這裡，我們解答所有關於水晶的佩戴、淨化、搭配以及能量使用的疑難雜症。讓您安心享受水晶帶來的療癒力量。</p>
+        <p>在這裡，我們解答所有關於水晶的佩戴、淨化、搭配以及能量使用的疑難雜症。</p>
     </section>
 
-    <section id="accordion-container">
-        <h2>常見 Q&A 快速導覽</h2>
+    <div class="container">
+        <h2 class="section-title">常見 Q&A 快速導覽</h2>
 
         <div class="accordion-item">
             <button class="accordion-header">
-                <h3>Q1: 水晶手鍊應該戴在左手還是右手？</h3>
+                Q1: 水晶手鍊應該戴在左手還是右手？
                 <span class="icon">+</span>
             </button>
             <div class="accordion-content">
-                <p>A: 傳統上遵循「左進右出」原則：</p>
+                <p>傳統上遵循<strong>「左進右出」</strong>原則：</p>
                 <ul>
-                    <li><strong>左手（吸納）：</strong> 適合招財、招桃花、求智慧等**吸納**正面能量的水晶（如黃水晶、粉晶、紫水晶）。</li>
-                    <li><strong>右手（排出）：</strong> 適合擋煞、避邪、排除病氣等**釋放/排出**負面能量的水晶（如黑曜石、黑碧璽、茶晶）。</li>
+                    <li><strong>左手（吸納）：</strong> 適合招財、招桃花、求智慧等需吸收能量的水晶（如黃水晶、粉晶、紫水晶）。</li>
+                    <li><strong>右手（排出）：</strong> 適合擋煞、避邪、排除病氣等需釋放負能量的水晶（如黑曜石、黑碧璽）。</li>
                 </ul>
-                <p>但請記住，最重要的是您的<strong>直覺</strong>和<strong>舒適度</strong>。</p>
+                <p>但現代觀點認為，最重要的是您的直覺與佩戴舒適度，磁場感應並不限於左右手。</p>
             </div>
         </div>
 
         <div class="accordion-item">
             <button class="accordion-header">
-                <h3>Q2: 我可以同時佩戴不同種類或多條水晶嗎？</h3>
+                Q2: 我可以同時佩戴多條不同種類的水晶嗎？
                 <span class="icon">+</span>
             </button>
             <div class="accordion-content">
-                <p>A: <strong>絕大多數可以！</strong>不同水晶的能量會互相協調和放大，形成一個更平衡的能量場。現代水晶學並不主張能量衝突的說法。</p>
-                <p><strong>注意事項：</strong> 應避免硬度差異過大的水晶手鍊戴在一起，以免互相摩擦造成刮傷（例如硬度高的白水晶與較軟的月光石）。</p>
+                <p><strong>答案是可以的！</strong> 不同水晶的能量通常會互補共振，形成更強大的能量場。</p>
+                <p><strong>專業建議：</strong> 請注意「硬度差異」。例如白水晶（硬度 7）與月光石（硬度 6）摩擦可能會造成微小刮傷，建議中間可以隔一顆金屬或木質隔珠。</p>
             </div>
         </div>
 
         <div class="accordion-item">
             <button class="accordion-header">
-                <h3>Q3: 水晶需要多久淨化一次？</h3>
+                Q3: 水晶需要多久淨化（消磁）一次？
                 <span class="icon">+</span>
             </button>
             <div class="accordion-content">
-                <p>A: 淨化頻率取決於水晶的使用環境和種類：</p>
+                <p>建議頻率如下：</p>
                 <ul>
-                    <li><strong>日常佩戴：</strong> 建議每週或每兩週淨化一次。</li>
-                    <li><strong>防護型水晶：</strong> 如黑曜石，因為吸收負能量較快，建議每天或每隔幾天淨化一次。</li>
-                    <li><strong>遇到突發狀況：</strong> 如果您去醫院、參加葬禮或與有負面情緒的人相處後，應立即淨化。</li>
+                    <li><strong>一般佩戴：</strong> 每 1~2 週一次。</li>
+                    <li><strong>特殊場合：</strong> 若去過醫院、墓地或情緒低落期，建議「當天佩戴後」立即淨化。</li>
+                    <li><strong>直覺判斷：</strong> 當感覺水晶看起來變暗沉、摸起來黏膩或感覺不到能量時。</li>
                 </ul>
-                <p><strong>提示：</strong> 當您感覺水晶能量變弱或變得混濁時，就是該淨化了。</p>
-            </div>
-        </div>
-        
-        <div class="accordion-item">
-            <button class="accordion-header">
-                <h3>Q4: 水晶突然裂開或破損，是代表什麼？</h3>
-                <span class="icon">+</span>
-            </button>
-            <div class="accordion-content">
-                <p>A: 雖然從科學上來說是物理碰撞所致，但在能量解讀上，這通常被視為：</p>
-                <ul>
-                    <li>水晶為您擋下了一次嚴重的負面能量或災禍。</li>
-                    <li>水晶的能量已經耗盡，無法再為您工作。</li>
-                </ul>
-                <p>建議將破損的水晶帶回大地（例如埋入盆栽或土壤中），感謝它的付出後，尋找新的水晶夥伴。</p>
-            </div>
-        </div>
-        
-        <div class="accordion-item">
-            <button class="accordion-header">
-                <h3>Q5: 睡覺時可以佩戴水晶嗎？</h3>
-                <span class="icon">+</span>
-            </button>
-            <div class="accordion-content">
-                <p>A: <strong>取決於水晶種類：</strong></p>
-                <ul>
-                    <li><strong>建議佩戴：</strong> 紫水晶、月光石、舒俱徠石等，有助於放鬆、改善多夢和提升睡眠品質。</li>
-                    <li><strong>不建議佩戴：</strong> 鈦晶、紅髮晶等高頻率、高能量的水晶，可能會使人過度興奮，導致失眠或多夢。</li>
-                </ul>
-                <p>若習慣不戴，可將水晶放在床頭櫃上或枕頭下方。</p>
             </div>
         </div>
 
-    </section>
+        <div class="accordion-item">
+            <button class="accordion-header">
+                Q4: 水晶突然裂開或破損，代表什麼預兆？
+                <span class="icon">+</span>
+            </button>
+            <div class="accordion-content">
+                <p>除了物理撞擊外，在能量解讀上通常有兩層含義：</p>
+                <ol>
+                    <li><strong>替主擋災：</strong> 水晶為你擋下了一次負面的磁場攻擊。</li>
+                    <li><strong>緣分已盡：</strong> 水晶能量已完全耗盡。</li>
+                </ol>
+                <p>建議將破損水晶回歸自然（埋入盆栽土壤中），並誠心感謝它這段時間的陪伴。</p>
+            </div>
+        </div>
 
-    <div class="call-to-action-note" style="text-align: center; margin-top: 40px; padding: 20px; background-color: #e0f2f1; border-radius: 5px;">
-        <p>還有其他疑問或想找尋您的命定水晶嗎？</p>
-        <a href="pick.html" class="cta-button">前往挑選指南 »</a>
-        <a href="contact.html" class="cta-button" >聯絡客服諮詢 »</a>
+        <section class="cta-section">
+            <h3>還有其他想了解的疑問嗎？</h3>
+            <p>我們的能量諮詢師隨時為您服務，協助您找到最適合的方案。</p>
+            <div class="cta-group">
+                <a href="pick.html" class="cta-button primary-cta">前往挑選指南</a>
+                <a href="contact.html" class="cta-button secondary-cta">聯絡在線客服</a>
+            </div>
+        </section>
+
+        <div style="text-align: center;">
+            <a href="index.html" class="back-link">← 返回首頁探索更多</a>
+        </div>
     </div>
-
 </main>
 
-<footer>
-    <p>&copy; 2025 水晶魔法版權所有 |
+<footer class="footer">
+    <p>&copy; 2026 CrystalMagic 水晶魔法版權所有</p>
 </footer>
 
 <script>
@@ -197,54 +345,34 @@
         accordionHeaders.forEach(header => {
             header.addEventListener('click', () => {
                 const content = header.nextElementSibling;
-                
-                header.classList.toggle('active');
+                const isOpen = header.classList.contains('active');
 
-                if (content.classList.contains('show')) {
-                    // 收起
-                    content.classList.remove('show');
-                    content.style.maxHeight = '0';
-                    content.style.padding = '0 20px'; 
-                } else {
+                // 先關閉所有其他的手風琴 (選用：若想允許多個同時開啟，可註釋掉下方循環)
+                accordionHeaders.forEach(otherHeader => {
+                    if (otherHeader !== header) {
+                        otherHeader.classList.remove('active');
+                        otherHeader.nextElementSibling.style.maxHeight = '0';
+                        otherHeader.nextElementSibling.style.paddingTop = '0';
+                        otherHeader.nextElementSibling.style.paddingBottom = '0';
+                    }
+                });
 
-                    closeAllOtherAccordions(header); 
-
-                    content.classList.add('show');
-     
-                    content.style.maxHeight = content.scrollHeight + 40 + 'px'; 
-                    content.style.padding = '20px'; 
-                }
-            });
-        });
-
-
-        function closeAllOtherAccordions(currentHeader) {
-            accordionHeaders.forEach(header => {
-                if (header !== currentHeader && header.classList.contains('active')) {
-                    const content = header.nextElementSibling;
-                    
+                // 切換當前點擊的狀態
+                if (isOpen) {
                     header.classList.remove('active');
-                    content.classList.remove('show');
                     content.style.maxHeight = '0';
-                    content.style.padding = '0 20px';
+                    content.style.paddingTop = '0';
+                    content.style.paddingBottom = '0';
+                } else {
+                    header.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + 40 + 'px'; // 動態高度計算
+                    content.style.paddingTop = '20px';
+                    content.style.paddingBottom = '20px';
                 }
             });
-        }
-        
-
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
         });
     });
 </script>
 
-<a href="crystal.html" class="back-to-home-link">← 返回首頁</a> 
-
 </body>
-
 </html>
-
-
-
-
-
