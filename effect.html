@@ -3,41 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✨ 功效解讀：脈輪對應與能量療癒 - 水晶魔法</title>
-    <link rel="stylesheet" href="../style01.css"> 
+    <title>✨ 功效解讀：脈輪對應與能量療癒 - 水晶魔法 | CrystalMagic</title>
+    <link rel="stylesheet" href="styles.css"> 
     
     <style>
-        .benefits-intro {
+        /* 功效頁面專屬風格 */
+        .page-header {
             text-align: center;
-            padding: 40px 20px;
-            background-color: #f3e5f5; 
-            border-radius: 8px;
-            margin-bottom: 30px;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #f3e5f5 0%, #e8eaf6 100%); 
+            border-bottom: 5px solid #673ab7;
         }
-        
-        .benefits-intro h1 {
+
+        .section-title {
+            text-align: center; 
             color: #4a148c; 
+            margin: 50px 0 30px;
+            font-size: 2rem;
         }
 
         .chakra-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 25px;
-            margin-top: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         .chakra-card {
             background-color: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid; /* 用於區分脈輪顏色 */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            border-top: 6px solid; /* 改為頂部線條更有質感 */
+            transition: 0.3s;
+        }
+
+        .chakra-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         .chakra-card h3 {
             margin-top: 0;
-            font-size: 1.5em;
-            margin-bottom: 10px;
+            font-size: 1.4em;
+            color: #333;
+        }
+
+        .chakra-card p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 15px;
         }
 
         .chakra-card ul {
@@ -46,134 +63,181 @@
         }
 
         .chakra-card ul li {
-            background-color: #f7f7f7;
+            background-color: #f8f9fa;
             margin-bottom: 8px;
-            padding: 8px 12px;
-            border-radius: 4px;
+            padding: 10px 15px;
+            border-radius: 8px;
             font-size: 0.95em;
+            color: #444;
+            display: flex;
+            align-items: center;
+        }
+
+        .chakra-card ul li::before {
+            content: '✨';
+            margin-right: 8px;
+            font-size: 0.8em;
         }
         
         /* 脈輪顏色定義 */
-        .chakra-7 { border-left-color: #9c27b0; } 
-        .chakra-6 { border-left-color: #3f51b5; } 
-        .chakra-5 { border-left-color: #00bcd4; } 
-        .chakra-4 { border-left-color: #4caf50; } 
-        .chakra-3 { border-left-color: #ffc107; } 
-        .chakra-2 { border-left-color: #ff5722; } 
-        .chakra-1 { border-left-color: #f44336; } 
+        .chakra-7 { border-top-color: #9c27b0; } /* 頂輪-紫 */
+        .chakra-6 { border-top-color: #3f51b5; } /* 眉心-靛 */
+        .chakra-5 { border-top-color: #03a9f4; } /* 喉輪-藍 */
+        .chakra-4 { border-top-color: #4caf50; } /* 心輪-綠 */
+        .chakra-3 { border-top-color: #ffeb3b; } /* 太陽-黃 */
+        .chakra-2 { border-top-color: #ff9800; } /* 臍輪-橙 */
+        .chakra-1 { border-top-color: #f44336; } /* 底輪-紅 */
+
+        /* 速查表優化 */
+        .table-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            overflow-x: auto;
+            padding: 0 20px;
+        }
 
         .needs-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         .needs-table th, .needs-table td {
-            padding: 12px;
-            border: 1px solid #ddd;
+            padding: 18px;
+            border-bottom: 1px solid #eee;
             text-align: left;
         }
 
         .needs-table th {
-            background-color: #fce4ec; 
-            color: #4a148c;
-            width: 30%;
+            background-color: #673ab7;
+            color: white;
+            font-size: 1.1rem;
         }
         
         .needs-table td strong {
-            color: #ff8a65;
+            color: #673ab7;
+        }
+
+        .cta-box {
+            text-align: center;
+            margin: 60px auto;
+            padding: 40px;
+            background-color: #fff8e1;
+            border-radius: 20px;
+            max-width: 800px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #ff8a65;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #ff7043;
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
 
+<header class="main-header">
+    <div class="logo">🔮 CrystalMagic</div>
+    <div class="auth-buttons">
+        <a href="index.html" class="nav-button login">回首頁</a>
+        <a href="quiz.html" class="nav-button register">能量測驗</a>
+    </div>
+</header>
+
 <main>
-    
-    <section class="benefits-intro">
-        <h1>✨ 功效解讀：水晶能量與七大脈輪對應圖</h1>
-        <p>水晶的功效源於其穩定的頻率與人體能量中心的共振。理解脈輪系統，能幫助您更精準地挑選所需的能量夥伴。</p>
+    <section class="page-header">
+        <h1>🌈 七大脈輪與水晶功效</h1>
+        <p>理解水晶的共振頻率，找到最適合您的能量夥伴。</p>
     </section>
 
-    <section id="chakra-mapping" class="content-section">
-        <h2>🌈 七大脈輪與對應水晶</h2>
-        
-        <div class="chakra-grid">
-            
-            <article class="chakra-card chakra-7">
-                <h3>第七脈輪：頂輪 (Crown Chakra)</h3>
-                <p><strong>主題：</strong> 靈性連接、智慧、覺醒</p>
-                <ul>
-                    <li>白水晶 (Clear Quartz)</li>
-                    <li>紫水晶 (Amethyst)</li>
-                    <li>透石膏 (Selenite)</li>
-                </ul>
-            </article>
+    <div class="chakra-grid">
+        <article class="chakra-card chakra-7">
+            <h3>第七脈輪：頂輪</h3>
+            <p><strong>主題：</strong> 靈性、智慧、覺醒</p>
+            <ul>
+                <li>白水晶 (Clear Quartz)</li>
+                <li>紫水晶 (Amethyst)</li>
+                <li>透石膏 (Selenite)</li>
+            </ul>
+        </article>
 
-            <article class="chakra-card chakra-6">
-                <h3>第六脈輪：眉心輪 (Third Eye Chakra)</h3>
-                <p><strong>主題：</strong> 直覺、洞察力、潛意識</p>
-                <ul>
-                    <li>青金石 (Lapis Lazuli)</li>
-                    <li>紫水晶 (Amethyst)</li>
-                    <li>藍紋瑪瑙 (Blue Lace Agate)</li>
-                </ul>
-            </article>
+        <article class="chakra-card chakra-6">
+            <h3>第六脈輪：眉心輪</h3>
+            <p><strong>主題：</strong> 直覺、洞察力、潛意識</p>
+            <ul>
+                <li>青金石 (Lapis Lazuli)</li>
+                <li>蘇打石 (Sodalite)</li>
+                <li>拉長石 (Labradorite)</li>
+            </ul>
+        </article>
 
-            <article class="chakra-card chakra-5">
-                <h3>第五脈輪：喉輪 (Throat Chakra)</h3>
-                <p><strong>主題：</strong> 溝通、表達、真實性</p>
-                <ul>
-                    <li>藍玉髓 (Blue Chalcedony)</li>
-                    <li>海藍寶 (Aquamarine)</li>
-                    <li>藍色拓帕石 (Blue Topaz)</li>
-                </ul>
-            </article>
+        <article class="chakra-card chakra-5">
+            <h3>第五脈輪：喉輪</h3>
+            <p><strong>主題：</strong> 溝通、表達、真實性</p>
+            <ul>
+                <li>海藍寶 (Aquamarine)</li>
+                <li>藍玉髓 (Blue Chalcedony)</li>
+                <li>天河石 (Amazonite)</li>
+            </ul>
+        </article>
 
-            <article class="chakra-card chakra-4">
-                <h3>第四脈輪：心輪 (Heart Chakra)</h3>
-                <p><strong>主題：</strong> 愛、情感關係、療癒、同理心</p>
-                <ul>
-                    <li>粉水晶 (Rose Quartz)</li>
-                    <li>綠幽靈 (Green Phantom)</li>
-                    <li>孔雀石 (Malachite)</li>
-                </ul>
-            </article>
+        <article class="chakra-card chakra-4">
+            <h3>第四脈輪：心輪</h3>
+            <p><strong>主題：</strong> 愛、同理心、療癒</p>
+            <ul>
+                <li>粉水晶 (Rose Quartz)</li>
+                <li>草莓晶 (Strawberry Quartz)</li>
+                <li>葡萄石 (Prehnite)</li>
+            </ul>
+        </article>
 
-            <article class="chakra-card chakra-3">
-                <h3>第三脈輪：太陽神經叢 (Solar Plexus)</h3>
-                <p><strong>主題：</strong> 自信、個人力量、財富、意志力</p>
-                <ul>
-                    <li>黃水晶 (Citrine)</li>
-                    <li>虎眼石 (Tiger's Eye)</li>
-                    <li>黃玉 (Yellow Topaz)</li>
-                </ul>
-            </article>
+        <article class="chakra-card chakra-3">
+            <h3>第三脈輪：太陽神經叢</h3>
+            <p><strong>主題：</strong> 自信、財富、意志力</p>
+            <ul>
+                <li>黃水晶 (Citrine)</li>
+                <li>金髮晶 (Rutilated Quartz)</li>
+                <li>虎眼石 (Tiger's Eye)</li>
+            </ul>
+        </article>
 
-            <article class="chakra-card chakra-2">
-                <h3>第二脈輪：臍輪 (Sacral Chakra)</h3>
-                <p><strong>主題：</strong> 創造力、情感、激情、喜悅</p>
-                <ul>
-                    <li>月光石 (Moonstone)</li>
-                    <li>紅兔毛 (Red Rutilated Quartz)</li>
-                    <li>太陽石 (Sunstone)</li>
-                </ul>
-            </article>
-            
-            <article class="chakra-card chakra-1">
-                <h3>第一脈輪：底輪 (Root Chakra)</h3>
-                <p><strong>主題：</strong> 穩定、安全感、接地、生存</p>
-                <ul>
-                    <li>黑曜石 (Obsidian)</li>
-                    <li>石榴石 (Garnet)</li>
-                    <li>紅瑪瑙 (Red Agate)</li>
-                </ul>
-            </article>
-        </div>
-    </section>
+        <article class="chakra-card chakra-2">
+            <h3>第二脈輪：臍輪</h3>
+            <p><strong>主題：</strong> 創造力、熱情、情感</p>
+            <ul>
+                <li>月光石 (Moonstone)</li>
+                <li>紅瑪瑙 (Carnelian)</li>
+                <li>太陽石 (Sunstone)</li>
+            </ul>
+        </article>
 
-    <section id="needs-table" class="content-section">
-        <h2>📋 常見需求與功效速查表</h2>
-        
+        <article class="chakra-card chakra-1">
+            <h3>第一脈輪：底輪</h3>
+            <p><strong>主題：</strong> 穩定、安全感、接地</p>
+            <ul>
+                <li>黑曜石 (Obsidian)</li>
+                <li>茶晶 (Smoky Quartz)</li>
+                <li>石榴石 (Garnet)</li>
+            </ul>
+        </article>
+    </div>
+
+    <h2 class="section-title">📋 需求速查表</h2>
+    <div class="table-container">
         <table class="needs-table">
             <thead>
                 <tr>
@@ -184,54 +248,39 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>💖 增進人緣/招桃花</td>
+                    <td>💖 增進人緣/桃花</td>
                     <td><strong>粉水晶、月光石</strong></td>
-                    <td>溫和開啟心輪，吸引正緣，改善人際關係中的摩擦。</td>
+                    <td>開啟心輪，吸引正緣，改善人際摩擦。</td>
                 </tr>
                 <tr>
                     <td>💰 提升財運/事業</td>
-                    <td><strong>黃水晶、鈦晶、綠幽靈</strong></td>
-                    <td>主偏財或正財，增強決斷力、自信心和工作積極性。</td>
+                    <td><strong>金髮晶、綠幽靈</strong></td>
+                    <td>增強決斷力，招來正偏財運與貴人。</td>
+                </tr>
+                <tr>
+                    <td>🛡️ 避邪/防小人</td>
+                    <td><strong>黑曜石、黑碧璽</strong></td>
+                    <td>強效吸收負能量，阻擋病氣干擾。</td>
                 </tr>
                 <tr>
                     <td>😴 改善睡眠/靜心</td>
-                    <td><strong>紫水晶、拉長石、舒俱徠石</strong></td>
-                    <td>鎮定思緒，舒緩焦慮，有助於冥想和進入深層睡眠。</td>
-                </tr>
-                <tr>
-                    <td>🛡️ 避邪/防負能量</td>
-                    <td><strong>黑曜石、黑碧璽、茶晶</strong></td>
-                    <td>強效吸收和阻擋負面能量、病氣及電磁波干擾。</td>
-                </tr>
-                <tr>
-                    <td>🗣️ 溝通與表達</td>
-                    <td><strong>海藍寶、藍玉髓</strong></td>
-                    <td>對應喉輪，幫助清晰表達自我，提升溝通流暢度。</td>
+                    <td><strong>紫水晶、拉長石</strong></td>
+                    <td>鎮定思緒，舒緩壓力，幫助深層睡眠。</td>
                 </tr>
             </tbody>
         </table>
-    </section>
-    
-    <div class="call-to-action-note" style="text-align: center; margin-top: 40px; padding: 20px; background-color: #fff8e1; border-radius: 5px;">
-        <p>想知道哪種水晶最適合您嗎？</p>
-        <a href="../index.html#guide" class="cta-button">立即前往挑選指南 »</a>
     </div>
 
+    <div class="cta-box">
+        <h3>想知道哪種水晶最適合您嗎？</h3>
+        <p>根據您的現狀，測量出您最缺乏的脈輪能量。</p>
+        <a href="quiz.html" class="cta-button">立即前往能量測驗 »</a>
+    </div>
 </main>
 
-<footer>
-    <p>&copy; 2025 水晶魔法版權所有 | <a href="contact.html">聯絡我們</a></p>
+<footer class="footer">
+    <p>&copy; 2026 CrystalMagic 版權所有 | 探索內在的魔法能量</p>
 </footer>
 
-<script>
-    
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
-</script>
-
-<a href="crystal.html" class="back-to-home-link">← 返回首頁</a> 
-
 </body>
-
 </html>
