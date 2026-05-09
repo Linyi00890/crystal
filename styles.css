@@ -12,10 +12,11 @@ body {
     background-color: #f8f9fa;
     color: #333;
     line-height: 1.6;
+    overflow-x: hidden; /* 防止手機版左右晃動 */
 }
 
 /* ==========================================================================
-   2. 導覽列與頁首
+   2. 導覽列與頁首 (Navigation)
    ========================================================================== */
 .main-header {
     display: flex;
@@ -64,8 +65,12 @@ body {
     color: white;
 }
 
+.nav-button.register:hover {
+    background: #4a148c;
+}
+
 /* ==========================================================================
-   3. 區塊橫幅 (Hero)
+   3. 區塊橫幅 (Hero Section)
    ========================================================================== */
 .hero-section {
     background: linear-gradient(135deg, #6a1b9a 0%, #ba68c8 100%);
@@ -77,6 +82,12 @@ body {
 .hero-content h1 {
     font-size: 2.8rem;
     margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    opacity: 0.9;
 }
 
 .main-cta {
@@ -104,6 +115,7 @@ body {
     max-width: 1300px;
     margin: 60px auto;
     display: grid;
+    /* 電腦版自動排版，手機版會自動切換為 1 欄 */
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
     padding: 0 25px;
@@ -117,18 +129,19 @@ body {
     flex-direction: column;
     justify-content: space-between;
     box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
-    border-top: 8px solid #ddd; /* 預設邊框 */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-top: 8px solid #ddd; /* 預設線條 */
+    position: relative;
 }
 
 .guide-item:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
 }
 
 .card-image {
     width: 100%;
-    height: 200px;
+    height: 220px;
     object-fit: cover;
     border-radius: 12px;
     margin-bottom: 20px;
@@ -137,15 +150,16 @@ body {
 .guide-item h2 {
     font-size: 1.4rem;
     margin-bottom: 15px;
+    font-weight: 700;
 }
 
 .guide-item p {
     font-size: 1rem;
-    color: #666;
-    flex-grow: 1;
+    color: #555;
+    flex-grow: 1; /* 確保文字區塊自動撐開，讓按鈕對齊底部 */
 }
 
-/* --- 七大類別顏色定義 --- */
+/* --- 💡 七大類別主題顏色系統 --- */
 
 /* 1. 起源 (湖水綠) */
 .layer-1 { border-top-color: #00897b; background-color: #f0f7f7; }
@@ -184,32 +198,74 @@ body {
 
 /* 通用按鈕樣式 */
 .cta-button {
+    display: block;
     text-decoration: none;
     text-align: center;
-    padding: 12px;
+    padding: 12px 20px;
     border-radius: 50px;
     font-weight: bold;
     margin-top: 20px;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .cta-button:hover {
-    opacity: 0.9;
+    opacity: 0.85;
     letter-spacing: 1px;
+    transform: scale(1.02);
 }
 
 /* ==========================================================================
-   5. 頁尾
+   5. 頁尾 (Footer)
    ========================================================================== */
 .footer {
     text-align: center;
-    padding: 40px;
+    padding: 40px 20px;
     background: #4a148c;
     color: white;
     margin-top: 60px;
 }
 
+.footer p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* ==========================================================================
+   6. 響應式調整 (Media Queries)
+   ========================================================================== */
+
+/* 當螢幕寬度小於 600px (手機) */
 @media (max-width: 600px) {
-    .hero-content h1 { font-size: 2rem; }
-    .guide-grid { grid-template-columns: 1fr; }
+    .main-header {
+        flex-direction: column;
+        padding: 15px 0;
+        gap: 15px;
+    }
+
+    .hero-section {
+        padding: 60px 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .guide-grid {
+        grid-template-columns: 1fr; /* 強制單欄顯示 */
+        padding: 0 20px;
+        margin-top: 30px;
+    }
+
+    .guide-item {
+        padding: 20px;
+    }
+
+    .card-image {
+        height: 180px; /* 手機版圖片縮小一點點 */
+    }
+}
+
+/* 針對測驗頁面的隱藏設定 (如果有用到的話) */
+.hidden {
+    display: none !important;
 }
