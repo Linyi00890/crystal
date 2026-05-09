@@ -3,14 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>水晶入門：開啟你的能量之旅 | 專業指南</title>
-    <link rel="stylesheet" href="styles.css"> 
+    <title>水晶入門：開啟你的能量之旅 | CrystalMagic 專業指南</title>
+    
+    <!-- 建議將外部字體放置在自定義 CSS 之前 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Georgia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> 
+    
+    <style>
+        /* 這裡可以放置基礎的佈局修正，確保 guide-grid 能正常顯示 */
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .guide-item {
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease;
+        }
+        .guide-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .card-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .cta-button {
+            display: inline-block;
+            text-align: center;
+            background: #6a1b9a;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+    </style>
 </head>
 <body>
 
 <header class="main-header">
-    <div class="logo">🔮 CrystalMagic</div>
+    <div class="logo">🔮 <a href="index.html" style="text-decoration:none; color:inherit;">CrystalMagic</a></div>
     
     <div class="auth-buttons">
         <a href="login.html" class="nav-button login">登入</a>
@@ -19,6 +62,7 @@
 </header>
 
 <main>
+    <!-- Hero 區塊 -->
     <section id="hero" class="hero-section">
         <div class="hero-content">
             <h1>水晶入門：開啟你的能量之旅</h1>
@@ -27,8 +71,10 @@
         </div>
     </section>
     
+    <!-- 導覽網格 -->
     <div class="guide-grid"> 
         
+        <!-- 1. 起源 (對應 origin.html) -->
         <section id="intro" class="guide-item layer-1">
             <div class="card-content">
                 <h2>🔮 1. 水晶介紹：起源與科學</h2>
@@ -40,66 +86,72 @@
             <a href="origin.html" class="cta-button">深入探索知識 »</a>
         </section>
         
+        <!-- 2. 種類 (對應 type.html) -->
         <section id="types" class="guide-item layer-2">
             <div class="card-content">
                 <h2>💎 2. 水晶種類：色彩與特徵</h2>
                  <div class="card-image-wrapper">
-                    <img src="picture/crystal02.jpg" alt="水晶原礦" class="card-image">
+                    <img src="picture/crystal02.jpg" alt="各種水晶" class="card-image">
                 </div>
                 <p>水晶種類繁多，每一種顏色都對應著獨特的能量。了解白水晶、紫水晶、粉晶等主流水晶的特點。</p>
             </div>
             <a href="type.html" class="cta-button">查看種類清單 »</a>
         </section>
         
+        <!-- 3. 功效 (建議連往您的功效頁面) -->
         <section id="benefits" class="guide-item layer-3">
             <div class="card-content">
                 <h2>✨ 3. 功效解讀：脈輪與療癒</h2>
                  <div class="card-image-wrapper">
-                    <img src="picture/crystal03.jpg" alt="七脈輪" class="card-image">
+                    <img src="picture/crystal03.jpg" alt="七脈輪對應" class="card-image">
                 </div>
                 <p>不同水晶對應人體七大脈輪。找到平衡身心、提升運勢的能量石，發揮情感與財富功效。</p>
             </div>
             <a href="effect.html" class="cta-button">查看能量功效表 »</a>
         </section>
         
+        <!-- 4. 挑選指南 -->
         <section id="guide" class="guide-item layer-4">
             <div class="card-content">
                 <h2>🛍️ 4. 挑選指南：尋找命定水晶</h2>
                  <div class="card-image-wrapper">
-                    <img src="picture/crystal04.jpg" alt="水晶" class="card-image">
+                    <img src="picture/crystal04.jpg" alt="挑選水晶" class="card-image">
                 </div>
                 <p>教導您如何根據直覺、星座或命盤，在成千上萬的水晶中挑選最適合自己的夥伴。</p>
             </div>
             <a href="pick.html" class="cta-button">開始配對測試 »</a>
         </section>
         
+        <!-- 5. 淨化保養 (對應 care.html) -->
         <section id="care" class="guide-item layer-5">
             <div class="card-content">
                 <h2>💧 5. 淨化保養：維持能量</h2>
                  <div class="card-image-wrapper">
-                    <img src="picture/crystal05.jpg" alt="水晶" class="card-image">
+                    <img src="picture/crystal05.jpg" alt="水晶淨化" class="card-image">
                 </div>
                 <p>介紹月光、晶洞、煙燻等多種淨化方式，教您如何正確儲存與保養，維持水晶純淨。</p>
             </div>
-            <a href="pages.html" class="cta-button">了解淨化步驟 »</a>
+            <a href="care.html" class="cta-button">了解淨化步驟 »</a>
         </section>
 
+        <!-- 6. 專屬商品 -->
         <section id="shop" class="guide-item layer-6">
             <div class="card-content">
                 <h2>🎁 6. 專屬商品：量身打造</h2>
                 <div class="card-image-wrapper">
-                    <img src="picture/crystal06.jpg" alt="五行" class="card-image">
+                    <img src="picture/crystal06.jpg" alt="水晶飾品" class="card-image">
                 </div>
                 <p>瀏覽我們精心設計的水晶手作飾品、高品質原礦或獨家能量教學課程。</p>
             </div>
             <a href="exclusive.html" class="cta-button">前往選購區 »</a>
         </section>
         
+        <!-- 7. 常見問題 -->
         <section id="faq" class="guide-item layer-7">
             <div class="card-content">
                 <h2>❓ 7. 常見問題：新手 Q&A</h2>
                 <div class="card-image-wrapper">
-                    <img src="picture/crystal07.jpg" alt="水晶" class="card-image">
+                    <img src="picture/crystal07.jpg" alt="Q&A問答" class="card-image">
                 </div>
                 <p>整理了入門者最常詢問的問題，包括佩戴手別、能量衝突等迷思的快速解答。</p>
             </div>
@@ -110,7 +162,9 @@
 </main>
 
 <footer class="footer">
-    <p>&copy; 2026 CrystalMagic. 所有內容僅供參考，請以您的直覺為準。</p>
+    <div style="text-align: center; padding: 20px; border-top: 1px solid #ddd; margin-top: 40px;">
+        <p>&copy; 2026 CrystalMagic. 所有內容僅供參考，請以您的直覺為準。</p>
+    </div>
 </footer>
 
 </body>
