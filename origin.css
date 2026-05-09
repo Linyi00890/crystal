@@ -1,8 +1,7 @@
 /* ==========================================================================
-   CrystalMagic Origin 專屬樣式表 - 固定寬度版
+   CrystalMagic Origin 專屬樣式表 - 全螢幕優化版
    ========================================================================== */
 
-/* 全域設定 */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -12,32 +11,32 @@
 body {
     font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
     background-color: #f7f7f7;
-    margin: 0 auto; /* 確保在螢幕上居中 */
     color: #333;
     line-height: 1.6;
-    /* 關鍵：鎖定電腦版寬度，防止手機版自動重排 */
-    width: 1200px; 
-    overflow-x: auto; /* 若螢幕太小，顯示水平捲軸而非擠壓內容 */
+    /* 修改：讓 body 寬度隨視窗縮放 */
+    width: 100%;
+    overflow-x: hidden;
 }
 
 /* ==========================================================================
-   導覽列 (Navbar)
+   導覽列 (Navbar) - 撐滿全螢幕但內容置中
    ========================================================================== */
 .navbar {
     background-color: #ffffff;
     display: flex;
-    justify-content: center; /* 使 nav-container 居中 */
+    justify-content: center; /* 讓內容容器在 navbar 中置中 */
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     position: sticky;
     top: 0;
     z-index: 1000;
-    width: 1200px; /* 固定寬度 */
+    width: 100%; /* 撐滿全螢幕寬度 */
 }
 
 .nav-container {
     width: 100%;
+    max-width: 1200px; /* 限制內部內容最大寬度 */
     display: flex;
-    justify-content: space-between; /* 關鍵：將 Logo 推向左，選項推向右 */
+    justify-content: space-between; /* Logo 在左，選項在右 */
     align-items: center;
     padding: 15px 50px;
 }
@@ -54,8 +53,6 @@ body {
     display: flex;
     list-style: none;
     gap: 30px;
-    margin: 0;
-    padding: 0;
 }
 
 .nav-links a {
@@ -72,7 +69,6 @@ body {
     color: #6a1b9a;
 }
 
-/* 底線指示動畫 */
 .nav-links a::after {
     content: '';
     position: absolute;
@@ -90,20 +86,20 @@ body {
 }
 
 /* ==========================================================================
-   Hero 橫幅區
+   Hero 橫幅區 - 滿版漸層背景
    ========================================================================== */
 #hero {
     text-align: center;
     padding: 100px 20px;
     background: linear-gradient(135deg, #f3e5f5 0%, #e1f5fe 100%);
     border-radius: 0 0 80px 80px; 
-    width: 1200px;
+    width: 100%; /* 背景撐滿 */
 }
 
 #hero h1 {
     color: #4a148c;
     margin-bottom: 15px;
-    font-size: 3rem;
+    font-size: clamp(2rem, 5vw, 3.5rem); /* 隨螢幕大小縮放字體 */
     text-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
@@ -113,10 +109,11 @@ body {
 }
 
 /* ==========================================================================
-   手風琴內容區
+   手風琴內容區 - 置中且寬度適中
    ========================================================================== */
-.content-wrapper {
-    width: 900px; /* 內容專注區縮小，增加閱讀舒適度 */
+#accordion-container {
+    width: 90%;
+    max-width: 900px; /* 手風琴不宜過寬，方便閱讀 */
     margin: 60px auto;
 }
 
@@ -149,7 +146,6 @@ body {
 
 .accordion-item:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
 }
 
 .accordion-header {
@@ -168,7 +164,6 @@ body {
     margin: 0;
     color: #6a1b9a;
     font-size: 1.3rem;
-    font-weight: 600;
 }
 
 .accordion-header::after {
@@ -180,10 +175,8 @@ body {
 
 .accordion-item.active .accordion-header::after {
     transform: rotate(180deg);
-    color: #6a1b9a;
 }
 
-/* 內容展開動畫 */
 .accordion-content {
     max-height: 0;
     overflow: hidden;
@@ -192,20 +185,20 @@ body {
 }
 
 .accordion-item.active .accordion-content {
-    max-height: 1500px; /* 確保足以容納內容 */
+    max-height: 1500px;
     border-top: 1px solid #f0f0f0;
 }
 
-.accordion-content .inner-padding {
+.accordion-inner-padding {
     padding: 30px;
 }
 
 /* ==========================================================================
-   水晶種類與脈輪清單樣式
+   清單樣式
    ========================================================================== */
 .type-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     list-style: none;
     padding: 10px 0;
@@ -218,22 +211,8 @@ body {
     background-color: var(--crystal-bg, #f5f5f5);
 }
 
-.chakra-dl dt {
-    font-weight: bold;
-    font-size: 1.1rem;
-    margin-top: 20px;
-    color: var(--chakra-color, #333);
-}
-
-.chakra-dl dd {
-    margin: 8px 0 0 0;
-    padding-left: 15px;
-    border-left: 3px solid var(--chakra-color, #eee);
-    color: #555;
-}
-
 /* ==========================================================================
-   頁尾與按鈕
+   頁尾 (Footer)
    ========================================================================== */
 .main-footer {
     text-align: center;
@@ -241,26 +220,21 @@ body {
     background: #ffffff;
     margin-top: 80px;
     border-top: 1px solid #eee;
-    width: 1200px;
+    width: 100%; /* 背景撐滿 */
 }
 
 .back-btn {
     display: inline-block;
-    margin-top: 25px;
     padding: 14px 40px;
     background: linear-gradient(135deg, #7b1fa2, #4a148c);
     color: white;
     text-decoration: none;
     border-radius: 50px;
     font-weight: bold;
-    transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(106, 27, 154, 0.2);
+    transition: 0.3s;
 }
 
 .back-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(106, 27, 154, 0.4);
-    filter: brightness(1.1);
 }
-
-/* 移除所有響應式 Media Queries，確保寬度恆定 */
