@@ -2,282 +2,14 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1200"> <!-- 強制手機端也以 1200px 寬度渲染 -->
     <title>水晶起源與療癒指南 - 水晶魔法 | CrystalMagic</title>
-    
-    <style>
-        /* ==========================================================================
-           1. 全域變數與重設
-           ========================================================================== */
-        :root {
-            --primary-purple: #6a1b9a;
-            --soft-bg: #f8f9fa;
-            --max-width: 1200px;
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            width: 100%;
-            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
-            background-color: var(--soft-bg);
-            color: #333;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* ==========================================================================
-           2. 導覽列 (Navbar) - 關鍵修正：左右對齊
-           ========================================================================== */
-        .navbar {
-            display: flex;
-            justify-content: center; /* 使 nav-container 居中 */
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(5px);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            width: 100%;
-        }
-
-        .nav-container {
-            width: 100%;
-            max-width: var(--max-width);
-            display: flex;
-            justify-content: space-between; /* 將 Logo 推向左，Links 推向右 */
-            align-items: center;
-            padding: 15px 30px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            font-size: 1.6rem;
-            font-weight: bold;
-            color: var(--primary-purple);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .logo:hover {
-            opacity: 0.8;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #555;
-            font-weight: 500;
-            padding: 5px 0;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--primary-purple);
-        }
-
-        /* 底線動畫效果 */
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--primary-purple);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after, .nav-links a.active::after {
-            width: 100%;
-        }
-
-        /* ==========================================================================
-           3. 內容區塊
-           ========================================================================== */
-        #hero {
-            text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(135deg, #f3e5f5 0%, #e1f5fe 100%);
-            width: 100%;
-        }
-
-        #hero h1 {
-            font-size: clamp(2.2rem, 5vw, 3rem);
-            color: var(--primary-purple);
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-
-        #hero p {
-            font-size: 1.1rem;
-            color: #666;
-        }
-
-        .content-wrapper {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            color: #4a148c;
-            font-size: 2rem;
-            position: relative;
-        }
-
-        /* 手風琴 (Accordion) 樣式 */
-        .accordion-item {
-            background: #fff;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            overflow: hidden;
-            border: 1px solid #eee;
-            transition: var(--transition);
-        }
-
-        .accordion-item.active {
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .accordion-header {
-            width: 100%;
-            padding: 20px 30px;
-            background: #fff;
-            border: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            text-align: left;
-        }
-
-        .accordion-header h3 {
-            margin: 0;
-            color: var(--primary-purple);
-            font-size: 1.2rem;
-        }
-
-        .accordion-header::after {
-            content: '▼';
-            font-size: 0.8rem;
-            color: #bbb;
-            transition: var(--transition);
-        }
-
-        .accordion-item.active .accordion-header::after {
-            transform: rotate(180deg);
-            color: var(--primary-purple);
-        }
-
-        .accordion-content {
-            padding: 0 30px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out;
-        }
-
-        .accordion-item.active .accordion-content {
-            max-height: 2000px; /* 設夠大以容納內容 */
-            padding-bottom: 40px;
-        }
-
-        /* 水晶種類列表佈局 */
-        .type-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            list-style: none;
-            padding: 20px 0;
-        }
-
-        .type-list li {
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 5px solid var(--crystal-color, #ccc);
-            background-color: var(--crystal-bg, #f5f5f5);
-        }
-
-        /* 各類別顏色定義 */
-        .type-clear-quartz { --crystal-color: #b0bec5; --crystal-bg: #f0f4f8; }
-        .type-citrine      { --crystal-color: #ffb300; --crystal-bg: #fff8e1; }
-        .type-amethyst     { --crystal-color: #9c27b0; --crystal-bg: #f3e5f5; }
-        .type-obsidian     { --crystal-color: #212121; --crystal-bg: #eeeeee; }
-        .type-rose-quartz  { --crystal-color: #f06292; --crystal-bg: #fce4ec; }
-
-        /* 七脈輪顏色定義 */
-        .chakra-dl dt {
-            font-weight: bold;
-            margin-top: 20px;
-            color: var(--chakra-color, #333);
-        }
-        .chakra-dl dd {
-            margin-left: 0;
-            padding-left: 15px;
-            border-left: 3px solid var(--chakra-color, #eee);
-            color: #666;
-            margin-bottom: 10px;
-        }
-        .root-chakra    { --chakra-color: #e53935; }
-        .heart-chakra   { --chakra-color: #43a047; }
-        .crown-chakra   { --chakra-color: #8e24aa; }
-
-        /* ==========================================================================
-           4. 頁尾
-           ========================================================================== */
-        .main-footer {
-            text-align: center;
-            padding: 60px 20px;
-            background: #fff;
-            border-top: 1px solid #eee;
-        }
-
-        .back-btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 30px;
-            background: var(--primary-purple);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .back-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(106, 27, 154, 0.3);
-        }
-
-        /* 響應式調整 */
-        @media (max-width: 768px) {
-            .nav-container {
-                padding: 15px 20px;
-            }
-            .nav-links {
-                gap: 15px;
-                font-size: 0.9rem;
-            }
-        }
-    </style>
+    <!-- 引入外部 CSS -->
+    <link rel="stylesheet" href="origin.css">
 </head>
 <body>
 
+    <!-- 導覽列 -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">🔮 CrystalMagic</a>
@@ -291,66 +23,83 @@
     </nav>
 
     <main>
+        <!-- Hero 橫幅區 -->
         <section id="hero">
             <h1>探索水晶的療癒世界</h1>
             <p>從地球深處而來的礦石頻率，守護您的靈魂能量中心。</p>
         </section>
 
-        <section class="content-wrapper">
+        <!-- 手風琴容器 -->
+        <div id="accordion-container">
             <h2 class="section-title">✨ 水晶核心療癒指南 ✨</h2>
 
-            <!-- 1. 科學起源 -->
+            <!-- 項目 1 -->
             <div class="accordion-item active">
                 <button class="accordion-header">
                     <h3>1. 🔮 水晶是什麼？：基礎與科學起源</h3>
                 </button>
                 <div class="accordion-content">
-                    <p><strong>科學基礎：</strong> 水晶原子以高度有序的晶格排列，能產生穩定的振動頻率。這種穩定的結構使其成為能量轉換的理想載體。</p>
-                    <p><strong>能量學視角：</strong> 透過共振原理，水晶能協助調整人體磁場，將混亂或低頻的情緒轉化為穩定的正向狀態。</p>
+                    <div class="accordion-inner-padding">
+                        <p><strong>科學基礎：</strong> 水晶原子以高度有序的晶格排列，能產生穩定的振動頻率。這種穩定的結構使其成為能量轉換的理想載體。</p>
+                        <p>透過共振原理，水晶能協助調整人體磁場，將混亂或低頻的情緒轉化為穩定的正向狀態。</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- 2. 常見種類 -->
+            <!-- 項目 2 -->
             <div class="accordion-item">
                 <button class="accordion-header">
                     <h3>2. 💎 水晶的種類：常見礦石與能量分類</h3>
                 </button>
                 <div class="accordion-content">
-                    <ul class="type-list">
-                        <li class="type-clear-quartz"><strong>白水晶</strong>：能量放大器，提升專注。</li>
-                        <li class="type-citrine"><strong>黃水晶</strong>：吸引財富，增強自信。</li>
-                        <li class="type-amethyst"><strong>紫水晶</strong>：開啟智慧，安定心神。</li>
-                        <li class="type-obsidian"><strong>黑曜石</strong>：吸收負面能量，強力辟邪。</li>
-                        <li class="type-rose-quartz"><strong>粉晶</strong>：修復情感，吸引好人緣。</li>
-                    </ul>
+                    <div class="accordion-inner-padding">
+                        <p>水晶根據其化學成分與顏色，對應不同的心理需求：</p>
+                        <ul class="type-list">
+                            <li style="--crystal-color: #b0bec5; --crystal-bg: #f0f4f8;">
+                                <strong>白水晶</strong>：能量放大器，提升專注。
+                            </li>
+                            <li style="--crystal-color: #ffb300; --crystal-bg: #fff8e1;">
+                                <strong>黃水晶</strong>：吸引財富，增強自信。
+                            </li>
+                            <li style="--crystal-color: #9c27b0; --crystal-bg: #f3e5f5;">
+                                <strong>紫水晶</strong>：開啟智慧，安定心神。
+                            </li>
+                            <li style="--crystal-color: #f06292; --crystal-bg: #fce4ec;">
+                                <strong>粉晶</strong>：修復情感，吸引好人緣。
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-            <!-- 3. 七脈輪功效 -->
+            <!-- 項目 3 -->
             <div class="accordion-item">
                 <button class="accordion-header">
                     <h3>3. ✨ 水晶的功效：對應人體七大脈輪</h3>
                 </button>
                 <div class="accordion-content">
-                    <dl class="chakra-dl">
-                        <div class="root-chakra">
-                            <dt>🔴 底輪 (Root Chakra) - 黑曜石</dt>
-                            <dd>負責安全感與生命力，幫助情緒接地穩定。</dd>
-                        </div>
-                        <div class="heart-chakra">
-                            <dt>💚 心輪 (Heart Chakra) - 粉晶 / 綠幽靈</dt>
-                            <dd>關於愛與包容的中心，療癒情感創傷。</dd>
-                        </div>
-                        <div class="crown-chakra">
-                            <dt>💜 頂輪 (Crown Chakra) - 紫水晶</dt>
-                            <dd>連結宇宙智慧，達成心靈的和諧與覺醒。</dd>
-                        </div>
-                    </dl>
+                    <div class="accordion-inner-padding">
+                        <dl class="chakra-dl">
+                            <div style="--chakra-color: #e53935;">
+                                <dt>🔴 底輪 (Root Chakra) - 黑曜石</dt>
+                                <dd>負責安全感與生命力，幫助情緒接地穩定。</dd>
+                            </div>
+                            <div style="--chakra-color: #43a047;">
+                                <dt>💚 心輪 (Heart Chakra) - 粉晶 / 綠幽靈</dt>
+                                <dd>關於愛與包容的中心，療癒情感創傷。</dd>
+                            </div>
+                            <div style="--chakra-color: #8e24aa;">
+                                <dt>💜 頂輪 (Crown Chakra) - 紫水晶</dt>
+                                <dd>連結宇宙智慧，達成心靈的和諧與覺醒。</dd>
+                            </div>
+                        </dl>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
     </main>
 
+    <!-- 頁尾 -->
     <footer class="main-footer">
         <p>&copy; 2026 CrystalMagic 水晶魔法 版權所有</p>
         <a href="index.html" class="back-btn">← 返回首頁探索更多</a>
@@ -362,12 +111,20 @@
             button.addEventListener('click', () => {
                 const item = button.parentElement;
                 
-                // 如果想點擊一個關閉其他，可以取消註釋下面這行
-                // document.querySelectorAll('.accordion-item').forEach(i => { if(i!==item) i.classList.remove('active'); });
-
+                // 切換當前點擊項目的 active 狀態
                 item.classList.toggle('active');
+                
+                // 如果您希望一次只能打開一個項目，請取消下方代碼的註釋：
+                /*
+                document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                */
             });
         });
     </script>
+
 </body>
 </html>
