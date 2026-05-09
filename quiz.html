@@ -2,104 +2,255 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1200">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>尋找你的命定水晶 | 能量測驗 - CrystalMagic</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
-        .quiz-container { width: 900px; margin: 40px auto; }
-        .question-block { background: #fff; padding: 30px; margin-bottom: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        /* 全局基礎設定 */
+        :root {
+            --primary-purple: #6a1b9a;
+            --bg-color: #f4f7f6;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* 測驗容器 */
+        .quiz-container { 
+            max-width: 800px; 
+            margin: 60px auto; 
+            padding: 0 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4a148c;
+            margin-bottom: 40px;
+        }
+
+        .question-block { 
+            background: #fff; 
+            padding: 30px; 
+            margin-bottom: 25px; 
+            border-radius: 20px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
         .options-list { list-style: none; padding: 0; }
-        .options-list label { display: block; padding: 15px; margin: 10px 0; border: 1px solid #eee; border-radius: 10px; cursor: pointer; transition: 0.3s; }
-        .options-list label:hover { background: #f3e5f5; }
-        .submit-btn { width: 100%; padding: 20px; background: #6a1b9a; color: #fff; border: none; border-radius: 50px; font-size: 1.2rem; cursor: pointer; }
-        .hidden { display: none; }
-        #resultSection { text-align: center; background: #fff; padding: 50px; border-radius: 20px; margin-top: 30px; }
+        
+        .options-list label { 
+            display: block; 
+            padding: 15px 20px; 
+            margin: 12px 0; 
+            border: 2px solid #eee; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            font-size: 1rem;
+        }
+
+        .options-list input[type="radio"] {
+            margin-right: 15px;
+            transform: scale(1.2);
+        }
+
+        .options-list label:hover { 
+            background: #f3e5f5; 
+            border-color: #e1bee7;
+        }
+
+        /* 選中狀態樣式 (透過 JS 切換) */
+        .options-list label.selected {
+            background: #f3e5f5;
+            border-color: var(--primary-purple);
+        }
+
+        .submit-btn { 
+            width: 100%; 
+            padding: 20px; 
+            background: var(--primary-purple); 
+            color: #fff; 
+            border: none; 
+            border-radius: 50px; 
+            font-size: 1.3rem; 
+            font-weight: bold;
+            cursor: pointer; 
+            box-shadow: 0 4px 15px rgba(106, 27, 154, 0.3);
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background: #4a148c;
+            transform: translateY(-3px);
+        }
+
+        .hidden { display: none !important; }
+
+        /* 結果顯示區 */
+        #resultSection { 
+            text-align: center; 
+            background: #fff; 
+            padding: 60px 40px; 
+            border-radius: 30px; 
+            margin-top: 30px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        #crystalName { 
+            color: var(--primary-purple); 
+            font-size: 3.5rem; 
+            margin: 20px 0;
+        }
+
+        #crystalDesc { 
+            font-size: 1.2rem; 
+            color: #666;
+            max-width: 600px; 
+            margin: 0 auto 30px; 
+            line-height: 1.8;
+        }
+
+        .retry-btn {
+            padding: 12px 30px;
+            background: #eee;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        /* --- 左下角返回按鈕 --- */
+        .back-home {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            padding: 12px 25px;
+            background-color: #fff;
+            color: var(--primary-purple);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            border: 1px solid #e1bee7;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-home:hover {
+            background-color: var(--primary-purple);
+            color: #fff;
+            transform: translateY(-3px);
+        }
     </style>
 </head>
 <body>
 
 <main class="quiz-container">
-    <h1 style="text-align: center; color: #4a148c; margin-bottom: 30px;">🔮 命定水晶 10 題深度測驗</h1>
+    <h1>🔮 命定水晶能量測驗</h1>
     
     <form id="quizForm">
-        <!-- 問題 1-10 -->
+        <!-- 問題 1 -->
         <div class="question-block">
-            <p>1. 早上起床時，您通常希望感受到的第一種情緒是？</p>
+            <p class="question-text">1. 早上起床時，您通常希望感受到的第一種情緒是？</p>
             <div class="options-list">
                 <label><input type="radio" name="q1" value="peace" required> 寧靜與清爽</label>
                 <label><input type="radio" name="q1" value="energy"> 充滿動力與幹勁</label>
             </div>
         </div>
 
+        <!-- 問題 2 -->
         <div class="question-block">
-            <p>2. 您目前最想要解決的煩惱是？</p>
+            <p class="question-text">2. 您目前最想要解決的煩惱是？</p>
             <div class="options-list">
                 <label><input type="radio" name="q2" value="protection" required> 小人與負能量干擾</label>
                 <label><input type="radio" name="q2" value="love"> 感覺孤單或人際關係僵硬</label>
             </div>
         </div>
 
+        <!-- 問題 3 -->
         <div class="question-block">
-            <p>3. 哪種環境最能讓您放鬆？</p>
+            <p class="question-text">3. 哪種環境最能讓您放鬆？</p>
             <div class="options-list">
-                <label><input type="radio" name="q3" value="spiritual" required> 充滿書香與檀香的書房</label>
-                <label><input type="radio" name="q3" value="wealth"> 繁華且充滿現代感的商業街</label>
+                <label><input type="radio" name="q3" value="spirit" required> 充滿書香與靈性氣息的書房</label>
+                <label><input type="radio" name="q3" value="wealth"> 繁華且充滿成就感的商業中心</label>
             </div>
         </div>
 
+        <!-- 問題 4 -->
         <div class="question-block">
-            <p>4. 面對困難時，您的強項是？</p>
+            <p class="question-text">4. 面對困難時，您的強項是？</p>
             <div class="options-list">
-                <label><input type="radio" name="q4" value="wisdom" required> 冷靜分析並想出對策</label>
-                <label><input type="radio" name="q4" value="courage"> 勇往直前，解決就對了</label>
+                <label><input type="radio" name="q4" value="spirit" required> 冷靜分析並想出對策</label>
+                <label><input type="radio" name="q4" value="energy"> 勇往直前，迅速解決問題</label>
             </div>
         </div>
 
+        <!-- 問題 5 -->
         <div class="question-block">
-            <p>5. 您最希望在哪方面獲得「好運」？</p>
+            <p class="question-text">5. 您最希望在哪方面獲得「好運」？</p>
             <div class="options-list">
-                <label><input type="radio" name="q5" value="wealth" required> 投資理財與業績達成</label>
-                <label><input type="radio" name="q5" value="love"> 遇見對的人或修復感情</label>
+                <label><input type="radio" name="q5" value="wealth" required> 財富成長與事業突破</label>
+                <label><input type="radio" name="q5" value="love"> 遇見靈魂伴侶或修復感情</label>
             </div>
         </div>
 
+        <!-- 問題 6 -->
         <div class="question-block">
-            <p>6. 您的睡眠品質通常如何？</p>
+            <p class="question-text">6. 您的睡眠品質通常如何？</p>
             <div class="options-list">
-                <label><input type="radio" name="q6" value="calm" required> 容易多夢、驚醒</label>
-                <label><input type="radio" name="q6" value="stability"> 一覺到天亮，但感覺還是累</label>
+                <label><input type="radio" name="q6" value="peace" required> 容易多夢、感覺心神不寧</label>
+                <label><input type="radio" name="q6" value="protection"> 淺眠且容易受到環境噪音干擾</label>
             </div>
         </div>
 
+        <!-- 問題 7 -->
         <div class="question-block">
-            <p>7. 哪種顏色在這一刻最吸引您？</p>
+            <p class="question-text">7. 哪種顏色在這一刻最吸引您？</p>
             <div class="options-list">
-                <label><input type="radio" name="q7" value="spiritual" required> 神祕的紫色或藍色</label>
-                <label><input type="radio" name="q7" value="health"> 生機蓬勃的綠色</label>
+                <label><input type="radio" name="q7" value="spirit" required> 神祕且深邃的紫色</label>
+                <label><input type="radio" name="q7" value="wealth"> 閃耀且自信的金黃色</label>
             </div>
         </div>
 
+        <!-- 問題 8 -->
         <div class="question-block">
-            <p>8. 您對未來的期待是？</p>
+            <p class="question-text">8. 您對未來的期待是？</p>
             <div class="options-list">
-                <label><input type="radio" name="q8" value="wisdom" required> 成為一個有洞察力的人</label>
-                <label><input type="radio" name="q8" value="protection"> 穩定現狀，不受干擾</label>
+                <label><input type="radio" name="q8" value="spirit" required> 擁有高度的覺察與洞察力</label>
+                <label><input type="radio" name="q8" value="protection"> 獲得強大的內在穩定與保護</label>
             </div>
         </div>
 
+        <!-- 問題 9 -->
         <div class="question-block">
-            <p>9. 工作中，您最在意的是？</p>
+            <p class="question-text">9. 工作中，您最在意的是？</p>
             <div class="options-list">
-                <label><input type="radio" name="q9" value="wealth" required> 實質的回報與成就感</label>
-                <label><input type="radio" name="q9" value="peace"> 工作與生活的平衡</label>
+                <label><input type="radio" name="q9" value="wealth" required> 實質的回饋與成功地位</label>
+                <label><input type="radio" name="q9" value="peace"> 工作內容是否符合個人價值觀</label>
             </div>
         </div>
 
+        <!-- 問題 10 -->
         <div class="question-block">
-            <p>10. 您認為現在的自己最需要：</p>
+            <p class="question-text">10. 您認為現在的自己最需要：</p>
             <div class="options-list">
-                <label><input type="radio" name="q10" value="health" required> 恢復體力與身體排毒</label>
-                <label><input type="radio" name="q10" value="courage"> 踏出舒適圈的勇氣</label>
+                <label><input type="radio" name="q10" value="protection" required> 徹底清除周圍的負面能量</label>
+                <label><input type="radio" name="q10" value="energy"> 點燃追求目標的熱情與勇氣</label>
             </div>
         </div>
 
@@ -108,13 +259,92 @@
 
     <!-- 結果顯示區 -->
     <section id="resultSection" class="hidden">
-        <h2>您的命定水晶是...</h2>
-        <h1 id="crystalName" style="color: #6a1b9a; font-size: 3rem;"></h1>
-        <p id="crystalDesc" style="font-size: 1.2rem; max-width: 600px; margin: 20px auto;"></p>
-        <button onclick="location.reload()" style="padding: 10px 20px;">重新測驗</button>
+        <h2>測驗完成！您的命定水晶是...</h2>
+        <h1 id="crystalName"></h1>
+        <p id="crystalDesc"></p>
+        <button class="retry-btn" onclick="location.reload()">重新測驗</button>
     </section>
 </main>
 
-<script src="quiz.js"></script>
+<!-- 返回首頁按鈕 -->
+<a href="index.html" class="back-home">
+    <span>🏠</span> 返回首頁
+</a>
+
+<script>
+    // --- JavaScript 邏輯 ---
+    document.getElementById('quizForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+        const scores = {
+            spirit: 0,
+            wealth: 0,
+            protection: 0,
+            love: 0,
+            peace: 0,
+            energy: 0
+        };
+
+        // 統計各類別得分
+        for (let value of formData.values()) {
+            if (scores[value] !== undefined) {
+                scores[value]++;
+            }
+        }
+
+        // 找出最高分的類別
+        let maxCategory = 'spirit';
+        let maxScore = -1;
+
+        for (let cat in scores) {
+            if (scores[cat] > maxScore) {
+                maxScore = scores[cat];
+                maxCategory = cat;
+            }
+        }
+
+        // 結果資料庫
+        const results = {
+            spirit: {
+                name: "紫水晶 (Amethyst)",
+                desc: "您的內心渴望平靜與智慧。紫水晶能幫助您開發靈性、平定焦慮，是您探索潛意識的最佳伴侶。"
+            },
+            wealth: {
+                name: "黃水晶 (Citrine)",
+                desc: "您正處於追求成就的黃金期！黃水晶能為您招來偏財與自信，點燃您在事業與理財上的豐盛能量。"
+            },
+            protection: {
+                name: "黑曜石 (Obsidian)",
+                desc: "您目前最需要的是強大的守護。黑曜石能幫您吸納負能量、防小人，為您的身心建立一道堅固的盾牌。"
+            },
+            love: {
+                name: "粉水晶 (Rose Quartz)",
+                desc: "您的愛能量正在覺醒。粉水晶能增進您的社交魅力，吸引正向姻緣，並教導您如何溫柔地愛自己。"
+            },
+            peace: {
+                name: "海藍寶 (Aquamarine)",
+                desc: "您渴望流暢的溝通與內心祥和。海藍寶能淨化您的喉輪，讓您能更勇敢且優雅地表達真實的自我。"
+            },
+            energy: {
+                name: "鈦晶 (Titanium Quartz)",
+                desc: "您充滿了幹勁！鈦晶擁有最強大的氣場，能輔助您果斷決策，帶領您突破現狀，達成宏偉目標。"
+            }
+        };
+
+        // 顯示結果
+        const finalResult = results[maxCategory];
+        document.getElementById('crystalName').innerText = finalResult.name;
+        document.getElementById('crystalDesc').innerText = finalResult.desc;
+
+        // 切換顯示區塊
+        document.getElementById('quizForm').classList.add('hidden');
+        document.getElementById('resultSection').classList.remove('hidden');
+        
+        // 捲動到頂部看結果
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
+
 </body>
 </html>
