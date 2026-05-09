@@ -32,7 +32,7 @@
         <div id="accordion-container">
             <h2 class="section-title">✨ 探索能量的源頭 ✨</h2>
 
-            <!-- 項目 1: 地質起源 (Indigo) -->
+            <!-- 項目 1: 地質起源 -->
             <div class="accordion-item theme-1 active">
                 <button class="accordion-header">
                     <h3>1. 🌍 地質生成：地球深處的能量結晶</h3>
@@ -44,7 +44,7 @@
                 </div>
             </div>
 
-            <!-- 項目 2: 科學共振 (Blue) -->
+            <!-- 項目 2: 科學共振 -->
             <div class="accordion-item theme-2">
                 <button class="accordion-header">
                     <h3>2. 🔬 科學原理：壓電效應與頻率共振</h3>
@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <!-- 項目 3: 文化傳承 (Amber) -->
+            <!-- 項目 3: 文化傳承 -->
             <div class="accordion-item theme-3">
                 <button class="accordion-header">
                     <h3>3. 🏛️ 文明起源：古代祭司與皇室的傳說</h3>
@@ -68,7 +68,7 @@
                 </div>
             </div>
 
-            <!-- 項目 4: 色彩療癒 (Green) -->
+            <!-- 項目 4: 色彩療癒 -->
             <div class="accordion-item theme-4">
                 <button class="accordion-header">
                     <h3>4. 🌈 色彩起源：礦物質與光的頻率</h3>
@@ -80,7 +80,7 @@
                 </div>
             </div>
 
-            <!-- 項目 5: 現代運用 (Purple) -->
+            <!-- 項目 5: 現代運用 -->
             <div class="accordion-item theme-5">
                 <button class="accordion-header">
                     <h3>5. 🔮 現代轉化：從科學計時到心靈靜謐</h3>
@@ -105,10 +105,12 @@
                 const currentItem = button.parentElement;
                 const isActive = currentItem.classList.contains('active');
 
+                // 關閉其他已打開的項目
                 document.querySelectorAll('.accordion-item').forEach(item => {
                     item.classList.remove('active');
                 });
 
+                // 如果點擊的不是當前開啟的，則開啟它
                 if (!isActive) {
                     currentItem.classList.add('active');
                 }
