@@ -4,72 +4,166 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎁 專屬商品：水晶分類與推薦 - 水晶魔法 | CrystalMagic</title>
-    <link rel="stylesheet" href="styles.css"> 
     
     <style>
-        /* 專屬商品頁專屬風格 */
-        .page-header {
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, #e0f7fa 0%, #e1f5fe 100%); 
-            border-bottom: 5px solid #00acc1;
+        /* 全局變數與基礎設定 */
+        :root {
+            --primary-cyan: #00acc1;
+            --dark-cyan: #00838f;
+            --soft-blue: #e1f5fe;
+            --max-width: 1400px; /* 稍微放寬以適應全螢幕 */
         }
 
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f8fdfe;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.8;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* 內容容器：用於限制內容最大寬度 */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 40px;
+            box-sizing: border-box;
+        }
+
+        /* 全寬導覽列 */
+        .main-header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--dark-cyan);
+            text-decoration: none;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-button {
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-button.login {
+            background-color: #f5f5f5;
+            color: #555;
+        }
+
+        .nav-button.register {
+            background-color: var(--primary-cyan);
+            color: white;
+        }
+
+        .nav-button:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+
+        /* 全寬 Hero 區域 */
+        .page-header {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #e0f7fa 0%, #e1f5fe 100%); 
+            border-bottom: 5px solid var(--primary-cyan);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            color: #004d40;
+            margin-bottom: 20px;
+        }
+
+        .page-header p {
+            font-size: 1.4rem;
+            color: #006064;
+        }
+
+        /* 商品網格：電腦版固定三行 */
         .category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
+            grid-template-columns: repeat(3, 1fr); /* 電腦全螢幕推薦三行 */
+            gap: 40px;
+            margin: 80px auto;
         }
 
         .category-card {
             background-color: white;
-            border-radius: 20px;
+            border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-            transition: 0.3s ease;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            transition: 0.4s ease;
             display: flex;
             flex-direction: column;
+            border: 1px solid #f0f0f0;
         }
 
         .category-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 172, 193, 0.15);
         }
 
         .category-card img {
             width: 100%;
-            height: 250px;
+            height: 300px;
             object-fit: cover;
         }
 
         .category-info {
-            padding: 25px;
+            padding: 35px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
 
         .category-info h3 {
-            color: #00838f;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            color: var(--dark-cyan);
+            font-size: 1.7rem;
+            margin-bottom: 20px;
         }
 
         /* 標籤樣式 */
         .meta-container {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .meta-tag {
             display: inline-block;
-            padding: 4px 12px;
+            padding: 5px 15px;
             border-radius: 20px;
-            font-size: 0.85rem;
-            margin-right: 8px;
-            margin-bottom: 8px;
+            font-size: 0.9rem;
+            margin-right: 10px;
+            margin-bottom: 10px;
             font-weight: bold;
         }
 
@@ -79,68 +173,87 @@
 
         .category-description {
             color: #666;
-            line-height: 1.6;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 25px;
         }
 
         .detail-link {
             margin-top: auto;
-            color: #00acc1;
+            color: var(--primary-cyan);
             text-decoration: none;
             font-weight: bold;
-            display: inline-block;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
             transition: 0.3s;
         }
 
         .detail-link:hover {
             color: #ff7043;
-            padding-left: 5px;
+            transform: translateX(8px);
         }
 
-        /* 客製化區塊 */
+        /* 客製化 Banner */
         .custom-banner {
             text-align: center;
             background: linear-gradient(135deg, #fffde7 0%, #fff8e1 100%);
-            padding: 50px 20px;
-            border-radius: 25px;
-            max-width: 1100px;
-            margin: 60px auto;
+            padding: 80px 40px;
+            border-radius: 40px;
+            margin: 100px auto;
             border: 2px dashed #ffb74d;
         }
 
         .custom-banner h2 {
             color: #d84315;
-            margin-bottom: 15px;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .custom-banner p {
+            font-size: 1.2rem;
+            color: #5d4037;
         }
 
         .btn-custom {
             display: inline-block;
             background-color: #ff7043;
             color: white;
-            padding: 15px 35px;
+            padding: 20px 50px;
             text-decoration: none;
-            border-radius: 35px;
+            border-radius: 60px;
             font-weight: bold;
-            font-size: 1.1rem;
-            margin-top: 20px;
-            box-shadow: 0 5px 15px rgba(255,112,67,0.3);
+            font-size: 1.3rem;
+            margin-top: 30px;
+            box-shadow: 0 10px 25px rgba(255,112,67,0.3);
             transition: 0.3s;
         }
 
         .btn-custom:hover {
             background-color: #f4511e;
-            transform: scale(1.05);
+            transform: scale(1.08);
+            box-shadow: 0 15px 35px rgba(255,112,67,0.4);
+        }
+
+        /* 頁尾 */
+        .footer {
+            text-align: center;
+            padding: 80px 0;
+            background: #fff;
+            border-top: 1px solid #eee;
+            width: 100%;
         }
     </style>
 </head>
 <body>
 
 <header class="main-header">
-    <div class="logo">🔮 CrystalMagic</div>
-    <div class="auth-buttons">
-        <a href="index.html" class="nav-button login">回首頁</a>
-        <a href="quiz.html" class="nav-button register">能量測驗</a>
+    <div class="container header-inner">
+        <a href="index.html" class="logo">🔮 CrystalMagic</a>
+        <div class="auth-buttons">
+            <a href="index.html" class="nav-button login">回首頁</a>
+            <a href="quiz.html" class="nav-button register">能量測驗</a>
+        </div>
     </div>
 </header>
 
@@ -150,61 +263,63 @@
         <p>挑選最契合您靈魂頻率的水晶，開啟您的能量覺醒之旅。</p>
     </section>
 
-    <div class="category-grid">
-        <article class="category-card">
-            <img src="picture/shop_bracelet.jpg" alt="能量手鍊">
-            <div class="category-info">
-                <h3>✨ 能量手鍊與飾品</h3>
-                <div class="meta-container">
-                    <span class="meta-tag product-type">佩戴型</span>
-                    <span class="meta-tag feature">平衡氣場</span>
-                    <span class="meta-tag focus">日常穿搭</span>
+    <div class="container">
+        <div class="category-grid">
+            <article class="category-card">
+                <img src="picture/shop_bracelet.jpg" alt="能量手鍊">
+                <div class="category-info">
+                    <h3>✨ 能量手鍊與飾品</h3>
+                    <div class="meta-container">
+                        <span class="meta-tag product-type">佩戴型</span>
+                        <span class="meta-tag feature">平衡氣場</span>
+                        <span class="meta-tag focus">日常穿搭</span>
+                    </div>
+                    <p class="category-description">
+                        精選天然水晶，由療癒師親自設計。根據不同脈輪需求搭配，隨身佩戴，讓好運與平靜隨影而行。
+                    </p>
+                    <a href="bracelet.html" class="detail-link">探索所有飾品 ➔</a>
                 </div>
-                <p class="category-description">
-                    精選天然水晶，由療癒師親自設計。根據不同脈輪需求搭配，隨身佩戴，讓好運與平靜隨影而行。
-                </p>
-                <a href="bracelet.html" class="detail-link">探索所有飾品 »</a>
-            </div>
-        </article>
+            </article>
 
-        <article class="category-card">
-            <img src="picture/shop_raw_crystal.jpg" alt="水晶原礦">
-            <div class="category-info">
-                <h3>🏠 高品質原礦與擺件</h3>
-                <div class="meta-container">
-                    <span class="meta-tag product-type">空間型</span>
-                    <span class="meta-tag feature">能量放大</span>
-                    <span class="meta-tag focus">風水/淨化</span>
+            <article class="category-card">
+                <img src="picture/shop_raw_crystal.jpg" alt="水晶原礦">
+                <div class="category-info">
+                    <h3>🏠 高品質原礦與擺件</h3>
+                    <div class="meta-container">
+                        <span class="meta-tag product-type">空間型</span>
+                        <span class="meta-tag feature">能量放大</span>
+                        <span class="meta-tag focus">風水/淨化</span>
+                    </div>
+                    <p class="category-description">
+                        保留大地最原始的頻率，適合居家風水佈局、辦公室能量防護或專業冥想使用，穩定空間磁場。
+                    </p>
+                    <a href="natural.html" class="detail-link">探索原礦系列 ➔</a>
                 </div>
-                <p class="category-description">
-                    保留大地最原始的頻率，適合居家風水佈局、辦公室能量防護或專業冥想使用，穩定空間磁場。
-                </p>
-                <a href="natural.html" class="detail-link">探索原礦系列 »</a>
-            </div>
-        </article>
+            </article>
 
-        <article class="category-card">
-            <img src="picture/shop_tools.jpg" alt="工具與課程">
-            <div class="category-info">
-                <h3>📚 淨化工具與課程</h3>
-                <div class="meta-container">
-                    <span class="meta-tag product-type">數位+實體</span>
-                    <span class="meta-tag feature">能量保養</span>
-                    <span class="meta-tag focus">知識學習</span>
+            <article class="category-card">
+                <img src="picture/shop_tools.jpg" alt="工具與課程">
+                <div class="category-info">
+                    <h3>📚 淨化工具與課程</h3>
+                    <div class="meta-container">
+                        <span class="meta-tag product-type">數位+實體</span>
+                        <span class="meta-tag feature">能量保養</span>
+                        <span class="meta-tag focus">知識學習</span>
+                    </div>
+                    <p class="category-description">
+                        提供聖木、頌缽等專業淨化器材，以及水晶連結入門課程。學會如何與您的水晶溝通並發揮其最大潛力。
+                    </p>
+                    <a href="course.html" class="detail-link">探索工具與課程 ➔</a>
                 </div>
-                <p class="category-description">
-                    提供聖木、頌缽等專業淨化器材，以及水晶連結入門課程。學會如何與您的水晶溝通並發揮其最大潛力。
-                </p>
-                <a href="course.html" class="detail-link">探索工具與課程 »</a>
-            </div>
-        </article>
+            </article>
+        </div>
+
+        <section class="custom-banner">
+            <h2>✨ 為您量身打造：獨一無二的客製化手鍊</h2>
+            <p>根據您的生日、命盤和當前能量需求，由專家設計專屬組合。</p>
+            <a href="custom.html" class="btn-custom">立即預約諮詢</a>
+        </section>
     </div>
-
-    <section class="custom-banner">
-        <h2>✨ 為您量身打造：獨一無二的客製化手鍊</h2>
-        <p>根據您的生日、命盤和當前能量需求，由專家設計專屬組合。</p>
-        <a href="custom.html" class="btn-custom">立即預約諮詢</a>
-    </section>
 </main>
 
 <footer class="footer">
