@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💎 水晶種類詳解 - 水晶魔法 | CrystalMagic</title>
+    <title>💎 水晶五大能量分類 - 水晶魔法 | CrystalMagic</title>
     
     <style>
         /* 全局設定 */
         :root {
             --primary-purple: #6a1b9a;
             --bg-color: #f8f9fa;
-            --content-width: 1200px; /* 內容區塊保持適中寬度 */
+            --content-width: 1200px;
+            
+            /* 五大類別色彩定義 */
+            --color-spirit: #9c27b0;   /* 靈性智慧 - 紫色 */
+            --color-wealth: #ffa000;   /* 財富事業 - 黃色 */
+            --color-protection: #d32f2f; /* 守護避邪 - 紅色 */
+            --color-peace: #1976d2;    /* 溝通平靜 - 藍色 */
+            --color-love: #e91e63;     /* 感情人緣 - 粉色 */
         }
 
         * {
@@ -33,22 +40,20 @@
            ========================================================================== */
         .main-header {
             width: 100%;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
             z-index: 1000;
-            display: flex;
-            justify-content: center; /* 讓 container 在中間，但 container 是滿版 */
         }
 
         .nav-container {
             width: 100%;
-            max-width: 100%; /* 關鍵：解鎖寬度限制達成全螢幕 */
             display: flex;
-            justify-content: space-between; /* 關鍵：Logo 在左，選單在右 */
+            justify-content: space-between; /* 關鍵：兩側對齊 */
             align-items: center;
-            padding: 15px 60px; /* 增加左右間距，在大螢幕更美觀 */
+            padding: 15px 60px; /* 側邊留白 */
         }
 
         .logo {
@@ -56,7 +61,6 @@
             font-weight: bold;
             color: var(--primary-purple);
             text-decoration: none;
-            letter-spacing: 1px;
         }
 
         .nav-links {
@@ -77,134 +81,108 @@
         }
 
         /* ==========================================================================
-           2. 標題橫幅區 (Hero Section) - 滿版背景
+           2. 標題橫幅
            ========================================================================== */
         .types-intro {
             text-align: center;
-            padding: 120px 20px;
-            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
-            border-bottom: 5px solid #9c27b0;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             width: 100%;
         }
         
         .types-intro h1 {
-            color: #4a148c;
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: #2c3e50;
+            font-size: 3rem;
             margin-bottom: 15px;
         }
 
         /* ==========================================================================
-           3. 內容容器 - 保持置中以便閱讀
+           3. 內容佈局
            ========================================================================== */
         .content-container {
             max-width: var(--content-width);
-            margin: 60px auto;
+            margin: 40px auto;
             padding: 0 30px;
         }
 
-        .section-title {
-            color: #4a148c;
-            border-left: 6px solid #9c27b0;
-            padding-left: 20px;
-            margin: 60px 0 35px 0;
-            font-size: 2rem;
+        .category-section {
+            margin-bottom: 80px;
         }
 
-        /* 水晶卡片網格 - 雙欄佈局 */
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* 五大類標題顏色控制 */
+        .title-spirit { color: var(--color-spirit); border-color: var(--color-spirit); }
+        .title-wealth { color: var(--color-wealth); border-color: var(--color-wealth); }
+        .title-protection { color: var(--color-protection); border-color: var(--color-protection); }
+        .title-peace { color: var(--color-peace); border-color: var(--color-peace); }
+        .title-love { color: var(--color-love); border-color: var(--color-love); }
+
         .crystal-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 25px;
         }
 
         .crystal-card {
-            background-color: white;
-            padding: 25px;
+            background: white;
+            display: flex;
             border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex; 
-            align-items: flex-start; 
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
             border: 1px solid #eee;
-        }
-
-        .crystal-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(106, 27, 154, 0.1);
-        }
-
-        .crystal-card img {
-            width: 150px; 
-            height: 150px; 
-            object-fit: cover;
-            border-radius: 15px;
-            margin-right: 25px; 
-            flex-shrink: 0;
-        }
-        
-        .card-info {
-            flex-grow: 1; 
-        }
-
-        .crystal-card h3 {
-            color: var(--primary-purple); 
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-        }
-
-        .meta-tag {
-            display: inline-block;
-            background-color: #f3e5f5;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.85em;
-            color: #7b1fa2;
-            margin-right: 8px;
-            margin-bottom: 8px;
-        }
-
-        .tag-line {
-            font-weight: bold;
-            color: #ff7043; 
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .detail-link {
-            display: inline-block;
-            background: linear-gradient(135deg, #7b1fa2, #9c27b0);
-            color: white;
-            padding: 8px 25px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 0.9em;
-            font-weight: bold;
             transition: 0.3s;
         }
 
-        .detail-link:hover {
-            filter: brightness(1.1);
-            box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);
+        .crystal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
-        /* 底部引導區 */
-        .cta-note {
+        .crystal-card img {
+            width: 180px;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 25px;
+            flex: 1;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        /* 類別標籤背景色 */
+        .bg-spirit { background-color: var(--color-spirit); }
+        .bg-wealth { background-color: var(--color-wealth); }
+        .bg-protection { background-color: var(--color-protection); }
+        .bg-peace { background-color: var(--color-peace); }
+        .bg-love { background-color: var(--color-love); }
+
+        .crystal-name { font-size: 1.4rem; margin-bottom: 10px; color: #333; }
+        .crystal-desc { font-size: 0.95rem; color: #666; margin-bottom: 15px; }
+
+        .footer {
             text-align: center;
             padding: 60px;
-            background-color: #fff8e1;
-            border-radius: 25px;
-            margin: 80px 0;
-            border: 1px dashed #ffd54f;
-        }
-
-        /* 頁尾 - 全螢幕背景 */
-        .main-footer {
-            text-align: center;
-            padding: 60px 0;
             background: #fff;
             border-top: 1px solid #eee;
-            width: 100%;
         }
     </style>
 </head>
@@ -212,72 +190,139 @@
 
 <header class="main-header">
     <div class="nav-container">
-        <!-- 左側 Logo -->
         <a href="index.html" class="logo">🔮 CrystalMagic</a>
-        
-        <!-- 右側選單 -->
         <nav>
             <ul class="nav-links">
                 <li><a href="index.html">首頁</a></li>
                 <li><a href="origin.html">水晶起源</a></li>
-                <li><a href="type.html" style="color:#6a1b9a; font-weight:bold;">水晶種類</a></li>
+                <li><a href="type.html" style="color:var(--primary-purple); font-weight:bold;">能量分類</a></li>
                 <li><a href="contact.html">聯絡我們</a></li>
             </ul>
         </nav>
     </div>
 </header>
 
-<main>
-    <section class="types-intro">
-        <h1>💎 水晶種類：能量百科</h1>
-        <p>每顆水晶都擁有獨特的能量振動。透過種類劃分，尋找當下所需的療癒力量。</p>
+<main class="content-container">
+    
+    <!-- 1. 靈性智慧類 -->
+    <section class="category-section">
+        <h2 class="section-title title-spirit">🧘 靈性智慧與直覺</h2>
+        <div class="crystal-grid">
+            <article class="crystal-card">
+                <img src="../images/amethyst.jpg" alt="紫水晶">
+                <div class="card-body">
+                    <span class="tag bg-spirit">智慧之石</span>
+                    <h3 class="crystal-name">紫水晶 (Amethyst)</h3>
+                    <p class="crystal-desc">開發智慧、幫助思考、集中念力，並能平定焦慮不安的情緒。</p>
+                </div>
+            </article>
+            <article class="crystal-card">
+                <img src="../images/lapis.jpg" alt="青金石">
+                <div class="card-body">
+                    <span class="tag bg-spirit">冥想之石</span>
+                    <h3 class="crystal-name">青金石 (Lapis Lazuli)</h3>
+                    <p class="crystal-desc">對應眉心輪，有助於開啟靈性視角，舒緩眼部與頭部壓力。</p>
+                </div>
+            </article>
+        </div>
     </section>
 
-    <div class="content-container">
-        <h2 class="section-title">✨ 經典入門系列 (石英家族)</h2>
+    <!-- 2. 財富事業類 -->
+    <section class="category-section">
+        <h2 class="section-title title-wealth">💰 財富事業與豐盛</h2>
         <div class="crystal-grid">
-            
-            <!-- 卡片 1 -->
             <article class="crystal-card">
-                <img src="../images/clear_quartz_image.jpg" alt="白水晶"> 
-                <div class="card-info">
-                    <h3>白水晶 (Clear Quartz)</h3>
-                    <div class="crystal-meta">
-                        <span class="meta-tag">分類：石英家族</span>
-                        <span class="meta-tag">對應：全脈輪</span>
-                    </div>
-                    <span class="tag-line">核心：淨化、專注、能量放大</span>
-                    <a href="white.html" class="detail-link">探索能量解析 »</a>
+                <img src="../images/citrine.jpg" alt="黃水晶">
+                <div class="card-body">
+                    <span class="tag bg-wealth">商人之石</span>
+                    <h3 class="crystal-name">黃水晶 (Citrine)</h3>
+                    <p class="crystal-desc">主偏財運，能增強自信與動力，創造意想不到的財富機會。</p>
                 </div>
             </article>
-
-            <!-- 卡片 2 -->
             <article class="crystal-card">
-                <img src="../images/amethyst_image.jpg" alt="紫水晶"> 
-                <div class="card-info">
-                    <h3>紫水晶 (Amethyst)</h3>
-                    <div class="crystal-meta">
-                        <span class="meta-tag">分類：石英家族</span>
-                        <span class="meta-tag">對應：頂輪</span>
-                    </div>
-                    <span class="tag-line">核心：智慧、鎮定、靈感</span>
-                    <a href="purple.html" class="detail-link">探索能量解析 »</a>
+                <img src="../images/titanium.jpg" alt="鈦晶">
+                <div class="card-body">
+                    <span class="tag bg-wealth">事業之王</span>
+                    <h3 class="crystal-name">鈦晶 (Rutilated Quartz)</h3>
+                    <p class="crystal-desc">具備強大能量，輔助決策果斷，對於正財與領導力有極大幫助。</p>
                 </div>
             </article>
-
         </div>
+    </section>
 
-        <div class="cta-note">
-            <h3>找不到心儀的水晶？</h3>
-            <p>每種水晶都有其獨特的呼喚，透過我們的挑選指南，尋找與您共鳴的命定水晶。</p>
-            <br>
-            <a href="pick.html" class="detail-link" style="background: #ffb300;">前往挑選指南 »</a>
+    <!-- 3. 守護避邪類 -->
+    <section class="category-section">
+        <h2 class="section-title title-protection">🛡️ 守護避邪與淨化</h2>
+        <div class="crystal-grid">
+            <article class="crystal-card">
+                <img src="../images/obsidian.jpg" alt="黑曜石">
+                <div class="card-body">
+                    <span class="tag bg-protection">護身符</span>
+                    <h3 class="crystal-name">黑曜石 (Obsidian)</h3>
+                    <p class="crystal-desc">強效吸收負能量，避邪擋煞，是出入複雜場所的最佳守護石。</p>
+                </div>
+            </article>
+            <article class="crystal-card">
+                <img src="../images/black_tourmaline.jpg" alt="黑碧璽">
+                <div class="card-body">
+                    <span class="tag bg-protection">能量淨化</span>
+                    <h3 class="crystal-name">黑碧璽 (Tourmaline)</h3>
+                    <p class="crystal-desc">排除體內壓力與濁氣，並能防止電磁波輻射對人體的干擾。</p>
+                </div>
+            </article>
         </div>
-    </div>
+    </section>
+
+    <!-- 4. 溝通平靜類 -->
+    <section class="category-section">
+        <h2 class="section-title title-peace">🌊 溝通表達與平靜</h2>
+        <div class="crystal-grid">
+            <article class="crystal-card">
+                <img src="../images/aquamarine.jpg" alt="海藍寶">
+                <div class="card-body">
+                    <span class="tag bg-peace">勇氣之石</span>
+                    <h3 class="crystal-name">海藍寶 (Aquamarine)</h3>
+                    <p class="crystal-desc">強化語言表達能力與喉輪能量，幫助佩戴者更自信地發聲。</p>
+                </div>
+            </article>
+            <article class="crystal-card">
+                <img src="../images/blue_lace.jpg" alt="藍紋瑪瑙">
+                <div class="card-body">
+                    <span class="tag bg-peace">內心安寧</span>
+                    <h3 class="crystal-name">藍紋瑪瑙 (Blue Lace Agate)</h3>
+                    <p class="crystal-desc">柔和的波動能平息憤怒與焦慮，帶來如海洋般寧靜的心境。</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- 5. 感情人緣類 -->
+    <section class="category-section">
+        <h2 class="section-title title-love">💖 感情人緣與療癒</h2>
+        <div class="crystal-grid">
+            <article class="crystal-card">
+                <img src="../images/rose_quartz.jpg" alt="粉水晶">
+                <div class="card-body">
+                    <span class="tag bg-love">愛情之石</span>
+                    <h3 class="crystal-name">粉水晶 (Rose Quartz)</h3>
+                    <p class="crystal-desc">增進異性緣與社交魅力，同時也是修復內心創傷的療癒能量。</p>
+                </div>
+            </article>
+            <article class="crystal-card">
+                <img src="../images/strawberry.jpg" alt="草莓晶">
+                <div class="card-body">
+                    <span class="tag bg-love">人際磁場</span>
+                    <h3 class="crystal-name">草莓晶 (Strawberry Quartz)</h3>
+                    <p class="crystal-desc">主動吸引好姻緣，並能讓性格變得較圓潤、友善，改善人際關係。</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
 </main>
 
-<footer class="main-footer">
-    <p>&copy; 2026 CrystalMagic 水晶魔法 | 探索大地的神秘療癒力</p>
+<footer class="footer">
+    <p>&copy; 2026 CrystalMagic 水晶魔法 | 探索大地的神祕頻率</p>
 </footer>
 
 </body>
