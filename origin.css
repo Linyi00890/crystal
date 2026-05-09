@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CrystalMagic Origin 專屬樣式表 - 5大分類色彩優化版
+   CrystalMagic Origin 專屬樣式表 - 標題「起源」優化版
    ========================================================================== */
 
 * {
@@ -10,7 +10,7 @@
 
 body {
     font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
-    background-color: #f7f7f7;
+    background-color: #f8f9fa;
     color: #333;
     line-height: 1.6;
     width: 100%;
@@ -28,7 +28,6 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
-    width: 100%;
 }
 
 .nav-container {
@@ -43,7 +42,7 @@ body {
 .logo {
     font-size: 1.6rem;
     font-weight: bold;
-    color: #6a1b9a;
+    color: #4a148c;
     text-decoration: none;
     letter-spacing: 1px;
 }
@@ -58,61 +57,61 @@ body {
     text-decoration: none;
     color: #555;
     font-weight: 500;
-    transition: all 0.3s ease;
+    transition: 0.3s ease;
     padding: 5px 0;
     position: relative;
 }
 
-.nav-links a:hover, 
 .nav-links a.active {
-    color: #6a1b9a;
+    color: #4a148c;
+    font-weight: bold;
 }
 
-.nav-links a::after {
+.nav-links a.active::after {
     content: '';
     position: absolute;
-    width: 0;
+    width: 100%;
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: #6a1b9a;
-    transition: 0.3s ease;
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after {
-    width: 100%;
+    background-color: #4a148c;
 }
 
 /* ==========================================================================
-   Hero 橫幅區
+   Hero 橫幅區 - 符合「起源」標題的設計
    ========================================================================== */
 #hero {
     text-align: center;
-    padding: 100px 20px;
-    background: linear-gradient(135deg, #f3e5f5 0%, #e1f5fe 100%);
-    border-radius: 0 0 80px 80px; 
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #e1f5fe 0%, #f3e5f5 100%);
+    border-radius: 0 0 50px 50px;
     width: 100%;
 }
 
 #hero h1 {
     color: #4a148c;
     margin-bottom: 15px;
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(2.2rem, 5vw, 3rem);
     text-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 #hero p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #666;
 }
 
 /* ==========================================================================
-   手風琴內容區 - 5大類色彩與變數優化
+   手風琴 5 大主題色變數 (對應起源主題)
    ========================================================================== */
+.theme-1 { --theme-color: #3949ab; --theme-bg: #e8eaf6; } /* 1. 地質生成 */
+.theme-2 { --theme-color: #0288d1; --theme-bg: #e1f5fe; } /* 2. 科學原理 */
+.theme-3 { --theme-color: #f57c00; --theme-bg: #fff3e0; } /* 3. 文明起源 */
+.theme-4 { --theme-color: #388e3c; --theme-bg: #e8f5e9; } /* 4. 色彩起源 */
+.theme-5 { --theme-color: #7b1fa2; --theme-bg: #f3e5f5; } /* 5. 現代轉化 */
+
 #accordion-container {
     width: 90%;
-    max-width: 900px;
+    max-width: 850px;
     margin: 60px auto;
 }
 
@@ -120,36 +119,27 @@ body {
     text-align: center;
     color: #4a148c;
     margin-bottom: 40px;
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
-
-/* --- 定義 5 大主題色變數 --- */
-.theme-1 { --theme-color: #5c6bc0; --theme-bg: #f0f2f9; } /* 靛藍 */
-.theme-2 { --theme-color: #ec407a; --theme-bg: #fdf2f5; } /* 粉紅 */
-.theme-3 { --theme-color: #ffa726; --theme-bg: #fff8ef; } /* 橙黃 */
-.theme-4 { --theme-color: #26a69a; --theme-bg: #f2faf9; } /* 翠綠 */
-.theme-5 { --theme-color: #ab47bc; --theme-bg: #faf2fb; } /* 紫色 */
 
 .accordion-item {
     background: #ffffff;
-    margin-bottom: 25px;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     overflow: hidden;
-    /* 使用變數控制左側邊框顏色 */
     border-left: 10px solid var(--theme-color);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .accordion-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
 }
 
 .accordion-header {
     width: 100%;
-    padding: 25px 35px;
-    /* 使用變數控制背景顏色 */
+    padding: 25px 30px;
     background: var(--theme-bg);
     border: none;
     text-align: left;
@@ -157,21 +147,20 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: background 0.3s ease;
 }
 
 .accordion-header h3 {
     margin: 0;
-    color: #333; /* 標題改為深灰色，易於閱讀 */
-    font-size: 1.25rem;
+    color: #333;
+    font-size: 1.15rem;
     font-weight: 700;
 }
 
 .accordion-header::after {
     content: '▼';
-    font-size: 0.9rem;
-    color: var(--theme-color); /* 箭頭顏色隨主題變動 */
-    transition: 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    font-size: 0.8rem;
+    color: var(--theme-color);
+    transition: 0.4s ease;
 }
 
 .accordion-item.active .accordion-header::after {
@@ -181,36 +170,23 @@ body {
 .accordion-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     background-color: #ffffff;
 }
 
 .accordion-item.active .accordion-content {
-    max-height: 1000px; /* 根據內容高度調整 */
+    max-height: 500px; /* 根據文字長度可適度增加 */
 }
 
 .accordion-inner-padding {
-    padding: 35px;
+    padding: 30px;
     line-height: 1.8;
-}
-
-/* 針對清單內容的細部調整 */
-.type-list {
-    list-style: none;
-    padding: 0;
-}
-
-.type-list li {
-    padding: 12px 20px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    background-color: var(--theme-bg);
-    border-left: 4px solid var(--theme-color);
-    font-size: 1rem;
+    font-size: 1.05rem;
+    color: #444;
 }
 
 /* ==========================================================================
-   頁尾 (Footer)
+   頁尾與返回按鈕
    ========================================================================== */
 .main-footer {
     text-align: center;
@@ -224,8 +200,8 @@ body {
 .back-btn {
     display: inline-block;
     padding: 14px 40px;
-    background: linear-gradient(135deg, #7b1fa2, #4a148c);
-    color: white;
+    background: #4a148c;
+    color: #ffffff;
     text-decoration: none;
     border-radius: 50px;
     font-weight: bold;
@@ -233,14 +209,15 @@ body {
 }
 
 .back-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(106, 27, 154, 0.4);
+    background: #6a1b9a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(106, 27, 154, 0.3);
 }
 
-/* 響應式優化：手機版縮減邊距 */
+/* 響應式：手機版微調 */
 @media (max-width: 600px) {
     .nav-container { padding: 15px 20px; }
-    .accordion-header { padding: 20px; }
-    .accordion-inner-padding { padding: 20px; }
-    #hero { padding: 60px 20px; }
+    .nav-links { gap: 15px; font-size: 0.9rem; }
+    #hero h1 { font-size: 2rem; }
+    .accordion-header h3 { font-size: 1.05rem; }
 }
