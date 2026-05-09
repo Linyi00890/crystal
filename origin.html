@@ -25,7 +25,7 @@
         }
 
         /* ==========================================================================
-           導覽列 (Navbar) - 七個項目優化版
+           導覽列 (Navbar) - 左右佈局優化
            ========================================================================== */
         .navbar {
             background-color: #ffffff;
@@ -38,16 +38,16 @@
 
         .nav-container {
             width: 100%;
-            max-width: 1300px; /* 稍微加寬以容納更多選項 */
+            max-width: 1400px; /* 增加最大寬度讓左右拉更開 */
             margin: 0 auto;    
             display: flex;
-            justify-content: space-between; 
+            justify-content: space-between; /* 關鍵：Logo 在左，選單在右 */
             align-items: center;
-            padding: 15px 30px; /* 縮減間距避免擁擠 */
+            padding: 15px 50px;
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: bold;
             color: #4a148c;
             text-decoration: none;
@@ -58,7 +58,7 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 20px; /* 控制選項間距 */
+            gap: 30px; /* 增加項目間距 */
             margin: 0;
         }
 
@@ -69,7 +69,7 @@
             transition: 0.3s ease;
             padding: 5px 0;
             position: relative;
-            font-size: 0.95rem; /* 稍微縮小字體以容納七個項目 */
+            font-size: 1rem;
             white-space: nowrap;
         }
 
@@ -89,7 +89,7 @@
         }
 
         /* ==========================================================================
-           內容區域樣式 (其餘保持不變)
+           內容區域
            ========================================================================== */
         #hero {
             text-align: center;
@@ -105,7 +105,7 @@
             font-size: clamp(2rem, 5vw, 3rem);
         }
 
-        /* 手風琴與顏色變數... (省略以縮短長度，保持與之前一致) */
+        /* 手風琴主題色 */
         .theme-1 { --theme-color: #3949ab; --theme-bg: #e8eaf6; }
         .theme-2 { --theme-color: #0288d1; --theme-bg: #e1f5fe; }
         .theme-3 { --theme-color: #f57c00; --theme-bg: #fff3e0; }
@@ -147,6 +147,12 @@
             align-items: center;
         }
 
+        .accordion-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
         .accordion-content {
             max-height: 0;
             overflow: hidden;
@@ -159,6 +165,8 @@
 
         .accordion-inner-padding {
             padding: 30px;
+            color: #444;
+            line-height: 1.8;
         }
 
         .main-footer {
@@ -166,37 +174,28 @@
             padding: 60px 0;
             background: #ffffff;
             margin-top: 80px;
+            border-top: 1px solid #eee;
         }
 
-        /* ==========================================================================
-           響應式調整：手機版自動隱藏過多選項或垂直排列
-           ========================================================================== */
-        @media (max-width: 1024px) {
-            .nav-container { padding: 15px 20px; }
-            .nav-links { gap: 12px; }
-            .nav-links a { font-size: 0.85rem; }
-        }
-
+        /* 響應式調整 */
         @media (max-width: 768px) {
-            .nav-container { flex-direction: column; gap: 15px; }
-            .nav-links { flex-wrap: wrap; justify-content: center; gap: 10px 15px; }
+            .nav-container { padding: 15px 20px; flex-direction: column; gap: 15px; }
+            .nav-links { gap: 15px; flex-wrap: wrap; justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 導覽列：更新為七個項目 -->
+    <!-- 導覽列 -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">🔮 CrystalMagic</a>
             <ul class="nav-links">
-                <li><a href="index.html">首頁</a></li>
-                <li><a href="type.html">水晶種類</a></li>
-                <li><a href="effect.html">功效解讀</a></li>
-                <li><a href="guide.html">挑選指南</a></li>
-                <li><a href="care.html">淨化保養</a></li>
-                <li><a href="shop.html">專屬商品</a></li>
-                <li><a href="faq.html">常見問題</a></li>
+                <li><a href="#geo">1. 地質生成</a></li>
+                <li><a href="#science">2. 科學原理</a></li>
+                <li><a href="#culture">3. 文明傳承</a></li>
+                <li><a href="#color">4. 色彩起源</a></li>
+                <li><a href="#modern">5. 現代轉化</a></li>
             </ul>
         </div>
     </nav>
@@ -210,19 +209,65 @@
         <div id="accordion-container">
             <h2 class="section-title">✨ 探索能量的源頭 ✨</h2>
 
-            <!-- 手風琴項目 (保持與之前一致) -->
-            <div class="accordion-item theme-1 active">
+            <!-- 1. 地質生成 -->
+            <div class="accordion-item theme-1 active" id="geo">
                 <button class="accordion-header">
-                    <h3>1. 🌍 地質生成：地球深處的能量結晶</h3>
+                    <h3>1. 🌍 地質生成：地心深處的結晶</h3>
                 </button>
                 <div class="accordion-content">
                     <div class="accordion-inner-padding">
-                        <p>水晶的起源可追溯至地殼深處的高溫高壓環境。當富含礦物質的岩漿冷卻或地下水蒸發時，原子按照極其精準的幾何排列堆疊，形成了我們所見的礦石結晶。</p>
+                        <p>水晶起源於地殼深處的高溫高壓環境。當岩漿冷卻或地下水蒸發，原子以極其精準的幾何排列堆疊，歷經千萬年形成純淨結晶。</p>
                     </div>
                 </div>
             </div>
-            
-            <!-- 其他項目... -->
+
+            <!-- 2. 科學原理 -->
+            <div class="accordion-item theme-2" id="science">
+                <button class="accordion-header">
+                    <h3>2. 🔬 科學原理：壓電效應與共振</h3>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner-padding">
+                        <p>科學上，水晶具備穩定的振動頻率。透過「壓電效應」，它能與人體磁場產生共振，協助平穩情緒頻率。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. 文明傳承 -->
+            <div class="accordion-item theme-3" id="culture">
+                <button class="accordion-header">
+                    <h3>3. 🏛️ 文明起源：神聖角色的傳承</h3>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner-padding">
+                        <p>從古埃及到亞特蘭提斯傳說，水晶一直被視為連結天地的橋樑。古代祭司利用水晶作為通靈與保護的神聖祭器。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. 色彩起源 -->
+            <div class="accordion-item theme-4" id="color">
+                <button class="accordion-header">
+                    <h3>4. 🌈 色彩起源：微量元素的魔法</h3>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner-padding">
+                        <p>不同的微量元素決定了水晶的色彩。例如鐵元素造就紫水晶，鋁元素形成煙水晶，每種顏色對應不同的脈輪能量。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. 現代轉化 -->
+            <div class="accordion-item theme-5" id="modern">
+                <button class="accordion-header">
+                    <h3>5. 🔮 現代轉化：從精密科技到心靈療癒</h3>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner-padding">
+                        <p>今日水晶不僅用於手錶計時與電腦晶片，更成為壓力社會下，找回與自然頻率連結的心靈避風港。</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -235,8 +280,16 @@
             button.addEventListener('click', () => {
                 const currentItem = button.parentElement;
                 const isActive = currentItem.classList.contains('active');
-                document.querySelectorAll('.accordion-item').forEach(item => item.classList.remove('active'));
-                if (!isActive) currentItem.classList.add('active');
+                
+                // 關閉所有手風琴
+                document.querySelectorAll('.accordion-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+
+                // 如果點擊的本來不是開啟狀態，就開啟它
+                if (!isActive) {
+                    currentItem.classList.add('active');
+                }
             });
         });
     </script>
