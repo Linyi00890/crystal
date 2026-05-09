@@ -150,6 +150,7 @@
         }
 
         /* 種類與功效列表優化 */
+       /* --- 替換開始 --- */
         .type-list {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -159,12 +160,29 @@
         }
 
         .type-list li {
-            background: #f9f0ff;
+            /* 這裡移除固定顏色，改用變數，若沒設定變數則預設灰色 */
+            background: var(--crystal-bg, #f5f5f5);
             padding: 15px;
             border-radius: 10px;
-            border-left: 5px solid var(--primary-purple);
+            border-left: 5px solid var(--crystal-color, #ccc);
+            transition: transform 0.2s ease;
         }
 
+        .type-list li:hover {
+            transform: translateX(5px);
+        }
+
+        /* 個別定義每種水晶的專屬顏色變數 */
+        .type-clear-quartz { --crystal-color: #b0bec5; --crystal-bg: #f0f4f8; } /* 白水晶-灰銀 */
+        .type-citrine      { --crystal-color: #ffb300; --crystal-bg: #fff8e1; } /* 黃水晶-金黃 */
+        .type-amethyst     { --crystal-color: #9c27b0; --crystal-bg: #f3e5f5; } /* 紫水晶-薰衣草紫 */
+        .type-obsidian     { --crystal-color: #212121; --crystal-bg: #eeeeee; } /* 黑曜石-深黑 */
+        .type-rose-quartz  { --crystal-color: #f06292; --crystal-bg: #fce4ec; } /* 粉晶-玫瑰粉 */
+        .type-smoky-quartz { --crystal-color: #795548; --crystal-bg: #efebe9; } /* 茶晶-褐茶色 */
+        .type-labradorite  { --crystal-color: #00838f; --crystal-bg: #e0f7fa; } /* 拉長石-藍綠 */
+        .type-fluorite     { --crystal-color: #4db6ac; --crystal-bg: #e8f5e9; } /* 螢石-薄荷綠 */
+
+        /* 脈輪部分保持原樣或稍微優化 */
         .chakra-dl dt {
             font-weight: bold;
             font-size: 1.1rem;
@@ -180,6 +198,7 @@
             margin-top: 5px;
             color: #666;
         }
+        /* --- 替換結束 --- */
 
         /* 頁尾 */
         .main-footer {
