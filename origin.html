@@ -2,9 +2,9 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1200"> <!-- 強制手機端也以 1200px 寬度渲染 -->
+    /* 修改：讓寬度跟隨裝置寬度，以達成全螢幕響應 */
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>水晶起源與療癒指南 - 水晶魔法 | CrystalMagic</title>
-    <!-- 引入外部 CSS -->
     <link rel="stylesheet" href="origin.css">
 </head>
 <body>
@@ -53,7 +53,6 @@
                 </button>
                 <div class="accordion-content">
                     <div class="accordion-inner-padding">
-                        <p>水晶根據其化學成分與顏色，對應不同的心理需求：</p>
                         <ul class="type-list">
                             <li style="--crystal-color: #b0bec5; --crystal-bg: #f0f4f8;">
                                 <strong>白水晶</strong>：能量放大器，提升專注。
@@ -64,67 +63,25 @@
                             <li style="--crystal-color: #9c27b0; --crystal-bg: #f3e5f5;">
                                 <strong>紫水晶</strong>：開啟智慧，安定心神。
                             </li>
-                            <li style="--crystal-color: #f06292; --crystal-bg: #fce4ec;">
-                                <strong>粉晶</strong>：修復情感，吸引好人緣。
-                            </li>
                         </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 項目 3 -->
-            <div class="accordion-item">
-                <button class="accordion-header">
-                    <h3>3. ✨ 水晶的功效：對應人體七大脈輪</h3>
-                </button>
-                <div class="accordion-content">
-                    <div class="accordion-inner-padding">
-                        <dl class="chakra-dl">
-                            <div style="--chakra-color: #e53935;">
-                                <dt>🔴 底輪 (Root Chakra) - 黑曜石</dt>
-                                <dd>負責安全感與生命力，幫助情緒接地穩定。</dd>
-                            </div>
-                            <div style="--chakra-color: #43a047;">
-                                <dt>💚 心輪 (Heart Chakra) - 粉晶 / 綠幽靈</dt>
-                                <dd>關於愛與包容的中心，療癒情感創傷。</dd>
-                            </div>
-                            <div style="--chakra-color: #8e24aa;">
-                                <dt>💜 頂輪 (Crown Chakra) - 紫水晶</dt>
-                                <dd>連結宇宙智慧，達成心靈的和諧與覺醒。</dd>
-                            </div>
-                        </dl>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- 頁尾 -->
     <footer class="main-footer">
         <p>&copy; 2026 CrystalMagic 水晶魔法 版權所有</p>
         <a href="index.html" class="back-btn">← 返回首頁探索更多</a>
     </footer>
 
     <script>
-        // 手風琴切換邏輯
         document.querySelectorAll('.accordion-header').forEach(button => {
             button.addEventListener('click', () => {
                 const item = button.parentElement;
-                
-                // 切換當前點擊項目的 active 狀態
                 item.classList.toggle('active');
-                
-                // 如果您希望一次只能打開一個項目，請取消下方代碼的註釋：
-                /*
-                document.querySelectorAll('.accordion-item').forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.classList.remove('active');
-                    }
-                });
-                */
             });
         });
     </script>
-
 </body>
 </html>
