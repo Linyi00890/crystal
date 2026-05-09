@@ -1,68 +1,127 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>尋找你的命定水晶 | 能量測驗</title>
+    <meta name="viewport" content="width=1200"> <!-- 鎖定寬度以符合您的設計風格 -->
+    <title>尋找你的命定水晶 | 能量測驗 - CrystalMagic</title>
     <link rel="stylesheet" href="styles.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 為了確保顯示正確，這裡加入一些基礎的問答區塊樣式 */
+        .quiz-container { width: 900px; margin: 40px auto; padding: 20px; }
+        .question-block { 
+            background: #fff; 
+            padding: 30px; 
+            margin-bottom: 30px; 
+            border-radius: 15px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .question-block h2 { color: #6a1b9a; margin-bottom: 20px; font-size: 1.3rem; }
+        .question-block label { 
+            display: block; 
+            padding: 12px 15px; 
+            margin: 10px 0; 
+            border: 1px solid #eee; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            transition: 0.3s;
+        }
+        .question-block label:hover { background-color: #f3e5f5; border-color: #6a1b9a; }
+        .submit-button {
+            display: block; width: 100%; padding: 20px; 
+            background: linear-gradient(135deg, #7b1fa2, #4a148c);
+            color: white; border: none; border-radius: 50px;
+            font-size: 1.2rem; font-weight: bold; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(106, 27, 154, 0.3);
+        }
+        .hidden { display: none; }
+    </style>
 </head>
 <body>
 
-    <header class="main-header">
-        <div class="logo">🔮 CrystalMagic</div>
+    <header class="main-header" style="width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; padding: 20px 50px;">
+        <div class="logo" style="font-size: 1.6rem; font-weight: bold; color: #6a1b9a;">🔮 CrystalMagic</div>
         <div class="auth-buttons">
-            <a href="index.html" class="nav-button login">返回首頁</a>
+            <a href="index.html" style="text-decoration: none; color: #666;">返回首頁</a>
         </div>
     </header>
 
-    <section class="hero-section quiz-hero">
+    <section class="hero-section quiz-hero" style="text-align: center; padding: 80px 0; background: linear-gradient(135deg, #f3e5f5 0%, #e1f5fe 100%);">
         <div class="hero-content">
-            <h1>內在能量測驗</h1>
-            <p>讓您的直覺引導您找到目前最適合的水晶陪伴。</p>
+            <h1 style="color: #4a148c; font-size: 2.5rem;">內在能量測驗</h1>
+            <p style="color: #666;">讓您的直覺引導您找到目前最適合的水晶陪伴。</p>
         </div>
     </section>
 
     <main class="quiz-container">
         <form id="crystalQuiz">
-            <!-- 問題區塊 -->
+            
+            <!-- 問題 1：目標領域 -->
             <div class="question-block">
-                <h2>問題 1：您目前最想改善或加強哪個領域？</h2>
-                <label><input type="radio" name="q1" value="love" required> 戀愛與人際關係 (愛與和諧)</label>
-                <label><input type="radio" name="q1" value="wealth"> 事業與財富 (行動與成功)</label>
-                <label><input type="radio" name="q1" value="protection"> 淨化與保護 (穩定與避邪)</label>
-                <label><input type="radio" name="q1" value="spiritual"> 靈性與學習 (智慧與洞察)</label>
+                <h2>問題 1：您目前最想改善或加強哪個生活領域？</h2>
+                <label><input type="radio" name="q1" value="love" required> 戀愛與人際關係（渴望被愛與情感和諧）</label>
+                <label><input type="radio" name="q1" value="wealth"> 事業與財富（追求成功與行動力）</label>
+                <label><input type="radio" name="q1" value="protection"> 淨化與保護（需要避邪、穩定與安全感）</label>
+                <label><input type="radio" name="q1" value="spiritual"> 靈性與學習（追求智慧、專注與清明）</label>
             </div>
 
+            <!-- 問題 2：壓力反應 -->
             <div class="question-block">
-                <h2>問題 2：面對壓力時，您的第一反應是？</h2>
-                <label><input type="radio" name="q2" value="meditate" required> 試圖靜心和沉思，尋求內在平靜</label>
-                <label><input type="radio" name="q2" value="action"> 立即尋找出口，傾向積極行動</label>
-                <label><input type="radio" name="q2" value="retreat"> 感覺被掏空，需要遠離人群獨自休息</label>
-                <label><input type="radio" name="q2" value="share"> 渴望溫暖支持，找人傾訴尋求理解</label>
+                <h2>問題 2：當您感到壓力巨大時，您通常會怎麼做？</h2>
+                <label><input type="radio" name="q2" value="spiritual" required> 閉上眼睛沉思，試圖理清混亂的思緒</label>
+                <label><input type="radio" name="q2" value="wealth"> 專注於工作或雜事，用行動抵銷焦慮</label>
+                <label><input type="radio" name="q2" value="protection"> 想要徹底躲起來，隔絕外界的所有聲音</label>
+                <label><input type="radio" name="q2" value="love"> 找朋友傾訴，感受陪伴帶來的溫暖</label>
             </div>
 
-            <!-- ... (以此類推放完 5 個問題) ... -->
+            <!-- 問題 3：空間氛圍 -->
+            <div class="question-block">
+                <h2>問題 3：您最希望您的居住空間充滿什麼樣的氛圍？</h2>
+                <label><input type="radio" name="q3" value="protection" required> 極致的乾淨與祥和，像被守護的堡壘</label>
+                <label><input type="radio" name="q3" value="spiritual"> 寧靜且充滿啟發感，適合閱讀與思考</label>
+                <label><input type="radio" name="q3" value="love"> 溫馨浪漫，隨處散發著親切的氣息</label>
+                <label><input type="radio" name="q3" value="wealth"> 充滿朝氣與能量，讓人隨時想迎接挑戰</label>
+            </div>
+
+            <!-- 問題 4：直覺色彩 -->
+            <div class="question-block">
+                <h2>問題 4：此刻不經思考，哪一種色彩最吸引您的目光？</h2>
+                <label><input type="radio" name="q4" value="love" required> 溫潤柔和的粉色調</label>
+                <label><input type="radio" name="q4" value="wealth"> 閃耀自信的金黃色</label>
+                <label><input type="radio" name="q4" value="protection"> 深邃穩重的黑色或茶色</label>
+                <label><input type="radio" name="q4" value="spiritual"> 神祕深邃的紫色或透明色</label>
+            </div>
+
+            <!-- 問題 5：未來願景 -->
+            <div class="question-block">
+                <h2>問題 5：您希望一年後的自己看起來是什麼樣子？</h2>
+                <label><input type="radio" name="q5" value="wealth" required> 事業有成，充滿自信與領導力的領導者</label>
+                <label><input type="radio" name="q5" value="love"> 擁有穩定幸福的關係，內心充滿愛</label>
+                <label><input type="radio" name="q5" value="spiritual"> 擁有超凡的智慧，能平靜面對世間萬物</label>
+                <label><input type="radio" name="q5" value="protection"> 內心強大且不動如山，不受外界負能量干擾</label>
+            </div>
 
             <button type="submit" class="submit-button">✨ 查看我的命定水晶 ✨</button>
         </form>
 
         <!-- 結果顯示區域 -->
-        <section id="resultSection" class="result-section hidden">
-            <h2>恭喜您！您的命定水晶是：</h2>
-            <div class="crystal-result-card">
-                <h3 id="crystalName"></h3>
-                <img id="crystalImage" src="" alt="命定水晶">
-                <p id="crystalDescription"></p>
-                <a href="index.html" class="main-cta">回首頁看更多介紹</a>
+        <section id="resultSection" class="result-section hidden" style="text-align: center; margin-top: 50px;">
+            <h2 style="color: #6a1b9a;">恭喜您！您的命定水晶是：</h2>
+            <div class="crystal-result-card" style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                <h3 id="crystalName" style="font-size: 2rem; color: #4a148c;"></h3>
+                <!-- GitHub 託管時，請確保圖片路徑正確 -->
+                <img id="crystalImage" src="" alt="命定水晶" style="max-width: 300px; margin: 20px 0;">
+                <p id="crystalDescription" style="font-size: 1.1rem; line-height: 1.8; color: #555;"></p>
+                <a href="index.html" class="back-btn" style="display: inline-block; margin-top: 30px; padding: 15px 40px; background: #6a1b9a; color: white; text-decoration: none; border-radius: 50px;">了解更多水晶知識</a>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
+    <footer class="footer" style="text-align: center; padding: 60px 0; color: #999;">
         <p>&copy; 2026 CrystalMagic. 能量測驗僅供參考。</p>
     </footer>
 
+    <!-- 別忘了編寫對應的 quiz.js 來計算這些 value 的權重！ -->
     <script src="quiz.js"></script>
 </body>
 </html>
