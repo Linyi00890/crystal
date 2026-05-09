@@ -2,40 +2,54 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1200">
+    <!-- 修改為響應式視口設定 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>💎 水晶種類詳解：色彩、命名與特徵 - 水晶魔法 | CrystalMagic</title>
     
     <style>
         /* 全局設定 */
-        body {
-            font-family: 'Noto Sans TC', sans-serif;
-            background-color: #f8f9fa;
-            margin: 0 auto;
-            color: #333;
-            line-height: 1.8;
-            width: 1200px; /* 統一固定寬度 */
-            overflow-x: auto;
+        :root {
+            --primary-purple: #6a1b9a;
+            --bg-color: #f8f9fa;
+            --content-width: 1200px;
         }
 
-        /* 統一導覽列 */
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            color: #333;
+            line-height: 1.8;
+            width: 100%; /* 解鎖固定寬度 */
+            overflow-x: hidden;
+        }
+
+        /* 導覽列 - 改為全螢幕寬度 */
         .main-header {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
+            justify-content: center; /* 內容置中 */
             background: #fff;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
             z-index: 1000;
-            width: 1200px;
+            width: 100%;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: var(--content-width);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
             box-sizing: border-box;
         }
 
         .logo {
             font-size: 1.6rem;
             font-weight: bold;
-            color: #6a1b9a;
+            color: var(--primary-purple);
             text-decoration: none;
         }
 
@@ -55,43 +69,45 @@
         }
 
         .nav-links a:hover {
-            color: #6a1b9a;
+            color: var(--primary-purple);
         }
 
-        /* 頁面標題區 */
+        /* 頁面標題區 - 背景全寬 */
         .types-intro {
             text-align: center;
-            padding: 80px 20px;
+            padding: 100px 20px;
             background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
             border-bottom: 5px solid #9c27b0;
-            width: 1200px;
+            width: 100%;
             box-sizing: border-box;
         }
         
         .types-intro h1 {
             color: #4a148c;
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 15px;
         }
 
-        /* 內容容器 */
+        /* 內容容器 - 居中限制寬度 */
         .content-container {
-            width: 1000px;
-            margin: 50px auto;
+            max-width: var(--content-width);
+            margin: 60px auto;
+            padding: 0 30px;
+            box-sizing: border-box;
         }
 
         .section-title {
             color: #4a148c;
             border-left: 6px solid #9c27b0;
             padding-left: 20px;
-            margin-bottom: 35px;
-            font-size: 1.8rem;
+            margin: 60px 0 35px 0;
+            font-size: 2rem;
         }
 
-        /* 水晶卡片網格 */
+        /* 水晶卡片網格 - 電腦版改為雙欄佈局 */
         .crystal-grid {
-            display: flex;
-            flex-direction: column; 
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 雙欄 */
             gap: 30px;
             margin-bottom: 60px;
         }
@@ -103,7 +119,7 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s, box-shadow 0.3s;
             display: flex; 
-            align-items: center; 
+            align-items: flex-start; 
             border: 1px solid #eee;
         }
 
@@ -114,11 +130,12 @@
         }
 
         .crystal-card img {
-            width: 180px; 
-            height: 180px; 
+            width: 150px; 
+            height: 150px; 
             object-fit: cover;
             border-radius: 15px;
-            margin-right: 30px; 
+            margin-right: 25px; 
+            flex-shrink: 0;
         }
         
         .card-info {
@@ -126,8 +143,8 @@
         }
 
         .crystal-card h3 {
-            color: #6a1b9a; 
-            font-size: 1.5rem;
+            color: var(--primary-purple); 
+            font-size: 1.4rem;
             margin: 0 0 10px 0;
         }
 
@@ -138,11 +155,11 @@
         .meta-tag {
             display: inline-block;
             background-color: #f3e5f5;
-            padding: 5px 12px;
+            padding: 4px 10px;
             border-radius: 6px;
             font-size: 0.85em;
             color: #7b1fa2;
-            margin-right: 10px;
+            margin-right: 8px;
             font-weight: 500;
         }
 
@@ -157,13 +174,17 @@
             font-size: 0.95em;
             color: #666;
             margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* 限制描述行數，保持卡片整齊 */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
         
         .detail-link {
             display: inline-block;
             background: linear-gradient(135deg, #7b1fa2, #9c27b0);
             color: white;
-            padding: 10px 25px;
+            padding: 8px 20px;
             text-decoration: none;
             border-radius: 50px;
             font-size: 0.9em;
@@ -179,10 +200,10 @@
         /* 底部引導區 */
         .cta-note {
             text-align: center;
-            padding: 50px;
+            padding: 60px;
             background-color: #fff8e1;
             border-radius: 25px;
-            margin-top: 60px;
+            margin: 80px 0;
             border: 1px dashed #ffd54f;
         }
 
@@ -191,24 +212,25 @@
             text-align: center;
             padding: 60px 0;
             background: #fff;
-            margin-top: 60px;
             border-top: 1px solid #eee;
-            width: 1200px;
+            width: 100%;
         }
     </style>
 </head>
 <body>
 
 <header class="main-header">
-    <a href="index.html" class="logo">🔮 CrystalMagic</a>
-    <nav>
-        <ul class="nav-links">
-            <li><a href="index.html">首頁</a></li>
-            <li><a href="origin.html">水晶起源</a></li>
-            <li><a href="type.html" style="color:#6a1b9a; font-weight:bold;">水晶種類</a></li>
-            <li><a href="contact.html">聯絡我們</a></li>
-        </ul>
-    </nav>
+    <div class="nav-container">
+        <a href="index.html" class="logo">🔮 CrystalMagic</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="origin.html">水晶起源</a></li>
+                <li><a href="type.html" style="color:#6a1b9a; font-weight:bold;">水晶種類</a></li>
+                <li><a href="contact.html">聯絡我們</a></li>
+            </ul>
+        </nav>
+    </div>
 </header>
 
 <main>
@@ -316,13 +338,6 @@
 <footer class="main-footer">
     <p>&copy; 2026 CrystalMagic 水晶魔法 | 探索大地的神秘療癒力</p>
 </footer>
-
-<script>
-    // 禁用右鍵選單
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
-</script>
 
 </body>
 </html>
