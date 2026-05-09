@@ -4,157 +4,243 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>✨ 功效解讀：脈輪對應與能量療癒 - 水晶魔法 | CrystalMagic</title>
-    <link rel="stylesheet" href="styles.css"> 
     
     <style>
-        /* 功效頁面專屬風格 */
+        /* 全局基礎設定 */
+        :root {
+            --primary-purple: #673ab7;
+            --max-width: 1200px;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* 全螢幕導覽列 */
+        .main-header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center; /* 讓內部容器置中 */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: var(--max-width);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--primary-purple);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-button {
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-button.login {
+            color: #666;
+        }
+
+        .nav-button.register {
+            background-color: var(--primary-purple);
+            color: white;
+        }
+
+        .nav-button:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+
+        /* 頁面標題 - 背景橫跨全螢幕 */
         .page-header {
             text-align: center;
-            padding: 60px 20px;
+            padding: 80px 20px;
             background: linear-gradient(135deg, #f3e5f5 0%, #e8eaf6 100%); 
-            border-bottom: 5px solid #673ab7;
+            border-bottom: 5px solid var(--primary-purple);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            color: #4a148c;
+            margin-bottom: 15px;
+        }
+
+        /* 主內容區塊 - 限制寬度並置中 */
+        .main-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 40px 20px;
         }
 
         .section-title {
             text-align: center; 
             color: #4a148c; 
-            margin: 50px 0 30px;
-            font-size: 2rem;
+            margin: 60px 0 40px;
+            font-size: 2.2rem;
+            position: relative;
         }
 
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: var(--primary-purple);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        /* 脈輪網格 - 電腦版多欄佈局 */
         .chakra-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
         }
 
         .chakra-card {
             background-color: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-            border-top: 6px solid; /* 改為頂部線條更有質感 */
-            transition: 0.3s;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-top: 8px solid;
+            transition: 0.4s;
         }
 
         .chakra-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
         .chakra-card h3 {
             margin-top: 0;
-            font-size: 1.4em;
+            font-size: 1.6rem;
             color: #333;
-        }
-
-        .chakra-card p {
-            font-size: 0.95rem;
-            color: #666;
-            margin-bottom: 15px;
         }
 
         .chakra-card ul {
             list-style: none;
             padding-left: 0;
+            margin-top: 20px;
         }
 
         .chakra-card ul li {
-            background-color: #f8f9fa;
-            margin-bottom: 8px;
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 0.95em;
-            color: #444;
-            display: flex;
-            align-items: center;
+            background-color: #fcfaff;
+            margin-bottom: 10px;
+            padding: 12px 18px;
+            border-radius: 10px;
+            border: 1px solid #eee;
         }
 
-        .chakra-card ul li::before {
-            content: '✨';
-            margin-right: 8px;
-            font-size: 0.8em;
-        }
-        
-        /* 脈輪顏色定義 */
-        .chakra-7 { border-top-color: #9c27b0; } /* 頂輪-紫 */
-        .chakra-6 { border-top-color: #3f51b5; } /* 眉心-靛 */
-        .chakra-5 { border-top-color: #03a9f4; } /* 喉輪-藍 */
-        .chakra-4 { border-top-color: #4caf50; } /* 心輪-綠 */
-        .chakra-3 { border-top-color: #ffeb3b; } /* 太陽-黃 */
-        .chakra-2 { border-top-color: #ff9800; } /* 臍輪-橙 */
-        .chakra-1 { border-top-color: #f44336; } /* 底輪-紅 */
+        /* 脈輪顏色 */
+        .chakra-7 { border-top-color: #9c27b0; }
+        .chakra-6 { border-top-color: #3f51b5; }
+        .chakra-5 { border-top-color: #03a9f4; }
+        .chakra-4 { border-top-color: #4caf50; }
+        .chakra-3 { border-top-color: #ffeb3b; }
+        .chakra-2 { border-top-color: #ff9800; }
+        .chakra-1 { border-top-color: #f44336; }
 
-        /* 速查表優化 */
+        /* 速查表格優化 */
         .table-container {
-            max-width: 1000px;
-            margin: 40px auto;
-            overflow-x: auto;
-            padding: 0 20px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin: 40px 0;
         }
 
         .needs-table {
             width: 100%;
             border-collapse: collapse;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .needs-table th, .needs-table td {
-            padding: 18px;
-            border-bottom: 1px solid #eee;
-            text-align: left;
         }
 
         .needs-table th {
-            background-color: #673ab7;
+            background-color: var(--primary-purple);
             color: white;
-            font-size: 1.1rem;
-        }
-        
-        .needs-table td strong {
-            color: #673ab7;
+            text-align: left;
+            padding: 20px;
         }
 
+        .needs-table td {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* CTA 區塊 */
         .cta-box {
             text-align: center;
-            margin: 60px auto;
-            padding: 40px;
-            background-color: #fff8e1;
-            border-radius: 20px;
-            max-width: 800px;
+            margin: 80px 0;
+            padding: 60px;
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            border-radius: 30px;
         }
 
         .cta-button {
             display: inline-block;
-            background-color: #ff8a65;
+            background-color: #ff7043;
             color: white;
-            padding: 12px 30px;
+            padding: 15px 40px;
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 50px;
             font-weight: bold;
-            margin-top: 15px;
+            font-size: 1.1rem;
             transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 112, 67, 0.3);
         }
 
         .cta-button:hover {
-            background-color: #ff7043;
-            transform: scale(1.05);
+            background-color: #f4511e;
+            transform: scale(1.05) translateY(-3px);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #333;
+            color: #999;
+            width: 100%;
         }
     </style>
 </head>
 <body>
 
 <header class="main-header">
-    <div class="logo">🔮 CrystalMagic</div>
-    <div class="auth-buttons">
-        <a href="index.html" class="nav-button login">回首頁</a>
-        <a href="quiz.html" class="nav-button register">能量測驗</a>
+    <div class="nav-container">
+        <a href="index.html" class="logo">🔮 CrystalMagic</a>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-button login">首頁</a>
+            <a href="type.html" class="nav-button login">水晶種類</a>
+            <a href="quiz.html" class="nav-button register">能量測驗</a>
+        </nav>
     </div>
 </header>
 
@@ -164,117 +250,119 @@
         <p>理解水晶的共振頻率，找到最適合您的能量夥伴。</p>
     </section>
 
-    <div class="chakra-grid">
-        <article class="chakra-card chakra-7">
-            <h3>第七脈輪：頂輪</h3>
-            <p><strong>主題：</strong> 靈性、智慧、覺醒</p>
-            <ul>
-                <li>白水晶 (Clear Quartz)</li>
-                <li>紫水晶 (Amethyst)</li>
-                <li>透石膏 (Selenite)</li>
-            </ul>
-        </article>
+    <div class="main-content">
+        <div class="chakra-grid">
+            <article class="chakra-card chakra-7">
+                <h3>第七脈輪：頂輪</h3>
+                <p><strong>主題：</strong> 靈性、智慧、覺醒</p>
+                <ul>
+                    <li>白水晶 (Clear Quartz)</li>
+                    <li>紫水晶 (Amethyst)</li>
+                    <li>透石膏 (Selenite)</li>
+                </ul>
+            </article>
 
-        <article class="chakra-card chakra-6">
-            <h3>第六脈輪：眉心輪</h3>
-            <p><strong>主題：</strong> 直覺、洞察力、潛意識</p>
-            <ul>
-                <li>青金石 (Lapis Lazuli)</li>
-                <li>蘇打石 (Sodalite)</li>
-                <li>拉長石 (Labradorite)</li>
-            </ul>
-        </article>
+            <article class="chakra-card chakra-6">
+                <h3>第六脈輪：眉心輪</h3>
+                <p><strong>主題：</strong> 直覺、洞察力、潛意識</p>
+                <ul>
+                    <li>青金石 (Lapis Lazuli)</li>
+                    <li>蘇打石 (Sodalite)</li>
+                    <li>拉長石 (Labradorite)</li>
+                </ul>
+            </article>
 
-        <article class="chakra-card chakra-5">
-            <h3>第五脈輪：喉輪</h3>
-            <p><strong>主題：</strong> 溝通、表達、真實性</p>
-            <ul>
-                <li>海藍寶 (Aquamarine)</li>
-                <li>藍玉髓 (Blue Chalcedony)</li>
-                <li>天河石 (Amazonite)</li>
-            </ul>
-        </article>
+            <article class="chakra-card chakra-5">
+                <h3>第五脈輪：喉輪</h3>
+                <p><strong>主題：</strong> 溝通、表達、真實性</p>
+                <ul>
+                    <li>海藍寶 (Aquamarine)</li>
+                    <li>藍玉髓 (Blue Chalcedony)</li>
+                    <li>天河石 (Amazonite)</li>
+                </ul>
+            </article>
 
-        <article class="chakra-card chakra-4">
-            <h3>第四脈輪：心輪</h3>
-            <p><strong>主題：</strong> 愛、同理心、療癒</p>
-            <ul>
-                <li>粉水晶 (Rose Quartz)</li>
-                <li>草莓晶 (Strawberry Quartz)</li>
-                <li>葡萄石 (Prehnite)</li>
-            </ul>
-        </article>
+            <article class="chakra-card chakra-4">
+                <h3>第四脈輪：心輪</h3>
+                <p><strong>主題：</strong> 愛、同理心、療癒</p>
+                <ul>
+                    <li>粉水晶 (Rose Quartz)</li>
+                    <li>草莓晶 (Strawberry Quartz)</li>
+                    <li>葡萄石 (Prehnite)</li>
+                </ul>
+            </article>
 
-        <article class="chakra-card chakra-3">
-            <h3>第三脈輪：太陽神經叢</h3>
-            <p><strong>主題：</strong> 自信、財富、意志力</p>
-            <ul>
-                <li>黃水晶 (Citrine)</li>
-                <li>金髮晶 (Rutilated Quartz)</li>
-                <li>虎眼石 (Tiger's Eye)</li>
-            </ul>
-        </article>
+            <article class="chakra-card chakra-3">
+                <h3>第三脈輪：太陽神經叢</h3>
+                <p><strong>主題：</strong> 自信、財富、意志力</p>
+                <ul>
+                    <li>黃水晶 (Citrine)</li>
+                    <li>金髮晶 (Rutilated Quartz)</li>
+                    <li>虎眼石 (Tiger's Eye)</li>
+                </ul>
+            </article>
 
-        <article class="chakra-card chakra-2">
-            <h3>第二脈輪：臍輪</h3>
-            <p><strong>主題：</strong> 創造力、熱情、情感</p>
-            <ul>
-                <li>月光石 (Moonstone)</li>
-                <li>紅瑪瑙 (Carnelian)</li>
-                <li>太陽石 (Sunstone)</li>
-            </ul>
-        </article>
+            <article class="chakra-card chakra-2">
+                <h3>第二脈輪：臍輪</h3>
+                <p><strong>主題：</strong> 創造力、熱情、情感</p>
+                <ul>
+                    <li>月光石 (Moonstone)</li>
+                    <li>紅瑪瑙 (Carnelian)</li>
+                    <li>太陽石 (Sunstone)</li>
+                </ul>
+            </article>
 
-        <article class="chakra-card chakra-1">
-            <h3>第一脈輪：底輪</h3>
-            <p><strong>主題：</strong> 穩定、安全感、接地</p>
-            <ul>
-                <li>黑曜石 (Obsidian)</li>
-                <li>茶晶 (Smoky Quartz)</li>
-                <li>石榴石 (Garnet)</li>
-            </ul>
-        </article>
-    </div>
+            <article class="chakra-card chakra-1">
+                <h3>第一脈輪：底輪</h3>
+                <p><strong>主題：</strong> 穩定、安全感、接地</p>
+                <ul>
+                    <li>黑曜石 (Obsidian)</li>
+                    <li>茶晶 (Smoky Quartz)</li>
+                    <li>石榴石 (Garnet)</li>
+                </ul>
+            </article>
+        </div>
 
-    <h2 class="section-title">📋 需求速查表</h2>
-    <div class="table-container">
-        <table class="needs-table">
-            <thead>
-                <tr>
-                    <th>主要需求</th>
-                    <th>推薦水晶</th>
-                    <th>簡要功效</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>💖 增進人緣/桃花</td>
-                    <td><strong>粉水晶、月光石</strong></td>
-                    <td>開啟心輪，吸引正緣，改善人際摩擦。</td>
-                </tr>
-                <tr>
-                    <td>💰 提升財運/事業</td>
-                    <td><strong>金髮晶、綠幽靈</strong></td>
-                    <td>增強決斷力，招來正偏財運與貴人。</td>
-                </tr>
-                <tr>
-                    <td>🛡️ 避邪/防小人</td>
-                    <td><strong>黑曜石、黑碧璽</strong></td>
-                    <td>強效吸收負能量，阻擋病氣干擾。</td>
-                </tr>
-                <tr>
-                    <td>😴 改善睡眠/靜心</td>
-                    <td><strong>紫水晶、拉長石</strong></td>
-                    <td>鎮定思緒，舒緩壓力，幫助深層睡眠。</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+        <h2 class="section-title">📋 需求速查表</h2>
+        <div class="table-container">
+            <table class="needs-table">
+                <thead>
+                    <tr>
+                        <th>主要需求</th>
+                        <th>推薦水晶</th>
+                        <th>簡要功效</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>💖 增進人緣/桃花</td>
+                        <td><strong>粉水晶、月光石</strong></td>
+                        <td>開啟心輪，吸引正緣，改善人際摩擦。</td>
+                    </tr>
+                    <tr>
+                        <td>💰 提升財運/事業</td>
+                        <td><strong>金髮晶、綠幽靈</strong></td>
+                        <td>增強決斷力，招來正偏財運與貴人。</td>
+                    </tr>
+                    <tr>
+                        <td>🛡️ 避邪/防小人</td>
+                        <td><strong>黑曜石、黑碧璽</strong></td>
+                        <td>強效吸收負能量，阻擋病氣干擾。</td>
+                    </tr>
+                    <tr>
+                        <td>😴 改善睡眠/靜心</td>
+                        <td><strong>紫水晶、拉長石</strong></td>
+                        <td>鎮定思緒，舒緩壓力，幫助深層睡眠。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <div class="cta-box">
-        <h3>想知道哪種水晶最適合您嗎？</h3>
-        <p>根據您的現狀，測量出您最缺乏的脈輪能量。</p>
-        <a href="quiz.html" class="cta-button">立即前往能量測驗 »</a>
+        <div class="cta-box">
+            <h3>想知道哪種水晶最適合您嗎？</h3>
+            <p>根據您的現狀，測量出您最缺乏的脈輪能量。</p>
+            <a href="quiz.html" class="cta-button">立即前往能量測驗 »</a>
+        </div>
     </div>
 </main>
 
