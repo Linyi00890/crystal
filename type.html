@@ -2,48 +2,53 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <!-- 修改為響應式視口設定 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💎 水晶種類詳解：色彩、命名與特徵 - 水晶魔法 | CrystalMagic</title>
+    <title>💎 水晶種類詳解 - 水晶魔法 | CrystalMagic</title>
     
     <style>
         /* 全局設定 */
         :root {
             --primary-purple: #6a1b9a;
             --bg-color: #f8f9fa;
-            --content-width: 1200px;
+            --content-width: 1200px; /* 內容區塊保持適中寬度 */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             font-family: 'Noto Sans TC', sans-serif;
             background-color: var(--bg-color);
-            margin: 0;
             color: #333;
             line-height: 1.8;
-            width: 100%; /* 解鎖固定寬度 */
+            width: 100%;
             overflow-x: hidden;
         }
 
-        /* 導覽列 - 改為全螢幕寬度 */
+        /* ==========================================================================
+           1. 導覽列 (Navbar) - 全螢幕兩側對齊
+           ========================================================================== */
         .main-header {
-            display: flex;
-            justify-content: center; /* 內容置中 */
+            width: 100%;
             background: #fff;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
             z-index: 1000;
-            width: 100%;
+            display: flex;
+            justify-content: center; /* 讓 container 在中間，但 container 是滿版 */
         }
 
         .nav-container {
             width: 100%;
-            max-width: var(--content-width);
+            max-width: 100%; /* 關鍵：解鎖寬度限制達成全螢幕 */
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* 關鍵：Logo 在左，選單在右 */
             align-items: center;
-            padding: 15px 30px;
-            box-sizing: border-box;
+            padding: 15px 60px; /* 增加左右間距，在大螢幕更美觀 */
         }
 
         .logo {
@@ -51,14 +56,13 @@
             font-weight: bold;
             color: var(--primary-purple);
             text-decoration: none;
+            letter-spacing: 1px;
         }
 
         .nav-links {
             display: flex;
             gap: 35px;
             list-style: none;
-            margin: 0;
-            padding: 0;
         }
 
         .nav-links a {
@@ -72,28 +76,30 @@
             color: var(--primary-purple);
         }
 
-        /* 頁面標題區 - 背景全寬 */
+        /* ==========================================================================
+           2. 標題橫幅區 (Hero Section) - 滿版背景
+           ========================================================================== */
         .types-intro {
             text-align: center;
-            padding: 100px 20px;
+            padding: 120px 20px;
             background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
             border-bottom: 5px solid #9c27b0;
             width: 100%;
-            box-sizing: border-box;
         }
         
         .types-intro h1 {
             color: #4a148c;
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 5vw, 3.5rem);
             margin-bottom: 15px;
         }
 
-        /* 內容容器 - 居中限制寬度 */
+        /* ==========================================================================
+           3. 內容容器 - 保持置中以便閱讀
+           ========================================================================== */
         .content-container {
             max-width: var(--content-width);
             margin: 60px auto;
             padding: 0 30px;
-            box-sizing: border-box;
         }
 
         .section-title {
@@ -104,10 +110,10 @@
             font-size: 2rem;
         }
 
-        /* 水晶卡片網格 - 電腦版改為雙欄佈局 */
+        /* 水晶卡片網格 - 雙欄佈局 */
         .crystal-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 雙欄 */
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
             gap: 30px;
             margin-bottom: 60px;
         }
@@ -126,7 +132,6 @@
         .crystal-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 15px 35px rgba(106, 27, 154, 0.1);
-            border-color: #e1bee7;
         }
 
         .crystal-card img {
@@ -145,11 +150,7 @@
         .crystal-card h3 {
             color: var(--primary-purple); 
             font-size: 1.4rem;
-            margin: 0 0 10px 0;
-        }
-
-        .crystal-meta {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .meta-tag {
@@ -160,7 +161,7 @@
             font-size: 0.85em;
             color: #7b1fa2;
             margin-right: 8px;
-            font-weight: 500;
+            margin-bottom: 8px;
         }
 
         .tag-line {
@@ -170,21 +171,11 @@
             display: block;
         }
 
-        .function {
-            font-size: 0.95em;
-            color: #666;
-            margin-bottom: 20px;
-            display: -webkit-box;
-            -webkit-line-clamp: 3; /* 限制描述行數，保持卡片整齊 */
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        
         .detail-link {
             display: inline-block;
             background: linear-gradient(135deg, #7b1fa2, #9c27b0);
             color: white;
-            padding: 8px 20px;
+            padding: 8px 25px;
             text-decoration: none;
             border-radius: 50px;
             font-size: 0.9em;
@@ -207,7 +198,7 @@
             border: 1px dashed #ffd54f;
         }
 
-        /* 頁尾 */
+        /* 頁尾 - 全螢幕背景 */
         .main-footer {
             text-align: center;
             padding: 60px 0;
@@ -221,7 +212,10 @@
 
 <header class="main-header">
     <div class="nav-container">
+        <!-- 左側 Logo -->
         <a href="index.html" class="logo">🔮 CrystalMagic</a>
+        
+        <!-- 右側選單 -->
         <nav>
             <ul class="nav-links">
                 <li><a href="index.html">首頁</a></li>
@@ -235,15 +229,15 @@
 
 <main>
     <section class="types-intro">
-        <h1>💎 水晶種類：從入門到進階的能量百科</h1>
-        <p>每顆水晶都擁有獨特的物理結構與能量振動。透過種類劃分，您可以更精準地找到當下所需的療癒力量。</p>
+        <h1>💎 水晶種類：能量百科</h1>
+        <p>每顆水晶都擁有獨特的能量振動。透過種類劃分，尋找當下所需的療癒力量。</p>
     </section>
 
     <div class="content-container">
-        
         <h2 class="section-title">✨ 經典入門系列 (石英家族)</h2>
         <div class="crystal-grid">
             
+            <!-- 卡片 1 -->
             <article class="crystal-card">
                 <img src="../images/clear_quartz_image.jpg" alt="白水晶"> 
                 <div class="card-info">
@@ -253,74 +247,21 @@
                         <span class="meta-tag">對應：全脈輪</span>
                     </div>
                     <span class="tag-line">核心：淨化、專注、能量放大</span>
-                    <p class="function">被譽為「晶王」，能放大其他水晶能量、淨化空間負面磁場。是每位水晶愛好者必備的基礎石。</p>
-                    <a href="white.html" class="detail-link">探索白水晶能量解析 »</a>
+                    <a href="white.html" class="detail-link">探索能量解析 »</a>
                 </div>
             </article>
 
+            <!-- 卡片 2 -->
             <article class="crystal-card">
                 <img src="../images/amethyst_image.jpg" alt="紫水晶"> 
                 <div class="card-info">
                     <h3>紫水晶 (Amethyst)</h3>
                     <div class="crystal-meta">
                         <span class="meta-tag">分類：石英家族</span>
-                        <span class="meta-tag">對應：頂輪、眉心輪</span>
+                        <span class="meta-tag">對應：頂輪</span>
                     </div>
-                    <span class="tag-line">核心：智慧、鎮定、招貴人、靈感</span>
-                    <p class="function">代表「智慧」的水晶。能幫助穩定情緒、啟發直覺。在商場中也被視為能招來貴人助益的社交之石。</p>
-                    <a href="purple.html" class="detail-link">探索紫水晶能量解析 »</a>
-                </div>
-            </article>
-
-        </div>
-
-        <h2 class="section-title">💰 提升財富與權威</h2>
-        <div class="crystal-grid">
-            
-            <article class="crystal-card">
-                <img src="../images/rutilated_quartz_image.jpg" alt="鈦晶"> 
-                <div class="card-info">
-                    <h3>鈦晶 (Titanium Rutilated Quartz)</h3>
-                    <div class="crystal-meta">
-                        <span class="meta-tag">分類：石英內含物</span>
-                        <span class="meta-tag">對應：太陽神經叢</span>
-                    </div>
-                    <span class="tag-line">核心：正財、事業權威、果斷決策</span>
-                    <p class="function">水晶之王。內含金紅石針狀結晶，能量強大且陽剛。主正財與事業，特別適合領導者與創業者。</p>
-                    <a href="titanium.html" class="detail-link">探索鈦晶能量解析 »</a>
-                </div>
-            </article>
-
-        </div>
-
-        <h2 class="section-title">🛡️ 能量防護與深層接地</h2>
-        <div class="crystal-grid">
-            
-            <article class="crystal-card">
-                <img src="../images/obsidian_image.jpg" alt="黑曜石"> 
-                <div class="card-info">
-                    <h3>黑曜石 (Obsidian)</h3>
-                    <div class="crystal-meta">
-                        <span class="meta-tag">分類：火山玻璃</span>
-                        <span class="meta-tag">對應：海底輪</span>
-                    </div>
-                    <span class="tag-line">核心：強力吸收負能、避邪擋煞</span>
-                    <p class="function">強大的能量吸塵器。能吸收體內濁氣與環境負能量，是極佳的個人護身符與空間守護石。</p>
-                    <a href="obsidian.html" class="detail-link">探索黑曜石能量解析 »</a>
-                </div>
-            </article>
-
-            <article class="crystal-card">
-                <img src="../images/black_tourmaline_image.jpg" alt="黑碧璽"> 
-                <div class="card-info">
-                    <h3>黑碧璽 (Black Tourmaline)</h3>
-                    <div class="crystal-meta">
-                        <span class="meta-tag">分類：硼矽酸鹽</span>
-                        <span class="meta-tag">對應：海底輪</span>
-                    </div>
-                    <span class="tag-line">核心：能量轉化、電磁輻射防護</span>
-                    <p class="function">不同於黑曜石的吸收，黑碧璽能將負能「轉化」。對抗電子產品輻射及建立能量結界非常有效。</p>
-                    <a href="tourmaline.html" class="detail-link">探索黑碧璽能量解析 »</a>
+                    <span class="tag-line">核心：智慧、鎮定、靈感</span>
+                    <a href="purple.html" class="detail-link">探索能量解析 »</a>
                 </div>
             </article>
 
@@ -330,7 +271,7 @@
             <h3>找不到心儀的水晶？</h3>
             <p>每種水晶都有其獨特的呼喚，透過我們的挑選指南，尋找與您共鳴的命定水晶。</p>
             <br>
-            <a href="pick.html" class="detail-link" style="background: #ffb300;">前往挑選指南尋找命定水晶 »</a>
+            <a href="pick.html" class="detail-link" style="background: #ffb300;">前往挑選指南 »</a>
         </div>
     </div>
 </main>
