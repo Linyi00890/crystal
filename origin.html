@@ -2,38 +2,50 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1200">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>水晶起源與療癒指南 - 水晶魔法 | CrystalMagic</title>
     
     <style>
         /* 全局樣式設定 */
         :root {
             --primary-purple: #6a1b9a;
-            --accent-green: #4caf50;
             --soft-bg: #f8f9fa;
+            --max-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
-            width: 1200px; /* 強制固定寬度 */
-            margin: 0 auto;
+            width: 100%;
+            margin: 0;
             font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
             background-color: var(--soft-bg);
             color: #333;
             line-height: 1.6;
-            overflow-x: auto;
+            overflow-x: hidden;
         }
 
-        /* 導覽列 */
+        /* 導覽列 - 全寬 */
         .navbar {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
+            justify-content: center;
             background: #fff;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
             z-index: 1000;
+            width: 100%;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: var(--max-width);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
         }
 
         .logo {
@@ -46,7 +58,7 @@
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 40px;
+            gap: 30px;
             margin: 0;
         }
 
@@ -62,22 +74,25 @@
             border-bottom: 2px solid var(--primary-purple);
         }
 
-        /* Hero 區塊 */
+        /* Hero 區塊 - 全寬背景 */
         #hero {
             text-align: center;
-            padding: 100px 20px;
+            padding: 120px 20px;
             background: linear-gradient(135deg, #f3e5f5 0%, #e1f5fe 100%);
+            width: 100%;
         }
 
         #hero h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             color: var(--primary-purple);
             margin-bottom: 20px;
         }
 
-        /* 手風琴容器 */
+        /* 內容包裝層 */
         .content-wrapper {
-            padding: 60px 100px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 60px 20px;
         }
 
         .section-title {
@@ -87,6 +102,7 @@
             font-size: 2.2rem;
         }
 
+        /* 手風琴樣式 */
         .accordion-item {
             background: #fff;
             border-radius: 15px;
@@ -98,7 +114,7 @@
 
         .accordion-header {
             width: 100%;
-            padding: 25px 35px;
+            padding: 25px 30px;
             background: #fff;
             border: none;
             display: flex;
@@ -106,17 +122,12 @@
             align-items: center;
             cursor: pointer;
             text-align: left;
-            transition: background 0.3s;
-        }
-
-        .accordion-header:hover {
-            background: #fcfaff;
         }
 
         .accordion-header h3 {
             margin: 0;
             color: var(--primary-purple);
-            font-size: 1.4rem;
+            font-size: 1.3rem;
         }
 
         .accordion-header::after {
@@ -131,112 +142,102 @@
         }
 
         .accordion-content {
-            padding: 0 35px;
+            padding: 0 30px;
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
-            background: #fff;
         }
 
         .accordion-item.active .accordion-content {
-            max-height: 1200px; /* 增加高度以容納完整脈輪內容 */
+            max-height: 2000px;
             padding-bottom: 40px;
         }
 
-        .accordion-content p {
-            line-height: 1.8;
-            color: #444;
-            margin-bottom: 15px;
-        }
-
-        /* 種類與功效列表優化 */
-       /* --- 替換開始 --- */
+        /* 水晶種類列表 */
         .type-list {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             list-style: none;
-            padding: 0;
+            padding: 20px 0;
         }
 
         .type-list li {
-            /* 這裡移除固定顏色，改用變數，若沒設定變數則預設灰色 */
             background: var(--crystal-bg, #f5f5f5);
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 5px solid var(--crystal-color, #ccc);
-            transition: transform 0.2s ease;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 6px solid var(--crystal-color, #ccc);
+            transition: 0.3s;
         }
 
-        .type-list li:hover {
-            transform: translateX(5px);
-        }
+        .type-clear-quartz { --crystal-color: #b0bec5; --crystal-bg: #f0f4f8; }
+        .type-citrine      { --crystal-color: #ffb300; --crystal-bg: #fff8e1; }
+        .type-amethyst     { --crystal-color: #9c27b0; --crystal-bg: #f3e5f5; }
+        .type-obsidian     { --crystal-color: #212121; --crystal-bg: #eeeeee; }
+        .type-rose-quartz  { --crystal-color: #f06292; --crystal-bg: #fce4ec; }
+        .type-smoky-quartz { --crystal-color: #795548; --crystal-bg: #efebe9; }
+        .type-labradorite  { --crystal-color: #00838f; --crystal-bg: #e0f7fa; }
+        .type-fluorite     { --crystal-color: #4db6ac; --crystal-bg: #e8f5e9; }
 
-        /* 個別定義每種水晶的專屬顏色變數 */
-        .type-clear-quartz { --crystal-color: #b0bec5; --crystal-bg: #f0f4f8; } /* 白水晶-灰銀 */
-        .type-citrine      { --crystal-color: #ffb300; --crystal-bg: #fff8e1; } /* 黃水晶-金黃 */
-        .type-amethyst     { --crystal-color: #9c27b0; --crystal-bg: #f3e5f5; } /* 紫水晶-薰衣草紫 */
-        .type-obsidian     { --crystal-color: #212121; --crystal-bg: #eeeeee; } /* 黑曜石-深黑 */
-        .type-rose-quartz  { --crystal-color: #f06292; --crystal-bg: #fce4ec; } /* 粉晶-玫瑰粉 */
-        .type-smoky-quartz { --crystal-color: #795548; --crystal-bg: #efebe9; } /* 茶晶-褐茶色 */
-        .type-labradorite  { --crystal-color: #00838f; --crystal-bg: #e0f7fa; } /* 拉長石-藍綠 */
-        .type-fluorite     { --crystal-color: #4db6ac; --crystal-bg: #e8f5e9; } /* 螢石-薄荷綠 */
-
-        /* 脈輪部分保持原樣或稍微優化 */
+        /* --- 七脈輪顏色定義 --- */
         .chakra-dl dt {
             font-weight: bold;
-            font-size: 1.1rem;
-            margin-top: 20px;
+            font-size: 1.15rem;
+            margin-top: 25px;
             display: flex;
             align-items: center;
+            color: var(--chakra-color, #333);
         }
 
         .chakra-dl dd {
-            margin-left: 0;
-            padding-left: 30px;
-            border-left: 2px solid #e0e0e0;
-            margin-top: 5px;
-            color: #666;
+            margin: 10px 0 0 0;
+            padding-left: 20px;
+            border-left: 4px solid var(--chakra-color, #eee);
+            color: #555;
         }
-        /* --- 替換結束 --- */
+
+        .root-chakra    { --chakra-color: #e53935; } /* 紅 */
+        .sacral-chakra  { --chakra-color: #fb8c00; } /* 橙 */
+        .solar-chakra   { --chakra-color: #fbc02d; } /* 黃 */
+        .heart-chakra   { --chakra-color: #43a047; } /* 綠 */
+        .throat-chakra  { --chakra-color: #1e88e5; } /* 藍 */
+        .third-eye-chakra { --chakra-color: #3949ab; } /* 靛 */
+        .crown-chakra   { --chakra-color: #8e24aa; } /* 紫 */
 
         /* 頁尾 */
         .main-footer {
             text-align: center;
-            padding: 80px 0;
+            padding: 60px 20px;
             background: #fff;
-            margin-top: 50px;
             border-top: 1px solid #eee;
+            width: 100%;
         }
 
         .back-btn {
             display: inline-block;
             margin-top: 20px;
-            padding: 15px 40px;
+            padding: 12px 35px;
             background: var(--primary-purple);
             color: white;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: bold;
+            font-weight: 600;
             transition: 0.3s;
-        }
-
-        .back-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(106, 27, 154, 0.3);
         }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <a href="index.html" class="logo">🔮 CrystalMagic</a>
-        <ul class="nav-links">
-            <li><a href="index.html">首頁</a></li>
-            <li><a href="origin.html" class="active">水晶起源</a></li>
-            <li><a href="type.html">水晶種類</a></li>
-            <li><a href="care.html">淨化保養</a></li>
-        </ul>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🔮 CrystalMagic</a>
+            <ul class="nav-links">
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="origin.html" class="active">水晶起源</a></li>
+                <li><a href="type.html">水晶種類</a></li>
+                <li><a href="care.html">淨化保養</a></li>
+            </ul>
+        </div>
     </nav>
 
     <main>
@@ -248,63 +249,77 @@
         <section class="content-wrapper">
             <h2 class="section-title">✨ 水晶核心療癒指南 ✨</h2>
 
+            <!-- 1. 科學起源 -->
             <div class="accordion-item active">
                 <button class="accordion-header">
                     <h3>1. 🔮 水晶是什麼？：基礎與科學起源</h3>
                 </button>
                 <div class="accordion-content">
-                    <p><strong>科學基礎：</strong> 水晶是指內部原子以高度有序的晶格結構排列的固體。這種規律結構讓水晶擁有極為穩定的振動頻率，能產生「壓電效應」（當對水晶施壓時，它會產生微弱電流），這也是科學界將其應用於計時與通訊設備的原因。</p>
-                    <p><strong>能量學視角：</strong> 水晶就像一個微型的能量儲存器與轉換站。它能與人體的生物磁場產生「共振」，幫助我們將混亂的負向情緒（低頻）轉化為穩定且清明的正向頻率（高頻）。</p>
-                    <p><strong>歷史起源：</strong> 數千年前的古蘇美、古埃及與瑪雅文明就已發現水晶的療癒價值。從戰士配戴黑曜石護身，到皇室利用青金石溝通神性，水晶始終是人類靈性成長的夥伴。</p>
+                    <p><strong>科學基礎：</strong> 水晶原子以高度有序的晶格排列，能產生穩定的振動頻率。</p>
+                    <p><strong>能量學視角：</strong> 透過共振，水晶能幫助將低頻情緒轉化為穩定的正向能量。</p>
                 </div>
             </div>
 
+            <!-- 2. 常見種類 -->
             <div class="accordion-item">
                 <button class="accordion-header">
                     <h3>2. 💎 水晶的種類：常見礦石與能量分類</h3>
                 </button>
                 <div class="accordion-content">
-                    <p>依照顏色與成分的不同，每一種水晶都有其獨特的「能量專長」：</p>
                     <ul class="type-list">
-                        <li class="type-clear-quartz"><strong>白水晶 (Clear Quartz)</strong>：晶王，全方位的淨化與放大器。</li>
-                        <li class="type-citrine"><strong>黃水晶 (Citrine)</strong>：財富之石，主偏財運、自信與事業能量。</li>
-                        <li class="type-amethyst"><strong>紫水晶 (Amethyst)</strong>：智慧之石，主專注力、靈感開發與舒緩焦慮。</li>
-                        <li class="type-obsidian"><strong>黑曜石 (Obsidian)</strong>：極致守護，排除負能量、辟邪與接地氣。</li>
-                        <li class="type-rose-quartz"><strong>粉晶 (Rose Quartz)</strong>：愛情與自癒，主吸引貴人、修補情感關係。</li>
-                        <li class="type-smoky-quartz"><strong>茶晶 (Smoky Quartz)</strong>：穩定情緒，幫助排毒與紓緩壓力感。</li>
-                        <li class="type-labradorite"><strong>拉長石 (Labradorite)</strong>：靈性覺醒，清理脈輪淤塞與激發潛能。</li>
-                        <li class="type-fluorite"><strong>螢石 (Fluorite)</strong>：思緒清明，整理混亂思緒與提升學習效率。</li>
+                        <li class="type-clear-quartz"><strong>白水晶</strong>：全方位淨化與能量放大。</li>
+                        <li class="type-citrine"><strong>黃水晶</strong>：財富之石，提升偏財與自信。</li>
+                        <li class="type-amethyst"><strong>紫水晶</strong>：智慧之石，增強靈感與專注。</li>
+                        <li class="type-obsidian"><strong>黑曜石</strong>：強大守護，辟邪並排除負能量。</li>
+                        <li class="type-rose-quartz"><strong>粉晶</strong>：愛情之石，修補關係與增加親和力。</li>
+                        <li class="type-smoky-quartz"><strong>茶晶</strong>：深層穩定，協助情緒接地。</li>
+                        <li class="type-labradorite"><strong>拉長石</strong>：靈性之石，激發直覺潛能。</li>
+                        <li class="type-fluorite"><strong>螢石</strong>：思緒清明，整理混亂想法。</li>
                     </ul>
                 </div>
             </div>
 
+            <!-- 3. 七脈輪功效 (已加入七色彩) -->
             <div class="accordion-item">
                 <button class="accordion-header">
                     <h3>3. ✨ 水晶的功效：對應人體七大脈輪</h3>
                 </button>
                 <div class="accordion-content">
-                    <p>透過將水晶放置在身體對應的脈輪（Energy Centers），能修復能量漏孔，達到身心平衡：</p>
                     <dl class="chakra-dl">
-                        <dt>🔴 底輪 (Root Chakra)</dt>
-                        <dd>位置：脊椎基底部。<strong>對應：黑曜石、紅瑪瑙。</strong> 功能：穩定生存安全感、接地氣、驅除恐懼。</dd>
+                        <div class="root-chakra">
+                            <dt>🔴 底輪 (Root Chakra) - 黑曜石</dt>
+                            <dd>穩定安全感、接地氣、驅除內心恐懼。</dd>
+                        </div>
                         
-                        <dt>🧡 臍輪 (Sacral Chakra)</dt>
-                        <dd>位置：下腹部。<strong>對應：虎眼石、南紅瑪瑙。</strong> 功能：激發創造力、性能力、感受生活熱情。</dd>
+                        <div class="sacral-chakra">
+                            <dt>🧡 臍輪 (Sacral Chakra) - 虎眼石</dt>
+                            <dd>激發創造力與生活的熱情能量。</dd>
+                        </div>
                         
-                        <dt>💛 太陽輪 (Solar Plexus Chakra)</dt>
-                        <dd>位置：胃部上方。<strong>對應：黃水晶、鈦晶。</strong> 功能：建立個人意志、自信心、顯化物質財富。</dd>
+                        <div class="solar-chakra">
+                            <dt>💛 太陽輪 (Solar Plexus Chakra) - 黃水晶</dt>
+                            <dd>建立個人意志、顯化物質財富。</dd>
+                        </div>
                         
-                        <dt>💚 心輪 (Heart Chakra)</dt>
-                        <dd>位置：胸部中央。<strong>對應：粉晶、綠幽靈、東菱玉。</strong> 功能：處理情感關係、開啟愛與寬恕的力量。</dd>
+                        <div class="heart-chakra">
+                            <dt>💚 心輪 (Heart Chakra) - 粉晶 / 綠幽靈</dt>
+                            <dd>開啟愛與寬恕的力量，修補情感關係。</dd>
+                        </div>
                         
-                        <dt>💙 喉輪 (Throat Chakra)</dt>
-                        <dd>位置：咽喉處。<strong>對應：海藍寶、天河石。</strong> 功能：提升溝通表達、真實自我展現、舒緩甲狀腺不適。</dd>
+                        <div class="throat-chakra">
+                            <dt>💙 喉輪 (Throat Chakra) - 海藍寶</dt>
+                            <dd>提升溝通表達，真實展現自我。</dd>
+                        </div>
                         
-                        <dt>靛 眉心輪 (Third Eye Chakra)</dt>
-                        <dd>位置：兩眉之間。<strong>對應：青金石、拉長石。</strong> 功能：增強直覺力、洞察真相、減少偏頭痛。</dd>
+                        <div class="third-eye-chakra">
+                            <dt>🌀 眉心輪 (Third Eye Chakra) - 青金石</dt>
+                            <dd>增強直覺力、洞察真相與清明心智。</dd>
+                        </div>
                         
-                        <dt>⚪ 頂輪 (Crown Chakra)</dt>
-                        <dd>位置：頭頂正上方。<strong>對應：紫水晶、白水晶。</strong> 功能：連結高我、智慧啟發、達成靈性平衡。</dd>
+                        <div class="crown-chakra">
+                            <dt>💜 頂輪 (Crown Chakra) - 紫水晶</dt>
+                            <dd>連結智慧、達成靈性平衡與覺醒。</dd>
+                        </div>
                     </dl>
                 </div>
             </div>
@@ -312,26 +327,14 @@
     </main>
 
     <footer class="main-footer">
-        <p>&copy; 2026 CrystalMagic 水晶魔法版權所有 | 在光芒中遇見純淨的自己</p>
+        <p>&copy; 2026 CrystalMagic 水晶魔法版權所有</p>
         <a href="index.html" class="back-btn">← 返回首頁探索更多</a>
     </footer>
 
     <script>
         document.querySelectorAll('.accordion-header').forEach(button => {
             button.addEventListener('click', () => {
-                const accordionItem = button.parentElement;
-                
-                // 切換 active 類別
-                accordionItem.classList.toggle('active');
-                
-                // 如果希望一次只能開啟一個，請取消下方註釋
-                /*
-                document.querySelectorAll('.accordion-item').forEach(item => {
-                    if (item !== accordionItem) {
-                        item.classList.remove('active');
-                    }
-                });
-                */
+                button.parentElement.classList.toggle('active');
             });
         });
     </script>
