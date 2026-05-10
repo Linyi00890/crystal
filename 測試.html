@@ -4,203 +4,429 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>水晶入門：開啟你的能量之旅 | CrystalMagic</title>
+    <!-- 引入 Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ==========================================================================
+           1. 全域設定 (Base Styles)
+           ========================================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ==========================================================================
+           2. 導覽列 (Navigation)
+           ========================================================================== */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo a {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #6a1b9a;
+            text-decoration: none;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-button {
+            text-decoration: none;
+            padding: 8px 22px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .nav-button.login { color: #6a1b9a; border: 1px solid #6a1b9a; }
+        .nav-button.login:hover { background: #f3e5f5; }
+        .nav-button.register { background: #6a1b9a; color: white; }
+        .nav-button.register:hover { background: #4a148c; }
+
+        /* ==========================================================================
+           3. 區塊橫幅 (Hero Section)
+           ========================================================================== */
+        .hero-section {
+            background: linear-gradient(135deg, #4a148c 0%, #6a1b9a 40%, #ba68c8 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+            opacity: 0.12;
+            pointer-events: none;
+        }
+
+        .hero-content { position: relative; z-index: 2; }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 18px;
+            font-weight: 700;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            letter-spacing: 1.5px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .main-cta {
+            display: inline-block;
+            margin-top: 35px;
+            padding: 15px 45px;
+            background: #ff8a65;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 20px rgba(255, 138, 101, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .main-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(255, 138, 101, 0.5);
+            background: #ff7043;
+        }
+
+        /* ==========================================================================
+           4. 網格佈局 (Grid) 與 卡片互動
+           ========================================================================== */
+        .guide-grid {
+            max-width: 1300px;
+            margin: 80px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            padding: 0 25px;
+        }
+
+        .guide-item {
+            background: white;
+            border-radius: 24px;
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border-top: 8px solid #ddd;
+            position: relative;
+        }
+
+        .guide-item:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 22px 45px rgba(0,0,0,0.12);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 25px;
+        }
+
+        .guide-item h2 { font-size: 1.5rem; margin-bottom: 18px; }
+        .guide-item p { color: #666; flex-grow: 1; margin-bottom: 20px; }
+
+        /* 類別配色系統 */
+        .layer-1 { border-top-color: #00897b; background: linear-gradient(to bottom, #ffffff, #f0f7f7); }
+        .layer-2 { border-top-color: #3949ab; background: linear-gradient(to bottom, #ffffff, #f0f2f9); }
+        .layer-3 { border-top-color: #d81b60; background: linear-gradient(to bottom, #ffffff, #fdf2f5); }
+        .layer-4 { border-top-color: #f9a825; background: linear-gradient(to bottom, #ffffff, #fff9e6); }
+        .layer-5 { border-top-color: #039be5; background: linear-gradient(to bottom, #ffffff, #f0f9ff); }
+        .layer-6 { border-top-color: #fb8c00; background: linear-gradient(to bottom, #ffffff, #fff4e5); }
+        .layer-7 { border-top-color: #546e7a; background: linear-gradient(to bottom, #ffffff, #f1f3f4); }
+
+        .cta-button {
+            display: block;
+            text-decoration: none;
+            text-align: center;
+            padding: 14px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            color: white; /* 讓文字清晰 */
+        }
+
+        /* ==========================================================================
+           5. 使用者見證與投稿
+           ========================================================================== */
+        .testimonials-section { background-color: #f3e5f5; padding: 100px 0 140px; }
+        .section-title { text-align: center; margin-bottom: 55px; padding: 0 20px; }
+        .section-title h2 { font-size: 2.2rem; color: #4a148c; margin-bottom: 12px; }
+        .section-title p { color: #777; font-size: 1.1rem; }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 35px;
+            padding: 0 25px;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        }
+
+        .user-info { display: flex; align-items: center; gap: 15px; margin-bottom: 18px; }
+        .user-avatar { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 2px solid #ba68c8; }
+        .stars { color: #ffb300; }
+        .testimonial-text { font-style: italic; color: #555; margin-bottom: 22px; }
+        .review-photo { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; }
+
+        /* 投稿區塊樣式 */
+        .contribution-container {
+            max-width: 800px;
+            margin: -60px auto 80px;
+            padding: 0 25px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .contribution-card {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(106, 27, 154, 0.15);
+            border: 1px solid #f3e5f5;
+        }
+
+        .contribution-form { display: flex; flex-direction: column; gap: 20px; }
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-group label { font-weight: bold; color: #6a1b9a; font-size: 0.9rem; }
+        .form-group input, .form-group textarea {
+            padding: 12px 18px;
+            border: 2px solid #f3e5f5;
+            border-radius: 12px;
+            font-family: inherit;
+        }
+
+        .submit-story-btn {
+            background: #6a1b9a;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .submit-story-btn:hover { background: #4a148c; transform: translateY(-2px); }
+
+        /* ==========================================================================
+           6. 部落格與頁尾
+           ========================================================================== */
+        .blog-section { padding: 100px 0; max-width: 1250px; margin: 0 auto; }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 40px; padding: 0 25px; }
+        .blog-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 12px 35px rgba(0,0,0,0.06); transition: 0.3s; }
+        .blog-image { width: 100%; height: 210px; object-fit: cover; }
+        .blog-content { padding: 25px; }
+        .blog-tag { background: #f3e5f5; color: #6a1b9a; padding: 5px 14px; border-radius: 50px; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px; display: inline-block; }
+        
+        .footer { text-align: center; padding: 60px 20px; background: #2a0a52; color: white; }
+
+        @media (max-width: 600px) {
+            .hero-content h1 { font-size: 2.1rem; }
+            .main-header { flex-direction: column; gap: 15px; text-align: center; }
+            .contribution-card { padding: 25px; }
+        }
+    </style>
 </head>
 <body>
 
-<header class="main-header">
-    <div class="logo">🔮 <a href="index.html">CrystalMagic</a></div>
-    <div class="header-right">
-        <div class="search-container">
-            <input type="text" placeholder="搜尋水晶、功效..." class="search-input">
-            <button class="search-btn"><i class="fas fa-search"></i></button>
-        </div>
+    <!-- 導覽列 -->
+    <header class="main-header">
+        <div class="logo"><a href="index.html">🔮 CrystalMagic</a></div>
         <div class="auth-buttons">
             <a href="login.html" class="nav-button login">登入</a>
             <a href="register.html" class="nav-button register">註冊</a>
         </div>
-    </div>
-</header>
+    </header>
 
-<main>
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1>水晶入門：開啟你的能量之旅</h1>
-            <p>專業、友善、無壓力！新手第一次接觸水晶的完全指南。</p>
-            <a href="quiz.html" class="main-cta">立即尋找你的命定水晶</a>
-        </div>
-    </section>
-
-    <div class="guide-grid">
-        <section class="guide-item layer-1">
-            <div class="card-content">
-                <h2>🔮 1. 水晶介紹：起源</h2>
-                <img src="picture/crystal01.jpg" alt="水晶原礦" class="card-image">
-                <p>從地球深處而來的療癒密碼。了解水晶的形成與悠久歷史。</p>
+    <main>
+        <!-- 英雄區塊 -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>水晶入門：開啟你的能量之旅</h1>
+                <p>專業、友善、無壓力！新手第一次接觸水晶的完全指南。</p>
+                <a href="quiz.html" class="main-cta">立即尋找你的命定水晶</a>
             </div>
-            <a href="origin.html" class="cta-button">深入探索 »</a>
         </section>
 
-        <section class="guide-item layer-2">
-            <div class="card-content">
+        <!-- 水晶導覽網格 -->
+        <section class="guide-grid">
+            <article class="guide-item layer-1">
+                <h2>🔮 1. 水晶介紹：起源</h2>
+                <img src="picture/crystal01.jpg" alt="水晶原礦" class="card-image">
+                <p>從地球深處而來的療癒密碼。了解水晶的形成與歷史。</p>
+                <a href="origin.html" class="cta-button" style="background-color: #00897b;">深入探索 »</a>
+            </article>
+
+            <article class="guide-item layer-2">
                 <h2>💎 2. 水晶種類：色彩</h2>
                 <img src="picture/crystal02.jpg" alt="各種水晶" class="card-image">
                 <p>了解白水晶、紫水晶、粉晶等主流水晶的獨特特徵。</p>
-            </div>
-            <a href="type.html" class="cta-button">查看清單 »</a>
-        </section>
+                <a href="type.html" class="cta-button" style="background-color: #3949ab;">查看清單 »</a>
+            </article>
 
-        <section class="guide-item layer-3">
-            <div class="card-content">
+            <article class="guide-item layer-3">
                 <h2>✨ 3. 功效解讀：脈輪</h2>
                 <img src="picture/crystal03.jpg" alt="七脈輪" class="card-image">
-                <p>找到平衡身心、提升運勢的能量石，發揮情感與財富功效。</p>
-            </div>
-            <a href="effect.html" class="cta-button">查看功效 »</a>
-        </section>
+                <p>找到平衡身心、提升運勢的能量石，發揮功效。</p>
+                <a href="effect.html" class="cta-button" style="background-color: #d81b60;">查看功效 »</a>
+            </article>
 
-        <section class="guide-item layer-4">
-            <div class="card-content">
+            <article class="guide-item layer-4">
                 <h2>🛍️ 4. 挑選指南：尋找</h2>
                 <img src="picture/crystal04.jpg" alt="挑選水晶" class="card-image">
                 <p>教導您如何根據直覺或星座，挑選最適合自己的夥伴。</p>
-            </div>
-            <a href="pick.html" class="cta-button">開始配對 »</a>
-        </section>
+                <a href="pick.html" class="cta-button" style="background-color: #f9a825;">開始配對 »</a>
+            </article>
 
-        <section class="guide-item layer-5">
-            <div class="card-content">
+            <article class="guide-item layer-5">
                 <h2>💧 5. 淨化保養：能量</h2>
                 <img src="picture/crystal05.jpg" alt="水晶淨化" class="card-image">
-                <p>介紹月光、晶洞等多種淨化方式，教您如何正確保養。</p>
-            </div>
-            <a href="pages.html" class="cta-button">了解步驟 »</a>
-        </section>
+                <p>介紹多種淨化方式，教您如何正確保養水晶能量。</p>
+                <a href="pages.html" class="cta-button" style="background-color: #039be5;">了解步驟 »</a>
+            </article>
 
-        <section class="guide-item layer-6">
-            <div class="card-content">
+            <article class="guide-item layer-6">
                 <h2>🎁 6. 專屬商品：打造</h2>
                 <img src="picture/crystal06.jpg" alt="水晶飾品" class="card-image">
                 <p>瀏覽精心設計的手作飾品、高品質原礦或獨家課程。</p>
-            </div>
-            <a href="exclusive.html" class="cta-button">前往選購 »</a>
+                <a href="exclusive.html" class="cta-button" style="background-color: #fb8c00;">前往選購 »</a>
+            </article>
         </section>
 
-        <section class="guide-item layer-7">
-            <div class="card-content">
-                <h2>❓ 7. 常見問題：Q&A</h2>
-                <img src="picture/crystal07.jpg" alt="Q&A" class="card-image">
-                <p>整理了入門者最常詢問的問題，破解各種常見迷思。</p>
+        <!-- 使用者回饋區塊 -->
+        <section class="testimonials-section">
+            <div class="section-title">
+                <h2>來自心靈的真實回饋</h2>
+                <p>聽聽 CrystalMagic 的夥伴們如何開啟他們的能量之旅</p>
             </div>
-            <a href="question.html" class="cta-button">查看問答 »</a>
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <div class="user-info">
+                        <img src="picture/user01.jpg" alt="王小姐" class="user-avatar">
+                        <div>
+                            <h4>王小姐</h4>
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">「自從擺放了紫水晶簇，感覺睡眠品質變好了，心情也平靜許多。」</p>
+                    <img src="picture/review01.jpg" alt="實拍" class="review-photo">
+                </div>
+                <div class="testimonial-card">
+                    <div class="user-info">
+                        <img src="picture/user02.jpg" alt="林先生" class="user-avatar">
+                        <div>
+                            <h4>林先生</h4>
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">「買給女友的粉晶手鍊設計非常細緻，非常時尚好搭配！」</p>
+                    <img src="picture/review02.jpg" alt="實拍" class="review-photo">
+                </div>
+            </div>
         </section>
-    </div>
 
-    <section class="testimonials-section">
-        <div class="section-title">
-            <h2>來自心靈的真實回饋</h2>
-            <p>聽聽 CrystalMagic 的夥伴們如何開啟他們的能量之旅</p>
-        </div>
-        <div class="testimonials-container">
-            <div class="testimonial-card">
-                <div class="user-info">
-                    <img src="picture/user01.jpg" alt="王小姐" class="user-avatar">
-                    <div>
-                        <h4>王小姐</h4>
-                        <span class="stars">⭐⭐⭐⭐⭐</span>
-                    </div>
+        <!-- 投稿區塊 -->
+        <section class="contribution-container">
+            <div class="contribution-card">
+                <div class="contribution-header" style="text-align: center; margin-bottom: 25px;">
+                    <h3 style="color: #4a148c;">✨ 分享你的水晶能量故事</h3>
+                    <p style="color: #777;">你的故事能成為他人的光。歡迎投稿你的心得。</p>
                 </div>
-                <p class="testimonial-text">「自從擺放了紫水晶，感覺睡眠品質變好了，心情也平靜許多。」</p>
-                <img src="picture/review01.jpg" alt="實拍回饋" class="review-photo">
-            </div>
-            <div class="testimonial-card">
-                <div class="user-info">
-                    <img src="picture/user02.jpg" alt="林先生" class="user-avatar">
-                    <div>
-                        <h4>林先生</h4>
-                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                <form action="#" class="contribution-form">
+                    <div class="form-group">
+                        <label>您的稱呼</label>
+                        <input type="text" placeholder="例如：林小姐" required>
                     </div>
-                </div>
-                <p class="testimonial-text">「買給女友的粉晶手鍊設計非常細緻，完全不像傳統的水晶飾品！」</p>
-                <img src="picture/review02.jpg" alt="實拍回饋" class="review-photo">
+                    <div class="form-group">
+                        <label>能量故事</label>
+                        <textarea rows="4" placeholder="分享這顆水晶帶給你的感受..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>上傳實拍照片</label>
+                        <input type="file" accept="image/*">
+                    </div>
+                    <button type="submit" class="submit-story-btn">提交感悟</button>
+                </form>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="blog-section">
-        <div class="section-title">
-            <h2>水晶療癒專欄</h2>
-            <p>探索更多關於能量、色彩與心靈的知識</p>
-        </div>
-        <div class="blog-grid">
-            <article class="blog-card">
-                <div class="blog-image-wrapper">
+        <!-- 部落格區塊 -->
+        <section class="blog-section">
+            <div class="section-title">
+                <h2>水晶療癒專欄</h2>
+            </div>
+            <div class="blog-grid">
+                <article class="blog-card">
                     <img src="picture/blog01.jpg" alt="誕生石" class="blog-image">
-                </div>
-                <div class="blog-content">
-                    <span class="blog-tag">新手入門</span>
-                    <h3>【指南】找到你的本命石：月份誕生石全解析</h3>
-                    <a href="#" class="read-more">閱讀全文 →</a>
-                </div>
-            </article>
-            <article class="blog-card">
-                <div class="blog-image-wrapper">
+                    <div class="blog-content">
+                        <span class="blog-tag">新手入門</span>
+                        <h3>【指南】找到你的本命石：月份誕生石全解析</h3>
+                        <a href="#" class="read-more">閱讀全文 →</a>
+                    </div>
+                </article>
+                <article class="blog-card">
                     <img src="picture/blog02.jpg" alt="辦公室水晶" class="blog-image">
-                </div>
-                <div class="blog-content">
-                    <span class="blog-tag">生活應用</span>
-                    <h3>職場避邪：辦公室必備的五款能量水晶</h3>
-                    <a href="#" class="read-more">閱讀全文 →</a>
-                </div>
-            </article>
-        </div>
-        <div class="center-button">
-            <a href="#" class="secondary-cta">查看更多文章</a>
-        </div>
-    </section>
-</main>
-
-<a href="https://line.me" class="floating-chat" target="_blank">
-    <i class="fab fa-line"></i>
-    <span>即時諮詢</span>
-</a>
-
-<footer class="main-footer">
-    <div class="footer-container">
-        <div class="footer-brand">
-            <h3>🔮 CrystalMagic</h3>
-            <p>專業、友善、高品質。陪伴您在繁忙生活中找回內心的平靜。</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
+                    <div class="blog-content">
+                        <span class="blog-tag">生活應用</span>
+                        <h3>職場避邪：辦公室必備的五款能量水晶</h3>
+                        <a href="#" class="read-more">閱讀全文 →</a>
+                    </div>
+                </article>
             </div>
-        </div>
-        <div class="footer-links">
-            <h4>快速連結</h4>
-            <ul>
-                <li><a href="question.html">常見問題 Q&A</a></li>
-                <li><a href="blog.html">水晶專欄</a></li>
-            </ul>
-        </div>
-        <div class="footer-links">
-            <h4>購物說明</h4>
-            <ul>
-                <li><a href="#">退換貨政策</a></li>
-                <li><a href="#">隱私權聲明</a></li>
-            </ul>
-        </div>
-        <div class="footer-contact">
-            <h4>聯絡我們</h4>
-            <p><i class="fas fa-envelope"></i> service@crystalmagic.com</p>
-            <p><i class="fas fa-clock"></i> 週一至週五 10:00-18:00</p>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2026 CrystalMagic. All Rights Reserved.</p>
-    </div>
-</footer>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 CrystalMagic. 所有內容僅供參考。</p>
+    </footer>
 
 </body>
 </html>
