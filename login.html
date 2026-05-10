@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css"> 
     
     <style>
-        /* --- 完美版專屬樣式 --- */
+
         :root {
             --primary-purple: #6a1b9a;
             --accent-orange: #ff8a65;
@@ -43,7 +43,7 @@
 
         .login-card {
             background: var(--glass-white);
-            backdrop-filter: blur(10px); /* 磨砂玻璃效果 */
+            backdrop-filter: blur(10px); 
             width: 100%;
             max-width: 400px;
             padding: 50px 40px;
@@ -72,7 +72,7 @@
             margin-bottom: 35px;
         }
 
-        /* 表單樣式優化 */
+        
         .input-group {
             position: relative;
             margin-bottom: 25px;
@@ -106,7 +106,7 @@
             background: #fff;
         }
 
-        /* 忘記密碼 */
+        
         .forgot-pass {
             text-align: right;
             margin-top: -15px;
@@ -121,7 +121,7 @@
 
         .forgot-pass a:hover { color: var(--accent-orange); }
 
-        /* 登入按鈕 */
+        
         .login-btn {
             width: 100%;
             background: linear-gradient(135deg, #7b1fa2, #4a148c);
@@ -144,7 +144,7 @@
 
         .login-btn:active { transform: translateY(0); }
 
-        /* 註冊引導 */
+        
         .register-lead {
             margin-top: 30px;
             font-size: 0.9rem;
@@ -160,7 +160,7 @@
 
         .register-lead a:hover { border-bottom: 1.5px solid var(--accent-orange); }
 
-        /* 返回首頁按鈕 */
+        
         .home-link {
             position: absolute;
             top: 30px;
@@ -216,7 +216,7 @@
             event.preventDefault();
             const btn = event.target.querySelector('.login-btn');
             
-            // 增加視覺反饋
+
             btn.innerText = '正在召喚能量...';
             btn.style.opacity = '0.7';
             btn.style.pointerEvents = 'none';
