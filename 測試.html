@@ -7,10 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* ==========================================================================
-           1. 全域設定與導覽列
+           1. 全域設定
            ========================================================================== */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
         body {
             font-family: 'Noto Sans TC', sans-serif;
             background-color: #f8f9fa;
@@ -18,6 +17,9 @@
             line-height: 1.6;
         }
 
+        /* ==========================================================================
+           2. 導覽列
+           ========================================================================== */
         .main-header {
             display: flex;
             justify-content: space-between;
@@ -30,50 +32,35 @@
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-
         .logo a { font-size: 1.5rem; font-weight: 700; color: #6a1b9a; text-decoration: none; }
-
         .auth-buttons { display: flex; gap: 10px; }
-        .nav-button {
-            text-decoration: none;
-            padding: 8px 22px;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            transition: 0.3s;
-        }
+        .nav-button { text-decoration: none; padding: 8px 22px; border-radius: 25px; font-size: 0.9rem; font-weight: bold; transition: 0.3s; }
         .nav-button.login { color: #6a1b9a; border: 1px solid #6a1b9a; }
         .nav-button.register { background: #6a1b9a; color: white; }
 
         /* ==========================================================================
-           2. 英雄區塊 (Hero)
+           3. Hero Section
            ========================================================================== */
         .hero-section {
             background: linear-gradient(135deg, #4a148c 0%, #6a1b9a 40%, #ba68c8 100%);
             color: white;
             text-align: center;
             padding: 100px 20px;
-            position: relative;
         }
-
-        .hero-content h1 { font-size: 2.8rem; margin-bottom: 15px; text-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-
         .main-cta {
             display: inline-block;
             margin-top: 30px;
-            padding: 15px 40px;
+            padding: 12px 40px;
             background: #ff8a65;
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
-            box-shadow: 0 5px 15px rgba(255, 138, 101, 0.4);
-            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(255,138,101,0.4);
         }
-        .main-cta:hover { transform: translateY(-3px); background: #ff7043; }
 
         /* ==========================================================================
-           3. 水晶導覽網格 (Grid)
+           4. 水晶網格
            ========================================================================== */
         .guide-grid {
             max-width: 1200px;
@@ -83,267 +70,195 @@
             gap: 30px;
             padding: 0 20px;
         }
-
         .guide-item {
             background: white;
             border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            border-top: 6px solid #ddd;
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 6px solid #6a1b9a;
         }
-        .guide-item:hover { transform: translateY(-10px); }
-
         .card-image { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin: 15px 0; }
-        
-        /* 類別顏色 */
+        .cta-button { display: block; text-align: center; padding: 10px; border-radius: 50px; text-decoration: none; font-weight: bold; color: white; }
+
+        /* 配色系統 */
         .layer-1 { border-top-color: #00897b; } .layer-2 { border-top-color: #3949ab; }
         .layer-3 { border-top-color: #d81b60; } .layer-4 { border-top-color: #f9a825; }
         .layer-5 { border-top-color: #039be5; } .layer-6 { border-top-color: #fb8c00; }
 
-        .cta-button {
-            display: block;
-            text-align: center;
-            padding: 12px;
-            margin-top: auto;
-            border-radius: 50px;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
         /* ==========================================================================
-           4. 使用者見證與投稿 (Testimonials & Form)
+           5. 重點：見證與投稿並列區塊
            ========================================================================== */
-        .testimonials-section { background-color: #f3e5f5; padding: 80px 0 120px; }
-        
+        .feedback-section {
+            background-color: #f3e5f5;
+            padding: 80px 5%;
+        }
         .section-title { text-align: center; margin-bottom: 50px; }
-        .section-title h2 { color: #4a148c; font-size: 2rem; margin-bottom: 10px; }
+        .section-title h2 { color: #4a148c; font-size: 2rem; }
 
-        .testimonials-container {
+        /* 關鍵容器：使用 Flexbox 並列 */
+        .feedback-flex-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: row;
+            flex-wrap: wrap; /* 手機端自動換行 */
             justify-content: center;
             gap: 30px;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
+            align-items: flex-start; /* 頂部對齊 */
         }
 
-        .testimonial-card {
+        /* 評論卡片與投稿卡片統一樣式 */
+        .testimonial-card, .contribution-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 20px;
             padding: 25px;
+            flex: 1; /* 平分空間 */
+            min-width: 320px; /* 保證卡片不會太窄 */
+            max-width: 380px; /* 限制寬度避免過大 */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            height: auto;
+        }
+
+        /* 評論卡片細節 */
+        .user-info { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
+        .user-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+        .stars { color: #ffb300; font-size: 0.9rem; }
+        .testimonial-text { font-size: 0.95rem; color: #555; font-style: italic; margin-bottom: 15px; }
+        .review-photo { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; }
+
+        /* 投稿表單細節 */
+        .contribution-header h3 { color: #6a1b9a; margin-bottom: 10px; font-size: 1.3rem; }
+        .contribution-form { display: flex; flex-direction: column; gap: 15px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: bold; color: #6a1b9a; margin-bottom: 5px; }
+        .form-group input, .form-group textarea {
             width: 100%;
-            max-width: 450px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .user-info { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-        .user-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #ba68c8; }
-        .stars { color: #ffb300; }
-        .review-photo { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-top: 15px; }
-
-        /* 重要：優化後的投稿區塊大小與間距 */
-        .contribution-container {
-            max-width: 650px; /* 縮小容器寬度，讓表單居中且集中 */
-            margin: -60px auto 80px; /* 向上偏移 */
-            padding: 0 20px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .contribution-card {
-            background: white;
-            border-radius: 25px;
-            padding: 40px;
-            box-shadow: 0 15px 40px rgba(106, 27, 154, 0.15);
-            border: 1px solid rgba(106, 27, 154, 0.1);
-        }
-
-        .contribution-header { text-align: center; margin-bottom: 30px; }
-        .contribution-header h3 { color: #4a148c; font-size: 1.5rem; margin-bottom: 8px; }
-
-        .contribution-form { display: flex; flex-direction: column; gap: 18px; }
-        
-        .form-group { display: flex; flex-direction: column; gap: 8px; }
-        .form-group label { font-weight: bold; color: #6a1b9a; font-size: 0.9rem; }
-        
-        .form-group input[type="text"],
-        .form-group textarea {
-            padding: 12px 15px;
+            padding: 10px;
             border: 1px solid #e1bee7;
-            border-radius: 10px;
+            border-radius: 8px;
             font-family: inherit;
-            font-size: 1rem;
-            transition: 0.3s;
+            font-size: 0.9rem;
         }
-
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: #6a1b9a;
-            box-shadow: 0 0 0 3px rgba(106, 27, 154, 0.1);
-        }
-
-        .file-input-wrapper {
-            background: #fdfbff;
-            border: 2px dashed #ce93d8;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .submit-btn {
+        .submit-story-btn {
             background: #6a1b9a;
             color: white;
             border: none;
-            padding: 16px;
+            padding: 12px;
             border-radius: 50px;
             font-weight: bold;
-            font-size: 1.1rem;
             cursor: pointer;
             transition: 0.3s;
-            margin-top: 10px;
         }
-        .submit-btn:hover { background: #4a148c; transform: translateY(-2px); }
+        .submit-story-btn:hover { background: #4a148c; }
 
         /* ==========================================================================
-           5. 頁尾
+           6. 部落格與頁尾
            ========================================================================== */
-        .footer { text-align: center; padding: 40px 20px; background: #2a0a52; color: white; }
+        .footer { text-align: center; padding: 40px; background: #2a0a52; color: white; }
 
-        @media (max-width: 600px) {
-            .hero-content h1 { font-size: 2rem; }
-            .contribution-card { padding: 25px; }
+        /* 響應式調整 */
+        @media (max-width: 992px) {
+            .feedback-flex-container { flex-direction: column; align-items: center; }
+            .testimonial-card, .contribution-card { max-width: 100%; width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 導覽列 -->
     <header class="main-header">
         <div class="logo"><a href="index.html">🔮 CrystalMagic</a></div>
         <div class="auth-buttons">
-            <a href="login.html" class="nav-button login">登入</a>
-            <a href="register.html" class="nav-button register">註冊</a>
+            <a href="#" class="nav-button login">登入</a>
+            <a href="#" class="nav-button register">註冊</a>
         </div>
     </header>
 
     <main>
-        <!-- 橫幅 -->
         <section class="hero-section">
             <div class="hero-content">
                 <h1>水晶入門：開啟你的能量之旅</h1>
                 <p>專業、友善、無壓力！新手第一次接觸水晶的完全指南。</p>
-                <a href="quiz.html" class="main-cta">立即尋找你的命定水晶</a>
+                <a href="#" class="main-cta">立即尋找你的命定水晶</a>
             </div>
         </section>
 
-        <!-- 七層水晶介紹 -->
+        <!-- 水晶卡片區塊 (部分截取作為示例) -->
         <section class="guide-grid">
             <article class="guide-item layer-1">
-                <h2>🔮 1. 起源介紹</h2>
-                <img src="picture/crystal01.jpg" alt="起源" class="card-image">
-                <p>從地球深處而來的療癒密碼。了解水晶的形成與歷史。</p>
+                <h2>🔮 起源介紹</h2>
+                <img src="picture/crystal01.jpg" alt="水晶" class="card-image">
+                <p>了解水晶的形成與歷史。</p>
                 <a href="#" class="cta-button" style="background: #00897b;">深入探索 »</a>
             </article>
-
             <article class="guide-item layer-2">
-                <h2>💎 2. 色彩種類</h2>
-                <img src="picture/crystal02.jpg" alt="色彩" class="card-image">
-                <p>了解白水晶、紫水晶、粉晶等主流水晶的獨特特徵。</p>
+                <h2>💎 種類色彩</h2>
+                <img src="picture/crystal02.jpg" alt="水晶" class="card-image">
+                <p>了解常見的水晶種類與特徵。</p>
                 <a href="#" class="cta-button" style="background: #3949ab;">查看清單 »</a>
             </article>
-
-            <article class="guide-item layer-3">
-                <h2>✨ 3. 脈輪功效</h2>
-                <img src="picture/crystal03.jpg" alt="脈輪" class="card-image">
-                <p>找到平衡身心、提升運勢的能量石，發揮最強功效。</p>
-                <a href="#" class="cta-button" style="background: #d81b60;">了解更多 »</a>
-            </article>
-
-            <article class="guide-item layer-4">
-                <h2>🛍️ 4. 挑選指南</h2>
-                <img src="picture/crystal04.jpg" alt="挑選" class="card-image">
-                <p>教導您如何根據直覺或星座，挑選最適合自己的夥伴。</p>
-                <a href="#" class="cta-button" style="background: #f9a825;">開始配對 »</a>
-            </article>
-
-            <article class="guide-item layer-5">
-                <h2>💧 5. 淨化保養</h2>
-                <img src="picture/crystal05.jpg" alt="淨化" class="card-image">
-                <p>介紹月光、晶洞等多種淨化方式，讓水晶能量常保純淨。</p>
-                <a href="#" class="cta-button" style="background: #039be5;">學習保養 »</a>
-            </article>
-
-            <article class="guide-item layer-6">
-                <h2>🎁 6. 專屬商品</h2>
-                <img src="picture/crystal06.jpg" alt="商品" class="card-image">
-                <p>瀏覽精心設計的手作飾品、高品質原礦或獨家課程。</p>
-                <a href="#" class="cta-button" style="background: #fb8c00;">前往選購 »</a>
-            </article>
         </section>
 
-        <!-- 見證區塊 -->
-        <section class="testimonials-section">
+        <!-- 使用者回饋與投稿區塊並列 -->
+        <section class="feedback-section">
             <div class="section-title">
                 <h2>來自心靈的真實回饋</h2>
-                <p>聽聽 CrystalMagic 夥伴們的使用心得</p>
+                <p>與我們分享你的水晶能量故事</p>
             </div>
-            <div class="testimonials-container">
+            
+            <div class="feedback-flex-container">
+                <!-- 見證 1：王小姐 (可選) -->
                 <div class="testimonial-card">
                     <div class="user-info">
-                        <img src="picture/user01.jpg" alt="User" class="user-avatar">
-                        <div><h4>王小姐</h4><span class="stars">⭐⭐⭐⭐⭐</span></div>
-                    </div>
-                    <p class="testimonial-text">「自從擺放了紫水晶簇，感覺睡眠品質變好了，心情也平靜許多。」</p>
-                    <img src="picture/review01.jpg" alt="Review" class="review-photo">
-                </div>
-                <div class="testimonial-card">
-                    <div class="user-info">
-                        <img src="picture/user02.jpg" alt="User" class="user-avatar">
-                        <div><h4>林先生</h4><span class="stars">⭐⭐⭐⭐⭐</span></div>
-                    </div>
-                    <p class="testimonial-text">「買給女友的粉晶手鍊設計非常細緻，非常時尚好搭配！」</p>
-                    <img src="picture/review02.jpg" alt="Review" class="review-photo">
-                </div>
-            </div>
-        </section>
-
-        <!-- 調整大小後的投稿區塊 -->
-        <section class="contribution-container">
-            <div class="contribution-card">
-                <div class="contribution-header">
-                    <h3>✨ 分享你的水晶能量故事</h3>
-                    <p>你的故事能成為他人的光。歡迎投稿心得與實拍照片。</p>
-                </div>
-                <form action="#" class="contribution-form">
-                    <div class="form-group">
-                        <label for="name">您的稱呼</label>
-                        <input type="text" id="name" placeholder="例如：林小姐" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="story">能量故事</label>
-                        <textarea id="story" rows="4" placeholder="分享這顆水晶帶給你的轉變與感受..." required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>實拍照片分享</label>
-                        <div class="file-input-wrapper">
-                            <input type="file" accept="image/*">
-                            <p style="font-size: 0.8rem; color: #777; margin-top: 5px;">點擊或拖曳照片至此</p>
+                        <img src="picture/user01.jpg" alt="王小姐" class="user-avatar">
+                        <div>
+                            <h4>王小姐</h4>
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
                         </div>
                     </div>
-                    <button type="submit" class="submit-btn">提交我的故事</button>
-                </form>
+                    <p class="testimonial-text">「自從擺放了紫水晶簇，感覺睡眠品質變好了，心情也平靜許多。」</p>
+                    <img src="picture/review01.jpg" alt="實拍回饋" class="review-photo">
+                </div>
+
+                <!-- 見證 2：林先生 -->
+                <div class="testimonial-card">
+                    <div class="user-info">
+                        <img src="picture/user02.jpg" alt="林先生" class="user-avatar">
+                        <div>
+                            <h4>林先生</h4>
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">「買給女友的粉晶手鍊設計細緻，完全不像傳統水晶，非常時尚！」</p>
+                    <img src="picture/review02.jpg" alt="實拍回饋" class="review-photo">
+                </div>
+
+                <!-- 投稿專區：並列在右側 -->
+                <div class="contribution-card">
+                    <div class="contribution-header">
+                        <h3>✨ 我要投稿</h3>
+                        <p style="font-size: 0.8rem; color: #777;">分享您的感悟，點亮他人的能量之路。</p>
+                    </div>
+                    <form action="#" class="contribution-form">
+                        <div class="form-group">
+                            <label>您的稱呼</label>
+                            <input type="text" placeholder="例如：林小姐" required>
+                        </div>
+                        <div class="form-group">
+                            <label>能量故事</label>
+                            <textarea rows="3" placeholder="分享您的使用感受..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>上傳實拍 (可選)</label>
+                            <input type="file" accept="image/*" style="border:none; padding:0;">
+                        </div>
+                        <button type="submit" class="submit-story-btn">提交感悟</button>
+                    </form>
+                </div>
             </div>
         </section>
     </main>
 
     <footer class="footer">
-        <p>&copy; 2026 CrystalMagic. 探索內在能量之旅。</p>
+        <p>&copy; 2026 CrystalMagic. 所有內容僅供參考。</p>
     </footer>
 
 </body>
