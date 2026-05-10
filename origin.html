@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>水晶介紹：起源 - 水晶魔法 | CrystalMagic</title>
     <style>
-        /* ==========================================================================
-           CrystalMagic 專屬樣式表
-           ========================================================================== */
 
         * {
             box-sizing: border-box;
@@ -24,9 +21,7 @@
             overflow-x: hidden;
         }
 
-        /* ==========================================================================
-           導覽列 (Navbar) - 左右佈局優化
-           ========================================================================== */
+
         .navbar {
             background-color: #ffffff;
             width: 100%; 
@@ -38,10 +33,10 @@
 
         .nav-container {
             width: 100%;
-            max-width: 1400px; /* 增加最大寬度讓左右拉更開 */
+            max-width: 1400px;
             margin: 0 auto;    
             display: flex;
-            justify-content: space-between; /* 關鍵：Logo 在左，選單在右 */
+            justify-content: space-between; 
             align-items: center;
             padding: 15px 50px;
         }
@@ -58,7 +53,7 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 30px; /* 增加項目間距 */
+            gap: 30px; 
             margin: 0;
         }
 
@@ -88,9 +83,7 @@
             background-color: #4a148c;
         }
 
-        /* ==========================================================================
-           內容區域
-           ========================================================================== */
+
         #hero {
             text-align: center;
             padding: 80px 20px;
@@ -105,7 +98,7 @@
             font-size: clamp(2rem, 5vw, 3rem);
         }
 
-        /* 手風琴主題色 */
+        
         .theme-1 { --theme-color: #3949ab; --theme-bg: #e8eaf6; }
         .theme-2 { --theme-color: #0288d1; --theme-bg: #e1f5fe; }
         .theme-3 { --theme-color: #f57c00; --theme-bg: #fff3e0; }
@@ -177,7 +170,6 @@
             border-top: 1px solid #eee;
         }
 
-        /* 響應式調整 */
         @media (max-width: 768px) {
             .nav-container { padding: 15px 20px; flex-direction: column; gap: 15px; }
             .nav-links { gap: 15px; flex-wrap: wrap; justify-content: center; }
@@ -186,7 +178,6 @@
 </head>
 <body>
 
-    <!-- 導覽列 -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">🔮 CrystalMagic</a>
