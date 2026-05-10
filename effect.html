@@ -6,7 +6,7 @@
     <title>✨ 功效解讀：脈輪對應與能量療癒 - 水晶魔法 | CrystalMagic</title>
     
     <style>
-        /* 全局基礎設定 */
+
         :root {
             --primary-purple: #673ab7;
             --max-width: 1200px; /* 內容區塊仍建議保持適中寬度以利閱讀 */
@@ -27,9 +27,6 @@
             overflow-x: hidden;
         }
 
-        /* ==========================================================================
-           1. 全螢幕導覽列 - 兩側對齊
-           ========================================================================== */
         .main-header {
             width: 100%;
             background-color: white;
@@ -41,10 +38,10 @@
 
         .nav-container {
             width: 100%;
-            max-width: 100%; /* 解鎖寬度限制 */
-            padding: 15px 60px; /* 側邊增加留白，避免貼死螢幕邊緣 */
+            max-width: 100%; 
+            padding: 15px 60px; 
             display: flex;
-            justify-content: space-between; /* 關鍵：Logo 在左，選單在右 */
+            justify-content: space-between;
             align-items: center;
         }
 
@@ -85,9 +82,7 @@
             transform: translateY(-2px);
         }
 
-        /* ==========================================================================
-           2. 頁面標題 - 背景橫跨全螢幕
-           ========================================================================== */
+        
         .page-header {
             text-align: center;
             padding: 100px 20px;
@@ -102,9 +97,7 @@
             margin-bottom: 15px;
         }
 
-        /* ==========================================================================
-           3. 主內容區塊 - 保持內容集中利於閱讀
-           ========================================================================== */
+
         .main-content {
             max-width: var(--max-width);
             margin: 0 auto;
@@ -129,7 +122,7 @@
             border-radius: 2px;
         }
 
-        /* 脈輪網格佈局 */
+
         .chakra-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -173,7 +166,7 @@
             font-size: 0.95rem;
         }
 
-        /* 脈輪顏色定義 */
+        
         .chakra-7 { border-top-color: #9c27b0; }
         .chakra-6 { border-top-color: #3f51b5; }
         .chakra-5 { border-top-color: #03a9f4; }
@@ -182,14 +175,14 @@
         .chakra-2 { border-top-color: #ff9800; }
         .chakra-1 { border-top-color: #f44336; }
 
-        /* 速查表格 */
+
         .table-container {
             background: white;
             padding: 40px;
             border-radius: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             margin: 40px 0;
-            overflow-x: auto; /* 確保小螢幕可捲動表格 */
+            overflow-x: auto; 
         }
 
         .needs-table {
@@ -211,7 +204,7 @@
             border-bottom: 1px solid #eee;
         }
 
-        /* CTA 區塊 */
+  
         .cta-box {
             text-align: center;
             margin: 80px 0;
@@ -241,7 +234,7 @@
             box-shadow: 0 8px 20px rgba(255, 112, 67, 0.4);
         }
 
-        /* 頁尾 */
+        
         .footer {
             text-align: center;
             padding: 60px 20px;
@@ -255,10 +248,10 @@
 
 <header class="main-header">
     <div class="nav-container">
-        <!-- 左側 Logo -->
+
         <a href="index.html" class="logo">🔮 CrystalMagic</a>
         
-        <!-- 右側選單 -->
+
         <nav class="nav-menu">
             <a href="index.html" class="nav-button login">首頁</a>
             <li><a href="origin.html" class="active">水晶起源</a></li>
