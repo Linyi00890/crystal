@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑銀鈦：極致能量的守護者 | CrystalMagic</title>
+    <style>
+        :root {
+            --bg-deep: #0a0a0a;
+            --accent-silver: #c0c0c0;
+            --text-silver: #e0e0e0;
+            --glow-silver: rgba(192, 192, 192, 0.4);
+            --crystal-dark: #1a1a1a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-silver);
+            font-family: 'Noto Sans TC', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        /* 動態背景線條 - 模擬髮絲紋 */
+        .background-lines {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000 100%);
+            overflow: hidden;
+        }
+
+        .line {
+            position: absolute;
+            background: linear-gradient(to bottom, transparent, var(--accent-silver), transparent);
+            width: 1px;
+            height: 200px;
+            opacity: 0.2;
+            animation: moveDown linear infinite;
+        }
+
+        @keyframes moveDown {
+            from { transform: translateY(-200px) rotate(25deg); }
+            to { transform: translateY(1200px) rotate(25deg); }
+        }
+
+        /* 英雄區塊 */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: radial-gradient(circle, rgba(60,60,60,0.3) 0%, transparent 70%);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            letter-spacing: 15px;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #fff, #777, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px var(--glow-silver));
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            color: #aaa;
+        }
+
+        /* 內容區塊 */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 100px 20px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            border-left: 4px solid var(--accent-silver);
+            padding-left: 20px;
+            margin-bottom: 40px;
+            color: #fff;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background: var(--crystal-dark);
+            padding: 40px;
+            border-radius: 2px;
+            border: 1px solid #333;
+            transition: 0.4s;
+            position: relative;
+        }
+
+        .card:hover {
+            border-color: var(--accent-silver);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: var(--accent-silver);
+        }
+
+        /* 能量環節 */
+        .energy-box {
+            background: linear-gradient(135deg, #111 0%, #222 100%);
+            border-radius: 15px;
+            padding: 50px;
+            text-align: center;
+            border: 1px dashed #444;
+        }
+
+        .energy-list {
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .energy-item {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        /* 底部 */
+        footer {
+            text-align: center;
+            padding: 100px 20px;
+            color: #555;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            border: 1px solid var(--accent-silver);
+            color: var(--accent-silver);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--accent-silver);
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-lines" id="bgLines"></div>
+
+    <header class="hero">
+        <h1>黑銀鈦</h1>
+        <p>BLACK SILVER RUTILATED</p>
+        <p style="font-size: 0.9rem; margin-top: 20px;">— 領袖之石 · 極致避邪 · 財富匯聚 —</p>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2 class="section-title">關於黑銀鈦 (蜻蜓鈦)</h2>
+            <p>黑銀鈦晶是髮晶族群中能量最強大的品種之一。其內部包覆著銀黑色的<b>板鈦礦（Brookite）</b>與金紅石，呈現出如蜻蜓羽翼般或放射狀的銀色髮絲，因此在坊間也有「蜻蜓鈦」之美譽。它不僅擁有黑髮晶的擋煞能力，更具備鈦晶的招財氣場。</p>
+        </section>
+
+        <div class="grid" style="margin-top: 60px;">
+            <div class="card">
+                <h3>🛡️ 強力避邪化煞</h3>
+                <p>黑銀鈦具有極強的護身能量，能有效吸收並擋掉周遭的負能量與靈異干擾，適合出入醫院或磁場雜亂場所的人士配戴。</p>
+            </div>
+            <div class="card">
+                <h3>💼 提升領導魅力</h3>
+                <p>其對應海底輪，能增強自信與果斷力，幫助領導者在決策時保持清醒，並散發讓人信服的威嚴感。</p>
+            </div>
+            <div class="card">
+                <h3>💰 招財與事業</h3>
+                <p>不同於一般黃鈦晶的顯赫財運，黑銀鈦更傾向於「守財」與「穩定的正財」，能幫助事業突破瓶頸並防小人暗算。</p>
+            </div>
+        </div>
+
+        <section class="energy-box">
+            <h2 style="margin-bottom: 30px;">三位一體的能量脈輪</h2>
+            <div class="energy-list">
+                <div class="energy-item">🔴 海底輪 (安定)</div>
+                <div class="energy-item">🔘 太陽神經叢 (自信)</div>
+                <div class="energy-item">⚪ 頂輪 (直覺)</div>
+            </div>
+        </section>
+
+        <section style="margin-top: 80px; text-align: center;">
+            <h2 class="section-title" style="border:none; padding:0;">配戴建議</h2>
+            <p>建議配戴在<b>左手</b>以吸收其純淨的防禦能量；</p>
+            <p>若正處於情緒低落或磁場不佳時期，可改戴<b>右手</b>以協助排除體內濁氣。</p>
+            
+            <a href="index.html" class="back-btn">返回水晶首頁</a>
+        </section>
+    </div>
+
+    <footer>
+        &copy; 2026 CrystalMagic. The Power of Dark Light.
+    </footer>
+
+    <script>
+        // 動態生成髮絲背景
+        const bg = id => document.getElementById(id);
+        const lineCount = 40;
+        for(let i=0; i<lineCount; i++) {
+            let line = document.createElement('div');
+            line.className = 'line';
+            line.style.left = Math.random() * 100 + 'vw';
+            line.style.top = Math.random() * 100 + 'vh';
+            line.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            line.style.animationDelay = (Math.random() * 5) + 's';
+            bg('bgLines').appendChild(line);
+        }
+    </script>
+</body>
+</html>
