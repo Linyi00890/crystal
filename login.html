@@ -4,33 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>會員登入 | CrystalMagic 水晶魔法</title>
-    <link rel="stylesheet" href="styles.css"> 
     
     <style>
-
         :root {
             --primary-purple: #6a1b9a;
+            --dark-purple: #4a148c;
             --accent-orange: #ff8a65;
             --glass-white: rgba(255, 255, 255, 0.9);
         }
 
+        /* 禁止選取文字以保護內容 */
         body {
             margin: 0;
             padding: 0;
             min-height: 100vh;
             font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
-            /* 動態能量背景 */
             background: linear-gradient(-45deg, #f3e5f5, #e1f5fe, #fff3e0, #fce4ec);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             display: flex;
             flex-direction: column;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+
+        /* 返回首頁按鈕樣式 */
+        .back-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            color: var(--primary-purple);
+            font-weight: bold;
+            padding: 10px 20px;
+            background: var(--glass-white);
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 100;
+        }
+
+        .back-home:hover {
+            background: var(--primary-purple);
+            color: white;
+            transform: translateX(5px);
         }
 
         .login-wrapper {
@@ -46,36 +72,35 @@
             backdrop-filter: blur(10px); 
             width: 100%;
             max-width: 400px;
-            padding: 50px 40px;
+            padding: 40px;
             border-radius: 24px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.3);
             text-align: center;
+            box-sizing: border-box;
         }
 
-        .login-card .brand-icon {
+        .brand-icon {
             font-size: 3rem;
             margin-bottom: 10px;
             display: block;
         }
 
-        .login-card h1 {
+        h1 {
             color: var(--primary-purple);
             font-size: 1.8rem;
-            margin-bottom: 8px;
+            margin: 0 0 8px 0;
             letter-spacing: 2px;
         }
 
-        .login-card p {
+        .subtitle {
             color: #888;
             font-size: 0.9rem;
             margin-bottom: 35px;
         }
 
-        
         .input-group {
-            position: relative;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-align: left;
         }
 
@@ -85,7 +110,6 @@
             font-weight: 600;
             color: #555;
             font-size: 0.85rem;
-            padding-left: 5px;
         }
 
         .input-group input {
@@ -94,22 +118,21 @@
             border: 1.5px solid #eee;
             border-radius: 12px;
             font-size: 1rem;
-            transition: all 0.3s ease;
+            transition: 0.3s;
             background: rgba(255, 255, 255, 0.8);
             box-sizing: border-box;
+            -webkit-user-select: text; /* 允許輸入框選取文字 */
+            user-select: text;
         }
 
         .input-group input:focus {
             outline: none;
             border-color: var(--primary-purple);
             box-shadow: 0 0 0 4px rgba(106, 27, 154, 0.1);
-            background: #fff;
         }
 
-        
         .forgot-pass {
             text-align: right;
-            margin-top: -15px;
             margin-bottom: 25px;
         }
 
@@ -121,7 +144,6 @@
 
         .forgot-pass a:hover { color: var(--accent-orange); }
 
-        
         .login-btn {
             width: 100%;
             background: linear-gradient(135deg, #7b1fa2, #4a148c);
@@ -132,19 +154,15 @@
             font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: 0.3s;
             box-shadow: 0 8px 20px rgba(74, 20, 140, 0.2);
         }
 
         .login-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(74, 20, 140, 0.3);
             filter: brightness(1.1);
         }
 
-        .login-btn:active { transform: translateY(0); }
-
-        
         .register-lead {
             margin-top: 30px;
             font-size: 0.9rem;
@@ -155,32 +173,25 @@
             color: var(--accent-orange);
             text-decoration: none;
             font-weight: bold;
-            margin-left: 5px;
         }
 
-        .register-lead a:hover { border-bottom: 1.5px solid var(--accent-orange); }
-
-        
-        .home-link {
-            position: absolute;
-            top: 30px;
-            left: 30px;
-            color: var(--primary-purple);
-            text-decoration: none;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 0.8rem;
         }
     </style>
 </head>
 <body>
 
+    <a href="index.html" class="back-home">🏠 返回首頁</a>
 
     <main class="login-wrapper">
         <section class="login-card">
             <span class="brand-icon">🔮</span>
             <h1>歡迎回來</h1>
-            <p>連結您的專屬水晶能量</p>
+            <p class="subtitle">連結您的專屬水晶能量</p>
             
             <form id="loginForm" onsubmit="handleLogin(event)">
                 <div class="input-group">
@@ -206,28 +217,38 @@
         </section>
     </main>
 
-    <footer class="footer" style="background:transparent; color:#888;">
+    <footer class="footer">
         <p>&copy; 2026 CrystalMagic. 每一份連結都是宇宙的安排。</p>
     </footer>
 
     <script>
+        // 禁用右鍵
+        document.addEventListener('contextmenu', e => e.preventDefault());
+
+        // 禁用 F12 與相關開發者快捷鍵
+        document.onkeydown = function(e) {
+            if (e.keyCode === 123 || 
+               (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || 
+               (e.ctrlKey && e.keyCode === 85)) {
+                return false;
+            }
+        };
+
+        // 登入邏輯處理
         function handleLogin(event) {
             event.preventDefault();
             const btn = event.target.querySelector('.login-btn');
             
-
             btn.innerText = '正在召喚能量...';
             btn.style.opacity = '0.7';
             btn.style.pointerEvents = 'none';
 
+            // 模擬請求延遲
             setTimeout(() => {
                 alert('登入成功！即將帶領您進入水晶世界。');
                 window.location.href = 'index.html';
             }, 1500);
         }
     </script>
-
-    <a href="index.html" class="back-home"><span>🏠</span> 返回首頁</a>
-    
 </body>
 </html>
