@@ -28,7 +28,7 @@
             overflow-x: hidden;
         }
 
-        /* --- 修正後的導覽列 (Navbar) --- */
+        /* --- 導覽列 --- */
         .navbar {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -48,7 +48,7 @@
             margin: 0 auto;
             padding: 0 50px;
             display: flex;
-            justify-content: space-between; /* 關鍵：Logo 靠左，選單靠右 */
+            justify-content: space-between;
             align-items: center;
         }
 
@@ -63,8 +63,8 @@
 
         .nav-links {
             display: flex;
-            gap: 30px;
-            list-style: none; /* 移除點點 */
+            gap: 20px;
+            list-style: none;
             margin: 0;
             padding: 0;
         }
@@ -73,7 +73,7 @@
             text-decoration: none;
             color: #555;
             font-weight: 500;
-            font-size: 1.05rem;
+            font-size: 1rem;
             transition: 0.3s;
             padding: 8px 12px;
             border-radius: 8px;
@@ -94,7 +94,7 @@
 
         .faq-intro {
             text-align: center;
-            padding: 120px 20px;
+            padding: 100px 20px;
             background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
             border-bottom: 4px solid #90caf9;
             width: 100%;
@@ -102,46 +102,51 @@
         
         .faq-intro h1 {
             color: var(--dark-blue);
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 20px;
         }
 
         .main-content {
             width: 100%;
-            max-width: 1000px; 
-            padding: 80px 40px;
+            max-width: 900px; 
+            padding: 60px 20px;
         }
 
         .section-title {
             text-align: center;
             color: var(--primary-blue);
-            margin-bottom: 60px;
+            margin-bottom: 50px;
             font-size: 2.2rem;
         }
 
-        /* 手風琴效果樣式 */
+        /* 手風琴效果 */
         .accordion-item {
-            border-radius: 20px;
-            margin-bottom: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
             overflow: hidden;
             background-color: white;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-            transition: 0.4s;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
         }
 
         .accordion-header {
             width: 100%;
-            padding: 30px 40px;
+            padding: 25px 30px;
             background-color: #fff;
-            color: var(--primary-blue);
+            color: #444;
             border: none;
             text-align: left;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .accordion-header:hover {
+            background-color: #fafafa;
         }
 
         .accordion-header.active {
@@ -150,25 +155,33 @@
         }
 
         .accordion-content {
-            padding: 0 40px;
+            padding: 0 30px;
             max-height: 0;
             overflow: hidden;
-            transition: all 0.5s ease;
+            transition: all 0.4s ease-out;
+            background-color: #fff;
+        }
+
+        .accordion-content .inner-text {
+            padding: 20px 0 30px 0;
+            border-top: 1px solid #f0f0f0;
+            color: #555;
+            font-size: 1.05rem;
         }
 
         .cta-section {
             text-align: center;
-            margin-top: 40px;
-            padding: 80px 40px;
+            margin-top: 50px;
+            padding: 60px 30px;
             background: white;
-            border-radius: 30px;
+            border-radius: 20px;
             border: 2px dashed #bbdefb;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 18px 50px;
-            border-radius: 100px;
+            padding: 15px 40px;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
             margin: 10px;
@@ -180,18 +193,17 @@
 
         .footer {
             text-align: center;
-            padding: 60px 0;
+            padding: 50px 0;
             background: #fff;
             border-top: 1px solid #eee;
             width: 100%;
         }
 
-        /* 響應式：手機版選單 */
         @media (max-width: 992px) {
-            .navbar { height: auto; padding: 20px 0; }
-            .nav-content { flex-direction: column; gap: 15px; }
-            .nav-links { gap: 10px; flex-wrap: wrap; justify-content: center; }
-            .faq-intro h1 { font-size: 2.2rem; }
+            .navbar { height: auto; padding: 15px 0; }
+            .nav-content { flex-direction: column; gap: 10px; }
+            .nav-links { gap: 5px; flex-wrap: wrap; justify-content: center; }
+            .faq-intro h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -199,10 +211,7 @@
 
 <nav class="navbar">
     <div class="nav-content">
-        <!-- 左側 Logo -->
         <a href="index.html" class="logo">🔮 CrystalMagic</a>
-        
-        <!-- 右側 導覽連結 -->
         <ul class="nav-links">
             <li><a href="index.html">首頁</a></li>
             <li><a href="origin.html">水晶起源</a></li>
@@ -219,37 +228,107 @@
 <main class="full-width-container">
     <section class="faq-intro">
         <h1>❓ 新手常見問題與迷思破解</h1>
-        <p>在這裡，我們解答所有關於水晶的佩戴、淨化、搭配以及能量使用的疑難雜症。</p>
+        <p>為您解答關於水晶佩戴、淨化與能量使用的所有疑慮</p>
     </section>
 
     <div class="main-content">
         <h2 class="section-title">常見 Q&A 快速導覽</h2>
 
+        <!-- Q1 -->
         <div class="accordion-item">
             <button class="accordion-header">
                 Q1: 水晶手鍊應該戴在左手還是右手？
-                <span class="icon">+</span>
+                <span class="icon">▼</span>
             </button>
             <div class="accordion-content">
-                <p>傳統上遵循<strong>「左進右出」</strong>原則：</p>
-                <ul style="padding: 20px;">
-                    <li><strong>左手（吸納）：</strong> 適合招財、招桃花（如黃水晶、粉晶）。</li>
-                    <li><strong>右手（排出）：</strong> 適合擋煞、避邪（如黑曜石）。</li>
-                </ul>
+                <div class="inner-text">
+                    通常遵循<strong>「左進右出」</strong>原則：
+                    <ul style="margin-top: 10px; margin-left: 20px;">
+                        <li><strong>左手（吸納）：</strong> 適合佩戴招財、招桃花、求好運的水晶（如：黃水晶、粉晶、紫晶）。</li>
+                        <li><strong>右手（排出）：</strong> 適合佩戴辟邪、擋煞、過濾負能量的水晶（如：黑曜石、黑碧璽）。</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
+        <!-- Q2 -->
         <div class="accordion-item">
             <button class="accordion-header">
                 Q2: 我可以同時佩戴多條不同種類的水晶嗎？
-                <span class="icon">+</span>
+                <span class="icon">▼</span>
             </button>
             <div class="accordion-content">
-                <p style="padding: 20px;"><strong>答案是可以的！</strong> 不同水晶的能量通常會互補共振。只需注意硬度差異，避免劇烈碰撞造成刮痕即可。</p>
+                <div class="inner-text">
+                    <strong>完全可以！</strong> 水晶能量通常是互補的。建議新手一次佩戴不超過 3 條，以免能量感過於強烈造成頭暈。另外要注意硬度不同的水晶（如莫氏硬度較低的與較高的）摩擦可能產生刮痕。
+                </div>
             </div>
         </div>
 
-        <!-- CTA 區塊 -->
+        <!-- Q3 -->
+        <div class="accordion-item">
+            <button class="accordion-header">
+                Q3: 水晶需要多久淨化（消磁）一次？
+                <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="inner-text">
+                    建議<strong>每個月至少大淨化一次</strong>，或是在出入醫院、墳場等能量較混雜的場所後立即消磁。若感覺水晶看起來變得暗沈、觸摸時感覺黏膩或沉重，也是需要淨化的信號。
+                </div>
+            </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="accordion-item">
+            <button class="accordion-header">
+                Q4: 睡覺時可以戴著水晶嗎？
+                <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="inner-text">
+                    <strong>不建議。</strong> 睡眠是身體與水晶共同休息的時間。像黃水晶或鈦晶等高能量水晶容易讓思緒活躍，影響睡眠品質。除非是為了助眠佩戴的月光石或紫水晶，否則建議睡前取下放回消磁盒。
+                </div>
+            </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="accordion-item">
+            <button class="accordion-header">
+                Q5: 水晶斷了或珠子裂開代表什麼？
+                <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="inner-text">
+                    從能量角度看，這通常代表水晶<strong>為主人擋下了災難或能量已飽和</strong>。不必過於驚慌，若是線斷了重新串起即可；若是珠子碎裂，建議將其埋入土中回歸自然，不宜繼續佩戴。
+                </div>
+            </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="accordion-item">
+            <button class="accordion-header">
+                Q6: 洗澡時可以戴著水晶嗎？
+                <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="inner-text">
+                    <strong>建議取下。</strong> 洗髮精、沐浴乳等化學藥劑會侵蝕水晶表層的亮度，長期接觸也會使彈力繩加速老化、斷裂。特別是像青金石、珍珠等較敏感的種類，更應避免碰水。
+                </div>
+            </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="accordion-item">
+            <button class="accordion-header">
+                Q7: 別人可以觸摸我的水晶嗎？
+                <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="inner-text">
+                    水晶會紀錄觸碰者的能量磁場。若是親近的家人朋友無意觸碰並無大礙，但若是不喜歡或能量不合的人觸碰後，建議<strong>立即進行消磁淨化</strong>，以確保水晶與您的連結純淨。
+                </div>
+            </div>
+        </div>
+
         <section class="cta-section">
             <h3>還有其他想了解的疑問嗎？</h3>
             <p>我們的能量諮詢師隨時為您服務。</p>
@@ -274,56 +353,36 @@
     document.querySelectorAll('.accordion-header').forEach(header => {
         header.addEventListener('click', () => {
             const content = header.nextElementSibling;
-            const isOpen = header.classList.contains('active');
+            const icon = header.querySelector('.icon');
 
-            // 關閉其他
-            document.querySelectorAll('.accordion-header').forEach(h => {
-                h.classList.remove('active');
-                h.nextElementSibling.style.maxHeight = '0';
-            });
+            // 如果點擊的是已經打開的，就關閉它
+            if (header.classList.contains('active')) {
+                header.classList.remove('active');
+                content.style.maxHeight = '0';
+                icon.textContent = '▼';
+            } else {
+                // 關閉所有其他的
+                document.querySelectorAll('.accordion-header').forEach(h => {
+                    h.classList.remove('active');
+                    h.nextElementSibling.style.maxHeight = '0';
+                    h.querySelector('.icon').textContent = '▼';
+                });
 
-            // 切換當前
-            if (!isOpen) {
+                // 打開當前這一個
                 header.classList.add('active');
                 content.style.maxHeight = content.scrollHeight + 'px';
+                icon.textContent = '▲';
             }
         });
     });
 
-    
-    // --- 魔法守護腳本 ---
-    
-    // 1. 禁用右鍵選單並跳出提醒
-    document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-        alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
-    }, false);
-
-    // 2. 禁用快捷鍵 (F12, Ctrl+U, Ctrl+Shift+I 等)
-    document.onkeydown = function (e) {
-        // 禁用 F12
-        if (e.keyCode === 123) {
-            return false;
-        }
-        // 禁用 Ctrl+Shift+I (開發者工具)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
-            return false;
-        }
-        // 禁用 Ctrl+Shift+J (開發者工具)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
-            return false;
-        }
-        // 禁用 Ctrl+U (檢視原始碼)
-        if (e.ctrlKey && e.keyCode === 85) {
-            return false;
-        }
-        // 禁用 Ctrl+S (存檔)
-        if (e.ctrlKey && e.keyCode === 83) {
+    // 魔法守護腳本
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.onkeydown = e => {
+        if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && e.keyCode === 85) || (e.ctrlKey && e.keyCode === 83)) {
             return false;
         }
     };
-</script>
-
 </script>
 
 </body>
