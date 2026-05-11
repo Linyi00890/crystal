@@ -4,119 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>淨化工具與教學課程 - 產品列表 | CrystalMagic</title>
-    <link rel="stylesheet" href="styles.css"> 
-    
-    <style>
-        .page-header {
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, #f3e5f5 0%, #e1f5fe 100%); 
-            border-bottom: 5px solid #673ab7;
-        }
-
-        .section-title {
-            text-align: center; 
-            color: #4527a0; 
-            margin: 60px 0 25px;
-            font-size: 2rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background: #ff8a65;
-            margin: 10px auto;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 0 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .product-item {
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: 0.3s;
-        }
-
-        .product-item:hover {
-            transform: translateY(-8px);
-        }
-
-        .course-item {
-            border: 2px solid #b39ddb;
-        }
-
-        .product-item img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-
-        .product-details {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .product-details h4 {
-            color: #4a148c;
-            font-size: 1.25rem;
-            margin-bottom: 10px;
-        }
-
-        .product-price {
-            font-size: 1.3em;
-            font-weight: bold;
-            color: #ff8a65;
-            margin: 15px 0;
-        }
-
-        .view-detail {
-            display: inline-block;
-            background-color: #673ab7;
-            color: white;
-            padding: 12px 0;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-            text-align: center;
-            transition: 0.3s;
-        }
-
-        .view-detail:hover {
-            background-color: #ff8a65;
-        }
-
-        .badge {
-            display: inline-block;
-            background: #e1f5fe;
-            color: #0288d1;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-    </style>
+    <!-- 引入外部 CSS -->
+    <link rel="stylesheet" href="course.css">
 </head>
 <body>
 
 <header class="main-header">
-    <a href="index.html" class="logo">🔮 CrystalMagic</div>
+    <a href="index.html" class="logo">🔮 CrystalMagic</a>
     <div class="auth-buttons">
         <a href="index.html" class="nav-button login">回首頁</a>
         <a href="quiz.html" class="nav-button register">能量測驗</a>
@@ -129,6 +23,7 @@
         <p>提供專業的能量清理方案，從實體工具到深度課程，全方位守護您的身心靈空間。</p>
     </section>
 
+    <!-- 01 實體淨化工具 -->
     <h2 class="section-title">🛒 01 實體淨化工具</h2>
     <section class="product-grid">
         <article class="product-item">
@@ -143,6 +38,7 @@
                 <a href="#" class="view-detail">立即購買</a>
             </div>
         </article>
+        
         <article class="product-item">
             <img src="picture/white03.jpg" alt="白水晶碎石">
             <div class="product-details">
@@ -157,6 +53,7 @@
         </article>
     </section>
 
+    <!-- 02 療癒香氛系列 -->
     <h2 class="section-title">🕯️ 02 療癒香氛系列</h2>
     <section class="product-grid">
         <article class="product-item">
@@ -173,6 +70,7 @@
         </article>
     </section>
 
+    <!-- 03 能量祭壇道具 -->
     <h2 class="section-title">⛩️ 03 能量祭壇道具</h2>
     <section class="product-grid">
         <article class="product-item">
@@ -189,13 +87,14 @@
         </article>
     </section>
 
+    <!-- 04 專業教學課程 (線上) -->
     <h2 class="section-title">👩‍🏫 04 專業教學課程 (線上)</h2>
     <section class="product-grid">
         <article class="product-item course-item">
             <img src="picture/course_beginner.jpg" alt="入門課">
             <div class="product-details">
                 <div>
-                    <span class="badge" style="background:#f3e5f5; color:#6a1b9a;">熱門預約</span>
+                    <span class="badge badge-hot">熱門預約</span>
                     <h4>水晶能量療癒入門 (初階)</h4>
                     <p>從零開始學習感受水晶頻率、基礎消磁手法，建立正確的能量觀念。</p>
                 </div>
@@ -205,6 +104,7 @@
         </article>
     </section>
 
+    <!-- 05 能量實踐指南 (E-Book) -->
     <h2 class="section-title">📖 05 能量實踐指南 (E-Book)</h2>
     <section class="product-grid">
         <article class="product-item">
@@ -221,6 +121,7 @@
         </article>
     </section>
 
+    <!-- 06 高頻療癒音頻 -->
     <h2 class="section-title">🎧 06 高頻療癒音頻</h2>
     <section class="product-grid">
         <article class="product-item">
@@ -242,40 +143,8 @@
     <p>&copy; 2026 CrystalMagic. 每一顆水晶都承載著大地的祝福。</p>
 </footer>
 
-    <script>
-    // --- 魔法守護腳本 ---
-    
-    // 1. 禁用右鍵選單並跳出提醒
-    document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-        alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
-    }, false);
-
-    // 2. 禁用快捷鍵 (F12, Ctrl+U, Ctrl+Shift+I 等)
-    document.onkeydown = function (e) {
-        // 禁用 F12
-        if (e.keyCode === 123) {
-            return false;
-        }
-        // 禁用 Ctrl+Shift+I (開發者工具)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
-            return false;
-        }
-        // 禁用 Ctrl+Shift+J (開發者工具)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
-            return false;
-        }
-        // 禁用 Ctrl+U (檢視原始碼)
-        if (e.ctrlKey && e.keyCode === 85) {
-            return false;
-        }
-        // 禁用 Ctrl+S (存檔)
-        if (e.ctrlKey && e.keyCode === 83) {
-            return false;
-        }
-    };
-</script>
-
+<!-- 引入外部 JS -->
+<script src="course.js"></script>
 
 </body>
 </html>
