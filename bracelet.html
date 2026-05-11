@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>能量手鍊精選 - CrystalMagic</title>
-    <!-- 引入 Google 字體與圖示 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="bracelet.css">
@@ -19,7 +18,6 @@
     </div>
 </header>
 
-<!-- 懸浮購物車 -->
 <a href="#" class="cart-float" id="cartButton">
     <i class="fas fa-shopping-cart"></i>
     <span class="cart-count" id="cartCount">0</span>
@@ -31,7 +29,6 @@
         <p>探索大地的能量，尋找專屬於您的守護石。</p>
     </section>
 
-    <!-- 篩選選單區 -->
     <section class="filter-section">
         <div class="filter-group">
             <label for="effect-filter">🔮 功效篩選：</label>
@@ -49,17 +46,19 @@
             <select id="color-filter">
                 <option value="all">全部顏色</option>
                 <option value="pink">粉色系</option>
-                <option value="yellow">黃/橘色系</option>
+                <option value="yellow">黃色系</option>
+                <option value="orange">橘色系</option>
                 <option value="purple">紫色系</option>
-                <option value="white">透明/白色系</option>
-                <option value="blue">藍/綠色系</option>
-                <option value="black">黑色/深色系</option>
+                <option value="white">白色系</option>
+                <option value="transparent">透明系</option>
+                <option value="blue">藍色系</option>
+                <option value="green">綠色系</option>
+                <option value="black">黑色系</option>
             </select>
         </div>
     </section>
 
     <section class="product-grid" id="productGrid">
-        <!-- 產品 1 - 20 -->
         <article class="product-item" data-effect="love" data-color="pink">
             <div class="image-container"><img src="picture/pink01.jpg" alt="粉晶"></div>
             <div class="product-details">
@@ -120,7 +119,7 @@
             </div>
         </article>
 
-        <article class="product-item" data-effect="wealth" data-color="blue">
+        <article class="product-item" data-effect="wealth" data-color="green">
             <div class="image-container"><img src="picture/green01.jpg" alt="綠幽靈"></div>
             <div class="product-details">
                 <h4>事業巔峰：綠幽靈手鍊</h4>
@@ -150,7 +149,7 @@
             </div>
         </article>
 
-        <article class="product-item" data-effect="health" data-color="white">
+        <article class="product-item" data-effect="health" data-color="transparent">
             <div class="image-container"><img src="picture/white01.jpg" alt="白水晶"></div>
             <div class="product-details">
                 <h4>純淨磁場：白水晶鑽切</h4>
@@ -200,7 +199,7 @@
             </div>
         </article>
 
-        <article class="product-item" data-effect="wisdom" data-color="blue">
+        <article class="product-item" data-effect="wisdom" data-color="green">
             <div class="image-container"><img src="picture/fluorite01.jpg" alt="螢石"></div>
             <div class="product-details">
                 <h4>學習之石：多彩螢石</h4>
@@ -250,7 +249,7 @@
             </div>
         </article>
 
-        <article class="product-item" data-effect="wealth" data-color="yellow">
+        <article class="product-item" data-effect="wealth" data-color="orange">
             <div class="image-container"><img src="picture/sun01.jpg" alt="太陽石"></div>
             <div class="product-details">
                 <h4>暖陽能量：金草莓太陽石</h4>
