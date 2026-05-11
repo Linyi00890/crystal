@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200">
+    <title>藍晶石 (Kyanite) 全方位能量指南 - 水晶魔法 | CrystalMagic</title>
+    
+    <style>
+        /* 全局基礎設定 */
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0 auto;
+            color: #333;
+            line-height: 1.8;
+            width: 1200px;
+            overflow-x: auto;
+        }
+
+        /* 導覽列 */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 1200px;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #212121;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            transition: 0.3s;
+        }
+
+        /* 頂部標題區 - 藍晶石改為深邃的藍色系 */
+        .detail-header {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            color: #fff;
+            width: 1200px;
+            box-sizing: border-box;
+        }
+        
+        .detail-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .stat-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-pill {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* 內容容器 */
+        .content-container {
+            width: 1000px;
+            margin: 50px auto;
+            position: relative;
+        }
+
+        .content-section {
+            background-color: white;
+            padding: 45px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .content-section h2 {
+            color: #212121;
+            border-left: 6px solid #1e88e5;
+            padding-left: 20px;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        /* 品種展示區 */
+        .variety-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .variety-card {
+            text-align: center;
+            padding: 20px;
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 15px;
+        }
+
+        .variety-card h3 {
+            font-size: 1.1rem;
+            color: #1565c0;
+            margin-bottom: 10px;
+        }
+
+        /* 核心功效 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .feature-item {
+            padding: 30px;
+            background-color: #fafafa;
+            border-radius: 15px;
+            border-left: 4px solid #1e88e5;
+        }
+
+        .feature-item strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: #0d47a1;
+        }
+
+        /* 能量組合區 */
+        .combo-box {
+            background: #1a237e;
+            color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .combo-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #3949ab;
+        }
+
+        .combo-item:last-child { border: none; }
+
+        .tag {
+            background: #1e88e5;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+
+        /* FAQ 區塊 */
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-q {
+            font-weight: bold;
+            color: #1565c0;
+            display: block;
+        }
+
+        .faq-a {
+            color: #666;
+            padding-left: 20px;
+        }
+
+        /* 按鈕樣式 */
+        .back-btn {
+            display: inline-block;
+            background: #212121;
+            color: white;
+            padding: 15px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        /* 固定於左下角的返回按鈕 */
+        .fixed-back-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 2000;
+            background: rgba(13, 71, 161, 0.9);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .fixed-back-btn:hover {
+            background: #1a237e;
+            transform: scale(1.05);
+        }
+
+        .main-footer {
+            text-align: center;
+            padding: 60px 0;
+            background: #fff;
+            width: 1200px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 固定左下角按鈕 -->
+<a href="type.html" class="fixed-back-btn">🔙 返回列表</a>
+
+<header class="main-header">
+    <a href="index.html" class="logo">🔮 CrystalMagic</a>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="origin.html">水晶起源</a></li>
+            <li><a href="type.html" style="color: #1e88e5; font-weight: bold;">水晶種類</a></li>
+            <li><a href="care.html">淨化保養</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="detail-header">
+        <h1>藍晶石 Kyanite</h1>
+        <p>「靈魂的導師，不吸附負能量的溝通之石」</p>
+        <div class="stat-container">
+            <div class="stat-pill">脈輪：喉輪、眉心輪</div>
+            <div class="stat-pill">五行：水</div>
+            <div class="stat-pill">特性：雙硬度 (4.5 / 7)</div>
+        </div>
+    </section>
+
+    <div class="content-container">
+        <section class="content-section">
+            <h2>🔬 礦物學基礎：獨特的異向性</h2>
+            <p>藍晶石是一種鋁矽酸鹽礦物，其最著名的特點是<strong>「異向硬度」</strong>：沿著晶體長軸方向硬度僅為 4.5，而垂直長軸方向硬度高達 7。這種特性象徵著在柔軟的溝通中蘊含著堅定的真理。它是極少數<strong>不需要淨化</strong>的晶石之一，因為它不會保留負面能量。</p>
+            
+            <h3>常見品種與色澤</h3>
+            <div class="variety-grid">
+                <div class="variety-card"><h3>深藍晶石</h3><p>對應深層意識</p></div>
+                <div class="variety-card"><h3>淺藍晶石</h3><p>強化溝通表達</p></div>
+                <div class="variety-card"><h3>綠藍晶石</h3><p>平衡心輪能量</p></div>
+                <div class="variety-card"><h3>貓眼藍晶</h3><p>具備獨特光學效應</p></div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>🛡️ 核心能量功效</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <strong>自動化磁場清理</strong>
+                    藍晶石具有快速轉化能量的特性，能自動將負面頻率撥亂反正，維持佩戴者磁場的清新與高頻。
+                </div>
+                <div class="feature-item">
+                    <strong>強化溝通與表達</strong>
+                    對應喉輪，能幫助說話者有條理地表達內心想法，打破沉默，對於害羞或有溝通障礙的人非常有幫助。
+                </div>
+                <div class="feature-item">
+                    <strong>開發靈性直覺</strong>
+                    協助連結眉心輪，提升洞察力與覺察能力，使人能從更高的角度看待生命中的困難與紛爭。
+                </div>
+                <div class="feature-item">
+                    <strong>消除焦慮與困惑</strong>
+                    它的能量如同清澈的流水，能洗去心靈的塵垢，消除恐懼與過度思慮，讓人回歸冷靜的中心。
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>🔗 能量疊加：推薦組合</h2>
+            <div class="combo-box">
+                <div class="combo-item">
+                    <span class="tag">高效學習</span> <strong>藍晶石 + 螢石</strong>：整理混亂的思緒，將學習內容結構化，適合備考與專業進修。
+                </div>
+                <div class="combo-item">
+                    <span class="tag">靜心冥想</span> <strong>藍晶石 + 拉長石</strong>：連結高維度意識，穩定能量場，深入探索潛意識層面。
+                </div>
+                <div class="combo-item">
+                    <span class="tag">自信表達</span> <strong>藍晶石 + 海藍寶</strong>：雙重修復喉輪能量，讓人能在人群中自信、優雅地發言。
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>❓ 常見問題 Q&A</h2>
+            <div class="faq-item">
+                <span class="faq-q">Q：藍晶石真的永遠不需要淨化嗎？</span>
+                <p class="faq-a">A：雖然它不吸附負能量，但仍會沾染灰塵或人體油脂。建議定期用清水沖洗後擦乾，物理層面的清潔仍能維持它的美感。</p>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">Q：為什麼我的藍晶石戴著戴著就裂了？</span>
+                <p class="faq-a">A：藍晶石具有明顯的解理面且硬度分布不均，非常脆弱。避免碰撞與重摔是保養藍晶石的首要準則。</p>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">Q：睡覺時可以戴藍晶石嗎？</span>
+                <p class="faq-a">A：藍晶石能協助連結夢境並促進深層平靜，適合放在枕頭旁，但若戴在手上，容易因睡覺翻身而不慎碰撞導致碎裂。</p>
+            </div>
+        </section>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="type.html" class="back-btn">← 返回水晶百科清單</a>
+        </div>
+    </div>
+</main>
+
+<footer class="main-footer">
+    <p>&copy; 2026 CrystalMagic | 藍晶石：通往真理與溝通的藍色橋樑</p>
+</footer>
+
+<script>
+    document.addEventListener('contextmenu', e => e.preventDefault());
+</script>
+
+</body>
+</html>
