@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>能量手鍊與飾品 - 精選系列 | CrystalMagic</title>
-    <!-- 引入 Google 字體與 Icon -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>能量手鍊與飾品 - 產品列表 | CrystalMagic</title>
     <!-- 引入外部 CSS -->
     <link rel="stylesheet" href="bracelet.css">
+    <!-- 如果你有原本的 styles.css 也可以保留連結 -->
+    <link rel="stylesheet" href="styles.css"> 
 </head>
 <body>
 
-<!-- 導航 -->
 <header class="main-header">
     <a href="index.html" class="logo">🔮 CrystalMagic</a>
     <div class="auth-buttons">
@@ -20,12 +18,6 @@
         <a href="quiz.html" class="nav-button register">能量測驗</a>
     </div>
 </header>
-
-<!-- 懸浮購物車按鈕 -->
-<a href="#" class="cart-float" id="cartButton">
-    <i class="fas fa-shopping-cart"></i>
-    <span class="cart-count" id="cartCount">0</span>
-</a>
 
 <main>
     <section class="page-header">
@@ -36,45 +28,67 @@
     <section class="product-grid">
         <!-- 產品 1 -->
         <article class="product-item">
-            <div class="image-container"><img src="picture/pink02.jpg" alt="玫瑰粉晶"></div>
+            <img src="picture/pink02.jpg" alt="玫瑰粉晶手鍊">
             <div class="product-details">
                 <h4>戀愛之心：粉晶手鍊</h4>
-                <p>專注心輪療癒，提升個人魅力與人緣，招來正桃花。</p>
-                <div class="product-price">NT$ XXXXX</div>
-                <button class="btn-add-cart" onclick="addToCart('粉晶手鍊')">加入購物車</button>
+                <p>專注心輪療癒，提升個人魅力與人緣，招正桃花。</p>
+                <div class="product-price">NT$ xxxxx</div>
+                <a href="#" class="view-detail">查看詳情</a>
             </div>
         </article>
         
         <!-- 產品 2 -->
         <article class="product-item">
-            <div class="image-container"><img src="picture/yellow02.jpg" alt="黃水晶"></div>
+            <img src="picture/yellow02.jpg" alt="黃水晶手鍊">
             <div class="product-details">
                 <h4>王者財富：黃晶手鍊</h4>
-                <p>強勢招正財，增強事業野心與決斷力，適合職場精英。</p>
-                <div class="product-price">NT$ XXXXX</div>
-                <button class="btn-add-cart" onclick="addToCart('黃晶手鍊')">加入購物車</button>
+                <p>強勢招正財，增強事業野心與決斷力，適合職場菁英。</p>
+                <div class="product-price">NT$ xxxxx</div>
+                <a href="#" class="view-detail">查看詳情</a>
             </div>
         </article>
 
         <!-- 產品 3 -->
         <article class="product-item">
-            <div class="image-container"><img src="picture/purple02.jpg" alt="紫水晶"></div>
+            <img src="picture/purple02.jpg" alt="紫水晶手鍊">
             <div class="product-details">
-                <h4>智慧之巔：烏拉圭紫晶</h4>
+                <h4>智慧之巔：烏拉圭紫晶手鍊</h4>
                 <p>開發智慧、集中注意力，穩定情緒並提升直覺力。</p>
-                <div class="product-price">NT$ XXXXX</div>
-                <button class="btn-add-cart" onclick="addToCart('紫晶手鍊')">加入購物車</button>
+                <div class="product-price">NT$ xxxxx</div>
+                <a href="#" class="view-detail">查看詳情</a>
             </div>
         </article>
 
         <!-- 產品 4 -->
         <article class="product-item">
-            <div class="image-container"><img src="picture/white01.jpg" alt="白水晶"></div>
+            <img src="picture/white01.jpg" alt="白水晶手鍊">
             <div class="product-details">
-                <h4>純淨能量：白水晶鑽切</h4>
+                <h4>純淨能量：白水晶鑽切手鍊</h4>
                 <p>水晶之王，淨化磁場、排除負能量，帶來平衡與清晰。</p>
-                <div class="product-price">NT$ XXXXX</div>
-                <button class="btn-add-cart" onclick="addToCart('白水晶手鍊')">加入購物車</button>
+                <div class="product-price">NT$ xxxxx</div>
+                <a href="#" class="view-detail">查看詳情</a>
+            </div>
+        </article>
+
+        <!-- 產品 5 -->
+        <article class="product-item">
+            <img src="picture/aquamarine02.jpg" alt="海藍寶手鍊">
+            <div class="product-details">
+                <h4>勇氣之泉：海藍寶石手鍊</h4>
+                <p>加強溝通表達能力，平定焦躁，保護旅行者平安。</p>
+                <div class="product-price">NT$ xxxxx</div>
+                <a href="#" class="view-detail">查看詳情</a>
+            </div>
+        </article>
+
+        <!-- 產品 6 -->
+        <article class="product-item">
+            <img src="picture/obsidian02.jpg" alt="黑曜石項鍊">
+            <div class="product-details">
+                <h4>大地護盾：金曜石手鍊</h4>
+                <p>強效辟邪擋煞、吸收負能量，守護您的氣場不受干擾。</p>
+                <div class="product-price">NT$ xxxxx</div>
+                <a href="#" class="view-detail">查看詳情</a>
             </div>
         </article>
     </section>
