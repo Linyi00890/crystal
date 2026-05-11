@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200">
+    <title>粉水晶 (Rose Quartz) 全方位能量指南 - 水晶魔法 | CrystalMagic</title>
+    
+    <style>
+        /* 全局基礎設定 */
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #fff5f7;
+            margin: 0 auto;
+            color: #444;
+            line-height: 1.8;
+            width: 1200px;
+            overflow-x: auto;
+        }
+
+        /* 導覽列 */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(255, 182, 193, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 1200px;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #d81b60;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            transition: 0.3s;
+        }
+
+        /* 頂部標題區 - 粉水晶改為溫柔的櫻花粉系 */
+        .detail-header {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #fce4ec 0%, #ffc1e3 100%);
+            color: #880e4f;
+            width: 1200px;
+            box-sizing: border-box;
+        }
+        
+        .detail-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .stat-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-pill {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 10px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(216, 27, 96, 0.2);
+            color: #ad1457;
+            font-weight: bold;
+        }
+
+        /* 內容容器 */
+        .content-container {
+            width: 1000px;
+            margin: 50px auto;
+            position: relative;
+        }
+
+        .content-section {
+            background-color: white;
+            padding: 45px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(216, 27, 96, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .content-section h2 {
+            color: #ad1457;
+            border-left: 6px solid #f06292;
+            padding-left: 20px;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        /* 品種展示區 */
+        .variety-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .variety-card {
+            text-align: center;
+            padding: 20px;
+            background: #fffafa;
+            border: 1px solid #ffebee;
+            border-radius: 15px;
+        }
+
+        .variety-card h3 {
+            font-size: 1.1rem;
+            color: #d81b60;
+            margin-bottom: 10px;
+        }
+
+        /* 核心功效 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .feature-item {
+            padding: 30px;
+            background-color: #fff9fa;
+            border-radius: 15px;
+            border-left: 4px solid #f06292;
+        }
+
+        .feature-item strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: #880e4f;
+        }
+
+        /* 能量組合區 */
+        .combo-box {
+            background: #ad1457;
+            color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .combo-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .combo-item:last-child { border: none; }
+
+        .tag {
+            background: #ff80ab;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+
+        /* FAQ 區塊 */
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-q {
+            font-weight: bold;
+            color: #ec407a;
+            display: block;
+        }
+
+        .faq-a {
+            color: #666;
+            padding-left: 20px;
+        }
+
+        /* 返回按鈕 */
+        .back-btn {
+            display: inline-block;
+            background: #ad1457;
+            color: white;
+            padding: 15px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(173, 20, 87, 0.4);
+        }
+
+        /* 固定於左下角的返回按鈕 */
+        .fixed-back-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 2000;
+            background: rgba(240, 98, 146, 0.9);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .fixed-back-btn:hover {
+            background: #d81b60;
+            transform: scale(1.05);
+        }
+
+        .main-footer {
+            text-align: center;
+            padding: 60px 0;
+            background: #fff;
+            width: 1200px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 固定左下角按鈕 -->
+<a href="type.html" class="fixed-back-btn">🔙 返回列表</a>
+
+<header class="main-header">
+    <a href="index.html" class="logo">🔮 CrystalMagic</a>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="origin.html">水晶起源</a></li>
+            <li><a href="type.html" style="color: #f06292; font-weight: bold;">水晶種類</a></li>
+            <li><a href="care.html">淨化保養</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="detail-header">
+        <h1>粉水晶 Rose Quartz</h1>
+        <p>「溫柔的愛之石，治癒心靈創傷，開啟人緣與幸福的門扉」</p>
+        <div class="stat-container">
+            <div class="stat-pill">脈輪：心輪</div>
+            <div class="stat-pill">五行：火</div>
+            <div class="stat-pill">硬度：7</div>
+        </div>
+    </section>
+
+    <div class="content-container">
+        <section class="content-section">
+            <h2>🔬 礦物學基礎：石英的柔美化身</h2>
+            <p>粉水晶，又稱薔薇石英，是石英家族中因含有微量的鈦、錳元素而呈現粉紅色的品種。與一般水晶柱狀生長不同，粉水晶多以塊狀形式出現。它那如絲綢般的色澤與細膩能量，使其成為最受歡迎的<strong>「療癒之石」</strong>，專門負責安撫情緒與增進感性。</p>
+            
+            <h3>常見品種圖鑑</h3>
+            <div class="variety-grid">
+                <div class="variety-card"><h3>馬達加斯加粉晶</h3><p>色澤濃郁帶果凍感</p></div>
+                <div class="variety-card"><h3>星光粉晶</h3><p>光照下顯現六射星芒</p></div>
+                <div class="variety-card"><h3>莫三比克粉晶</h3><p>質地通透，光澤閃耀</p></div>
+                <div class="variety-card"><h3>冰種粉晶</h3><p>如冰塊般澄澈晶瑩</p></div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>💖 核心能量功效</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <strong>增進好人緣與桃花</strong>
+                    粉水晶能散發溫和而吸引人的粉紅光芒，幫助改善社交關係，招來貴人與理想的異性緣。
+                </div>
+                <div class="feature-item">
+                    <strong>療癒情感創傷</strong>
+                    它能安撫過去在愛情或人際中受過的傷，幫助自我接納，學會重新愛上自己，釋放壓抑的情緒。
+                </div>
+                <div class="feature-item">
+                    <strong>舒緩緊繃情緒</strong>
+                    對於長期處於高壓、容易焦慮的人，粉水晶能讓心輪能量流動，使心境變得平靜且充滿慈悲。
+                </div>
+                <div class="feature-item">
+                    <strong>職場公關助攻</strong>
+                    在商業空間放置粉晶，能減低消費者的警覺性、增加親和力，非常適合服務業與公關領域。
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>🔗 能量疊加：推薦組合</h2>
+            <div class="combo-box">
+                <div class="combo-item">
+                    <span class="tag">守護正緣</span> <strong>粉水晶 + 紫水晶</strong>：穩定情感磁場，避免爛桃花，讓愛情建立在理性的基礎上。
+                </div>
+                <div class="combo-item">
+                    <span class="tag">職場巔峰</span> <strong>粉水晶 + 黃水晶</strong>：在招財的同時保持好人緣，讓事業發展得更順遂、多貴人相助。
+                </div>
+                <div class="combo-item">
+                    <span class="tag">深層淨化</span> <strong>粉水晶 + 白水晶</strong>：一排一補，快速清理心靈陰影並填補正向能量。
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>❓ 常見問題 Q&A</h2>
+            <div class="faq-item">
+                <span class="faq-q">Q：粉水晶戴久了為什麼會變白？</span>
+                <p class="faq-a">A：粉水晶含有致色元素，對光線較敏感。長期曝曬於強烈陽光下會褪色，這也是它被稱為「見不得光的水晶」的原因。</p>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">Q：戴粉水晶真的會招來爛桃花嗎？</span>
+                <p class="faq-a">A：粉晶會放大魅力，若本身磁場不夠穩定，確實可能吸引各種能量。建議搭配「紫水晶」或「黑曜石」來過濾不良緣分。</p>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">Q：睡覺時可以配戴粉水晶嗎？</span>
+                <p class="faq-a">A：粉晶能量溫和，通常可以配戴。但若感覺心跳較快或思緒過於活躍導致失眠，建議改放在床頭櫃即可。</p>
+            </div>
+        </section>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="type.html" class="back-btn">← 返回水晶百科清單</a>
+        </div>
+    </div>
+</main>
+
+<footer class="main-footer">
+    <p>&copy; 2026 CrystalMagic | 粉水晶：讓愛在心中綻放</p>
+</footer>
+
+<script>
+    document.addEventListener('contextmenu', e => e.preventDefault());
+</script>
+
+</body>
+</html>
