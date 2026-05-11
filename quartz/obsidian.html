@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200">
+    <title>黑曜石 (Obsidian) 全方位能量指南 - 水晶魔法 | CrystalMagic</title>
+    
+    <style>
+        /* 全局基礎設定 */
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0 auto;
+            color: #333;
+            line-height: 1.8;
+            width: 1200px;
+            overflow-x: auto;
+        }
+
+        /* 導覽列 */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 1200px;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #212121;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            transition: 0.3s;
+        }
+
+        /* 頂部標題區 - 黑曜石專屬深色系 */
+        .detail-header {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #424242 0%, #000000 100%);
+            color: #fff;
+            width: 1200px;
+            box-sizing: border-box;
+        }
+        
+        .detail-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .stat-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-pill {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* 內容容器 */
+        .content-container {
+            width: 1000px;
+            margin: 50px auto;
+            position: relative;
+        }
+
+        .content-section {
+            background-color: white;
+            padding: 45px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .content-section h2 {
+            color: #212121;
+            border-left: 6px solid #000;
+            padding-left: 20px;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        /* 品種展示區 */
+        .variety-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .variety-card {
+            text-align: center;
+            padding: 20px;
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 15px;
+        }
+
+        .variety-card h3 {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        /* 核心功效 (2x2) */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .feature-item {
+            padding: 30px;
+            background-color: #fafafa;
+            border-radius: 15px;
+            border-left: 4px solid #444;
+        }
+
+        .feature-item strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: #000;
+        }
+
+        /* 能量組合區 */
+        .combo-box {
+            background: #212121;
+            color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .combo-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #444;
+        }
+
+        .combo-item:last-child { border: none; }
+
+        .tag {
+            background: #444;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+
+        /* FAQ 區塊 */
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-q {
+            font-weight: bold;
+            color: #d32f2f;
+            display: block;
+        }
+
+        .faq-a {
+            color: #666;
+            padding-left: 20px;
+        }
+
+        /* 按鈕樣式 */
+        .back-btn {
+            display: inline-block;
+            background: #212121;
+            color: white;
+            padding: 15px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        /* 固定於左下角的返回按鈕 */
+        .fixed-back-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 2000;
+            background: rgba(33, 33, 33, 0.9);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .fixed-back-btn:hover {
+            background: #000;
+            transform: scale(1.05);
+        }
+
+        .main-footer {
+            text-align: center;
+            padding: 60px 0;
+            background: #fff;
+            width: 1200px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 固定左下角返回按鈕 -->
+<a href="type.html" class="fixed-back-btn">🔙 返回列表</a>
+
+<header class="main-header">
+    <a href="index.html" class="logo">🔮 CrystalMagic</a>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="origin.html">水晶起源</a></li>
+            <li><a href="type.html" style="color: #00acc1; font-weight: bold;">水晶種類</a></li>
+            <li><a href="care.html">淨化保養</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="detail-header">
+        <h1>黑曜石 Obsidian</h1>
+        <p>「深邃的靈魂之鏡，最強大的負能量終結者」</p>
+        <div class="stat-container">
+            <div class="stat-pill">脈輪：海底輪</div>
+            <div class="stat-pill">五行：水</div>
+            <div class="stat-pill">硬度：5 - 5.5</div>
+        </div>
+    </section>
+
+    <div class="content-container">
+        <section class="content-section">
+            <h2>🔬 礦物學基礎：火山的禮物</h2>
+            <p>黑曜石並非晶體結構的水晶，而是火山噴發後，岩漿在冷卻過程中迅速凝固而形成的<strong>天然玻璃</strong>。這種「非晶質」的特性讓它擁有一種非常直接且猛烈的能量感，自古以來便被作為祭祀、避邪與切削工具之用。</p>
+            
+            <h3>常見品種圖鑑</h3>
+            <div class="variety-grid">
+                <div class="variety-card"><h3>純黑黑曜石</h3><p>能量最純粹直接</p></div>
+                <div class="variety-card"><h3>彩虹眼黑曜石</h3><p>帶有圓型彩色光暈</p></div>
+                <div class="variety-card"><h3>金曜石</h3><p>帶金色閃光，偏招財</p></div>
+                <div class="variety-card"><h3>冰種黑曜石</h3><p>質地通透如黑冰</p></div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>🛡️ 核心能量功效</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <strong>極致避邪與化煞</strong>
+                    能有效阻擋外界惡意、負面流言及空間中的病氣。它是進出醫院、公墓等場所的首選護身符。
+                </div>
+                <div class="feature-item">
+                    <strong>吸納身心病氣</strong>
+                    如同能量吸塵器，黑曜石能吸走體內的濁氣與負面壓力，對改善長期疲勞與負面情緒有顯著效果。
+                </div>
+                <div class="feature-item">
+                    <strong>輔助深度睡眠</strong>
+                    對於經常做噩夢、心思過重的人，黑曜石能穩定磁場，讓使用者感受到「接地」的安全感。
+                </div>
+                <div class="feature-item">
+                    <strong>自我療癒與反省</strong>
+                    幫助我們看清自己的缺點，直面潛意識中的恐懼，從而達到心靈上的突破與轉化。
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>🔗 能量疊加：推薦組合</h2>
+            <div class="combo-box">
+                <div class="combo-item">
+                    <span class="tag">強效護身</span> <strong>黑曜石 + 黑碧璽</strong>：雙重防線，將負能量吸收並轉化，最適合敏感體質者。
+                </div>
+                <div class="combo-item">
+                    <span class="tag">事業穩定</span> <strong>金曜石 + 鈦晶</strong>：在提升財運的同時，確保情緒穩定，不被競爭壓力擊垮。
+                </div>
+                <div class="combo-item">
+                    <span class="tag">深度淨化</span> <strong>黑曜石 + 白水晶</strong>：一吸一排，快速清理混亂的個人磁場。
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>❓ 常見問題 Q&A</h2>
+            <div class="faq-item">
+                <span class="faq-q">Q：為什麼黑曜石一定要戴右手？</span>
+                <p class="faq-a">A：人體的磁場通常是「左進右出」。黑曜石的功能是「排除」與「吸收」，戴在右手能順應磁場將體內的負能量導出體外。</p>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">Q：睡覺可以戴著嗎？</span>
+                <p class="faq-a">A：可以，但如果黑曜石太大或能量太強，部分人可能會覺得過於沉重。建議放在枕頭下方即可。</p>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">Q：為什麼我戴了黑曜石覺得很累？</span>
+                <p class="faq-a">A：可能它已經吸飽了負能量。黑曜石需要非常頻繁的淨化（建議每3-5天一次），請立即進行消磁。</p>
+            </div>
+        </section>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="type.html" class="back-btn">← 返回水晶百科清單</a>
+        </div>
+    </div>
+</main>
+
+<footer class="main-footer">
+    <p>&copy; 2026 CrystalMagic | 黑曜石：您的能量守護盾</p>
+</footer>
+
+<script>
+    // 防止右鍵點擊
+    document.addEventListener('contextmenu', e => e.preventDefault());
+</script>
+
+</body>
+</html>
