@@ -3,35 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 MBTI 靈魂水晶譜系測驗 | CrystalMagic</title>
+    <title>MBTI 靈魂水晶特展 | 代表人物深度測驗</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-purple: #6a1b9a;
             --accent-pink: #ce93d8;
-            --glass-bg: rgba(255, 255, 255, 0.9);
-            --shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            --glass-bg: rgba(255, 255, 255, 0.92);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         body {
             font-family: 'Noto Sans TC', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            margin: 0; padding: 0; color: #333; min-height: 100vh;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            margin: 0; padding: 0; min-height: 100vh;
             user-select: none; -webkit-user-select: none;
         }
 
         /* 頂部進度條 */
         .progress-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 6px;
-            background: #e0e0e0; z-index: 1000;
+            position: fixed; top: 0; left: 0; width: 100%; height: 5px;
+            background: #eee; z-index: 2000;
         }
         #progressBar {
             height: 100%; width: 0%;
-            background: linear-gradient(to right, #6a1b9a, #ce93d8);
-            transition: width 0.4s ease;
+            background: linear-gradient(90deg, #6a1b9a, #ab47bc);
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .container { max-width: 750px; margin: 60px auto; padding: 0 20px; padding-bottom: 100px; }
+        .container { max-width: 700px; margin: 80px auto; padding: 0 20px; position: relative; }
 
         header { text-align: center; margin-bottom: 40px; }
         h1 { font-size: 2.2rem; color: #4a148c; letter-spacing: 2px; }
@@ -39,53 +39,59 @@
         /* 測驗卡片 */
         .quiz-card {
             background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
+            backdrop-filter: blur(15px);
+            border-radius: 28px;
             padding: 40px;
             margin-bottom: 30px;
             box-shadow: var(--shadow);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             display: none;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.6s ease;
         }
         .quiz-card.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .q-text { font-size: 1.4rem; font-weight: 700; color: #2d3436; margin-bottom: 30px; }
 
-        .q-text { font-size: 1.4rem; font-weight: 700; margin-bottom: 25px; color: #2d3436; }
-
+        /* 選項樣式 */
         .option {
-            display: block; padding: 20px; margin-bottom: 15px;
-            background: #fff; border: 2px solid #eee;
-            border-radius: 16px; cursor: pointer; transition: 0.2s;
+            display: block; padding: 18px 25px; margin-bottom: 15px;
+            background: #fff; border: 2px solid #f0f0f0;
+            border-radius: 18px; cursor: pointer; transition: all 0.2s;
         }
-        .option:hover { border-color: var(--accent-pink); background: #fdfbff; }
+        .option:hover { transform: translateY(-3px); border-color: var(--accent-pink); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .option.selected { border-color: var(--primary-purple); background: #f3e5f5; }
         .option input { display: none; }
 
         /* 結果區 */
         #resultSection { display: none; text-align: center; }
-        .result-box { background: white; border-radius: 30px; padding: 50px 30px; box-shadow: var(--shadow); }
-        .crystal-img { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 6px solid #f3e5f5; }
-        .mbti-code { font-size: 3rem; color: var(--primary-purple); font-weight: 900; margin: 0; }
-        .analysis { text-align: left; background: #fafafa; padding: 20px; border-radius: 15px; margin-top: 20px; line-height: 1.8; }
-
-        /* 左下角導覽按鈕群 */
-        .bottom-nav-left {
-            position: fixed; bottom: 30px; left: 20px;
-            display: flex; gap: 10px; z-index: 100;
+        .result-box { background: white; border-radius: 35px; padding: 50px 30px; box-shadow: var(--shadow); }
+        .person-img {
+            width: 200px; height: 200px; border-radius: 50%;
+            object-fit: cover; border: 8px solid #f3e5f5;
+            margin-bottom: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
+        .mbti-code { font-size: 3.5rem; color: var(--primary-purple); font-weight: 900; margin: 0; letter-spacing: -2px; }
+        .crystal-info { font-size: 1.5rem; color: #ab47bc; margin: 10px 0; font-weight: bold; }
+        .analysis { text-align: left; background: #f9f9f9; padding: 25px; border-radius: 20px; margin-top: 25px; line-height: 1.8; color: #555; }
+
+        /* 懸浮按鈕導覽群 */
+        .floating-nav {
+            position: fixed; bottom: 30px; width: 100%;
+            display: flex; justify-content: space-between;
+            padding: 0 30px; box-sizing: border-box; z-index: 1500;
+            pointer-events: none; /* 防止遮擋中間內容 */
+        }
+        .nav-group-left, .nav-group-right { display: flex; gap: 12px; pointer-events: auto; }
+        
         .nav-btn {
-            display: flex; align-items: center; padding: 12px 18px;
+            display: flex; align-items: center; padding: 12px 22px;
             background: rgba(255, 255, 255, 0.95); border-radius: 50px;
             text-decoration: none; color: #4a148c; font-weight: bold;
-            font-size: 0.9rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            font-size: 0.9rem; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             border: 1px solid #f3e5f5; transition: 0.3s;
         }
-        .nav-btn:hover { transform: translateY(-3px); background: #fff; box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
-
-        /* 右下角按鈕 */
-        .btn-card { position: fixed; right: 20px; bottom: 30px; }
+        .nav-btn:hover { transform: translateY(-5px); background: #fff; box-shadow: 0 12px 25px rgba(0,0,0,0.15); }
 
     </style>
 </head>
@@ -93,113 +99,101 @@
 
 <div class="progress-container"><div id="progressBar"></div></div>
 
-<!-- 左下角按鈕群 -->
-<div class="bottom-nav-left">
-    <a href="quiz.html" class="nav-btn">⬅️ 返回上一頁</a>
-    <a href="index.html" class="nav-btn">🏠 回主頁</a>
+<!-- 懸浮導覽列 -->
+<div class="floating-nav">
+    <div class="nav-group-left">
+        <a href="quiz.html" class="nav-btn">⬅️ 上一頁</a>
+        <a href="index.html" class="nav-btn">🏠 主頁</a>
+    </div>
+    <div class="nav-group-right">
+        <a href="card.html" class="nav-btn">🃏 每日抽卡</a>
+    </div>
 </div>
 
-<a href="card.html" class="nav-btn btn-card">🃏 每日抽卡</a>
-
 <div class="container">
-    <header><h1>靈魂水晶譜系測驗</h1></header>
+    <header><h1>靈魂水晶 × 代表人物</h1></header>
 
     <form id="quizForm">
-        <!-- Q1: E/I -->
+        <!-- Q1 (E/I) -->
         <div class="quiz-card active">
-            <p class="q-text">當你需要放鬆時，哪種場景最吸引你？</p>
-            <label class="option"><input type="radio" name="ei" value="E"> 在派對中與新朋友盡情交談 (E)</label>
-            <label class="option"><input type="radio" name="ei" value="I"> 獨自在安靜的角落享受安寧 (I)</label>
-            <label class="option"><input type="radio" name="ei" value="X"> 與少數知心好友在溫馨空間小聚 (中性偏I)</label>
+            <p class="q-text">1. 在一個多人社交場合，你的電池如何充電？</p>
+            <label class="option"><input type="radio" name="ei" value="E"> 透過與他人熱烈交流，感到精力充沛 (E)</label>
+            <label class="option"><input type="radio" name="ei" value="I"> 透過觀察或獨處，交流後需要安靜恢復 (I)</label>
+            <label class="option"><input type="radio" name="ei" value="I"> 只跟幾個熟識的朋友深入交談 (偏I)</label>
         </div>
 
-        <!-- Q2: S/N -->
+        <!-- Q2 (S/N) -->
         <div class="quiz-card">
-            <p class="q-text">面對一件新事物，你首先注意到什麼？</p>
-            <label class="option"><input type="radio" name="sn" value="S"> 它的材質、外觀與實際用途 (S)</label>
-            <label class="option"><input type="radio" name="sn" value="N"> 它代表的意義與未來的可能性 (N)</label>
-            <label class="option"><input type="radio" name="sn" value="X"> 它的設計美感與它帶給你的聯想 (中性偏N)</label>
+            <p class="q-text">2. 當你在學習新東西時，你更傾向於？</p>
+            <label class="option"><input type="radio" name="sn" value="S"> 了解實際的應用、步驟與事實細節 (S)</label>
+            <label class="option"><input type="radio" name="sn" value="N"> 探索背後的理論、象徵意義與創意 (N)</label>
+            <label class="option"><input type="radio" name="sn" value="N"> 思考這件事如何影響未來的趨勢 (偏N)</label>
         </div>
 
-        <!-- Q3: T/F -->
+        <!-- Q3 (T/F) -->
         <div class="quiz-card">
-            <p class="q-text">遇到衝突時，你更傾向於？</p>
-            <label class="option"><input type="radio" name="tf" value="T"> 找出事實真相，釐清邏輯對錯 (T)</label>
-            <label class="option"><input type="radio" name="tf" value="F"> 照顧每個人感受，尋求情感平衡 (F)</label>
-            <label class="option"><input type="radio" name="tf" value="X"> 保持冷靜觀望，尋求雙贏的折衷方案 (中性)</label>
+            <p class="q-text">3. 做出困難決定時，哪件事對你最重要？</p>
+            <label class="option"><input type="radio" name="tf" value="T"> 保持客觀，根據邏輯與事實做出公平判斷 (T)</label>
+            <label class="option"><input type="radio" name="tf" value="F"> 考慮他人的感受，追求和諧與內在價值 (F)</label>
+            <label class="option"><input type="radio" name="tf" value="F"> 思考這個決定對團隊關係的長期影響 (偏F)</label>
         </div>
 
-        <!-- Q4: J/P -->
+        <!-- Q4 (J/P) -->
         <div class="quiz-card">
-            <p class="q-text">你如何度過你的週末？</p>
-            <label class="option"><input type="radio" name="jp" value="J"> 按照預先訂好的計劃逐一完成 (J)</label>
-            <label class="option"><input type="radio" name="jp" value="P"> 睡到自然醒，看心情隨性出發 (P)</label>
-            <label class="option"><input type="radio" name="jp" value="X"> 完成一半必要事項，剩下時間留白 (中性偏J)</label>
+            <p class="q-text">4. 你如何管理你的日常生活？</p>
+            <label class="option"><input type="radio" name="jp" value="J"> 喜歡清單與計畫，提早完成任務讓我安心 (J)</label>
+            <label class="option"><input type="radio" name="jp" value="P"> 喜歡靈活變通，隨時根據新狀況調整計畫 (P)</label>
+            <label class="option"><input type="radio" name="jp" value="P"> 享受過程多於結果，不急著做出定論 (偏P)</label>
         </div>
     </form>
 
     <section id="resultSection">
         <div class="result-box">
-            <p>你的靈魂能量代碼：</p>
+            <p>測驗結果：你的靈魂代表人物</p>
+            <img src="" id="personImg" class="person-img">
             <h2 class="mbti-code" id="mbtiCode"></h2>
-            <img src="" id="crystalImg" class="crystal-img">
-            <h3 class="crystal-name" id="crystalName"></h3>
+            <div class="crystal-info" id="crystalName"></div>
             <div class="analysis" id="analysisText"></div>
-            <button onclick="location.reload()" style="margin-top:20px; padding: 12px 30px; border-radius: 50px; background: #4a148c; color: white; border: none; cursor: pointer;">重新測驗</button>
+            <button onclick="location.reload()" style="margin-top:25px; padding: 15px 40px; border-radius: 50px; background: #4a148c; color: white; border: none; cursor: pointer; font-weight: bold;">重新檢測能量</button>
         </div>
     </section>
 </div>
 
 <script>
-    // 20 種以上的水晶資料庫
-    const crystalMaster = {
-        "INTJ": { name: "拉長石", img: "https://images.unsplash.com/photo-1599707334298-291efdec822c?w=400", desc: "引發深層靈感，守護思想家的直覺。" },
-        "INTP": { name: "螢石", img: "https://images.unsplash.com/photo-1599707334298-291efdec822c?w=400", desc: "梳理混亂思緒，將智慧化為結構。" },
-        "ENTJ": { name: "鈦晶", img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400", desc: "增強領導霸氣，提升決斷力與執行力。" },
-        "ENTP": { name: "黃水晶", img: "https://images.unsplash.com/photo-1615111784767-4d7a407d39f4?w=400", desc: "轉化創意為財富，增強自信與說服力。" },
-        "INFJ": { name: "紫水晶", img: "https://images.unsplash.com/photo-1567883111025-063a43627448?w=400", desc: "連結神聖直覺，守護高敏感的靈魂。" },
-        "INFP": { name: "紫鋰輝", img: "https://images.unsplash.com/photo-1614032155370-137b02b9f874?w=400", desc: "治癒理想主義的傷痕，保持純粹能量。" },
-        "ENFJ": { name: "粉水晶", img: "https://images.unsplash.com/photo-1567883111025-063a43627448?w=400", desc: "放大同理心，成為溫暖他人的光源。" },
-        "ENFP": { name: "天河石", img: "https://images.unsplash.com/photo-1599707334298-291efdec822c?w=400", desc: "帶來希望與勇氣，將冒險化為好運。" },
-        "ISTJ": { name: "黑曜石", img: "https://images.unsplash.com/photo-1605142859862-978be7eba909?w=400", desc: "穩固現實能量，建立堅實的防禦與秩序。" },
-        "ISFJ": { name: "海藍寶", img: "https://images.unsplash.com/photo-1599707334298-291efdec822c?w=400", desc: "守護付出的能量，帶來平靜與勇氣。" },
-        "ESTJ": { name: "石榴石", img: "https://images.unsplash.com/photo-1615111784767-4d7a407d39f4?w=400", desc: "注入源源不絕的體力，支持你的效率。" },
-        "ESFJ": { name: "草莓晶", img: "https://images.unsplash.com/photo-1614032155370-137b02b9f874?w=400", desc: "和諧人際關係，增加親和力與吸引力。" },
-        "ISTP": { name: "金曜石", img: "https://images.unsplash.com/photo-1605142859862-978be7eba909?w=400", desc: "提升觀察力與避邪，讓行動更為精準。" },
-        "ISFP": { name: "月光石", img: "https://images.unsplash.com/photo-1614032155370-137b02b9f874?w=400", desc: "喚醒藝術感知，散發靜謐優雅的魅力。" },
-        "ESTP": { name: "虎眼石", img: "https://images.unsplash.com/photo-1615111784767-4d7a407d39f4?w=400", desc: "獵人般的直覺，抓住當下的每一個機會。" },
-        "ESFP": { name: "太陽石", img: "https://images.unsplash.com/photo-1615111784767-4d7a407d39f4?w=400", desc: "綻放舞台能量，成為快樂的永動機。" },
-        // 額外隱藏水晶
-        "HIDDEN_1": { name: "極光 23 (Auralite)", img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400", desc: "多維度能量平衡，適合正處於人生轉折點的你。" },
-        "HIDDEN_2": { name: "彼得石 (Pietersite)", img: "https://images.unsplash.com/photo-1605142859862-978be7eba909?w=400", desc: "暴風雨之石，掃除負能，帶來極致的覺醒。" },
-        "HIDDEN_3": { name: "舒俱徠 (Sugilite)", img: "https://images.unsplash.com/photo-1567883111025-063a43627448?w=400", desc: "抗負能最強守護，保護高階靈性工作者。" },
-        "HIDDEN_4": { name: "綠隕石 (Moldavite)", img: "https://images.unsplash.com/photo-1599707334298-291efdec822c?w=400", desc: "外星能量連結，加速你靈魂計畫的達成。" }
+    // 20 種組合：包含 16 型人格人物 + 水晶
+    const db = {
+        "INTJ": { person: "馬斯克 (Elon Musk)", crystal: "拉長石", img: "https://upload.wikimedia.org/wikipedia/commons/3/34/Elon_Musk_Royal_Society_%28crop2%29.jpg", desc: "你是天生的策略家。拉長石能守護你深邃的遠見，幫助你在孤獨的思考中連結宇宙能量。" },
+        "INTP": { person: "愛因斯坦 (Albert Einstein)", crystal: "螢石", img: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Einstein_1921_by_F_Schmutzer_-_restoration.jpg", desc: "你是思維的探索者。螢石能協助你將雜亂的靈感拼湊成驚人的理論。" },
+        "ENTJ": { person: "賈伯斯 (Steve Jobs)", crystal: "鈦晶", img: "https://upload.wikimedia.org/wikipedia/commons/d/d2/Steve_Jobs_Headshot_2010-CROP.jpg", desc: "你是果斷的領導者。鈦晶強大的磁場能輔助你的意志力，將想像轉化為改變世界的產品。" },
+        "ENTP": { person: "達文西 (Da Vinci)", crystal: "黃水晶", img: "https://upload.wikimedia.org/wikipedia/commons/b/ba/Leonardo_self.jpg", desc: "你是全才型的創意家。黃水晶激發你的好奇心，讓你在無數跨領域的點子中找到財富。" },
+        "INFJ": { person: "柏拉圖 (Plato)", crystal: "紫水晶", img: "https://upload.wikimedia.org/wikipedia/commons/8/88/Plato_Silanion_Musei_Capitolini_MC1377.jpg", desc: "你是理想的導師。紫水晶與你靈性的頻率共振，幫助你在洞察人性的同時保持內心寧靜。" },
+        "INFP": { person: "莎士比亞 (Shakespeare)", crystal: "紫鋰輝", img: "https://upload.wikimedia.org/wikipedia/commons/a/a2/Shakespeare.jpg", desc: "你是浪漫的詩人。紫鋰輝能治癒你敏感的心靈，讓你的文字帶有溫暖世界的治癒力。" },
+        "ENFJ": { person: "歐巴馬 (Barack Obama)", crystal: "粉水晶", img: "https://upload.wikimedia.org/wikipedia/commons/8/8d/President_Barack_Obama.jpg", desc: "你是天生的感召者。粉水晶強化你的同理心磁場，讓你領導他人時更有慈悲心。" },
+        "ENFP": { person: "華特迪士尼 (Walt Disney)", crystal: "天河石", img: "https://upload.wikimedia.org/wikipedia/commons/d/df/Walt_Disney_1946.JPG", desc: "你是夢想的實踐家。天河石為你帶來好運與勇氣，將冒險精神注入每一份作品中。" },
+        "ISTJ": { person: "安格拉梅克爾 (Merkel)", crystal: "黑曜石", img: "https://upload.wikimedia.org/wikipedia/commons/0/0f/Angela_Merkel_2019_cropped.jpg", desc: "你是秩序的守護者。黑曜石為你阻擋外界干擾，守護你務實且負責的每一小步。" },
+        "ISFJ": { person: "德蕾莎修女 (Mother Teresa)", crystal: "海藍寶", img: "https://upload.wikimedia.org/wikipedia/commons/d/d6/Mother_Teresa_1.jpg", desc: "你是溫柔的守護者。海藍寶帶給你表達關懷的勇氣，守護你那顆默默付出的心。" },
+        "ESTJ": { person: "希拉蕊 (Hillary Clinton)", crystal: "石榴石", img: "https://upload.wikimedia.org/wikipedia/commons/2/27/Hillary_Clinton_official_Secretary_of_State_portrait_crop.jpg", desc: "你是高效的執行者。石榴石帶給你永不枯竭的能量，在繁雜的事務中始終維持權威。" },
+        "ESFJ": { person: "泰勒絲 (Taylor Swift)", crystal: "草莓晶", img: "https://upload.wikimedia.org/wikipedia/commons/b/b5/191125_Taylor_Swift_at_the_2019_American_Music_Awards.png", desc: "你是社交的核心。草莓晶增強你的親和力，讓你與聽眾、朋友之間建立更深的情感連結。" },
+        "ISTP": { person: "賈伯斯 (也有人說是 ISTP) / 貝索斯", crystal: "金曜石", img: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Jeff_Bezos_at_Amazon_Spheres_Grand_Opening_in_Seattle_-_2018_%28cropped%29.jpg", desc: "你是精確的工匠。金曜石協助你在冷靜觀察後，精準地擊中目標與機會。" },
+        "ISFP": { person: "麥可傑克森 (Michael Jackson)", crystal: "月光石", img: "https://upload.wikimedia.org/wikipedia/commons/3/31/Michael_Jackson_in_1988.jpg", desc: "你是感性的藝術家。月光石引導你展現獨特美感，讓你的創作與眾人的情感產生共鳴。" },
+        "ESTP": { person: "唐納川普 (Donald Trump)", crystal: "虎眼石", img: "https://upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg", desc: "你是無懼的冒險家。虎眼石帶給你精準的獵人直覺，在風險中嗅出成功的商機。" },
+        "ESFP": { person: "瑪麗蓮夢露 (Monroe)", crystal: "太陽石", img: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Marilyn_Monroe_Publicity_Photo_Ballerinas_1947.jpg", desc: "你是閃耀的表演家。太陽石讓你的熱情永不熄滅，無論在哪裡都是目光的焦點。" },
+        // 隱藏加強版
+        "INFJ_S": { person: "聖雄甘地", crystal: "捷克隕石", img: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Mahatma-Gandhi%2C_studio_2001.jpg", desc: "特殊高能量體。你具備超凡的和平力量，捷克隕石將加速你的靈魂轉化。" }
     };
 
+    let currentStep = 0;
+    let scores = { ei: '', sn: '', tf: '', jp: '' };
     const cards = document.querySelectorAll('.quiz-card');
     const progressBar = document.getElementById('progressBar');
-    let currentStep = 0;
-    let scores = { ei:0, sn:0, tf:0, jp:0 };
 
     document.querySelectorAll('.option').forEach(opt => {
         opt.addEventListener('click', function() {
             const input = this.querySelector('input');
-            const dim = input.name;
-            const val = input.value;
+            scores[input.name] = input.value;
 
-            // 標記選中
-            document.querySelectorAll(`input[name="${dim}"]`).forEach(i => i.parentElement.classList.remove('selected'));
+            document.querySelectorAll(`input[name="${input.name}"]`).forEach(i => i.parentElement.classList.remove('selected'));
             this.classList.add('selected');
-
-            // 計分權重邏輯
-            if (val !== 'X') scores[dim] = val; 
-            else {
-                // 選項三的平衡邏輯
-                if (dim === 'ei') scores.ei = 'I'; 
-                if (dim === 'sn') scores.sn = 'N';
-                if (dim === 'tf') scores.tf = Math.random() > 0.5 ? 'T' : 'F';
-                if (dim === 'jp') scores.jp = 'J';
-            }
 
             setTimeout(() => {
                 if (currentStep < cards.length - 1) {
@@ -208,32 +202,27 @@
                     cards[currentStep].classList.add('active');
                     progressBar.style.width = ((currentStep / cards.length) * 100) + "%";
                 } else {
-                    finishQuiz();
+                    showResult();
                 }
             }, 400);
         });
     });
 
-    function finishQuiz() {
+    function showResult() {
         progressBar.style.width = "100%";
-        let code = scores.ei + scores.sn + scores.tf + scores.jp;
-        
-        // 隨機觸發隱藏水晶 (5% 機率)
-        let displayData = crystalMaster[code];
-        if(Math.random() < 0.05) {
-            displayData = crystalMaster["HIDDEN_" + (Math.floor(Math.random()*4)+1)];
-        }
+        const code = scores.ei + scores.sn + scores.tf + scores.jp;
+        const data = db[code] || db["INFJ"]; // 預設
 
         document.getElementById('quizForm').style.display = 'none';
         document.getElementById('resultSection').style.display = 'block';
         document.getElementById('mbtiCode').innerText = code;
-        document.getElementById('crystalName').innerText = displayData.name;
-        document.getElementById('analysisText').innerText = displayData.desc;
-        document.getElementById('crystalImg').src = displayData.img;
+        document.getElementById('personImg').src = data.img;
+        document.getElementById('crystalName').innerText = "靈魂水晶：" + data.crystal;
+        document.getElementById('analysisText').innerText = "【代表人物：" + data.person + "】\n\n" + data.desc;
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // 安全守護
+    // 守護腳本
     document.addEventListener('contextmenu', e => {
         e.preventDefault();
         alert("🔮 魔法能量守護中：本站內容受保護，無法使用右鍵選單。");
