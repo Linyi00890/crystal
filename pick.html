@@ -278,10 +278,28 @@
 </footer>
 
 <script>
-    // 禁用右鍵與開發者工具
-    document.addEventListener('contextmenu', e => e.preventDefault());
+    function filterCrystals(type, value) {
+        const links = document.querySelectorAll('.crystal-link');
+        links.forEach(link => {
+            link.classList.add('hidden');
+            if (type === 'all') {
+                link.classList.remove('hidden');
+            } else if (link.getAttribute('data-' + type) === value) {
+                link.classList.remove('hidden');
+            }
+        });
+    }
+
+    // 魔法守護腳本
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+        alert("🔮 魔法能量守護中：本站內容受保護，無法使用右鍵選單。");
+    }, false);
+
     document.onkeydown = function (e) {
-        if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
+        if (e.keyCode === 123 || 
+           (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || 
+           (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83))) {
             return false;
         }
     };
