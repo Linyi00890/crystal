@@ -3,246 +3,341 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>星座運勢水晶神諭 | CrystalMagic 2026</title>
+    <title>💧 水晶淨化與保養全書 - 水晶魔法 | CrystalMagic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --gold: #d4af37;
-            --mystic-purple: #4a148c;
-            --glass: rgba(255, 255, 255, 0.95);
+            --primary-green: #2e7d32;
+            --light-green: #a5d6a7;
+            --dark-green: #1b5e20;
+            --accent-gold: #c5a059;
+            --accent-purple: #9c27b0;
+            --warning-red: #e53935;
+            --bg-soft: #fcfdfc;
+            --white: #ffffff;
+            --max-width: 1200px;
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.05);
+            --shadow-lg: 0 20px 40px rgba(0,0,0,0.1);
+            --transition: all 0.4s ease;
         }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Noto Sans TC', sans-serif;
-            background: radial-gradient(circle at center, #0f0c29 0%, #302b63 50%, #24243e 100%);
-            color: #fff;
-            margin: 0; padding: 0;
-            min-height: 100vh;
-            display: flex; flex-direction: column; align-items: center;
-            overflow-x: hidden;
+            background-color: var(--bg-soft);
+            color: #37474f;
+            line-height: 1.8;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
-        /* 頂部導航 */
-        header { text-align: center; padding: 40px 20px 10px; }
-        h1 { color: var(--gold); font-size: 1.8rem; letter-spacing: 3px; margin: 0; }
-        .date-display { color: #aaa; font-size: 0.9rem; margin-top: 5px; }
-
-        /* 星座選擇區 */
-        .zodiac-selector {
-            margin: 20px 0;
-            background: rgba(255,255,255,0.1);
-            padding: 15px;
-            border-radius: 15px;
-            border: 1px solid rgba(212,175,55,0.3);
-            text-align: center;
-        }
-        select {
-            padding: 8px 15px;
-            border-radius: 10px;
-            background: #fff;
-            color: #333;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-        }
-
-        /* 3D 卡牌舞台 */
-        .card-stage {
-            perspective: 1200px;
-            margin: 20px auto;
-            cursor: pointer;
-        }
-
-        .card-inner {
-            width: 300px; height: 460px;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .card-inner.is-flipped { transform: rotateY(180deg); }
-
-        .card-face {
-            position: absolute; width: 100%; height: 100%;
-            backface-visibility: hidden;
-            border-radius: 20px;
-            border: 2px solid var(--gold);
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-        }
-
-        /* 卡片背面 */
-        .card-back {
-            background: #1a1a2e;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .card-back::after {
-            content: "☪️"; font-size: 80px; color: var(--gold);
-            filter: drop-shadow(0 0 10px var(--gold));
-        }
-
-        /* 卡片正面 */
-        .card-front {
-            background: #fff; color: #333;
-            transform: rotateY(180deg);
-            padding: 20px; box-sizing: border-box;
-            display: flex; flex-direction: column; align-items: center;
-            overflow-y: auto;
-        }
-
-        .crystal-img {
-            width: 150px; height: 150px; border-radius: 50%;
-            object-fit: cover; border: 5px solid #f0f0f0;
-            margin-bottom: 15px;
-        }
-
-        .res-name { font-size: 1.5rem; color: var(--mystic-purple); font-weight: 900; margin: 0; }
-        .res-tag { background: #f3e5f5; color: #7b1fa2; padding: 3px 12px; border-radius: 15px; font-size: 0.8rem; margin: 8px 0; font-weight: bold; }
-        
-        /* 運勢顯示區 */
-        .fortune-box {
-            background: #f9f9f9;
-            border-radius: 12px;
-            padding: 12px;
+        /* --- 頂端導覽列 --- */
+        .main-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            box-shadow: var(--shadow-sm);
             width: 100%;
-            margin-top: 10px;
-            font-size: 0.9rem;
-            line-height: 1.5;
-            color: #555;
-        }
-        .fortune-stat { display: flex; justify-content: space-between; margin-bottom: 5px; color: #4a148c; font-weight: bold; }
-
-        /* 按鈕樣式 */
-        .nav-container {
-            position: fixed; bottom: 30px; width: 100%;
-            display: flex; justify-content: space-between;
-            padding: 0 25px; box-sizing: border-box;
-            z-index: 1000; pointer-events: none;
-        }
-        .nav-group { display: flex; gap: 10px; pointer-events: auto; }
-        .btn {
-            padding: 10px 18px; background: var(--glass); color: var(--mystic-purple);
-            text-decoration: none; border-radius: 30px; font-weight: bold; font-size: 0.85rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3); border: 1px solid #ddd;
-        }
-        .reset-btn {
-            background: var(--gold); color: #000; border: none; padding: 12px 30px;
-            border-radius: 30px; cursor: pointer; font-weight: bold; margin-top: 15px; display: none;
+            position: fixed;
+            top: 0;
+            z-index: 2000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
-        @media (max-width: 480px) { .card-inner { width: 280px; height: 440px; } }
+        .header-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0; /* 防止Logo被擠壓 */
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 5px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #455a64;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-green);
+            background: rgba(46, 125, 50, 0.08);
+        }
+
+        /* --- 內容區塊 --- */
+        main { margin-top: 90px; }
+
+        .hero-banner {
+            text-align: center;
+            padding: 140px 20px;
+            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), 
+                        url('https://images.unsplash.com/photo-1551269901-5c5e14c25df7?auto=format&fit=crop&q=80&w=2000') center/cover;
+            color: var(--dark-green);
+        }
+
+        .hero-banner h1 { font-size: 3.5rem; margin-bottom: 20px; letter-spacing: 2px; line-height: 1.2; }
+        .hero-banner p { font-size: 1.2rem; color: #546e7a; max-width: 800px; margin: 0 auto; }
+
+        .section-padding { padding: 100px 0; }
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 25px; }
+
+        .section-header { text-align: center; margin-bottom: 70px; }
+        .section-header h2 { font-size: 2.5rem; color: var(--primary-green); margin-bottom: 15px; }
+        .section-header .divider { width: 60px; height: 4px; background: var(--accent-gold); margin: 0 auto; border-radius: 2px; }
+
+        /* --- 淨化方法網格 --- */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 40px 10px 40px 10px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid #f0f0f0;
+        }
+
+        .feature-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); border-color: var(--light-green); }
+
+        .icon-box { font-size: 2.5rem; margin-bottom: 20px; display: inline-block; }
+        .feature-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--accent-purple); }
+        .feature-card ul { list-style: none; color: #607d8b; font-size: 0.95rem; }
+        .feature-card li { margin-bottom: 10px; padding-left: 25px; position: relative; }
+        .feature-card li::before { content: '◈'; position: absolute; left: 0; color: var(--accent-gold); }
+
+        /* --- 深度指南表格 --- */
+        .info-table-wrap {
+            overflow-x: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            margin: 40px 0;
+        }
+
+        table { width: 100%; border-collapse: collapse; min-width: 650px; }
+        th { background: #f1f8e9; color: var(--primary-green); text-align: left; padding: 15px; border-bottom: 2px solid #e8f5e9; }
+        td { padding: 15px; border-bottom: 1px solid #f5f5f5; vertical-align: top; font-size: 0.95rem; }
+
+        /* --- 專業提示框 --- */
+        .pro-tip {
+            background: #fff9c4;
+            border-left: 8px solid var(--accent-gold);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 50px;
+        }
+
+        .pro-tip h4 { color: #827717; font-size: 1.2rem; margin-bottom: 10px; }
+
+        /* --- Footer --- */
+        footer { background: #1a232e; color: #90a4ae; padding: 60px 0 30px; text-align: center; }
+        .footer-logo { color: white; font-size: 1.5rem; margin-bottom: 15px; display: block; text-decoration: none; }
+        
+        /* --- 響應式修正 (RWD) --- */
+
+        /* 平板尺寸 */
+        @media (max-width: 1024px) {
+            .header-container { padding: 0 20px; }
+            .nav-menu a { padding: 8px 10px; font-size: 0.85rem; }
+            .hero-banner h1 { font-size: 2.8rem; }
+        }
+
+        /* 手機尺寸修正 */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column; /* 讓Logo跟選單上下分層 */
+                height: auto;
+                padding: 15px 0 5px 0;
+            }
+
+            .nav-menu {
+                width: 100%;
+                overflow-x: auto; /* 關鍵：選單太長時可以橫向滑動，不換行 */
+                padding: 10px 15px;
+                gap: 5px;
+                -webkit-overflow-scrolling: touch; /* 滑動更順暢 */
+            }
+
+            .nav-menu::-webkit-scrollbar { display: none; } /* 隱藏捲動條 */
+
+            .nav-menu a {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+                background: #f5f5f5; /* 給手機版按鈕一點底色增加點擊感 */
+            }
+
+            main { margin-top: 110px; } /* 調整內容頂距，避免被變高的Header遮住 */
+
+            .hero-banner { padding: 80px 20px; }
+            .hero-banner h1 { font-size: 2rem; }
+            .hero-banner p { font-size: 1rem; }
+
+            .section-padding { padding: 60px 0; }
+            .section-header h2 { font-size: 1.8rem; }
+            
+            .feature-grid { grid-template-columns: 1fr; } /* 手機版改為單欄佈局 */
+            .feature-card { padding: 30px; }
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>今日水晶運勢抽卡</h1>
-    <div class="date-display" id="currentDate"></div>
+<header class="main-header">
+    <div class="header-container">
+        <a href="index.html" class="logo">✨ CrystalMagic</a>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="origin.html">水晶起源</a></li>
+                <li><a href="type.html">水晶種類</a></li>
+                <li><a href="effect.html">功效解讀</a></li>
+                <li><a href="pick.html">挑選指南</a></li> 
+                <li><a href="exclusive.html">專屬商品</a></li>
+                <li><a href="share.html">粉絲回饋</a></li>
+                <li><a href="contact.html">客服諮詢</a></li>
+            </ul>
+        </nav>
+    </div>
 </header>
 
-<div class="zodiac-selector">
-    <label>選擇你的星座：</label>
-    <select id="zodiacSelect">
-        <option value="牡羊座">牡羊座</option>
-        <option value="金牛座">金牛座</option>
-        <option value="雙子座">雙子座</option>
-        <option value="巨蟹座">巨蟹座</option>
-        <option value="獅子座">獅子座</option>
-        <option value="處女座">處女座</option>
-        <option value="天秤座">天秤座</option>
-        <option value="天蠍座">天蠍座</option>
-        <option value="射手座">射手座</option>
-        <option value="摩羯座">摩羯座</option>
-        <option value="水瓶座">水瓶座</option>
-        <option value="雙魚座">雙魚座</option>
-    </select>
-</div>
+<main>
+    <section class="hero-banner">
+        <div class="container">
+            <h1>讓水晶重獲新生</h1>
+            <p>水晶是有靈性的礦石，它們在守護你的過程中會吸收周圍的負能量。定期淨化（消磁）與適當的物理保養，是延續水晶能量壽命的關鍵。</p>
+        </div>
+    </section>
 
-<div class="card-stage" onclick="drawCard()">
-    <div class="card-inner" id="card">
-        <div class="card-face card-back"></div>
-        <div class="card-face card-front">
-            <img id="resImg" src="" class="crystal-img">
-            <h2 id="resName" class="res-name"></h2>
-            <div id="resTag" class="res-tag"></div>
-            <div class="fortune-box">
-                <div class="fortune-stat">
-                    <span id="resZodiac"></span>
-                    <span id="resLuck">幸運指數：⭐⭐⭐⭐⭐</span>
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>三大深度淨化儀式</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon-box">🥣</div>
+                    <h3>晶簇碎石充電法</h3>
+                    <p>最安全且適合所有水晶的方法。將水晶放置於白水晶簇或碎石盆中，透過大型晶體的穩定震頻，重新校準小水晶的能量。</p>
+                    <ul>
+                        <li><strong>頻率：</strong> 每次佩戴後或每週一次</li>
+                        <li><strong>時間：</strong> 至少放置 6 小時以上</li>
+                        <li><strong>優點：</strong> 100% 物理安全，不傷礦損</li>
+                    </ul>
                 </div>
-                <div id="resFortune"></div>
+
+                <div class="feature-card">
+                    <div class="icon-box">🌙</div>
+                    <h3>月光能量引導</h3>
+                    <p>利用月亮（陰性力量）的柔和射線進行深層淨化，特別適合處理關於情緒、靈感與直覺類的水晶。</p>
+                    <ul>
+                        <li><strong>最佳時機：</strong> 農曆十四至十六（滿月前後）</li>
+                        <li><strong>適合種類：</strong> 粉晶、月光石、拉長石</li>
+                        <li><strong>備註：</strong> 戶外或窗台有月光處即可</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon-box">🌿</div>
+                    <h3>神聖煙燻儀式</h3>
+                    <p>利用白色鼠尾草、秘魯聖木或高品質線香的煙霧，快速「切斷」沈重能量與水晶的連結。</p>
+                    <ul>
+                        <li><strong>工具：</strong> 鼠尾草、鮑魚殼、火源</li>
+                        <li><strong>手法：</strong> 讓煙霧繚繞水晶 3-5 圈</li>
+                        <li><strong>功效：</strong> 適合剛從醫院、墓地或負面環境回來後使用</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 
-<button class="reset-btn" id="resetBtn" onclick="resetCard()">重新對應能量</button>
+    <section class="section-padding" style="background: #f1f8e9;">
+        <div class="container">
+            <div class="section-header">
+                <h2>科學與保養：避坑指南</h2>
+                <p>並非所有水晶都能耐水或耐光。下表為您整理了常見的物理特性限制：</p>
+            </div>
 
-<div class="nav-container">
-    <div class="nav-group">
-        <a href="quiz.html" class="btn">⬅️ 返回上一頁</a>
-        <a href="index.html" class="btn">🏠 返回首頁</a>
+            <div class="info-table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>限制類別</th>
+                            <th>代表水晶</th>
+                            <th>保養禁忌</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>怕陽光 (會褪色)</strong></td>
+                            <td>紫水晶、粉晶、黃水晶、螢石</td>
+                            <td>長期曝曬會導致色心不穩而變白。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>怕水 (會溶解/生鏽)</strong></td>
+                            <td>透石膏、藍銅礦、黃鐵礦、天青石</td>
+                            <td>部分礦石摩氏硬度低且易溶於水，嚴禁水洗。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>怕化學品 (霧化)</strong></td>
+                            <td>珍珠、琥珀、孔雀石</td>
+                            <td>強酸強鹼、噴霧、香水會侵蝕其有機成分。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pro-tip">
+                <h4>💡 魔法師的小提醒：</h4>
+                <p>當您發現水晶顏色突然變得暗沈、觸摸時感覺黏膩或沉重、或者在使用過程中線材無故斷裂，這通常是水晶在提醒您：「我累了，請幫我淨化。」</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <a href="#" class="footer-logo">🔮 CrystalMagic</a>
+        <p>提供專業的水晶能量知識與高品質精選礦石</p>
+        <p>&copy; 2026 CrystalMagic. 推廣人與自然的和諧共振。</p>
     </div>
-    <div class="nav-group">
-        <a href="mbti.html" class="btn">🧠 MBTI 測驗</a>
-    </div>
-</div>
+</footer>
 
 <script>
-    // 水晶資料庫
-    const crystals = [
-        { name: "紫水晶", tag: "守護直覺", img: "https://images.unsplash.com/photo-1567883111025-063a43627448?w=400", desc: "今日直覺力強，紫水晶能幫你過濾雜訊，適合做重大決定。" },
-        { name: "粉水晶", tag: "招來好緣", img: "https://images.unsplash.com/photo-1614032155370-137b02b9f874?w=400", desc: "柔和的能量正包圍你，今日適合修復人際關係，增加親和力。" },
-        { name: "鈦晶", tag: "事業突破", img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400", desc: "財運與事業運交織，鈦晶將引導你展現領導風範，把握關鍵機會。" },
-        { name: "黑曜石", tag: "防小人辟邪", img: "https://images.unsplash.com/photo-1605142859862-978be7eba909?w=400", desc: "今日適合安靜行事，黑曜石會為你擋掉不必要的流言蜚語。" },
-        { name: "黃水晶", tag: "意外之財", img: "https://images.unsplash.com/photo-1615111784767-4d7a407d39f4?w=400", desc: "充滿陽光的一天。保持樂觀，今日在偏財運上會有小小驚喜。" },
-        { name: "拉長石", tag: "靈魂轉化", img: "https://images.unsplash.com/photo-1599707334298-291efdec822c?w=400", desc: "看似平淡的事物中藏著契機，拉長石提醒你留意夢境或偶發靈感。" },
-        { name: "海藍寶", tag: "平安溝通", img: "https://images.unsplash.com/photo-1599707334298-291efdec822c?w=400", desc: "適合表達真實感受的一天。溫柔的溝通會為你贏得尊重。" }
-        // ... 此處可擴充至30種以上，邏輯相同
-    ];
-
-    const fortuneTexts = [
-        "今天是你能量回升的一天，適合處理懸而未決的事務。",
-        "外界的干擾較多，保持內心的穩定比追求速度更重要。",
-        "桃花星在閃爍，今日容易在不經意間吸引他人的目光。",
-        "工作效率極高，但要注意身體的疲勞感，適度休息。",
-        "這是一個適合學習與閱讀的日子，靈性層次會有所提升。"
-    ];
-
-    // 初始化日期
-    document.getElementById('currentDate').innerText = new Date().toLocaleDateString() + " 能量觀測";
-
-    let isDrawing = false;
-
-    function drawCard() {
-        if (isDrawing) return;
-        isDrawing = true;
-
-        const zodiac = document.getElementById('zodiacSelect').value;
-        const crystal = crystals[Math.floor(Math.random() * crystals.length)];
-        const fortune = fortuneTexts[Math.floor(Math.random() * fortuneTexts.length)];
-        const stars = "⭐".repeat(Math.floor(Math.random() * 2) + 4); // 4-5顆星
-
-        // 注入內容
-        document.getElementById('resImg').src = crystal.img;
-        document.getElementById('resName').innerText = crystal.name;
-        document.getElementById('resTag').innerText = "#" + crystal.tag;
-        document.getElementById('resZodiac').innerText = zodiac + " 今日指引";
-        document.getElementById('resLuck').innerText = "幸運指數：" + stars;
-        document.getElementById('resFortune').innerText = fortune + " " + crystal.desc;
-
-        // 翻牌
-        document.getElementById('card').classList.add('is-flipped');
-        setTimeout(() => {
-            document.getElementById('resetBtn').style.display = 'inline-block';
-        }, 800);
-    }
-
-    function resetCard() {
-        document.getElementById('card').classList.remove('is-flipped');
-        document.getElementById('resetBtn').style.display = 'none';
-        setTimeout(() => { isDrawing = false; }, 800);
-    }
-
+    // 守護機制（防止右鍵與查看源碼）
     document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('keydown', e => {
+        if(e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'i')) e.preventDefault();
+    });
 </script>
 
 </body>
