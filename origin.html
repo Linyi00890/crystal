@@ -2,9 +2,14 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>水晶介紹：起源 - 水晶魔法 | CrystalMagic</title>
     <style>
+        :root {
+            --primary-purple: #4a148c;
+            --light-purple: #f3e5f5;
+            --glass-white: rgba(255, 255, 255, 0.95);
+        }
 
         * {
             box-sizing: border-box;
@@ -19,12 +24,15 @@
             line-height: 1.6;
             width: 100%;
             overflow-x: hidden;
+            -webkit-user-select: none;
+            user-select: none; /* 禁用文字選取 */
         }
 
-
+        /* 導覽列優化：Logo 與連結固定兩旁 */
         .navbar {
-            background-color: #ffffff;
-            width: 100%; 
+            background-color: var(--glass-white);
+            backdrop-filter: blur(10px);
+            width: 100%;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
@@ -33,18 +41,18 @@
 
         .nav-container {
             width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;    
+            max-width: 100%; /* 讓它撐滿寬度以利左右對齊 */
+            margin: 0 auto;
             display: flex;
-            justify-content: space-between; 
+            justify-content: space-between; /* 關鍵：左右對齊 */
             align-items: center;
-            padding: 15px 50px;
+            padding: 15px 40px;
         }
 
         .logo {
             font-size: 1.6rem;
             font-weight: bold;
-            color: #4a148c;
+            color: var(--primary-purple);
             text-decoration: none;
             letter-spacing: 1px;
             white-space: nowrap;
@@ -53,7 +61,7 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 30px; 
+            gap: 25px;
             margin: 0;
         }
 
@@ -63,42 +71,30 @@
             font-weight: 500;
             transition: 0.3s ease;
             padding: 5px 0;
-            position: relative;
             font-size: 1rem;
             white-space: nowrap;
         }
 
-        .nav-links a:hover, 
-        .nav-links a.active {
-            color: #4a148c;
+        .nav-links a:hover {
+            color: var(--primary-purple);
         }
 
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: #4a148c;
-        }
-
-
+        /* Hero 區塊 */
         #hero {
             text-align: center;
-            padding: 80px 20px;
+            padding: 100px 20px;
             background: linear-gradient(135deg, #e1f5fe 0%, #f3e5f5 100%);
             border-radius: 0 0 50px 50px;
             width: 100%;
         }
 
         #hero h1 {
-            color: #4a148c;
+            color: var(--primary-purple);
             margin-bottom: 15px;
             font-size: clamp(2rem, 5vw, 3rem);
         }
 
-        
+        /* 手風琴樣式 */
         .theme-1 { --theme-color: #3949ab; --theme-bg: #e8eaf6; }
         .theme-2 { --theme-color: #0288d1; --theme-bg: #e1f5fe; }
         .theme-3 { --theme-color: #f57c00; --theme-bg: #fff3e0; }
@@ -113,7 +109,7 @@
 
         .section-title {
             text-align: center;
-            color: #4a148c;
+            color: var(--primary-purple);
             margin-bottom: 40px;
             font-size: 1.8rem;
         }
@@ -160,6 +156,7 @@
             padding: 30px;
             color: #444;
             line-height: 1.8;
+            user-select: text; /* 內容允許讀取，但不允許右鍵 */
         }
 
         .main-footer {
@@ -168,11 +165,18 @@
             background: #ffffff;
             margin-top: 80px;
             border-top: 1px solid #eee;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 992px) {
+            .nav-container { padding: 15px 20px; }
+            .nav-links { gap: 15px; font-size: 0.9rem; }
         }
 
         @media (max-width: 768px) {
-            .nav-container { padding: 15px 20px; flex-direction: column; gap: 15px; }
-            .nav-links { gap: 15px; flex-wrap: wrap; justify-content: center; }
+            .nav-container { flex-direction: column; gap: 15px; text-align: center; }
+            .nav-links { flex-wrap: wrap; justify-content: center; }
         }
     </style>
 </head>
@@ -182,13 +186,13 @@
         <div class="nav-container">
             <a href="index.html" class="logo">🔮 CrystalMagic</a>
             <ul class="nav-links">
-            <li><a href="index.html">首頁</a></li>
-            <li><a href="type.html">水晶種類</a></li>
-            <li><a href="effect.html">功效解讀</a></li>
-            <li><a href="pick.html">挑選指南</a></li> 
-            <li><a href="pages.html">淨化保養</a></li>
-            <li><a href="exclusive.html">專屬商品</a></li>
-            <li><a href="question.html">常見問題</a></li>
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="type.html">水晶種類</a></li>
+                <li><a href="effect.html">功效解讀</a></li>
+                <li><a href="pick.html">挑選指南</a></li> 
+                <li><a href="pages.html">淨化保養</a></li>
+                <li><a href="exclusive.html">專屬商品</a></li>
+                <li><a href="question.html">常見問題</a></li>
             </ul>
         </div>
     </nav>
@@ -202,10 +206,10 @@
         <div id="accordion-container">
             <h2 class="section-title">✨ 探索能量的源頭 ✨</h2>
 
-            <!-- 1. 地質生成 -->
-            <div class="accordion-item theme-1 active" id="geo">
+            <div class="accordion-item theme-1 active">
                 <button class="accordion-header">
                     <h3>1. 🌍 地質生成：地心深處的結晶</h3>
+                    <span>▼</span>
                 </button>
                 <div class="accordion-content">
                     <div class="accordion-inner-padding">
@@ -214,10 +218,10 @@
                 </div>
             </div>
 
-            <!-- 2. 科學原理 -->
-            <div class="accordion-item theme-2" id="science">
+            <div class="accordion-item theme-2">
                 <button class="accordion-header">
                     <h3>2. 🔬 科學原理：壓電效應與共振</h3>
+                    <span>▼</span>
                 </button>
                 <div class="accordion-content">
                     <div class="accordion-inner-padding">
@@ -226,10 +230,10 @@
                 </div>
             </div>
 
-            <!-- 3. 文明傳承 -->
-            <div class="accordion-item theme-3" id="culture">
+            <div class="accordion-item theme-3">
                 <button class="accordion-header">
                     <h3>3. 🏛️ 文明起源：神聖角色的傳承</h3>
+                    <span>▼</span>
                 </button>
                 <div class="accordion-content">
                     <div class="accordion-inner-padding">
@@ -238,10 +242,10 @@
                 </div>
             </div>
 
-            <!-- 4. 色彩起源 -->
-            <div class="accordion-item theme-4" id="color">
+            <div class="accordion-item theme-4">
                 <button class="accordion-header">
                     <h3>4. 🌈 色彩起源：微量元素的魔法</h3>
+                    <span>▼</span>
                 </button>
                 <div class="accordion-content">
                     <div class="accordion-inner-padding">
@@ -250,10 +254,10 @@
                 </div>
             </div>
 
-            <!-- 5. 現代轉化 -->
-            <div class="accordion-item theme-5" id="modern">
+            <div class="accordion-item theme-5">
                 <button class="accordion-header">
                     <h3>5. 🔮 現代轉化：從精密科技到心靈療癒</h3>
+                    <span>▼</span>
                 </button>
                 <div class="accordion-content">
                     <div class="accordion-inner-padding">
@@ -269,6 +273,7 @@
     </footer>
 
     <script>
+        // --- 1. 手風琴互動邏輯 ---
         document.querySelectorAll('.accordion-header').forEach(button => {
             button.addEventListener('click', () => {
                 const currentItem = button.parentElement;
@@ -279,12 +284,29 @@
                     item.classList.remove('active');
                 });
 
-                // 如果點擊的本來不是開啟狀態，就開啟它
+                // 如果點擊的不是原本開啟的，則開啟它
                 if (!isActive) {
                     currentItem.classList.add('active');
                 }
             });
         });
+
+        // --- 2. 魔法守護腳本 (與首頁一致) ---
+        // 禁用右鍵選單
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+            alert("🔮 魔法能量守護中：本站內容受保護，無法使用右鍵選單。");
+        }, false);
+
+        // 禁用鍵盤快捷鍵
+        document.onkeydown = function (e) {
+            // F12, Ctrl+Shift+I (DevTools), Ctrl+U (Source), Ctrl+S (Save)
+            if (e.keyCode === 123 || 
+               (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || 
+               (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83))) {
+                return false;
+            }
+        };
     </script>
 </body>
 </html>
