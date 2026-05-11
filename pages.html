@@ -41,7 +41,7 @@
             user-select: none;
         }
 
-        /* --- 專業導覽列 --- */
+        /* --- 專業導覽列 (已優化置左置右) --- */
         .main-header {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -60,7 +60,7 @@
 
         .header-content {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* 關鍵：確保 Logo 在左，Nav 在右 */
             align-items: center;
             height: 85px;
         }
@@ -74,12 +74,13 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            flex-shrink: 0; /* 防止 Logo 被壓縮 */
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 5px;
+            gap: 8px; /* 適度間距 */
         }
 
         .nav-menu a {
@@ -90,6 +91,7 @@
             padding: 10px 15px;
             border-radius: 50px;
             transition: var(--transition);
+            white-space: nowrap; /* 防止文字換行 */
         }
 
         .nav-menu a:hover {
@@ -255,16 +257,22 @@
             text-align: center;
         }
 
-        /* 響應式微調 */
-        @media (max-width: 992px) {
-            .nav-menu { gap: 0; }
+        /* --- 響應式微調 --- */
+        @media (max-width: 1024px) {
             .nav-menu a { padding: 8px 10px; font-size: 0.85rem; }
-            .maintenance-box { grid-template-columns: 1fr; }
         }
 
-        @media (max-width: 768px) {
-            .header-content { flex-direction: column; height: auto; padding: 15px 0; }
-            .nav-menu { flex-wrap: wrap; justify-content: center; margin-top: 10px; }
+        @media (max-width: 850px) {
+            .header-content { 
+                flex-direction: column; 
+                height: auto; 
+                padding: 15px 0; 
+                gap: 10px;
+            }
+            .nav-menu { 
+                flex-wrap: wrap; 
+                justify-content: center; 
+            }
             .care-hero h1 { font-size: 2.5rem; }
         }
     </style>
@@ -274,7 +282,10 @@
 <header class="main-header">
     <div class="main-container">
         <div class="header-content">
+            <!-- Logo 置左 -->
             <a href="index.html" class="logo">🔮 CrystalMagic</a>
+            
+            <!-- 導覽列 置右 -->
             <nav>
                 <ul class="nav-menu">
                     <li><a href="origin.html">水晶起源</a></li>
@@ -361,36 +372,29 @@
 
 <script>
     /**
-     * CrystalMagic 魔法守護腳本 - 專業版
+     * CrystalMagic 魔法守護腳本
      */
     document.addEventListener('DOMContentLoaded', function() {
-        
         // 1. 禁止右鍵選單
-        document.addEventListener('contextmenu', function (e) {
+        document.addEventListener('contextmenu', e => {
             e.preventDefault();
-            alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，請尊重原創。");
-        }, false);
+            alert("🔮 魔法能量守護中：本站圖文受智慧財產保護。");
+        });
 
-        // 2. 禁止圖片拖曳 (防止直接抓圖)
+        // 2. 禁止圖片拖曳
         document.querySelectorAll('img').forEach(img => {
             img.addEventListener('dragstart', e => e.preventDefault());
         });
 
         // 3. 禁用關鍵開發工具快捷鍵
         document.onkeydown = function (e) {
-            // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S
-            const forbiddenKeys = [123];
-            const isCtrlShiftI = e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74);
-            const isCtrlU = e.ctrlKey && e.keyCode === 85;
-            const isCtrlS = e.ctrlKey && e.keyCode === 83;
-
-            if (forbiddenKeys.includes(e.keyCode) || isCtrlShiftI || isCtrlU || isCtrlS) {
+            if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && e.keyCode === 85)) {
                 return false;
             }
         };
 
-        // 4. 禁用複製 (選配，若要保留使用者體驗可移除)
-        document.addEventListener('copy', function(e) {
+        // 4. 禁用複製
+        document.addEventListener('copy', e => {
             e.preventDefault();
             alert("✨ 能量無法複製，智慧亦然。");
         });
