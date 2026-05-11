@@ -25,10 +25,10 @@
             width: 100%;
             overflow-x: hidden;
             -webkit-user-select: none;
-            user-select: none; /* 禁用文字選取 */
+            user-select: none;
         }
 
-        /* 導覽列優化：Logo 與連結固定兩旁 */
+        /* 導覽列 */
         .navbar {
             background-color: var(--glass-white);
             backdrop-filter: blur(10px);
@@ -41,10 +41,9 @@
 
         .nav-container {
             width: 100%;
-            max-width: 100%; /* 讓它撐滿寬度以利左右對齊 */
             margin: 0 auto;
             display: flex;
-            justify-content: space-between; /* 關鍵：左右對齊 */
+            justify-content: space-between;
             align-items: center;
             padding: 15px 40px;
         }
@@ -70,9 +69,7 @@
             color: #555;
             font-weight: 500;
             transition: 0.3s ease;
-            padding: 5px 0;
             font-size: 1rem;
-            white-space: nowrap;
         }
 
         .nav-links a:hover {
@@ -94,12 +91,12 @@
             font-size: clamp(2rem, 5vw, 3rem);
         }
 
-        /* 手風琴樣式 */
-        .theme-1 { --theme-color: #3949ab; --theme-bg: #e8eaf6; }
-        .theme-2 { --theme-color: #0288d1; --theme-bg: #e1f5fe; }
-        .theme-3 { --theme-color: #f57c00; --theme-bg: #fff3e0; }
-        .theme-4 { --theme-color: #388e3c; --theme-bg: #e8f5e9; }
-        .theme-5 { --theme-color: #7b1fa2; --theme-bg: #f3e5f5; }
+        /* 手風琴主題色 */
+        .theme-1 { --theme-color: #5c6bc0; --theme-bg: #e8eaf6; }
+        .theme-2 { --theme-color: #26a69a; --theme-bg: #e0f2f1; }
+        .theme-3 { --theme-color: #ffa726; --theme-bg: #fff3e0; }
+        .theme-4 { --theme-color: #ec407a; --theme-bg: #fce4ec; }
+        .theme-5 { --theme-color: #8d6e63; --theme-bg: #efebe9; }
 
         #accordion-container {
             width: 90%;
@@ -138,8 +135,18 @@
 
         .accordion-header h3 {
             margin: 0;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: #333;
+        }
+
+        .accordion-header span {
+            transition: transform 0.3s ease;
+            color: var(--theme-color);
+            font-weight: bold;
+        }
+
+        .accordion-item.active .accordion-header span {
+            transform: rotate(180deg);
         }
 
         .accordion-content {
@@ -149,14 +156,18 @@
         }
 
         .accordion-item.active .accordion-content {
-            max-height: 600px;
+            max-height: 800px;
         }
 
         .accordion-inner-padding {
             padding: 30px;
             color: #444;
-            line-height: 1.8;
-            user-select: text; /* 內容允許讀取，但不允許右鍵 */
+            line-height: 1.9;
+            user-select: text;
+        }
+
+        .accordion-inner-padding b {
+            color: var(--primary-purple);
         }
 
         .main-footer {
@@ -169,14 +180,9 @@
             font-size: 0.9rem;
         }
 
-        @media (max-width: 992px) {
-            .nav-container { padding: 15px 20px; }
-            .nav-links { gap: 15px; font-size: 0.9rem; }
-        }
-
         @media (max-width: 768px) {
             .nav-container { flex-direction: column; gap: 15px; text-align: center; }
-            .nav-links { flex-wrap: wrap; justify-content: center; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 10px; }
         }
     </style>
 </head>
@@ -200,68 +206,68 @@
     <main>
         <section id="hero">
             <h1>水晶介紹：起源</h1>
-            <p>跨越千萬年的地質奇蹟，從地球核心孕育而生的療癒能量。</p>
+            <p>跨越億萬年的時空旅程，探索大自然最純粹的幾何語言。</p>
         </section>
 
         <div id="accordion-container">
-            <h2 class="section-title">✨ 探索能量的源頭 ✨</h2>
+            <h2 class="section-title">✨ 溯源：從地心到靈魂 ✨</h2>
 
             <div class="accordion-item theme-1 active">
                 <button class="accordion-header">
-                    <h3>1. 🌍 地質生成：地心深處的結晶</h3>
+                    <h3>1. 🌋 地心孕育：高溫高壓的淬鍊</h3>
                     <span>▼</span>
                 </button>
                 <div class="accordion-content">
                     <div class="accordion-inner-padding">
-                        <p>水晶起源於地殼深處的高溫高壓環境。當岩漿冷卻或地下水蒸發，原子以極其精準的幾何排列堆疊，歷經千萬年形成純淨結晶。</p>
+                        <p>水晶的物質起源於地殼深處。當富含二氧化矽的岩漿冷卻，或是地下熱液滲入岩石縫隙，在<b>極端的高溫與穩定的壓力</b>下，矽原子與氧原子開始精準地排列。這是一個漫長的等待，往往需要數百萬年甚至上億年，才能在黑暗中緩慢長成晶瑩剔透的晶體結構。</p>
                     </div>
                 </div>
             </div>
 
             <div class="accordion-item theme-2">
                 <button class="accordion-header">
-                    <h3>2. 🔬 科學原理：壓電效應與共振</h3>
+                    <h3>2. 🏛️ 文明初見：遠古祖先的崇敬</h3>
                     <span>▼</span>
                 </button>
                 <div class="accordion-content">
                     <div class="accordion-inner-padding">
-                        <p>科學上，水晶具備穩定的振動頻率。透過「壓電效應」，它能與人體磁場產生共振，協助平穩情緒頻率。</p>
+                        <p>人類對水晶的運用可追溯至石器時代。<b>古埃及人</b>將青金石與紅玉髓鑲嵌在法老的飾品中以祈求保護；<b>瑪雅文明</b>視水晶為大地的眼睛，能洞察未來。對遠古祖先而言，這些在土裡發現的「不化的冰塊」是神靈賜予的禮物，是人類最早接觸到的神聖幾何物件。</p>
                     </div>
                 </div>
             </div>
 
             <div class="accordion-item theme-3">
                 <button class="accordion-header">
-                    <h3>3. 🏛️ 文明起源：神聖角色的傳承</h3>
+                    <h3>3. 📜 神話起源：諸神與大地的眼淚</h3>
                     <span>▼</span>
                 </button>
                 <div class="accordion-content">
                     <div class="accordion-inner-padding">
-                        <p>從古埃及到亞特蘭提斯傳說，水晶一直被視為連結天地的橋樑。古代祭司利用水晶作為通靈與保護的神聖祭器。</p>
+                        <p>在希臘神話中，「水晶」(Krystallos) 意為冰。相傳紫水晶是由酒神戴歐尼修斯的悔恨與女神阿提米絲的守護演變而來。而在<b>亞特蘭提斯的傳說</b>中，巨大的水晶柱被認為是文明的能源中心。這些故事雖然魔幻，卻賦予了水晶跨越物理層面、連結集體潛意識的靈性歷史。</p>
                     </div>
                 </div>
             </div>
 
             <div class="accordion-item theme-4">
                 <button class="accordion-header">
-                    <h3>4. 🌈 色彩起源：微量元素的魔法</h3>
+                    <h3>4. ⚡ 頻率之源：宇宙振動的儲存器</h3>
                     <span>▼</span>
                 </button>
                 <div class="accordion-content">
                     <div class="accordion-inner-padding">
-                        <p>不同的微量元素決定了水晶的色彩。例如鐵元素造就紫水晶，鋁元素形成煙水晶，每種顏色對應不同的脈輪能量。</p>
+                        <p>從科學視角看，水晶起源於「秩序」。其穩定的<b>晶格結構</b>使其具備壓電效應，能將機械能轉化為電信號。這種特性讓水晶成為天然的頻率放大器。它吸收了地球磁場長達萬年的振動，並將這股穩定的原始能量儲存其中，成為我們調節身心頻率的精密工具。</p>
                     </div>
                 </div>
             </div>
 
             <div class="accordion-item theme-5">
                 <button class="accordion-header">
-                    <h3>5. 🔮 現代轉化：從精密科技到心靈療癒</h3>
+                    <h3>5. 🧘 靈魂回歸：從地質標本到生命夥伴</h3>
                     <span>▼</span>
                 </button>
                 <div class="accordion-content">
                     <div class="accordion-inner-padding">
-                        <p>今日水晶不僅用於手錶計時與電腦晶片，更成為壓力社會下，找回與自然頻率連結的心靈避風港。</p>
+                        <p>在當代社會，水晶的起源意義演變成了<b>「回歸自然」</b>的象徵。當現代人對水泥叢林感到疲憊時，這些源自地心深處、保有原始純粹頻率的礦石，幫助我們重新連結地球的根基。從博物館的陳列架走進人們的冥想空間，水晶完成了從物質奇蹟到身心夥伴的轉化之旅。</p>
                     </div>
                 </div>
             </div>
@@ -273,57 +279,36 @@
     </footer>
 
     <script>
-        // --- 1. 手風琴互動邏輯 ---
+        // 手風琴互動邏輯
         document.querySelectorAll('.accordion-header').forEach(button => {
             button.addEventListener('click', () => {
                 const currentItem = button.parentElement;
                 const isActive = currentItem.classList.contains('active');
                 
-                // 關閉所有手風琴
                 document.querySelectorAll('.accordion-item').forEach(item => {
                     item.classList.remove('active');
                 });
 
-                // 如果點擊的不是原本開啟的，則開啟它
                 if (!isActive) {
                     currentItem.classList.add('active');
                 }
             });
         });
 
-        
-    // --- 魔法守護腳本 ---
-    
-    // 1. 禁用右鍵選單並跳出提醒
-    document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-        alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
-    }, false);
+        // 魔法守護腳本
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+            alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
+        }, false);
 
-    // 2. 禁用快捷鍵 (F12, Ctrl+U, Ctrl+Shift+I 等)
-    document.onkeydown = function (e) {
-        // 禁用 F12
-        if (e.keyCode === 123) {
-            return false;
-        }
-        // 禁用 Ctrl+Shift+I (開發者工具)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
-            return false;
-        }
-        // 禁用 Ctrl+Shift+J (開發者工具)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
-            return false;
-        }
-        // 禁用 Ctrl+U (檢視原始碼)
-        if (e.ctrlKey && e.keyCode === 85) {
-            return false;
-        }
-        // 禁用 Ctrl+S (存檔)
-        if (e.ctrlKey && e.keyCode === 83) {
-            return false;
-        }
-    };
-</script>
-
+        document.onkeydown = function (e) {
+            if (e.keyCode === 123 || 
+                (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || 
+                (e.ctrlKey && e.keyCode === 85) || 
+                (e.ctrlKey && e.keyCode === 83)) {
+                return false;
+            }
+        };
+    </script>
 </body>
 </html>
