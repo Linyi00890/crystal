@@ -3,211 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrystalMagic | 探索水晶能量的奧秘</title>
-    <!-- 引入高品質字體 -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>CrystalMagic | 九大能量領域全解析</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
 
-    <!-- 導覽列 -->
+    <!-- 1. 導覽導航區 -->
     <header class="navbar">
         <div class="container">
-            <a href="index.html" class="logo">
-                <span class="icon">🔮</span> CrystalMagic
-            </a>
+            <a href="#" class="logo">🔮 CrystalMagic</a>
             <nav class="nav-links">
-                <div class="auth-group">
-                    <a href="login.html" class="btn-link">登入</a>
-                    <a href="register.html" class="btn-primary">免費註冊</a>
-                </div>
+                <a href="#guide">能量指南</a>
+                <a href="#feedback">心得分享</a>
+                <a href="#contact">聯絡諮詢</a>
+                <a href="login.html" class="btn-login">登入</a>
+                <a href="register.html" class="btn-login">註冊</a>
             </nav>
         </div>
     </header>
 
     <main>
-        <!-- Hero Section：背景使用原本的漸層色 -->
+        <!-- 2. 英雄視覺區 (Hero Section) -->
         <section class="hero">
-            <div class="hero-overlay"></div>
             <div class="container">
-                <div class="hero-text">
-                    <span class="badge">新手入門首選</span>
-                    <h1>開啟你的<br><span class="highlight">能量癒合</span>之旅</h1>
-                    <p>專業、友善、無壓力！探索來自大地深處的療癒密碼。</p>
-                    <div class="hero-btns">
-                        <a href="quiz.html" class="btn-cta">開始命定測驗</a>
-                        <a href="#guide" class="btn-secondary">了解更多</a>
-                    </div>
-                </div>
+                <h1>開啟您的水晶能量之旅</h1>
+                <a href="quiz.html" class="btn-main-cta">立即尋找你的命定水晶</a>
             </div>
         </section>
 
-        <!-- 導覽網格 -->
+        <!-- 3-7. 五大核心知識區 (整合原本的7大區域邏輯) -->
         <section id="guide" class="guide-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>探索水晶世界</h2>
-                    <p>從起源到保養，我們為您準備了最完整的系統化指南</p>
-                </div>
-
+            
                 <div class="guide-grid">
-                    <!-- 1. 起源 -->
-                    <a href="origin.html" class="card layer-1">
-                        <div class="card-image-wrapper">
-                            <img src="picture/crystal01.jpg" alt="起源">
-                            <div class="card-tag">起源</div>
-                        </div>
-                        <div class="card-body">
-                            <h3>01 水晶介紹</h3>
-                            <p>從地球深處而來的療癒密碼。了解其形成過程與歷史。</p>
-                            <span class="card-more">深入探索 ➔</span>
-                        </div>
-                    </a>
+                    <!-- 區域 3: 起源 -->
+                    <div class="card layer-1">
+                        <h3>01 水晶起源</h3>
+                        <p>探討大地礦石的形成與千年歷史文化。</p>
+                        <a href="origin.html" class="btn-main-cta">深入探索</a>
+                    </div>
+                    
+                    <!-- 區域 4: 種類 -->
+                    <div class="card layer-2">
+                        <h3>02 種類百科</h3>
+                        <p>細分白水晶、紫水晶、黃水晶等礦石特性。</p>
+                        <a href="type.html" class="btn-main-cta">查看清單</a>
+                    </div>
+                    
+                    <!-- 區域 5: 功效 -->
+                    <div class="card layer-3">
+                        <h3>03 能量功效</h3>
+                        <p>對應人體七大脈輪，調整身心頻率。</p>
+                        <a href="effect.html" class="btn-main-cta">查看功效</a>
+                    </div>
+                    
+                    <!-- 區域 6: 淨化 -->
+                    <div class="card layer-4">
+                        <h3>04 淨化保養</h3>
+                        <p>教導日光、月光、海鹽等消磁與保養方法。</p>
+                        <a href="pages.html" class="btn-main-cta">了解步驟</a>
+                    </div>
+                    
+                    <!-- 區域 7: 挑選 -->
+                    <div class="card layer-5">
+                        <h3>05 挑選指南</h3>
+                        <p>根據個人直覺、生命靈數或星座，挑選最適合的夥伴。</p>
+                        <a href="pick.html" class="btn-main-cta">查看</a>
+                    </div>
 
-                    <!-- 2. 種類 -->
-                    <a href="type.html" class="card layer-2">
-                        <div class="card-image-wrapper">
-                            <img src="picture/crystal02.jpg" alt="種類">
-                            <div class="card-tag">色彩</div>
-                        </div>
-                        <div class="card-body">
-                            <h3>02 水晶種類</h3>
-                            <p>白水晶、紫水晶、粉晶。從繽紛色彩中尋找共鳴。</p>
-                            <span class="card-more">查看清單 ➔</span>
-                        </div>
-                    </a>
+                    <!-- 區域 8: 選購 -->
+                    <div class="card layer-6">
+                        <h3>06 專屬商品</h3>
+                        <p>高品質手作飾品、原礦收藏與獨家能量課程。</p>
+                        <a href="exclusive.html" class="btn-main-cta">前往選購</a>
+                    </div>
 
-                    <!-- 3. 功效 -->
-                    <a href="effect.html" class="card layer-3">
-                        <div class="card-image-wrapper">
-                            <img src="picture/crystal03.jpg" alt="功效">
-                            <div class="card-tag">脈輪</div>
-                        </div>
-                        <div class="card-body">
-                            <h3>03 功效解讀</h3>
-                            <p>找到平衡身心、提升運勢的能量石。</p>
-                            <span class="card-more">查看功效 ➔</span>
-                        </div>
-                    </a>
+                    <!-- 區域 9: Q & A -->
+                    <div class="card layer-7">
+                        <h3>07 常見問題: Q & A</h3>
+                        <p>整理了入門者最常詢問的迷思，為您一一解惑。</p>
+                        <a href="question.html" class="btn-main-cta">查看問題</a>
+                    </div>
 
-                    <!-- 4. 挑選 -->
+                    <!-- 區域 10:粉絲回饋 -->
+                    <div class="card layer-8">
+                        <h3>08 粉絲回饋</h3>
+                        <p>分享你的水晶故事，看看其他夥伴的心得分享。</p>
+                        <a href="share.html" class="btn-main-cta">觀看分享</a>
+                    </div>
 
-                    <a href="pick.html" class="card" data-layer="4">
-
-                        <div class="card-image-wrapper">
-
-                            <img src="picture/crystal04.jpg" alt="挑選">
-
-                            <div class="card-tag">尋找</div>
-
-                        </div>
-
-                        <div class="card-body">
-
-                            <h3>04 挑選指南</h3>
-
-                            <p>根據個人直覺、生命靈數或星座，挑選最適合的夥伴。</p>
-
-                            <span class="card-more">開始配對 ➔</span>
-
-                        </div>
-
-                    </a>
-
-
-
-                    <!-- 5. 淨化 -->
-
-                    <a href="pages.html" class="card" data-layer="5">
-
-                        <div class="card-image-wrapper">
-
-                            <img src="picture/crystal05.jpg" alt="淨化">
-
-                            <div class="card-tag">能量</div>
-
-                        </div>
-
-                        <div class="card-body">
-
-                            <h3>05 淨化保養</h3>
-
-                            <p>月光、晶洞、流動水。教您如何維持水晶的純淨能量。</p>
-
-                            <span class="card-more">了解步驟 ➔</span>
-
-                        </div>
-
-                    </a>
-
-
-
-                    <!-- 6. 專屬 -->
-
-                    <a href="exclusive.html" class="card" data-layer="6">
-
-                        <div class="card-image-wrapper">
-
-                            <img src="picture/crystal06.jpg" alt="專屬">
-
-                            <div class="card-tag">打造</div>
-
-                        </div>
-
-                        <div class="card-body">
-
-                            <h3>06 專屬商品</h3>
-
-                            <p>高品質手作飾品、原礦收藏與獨家能量課程。</p>
-
-                            <span class="card-more">前往選購 ➔</span>
-
-                        </div>
-
-                    </a>
-
-                    <!-- 7. FAQ -->
-
-                    <a href="question.html" class="card" data-layer="7">
-                        <div class="card-body">
-                            <div class="icon-circle">❓</div>
-                            <h3>07 常見問題: Q & A </h3>
-                            <p>整理了入門者最常詢問的迷思，為您一一解惑。</p>
-                            <span class="card-more">查看問答 ➔</span>
-                        </div>
-                    </a>
-
-                     <!-- 8. 回饋 -->
-
-                    <a href="share.html" class="card" data-layer="8">
-                        <div class="card-body">
-                            <div class="icon-circle">💬</div>
-                            <h3>08 粉絲回饋</h3>
-                            <p>分享你的水晶故事，看看其他夥伴的心得分享。</p>
-                            <span class="card-more">觀看分享 ➔</span>
-                        </div>
-                    </a>
-
-                     <!-- 9. 聯絡我們 -->
-
-                    <a href="contact.html" class="card" data-layer="9">
-                        <div class="card-body">
-                            <div class="icon-circle">📧</div>
-                            <h3>09 聯絡我們</h3>
-                            <p>有任何疑難雜症？專業客服隨時為您提供建議。</p>
-                            <span class="card-more">立即諮詢 ➔</span>
-                        </div>
-                    </a>
-
+                     <!-- 區域 11:聯絡諮詢區 -->
+                    <div class="card layer-9">
+                        <h3>09聯絡我們</h3>
+                        <p>有任何疑難雜症？專業客服隨時為您提供建議。</p>
+                        <a href="contact.html" class="btn-main-cta">觀看分享</a>
+                    </div>
+                    
                 </div>
             </div>
         </section>
+    </main>
 
-    <footer class="main-footer">
-        <div class="container">
-            <p>&copy; 2026 CrystalMagic. 致力於推廣水晶能量美學</p>
-            <div class="footer-notice">本站所有內容僅供參考，能量感受因人而異。</div>
-        </div>
+    <footer class="footer">
+        <p>&copy; 2026 CrystalMagic | 水晶魔法能量守護</p>
     </footer>
 
     <script src="index.js"></script>
