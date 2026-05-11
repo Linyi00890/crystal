@@ -6,7 +6,6 @@
     <title>水晶淨化與保養指南 - 水晶魔法 | CrystalMagic</title>
     
     <style>
-
         :root {
             --primary-green: #2e7d32;
             --dark-green: #1b5e20;
@@ -14,26 +13,22 @@
             --max-width: 1200px;
         }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Noto Sans TC', sans-serif;
             background-color: var(--bg-color);
-            margin: 0;
-            padding: 0;
             color: #333;
             line-height: 1.8;
             width: 100%;
             overflow-x: hidden;
         }
 
-        
-        .main-container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 40px;
-            box-sizing: border-box;
-        }
-
-
+        /* --- 修正後的導覽列區塊 --- */
         .main-header {
             background: #fff;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -43,11 +38,18 @@
             z-index: 1000;
         }
 
+        .main-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
         .header-content {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: space-between; /* 關鍵：Logo 與連結分居左右 */
+            align-items: center;            /* 垂直置中 */
             height: 80px;
+            width: 100%;
         }
 
         .logo {
@@ -55,14 +57,15 @@
             font-weight: bold;
             color: var(--primary-green);
             text-decoration: none;
+            flex-shrink: 0; /* 防止 Logo 被壓縮 */
         }
 
         .nav-links {
             display: flex;
-            gap: 35px;
+            gap: 25px;      /* 連結間的間距 */
             list-style: none;
             margin: 0;
-            padding: 0;
+            padding: 0;     /* 移除 ul 預設 padding */
         }
 
         .nav-links a {
@@ -70,20 +73,21 @@
             color: #555;
             font-weight: 500;
             transition: 0.3s;
+            padding: 5px 10px;
+            border-radius: 6px;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover, .nav-links a.active {
             color: var(--primary-green);
+            background-color: #f1f8e9;
         }
 
-
+        /* --- 頁面內容樣式 --- */
         .care-intro {
             text-align: center;
             padding: 100px 20px;
             background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
             border-bottom: 5px solid #81c784;
-            width: 100%;
-            box-sizing: border-box;
         }
         
         .care-intro h1 {
@@ -91,14 +95,6 @@
             font-size: 3.2rem;
             margin-bottom: 20px;
         }
-
-        .care-intro p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto;
-            color: #444;
-        }
-
 
         .section-wrapper {
             padding: 80px 0;
@@ -112,46 +108,30 @@
             font-weight: bold;
         }
 
-
         .purification-methods {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
-            margin-top: 30px;
         }
 
         .method-card {
             background-color: white;
-            padding: 40px;
+            padding: 30px;
             border-radius: 25px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+            transition: 0.3s;
             border: 1px solid #eee;
-            display: flex;
-            flex-direction: column;
         }
 
         .method-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
         .method-card h3 {
             color: #4a148c;
             border-left: 6px solid #8e24aa;
-            padding-left: 20px;
-            margin-top: 0;
-            font-size: 1.6rem;
-        }
-
-        .method-card ul {
-            padding-left: 20px;
-            margin-top: 20px;
-        }
-
-        .method-card li {
-            margin-bottom: 12px;
-            font-size: 1.1rem;
+            padding-left: 15px;
+            margin-bottom: 15px;
         }
 
         .warning-box {
@@ -162,47 +142,18 @@
             margin: 60px 0;
         }
 
-        .warning-box h3 {
-            color: #d32f2f;
-            margin-top: 0;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .maintenance-list {
-            background: #fff;
-            padding: 60px;
-            border-radius: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
-        }
-
         .maintenance-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
-        }
-
-        .maintenance-item dt {
-            font-weight: bold;
-            color: var(--primary-green);
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-
-        .maintenance-item dd {
-            margin-left: 0;
-            color: #666;
-            font-size: 1.05rem;
-            padding-bottom: 20px;
+            background: #fff;
+            padding: 40px;
+            border-radius: 30px;
         }
 
         .footer {
             text-align: center;
-            padding: 80px 0;
+            padding: 60px 0;
             background: #fff;
             border-top: 1px solid #eee;
         }
@@ -210,21 +161,28 @@
         .back-btn {
             display: inline-block;
             margin-top: 40px;
-            padding: 18px 50px;
+            padding: 15px 40px;
             background: var(--primary-green);
             color: white;
             text-decoration: none;
-            border-radius: 60px;
-            font-weight: bold;
-            font-size: 1.1rem;
+            border-radius: 50px;
             transition: 0.3s;
-            box-shadow: 0 10px 20px rgba(46, 125, 50, 0.2);
         }
 
-        .back-btn:hover {
-            background: var(--dark-green);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(46, 125, 50, 0.3);
+        /* 響應式：手機版選單處理 */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                height: auto;
+                padding: 20px 0;
+            }
+            .nav-links {
+                margin-top: 15px;
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .care-intro h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -233,11 +191,14 @@
 <header class="main-header">
     <div class="main-container">
         <div class="header-content">
+            <!-- 左側 Logo -->
             <a href="index.html" class="logo">🔮 CrystalMagic</a>
+            
+            <!-- 右側 導覽連結 -->
             <nav>
                 <ul class="nav-links">
                     <li><a href="index.html">首頁</a></li>
-                    <li><a href="origin.html" class="active">水晶起源</a></li>
+                    <li><a href="origin.html">水晶起源</a></li>
                     <li><a href="type.html">水晶種類</a></li>
                     <li><a href="effect.html">功效解讀</a></li>
                     <li><a href="pick.html">挑選指南</a></li>
@@ -252,90 +213,48 @@
 <main>
     <section class="care-intro">
         <h1>💧 水晶淨化與保養完整指南</h1>
-        <p>水晶如同能量的「海綿」，會吸收環境與情緒的波動。定期淨化能重置水晶的頻率，讓它維持在最純淨的保護狀態。</p>
+        <p>水晶如同能量的「海綿」，會吸收環境與情緒的波動。定期淨化能重置水晶的頻率。</p>
     </section>
 
     <div class="main-container">
         <section id="purification" class="section-wrapper">
-            <h2 class="section-title">🌀 五大推薦淨化法</h2>
+            <h2 class="section-title">🌀 推薦淨化法</h2>
             <div class="purification-methods">
-                
                 <article class="method-card">
-                    <img src="picture/gravel01.jpg" alt="淨化法名稱" class="method-img">
-                    <div class="method-content">
-                    <h3>1. 晶簇與碎石法 (最安全)</h3>
+                    <h3>1. 晶簇與碎石法</h3>
                     <p>利用高頻穩定的白水晶簇或碎石，持續清理小水晶的負向磁場。</p>
-                    <ul>
-                        <li><strong>操作：</strong> 將飾品放置於晶簇上或碎石碗中。</li>
-                        <li><strong>時長：</strong> 靜置 4-8 小時，建議隔夜。</li>
-                        <li><strong>優點：</strong> 適合所有水晶，完全無損害。</li>
-                    </ul>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">適合對象：所有水晶（最安全）。</p>
                 </article>
 
                 <article class="method-card">
-                    <img src="picture/moonlight01.jpg" alt="淨化法名稱" class="method-img">
-                    <div class="method-content">
-                    <h3>2. 月光能量法 (最溫和)</h3>
+                    <h3>2. 月光能量法</h3>
                     <p>藉由月亮的陰柔能量為水晶充電，特別適合提升直覺力的水晶。</p>
-                    <ul>
-                        <li><strong>操作：</strong> 滿月前後放置於窗邊接受月光照射。</li>
-                        <li><strong>時長：</strong> 至少 2 小時以上。</li>
-                        <li><strong>優點：</strong> 適合粉晶、拉長石、月光石等。</li>
-                    </ul>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">適合對象：粉晶、月光石、拉長石。</p>
                 </article>
 
                 <article class="method-card">
-                    <img src="picture/smokey01.jpg" alt="淨化法名稱" class="method-img">
-                    <div class="method-content">
-                    <h3>3. 神聖煙燻法 (最迅速)</h3>
+                    <h3>3. 神聖煙燻法</h3>
                     <p>燃燒白色鼠尾草或秘魯聖木，利用煙霧帶走附著的沈重能量。</p>
-                    <ul>
-                        <li><strong>操作：</strong> 讓煙霧環繞水晶每一個切面約 1 分鐘。</li>
-                        <li><strong>時長：</strong> 煙霧完全包覆後即可。</li>
-                        <li><strong>注意：</strong> 需在通風良好的環境下進行。</li>
-                    </ul>
-                </article>
-
-                <article class="method-card">
-                    <img src="picture/audio01.jpg" alt="淨化法名稱" class="method-img">
-                    <div class="method-content">
-                    <h3>4. 音頻震動法 (最高效)</h3>
-                    <p>利用頌缽或音叉的穩定震動頻率，瞬間校準水晶的能量分子。</p>
-                    <ul>
-                        <li><strong>操作：</strong> 將水晶放於頌缽旁，敲擊發出共振音。</li>
-                        <li><strong>時長：</strong> 持續 3-5 次完整的餘音。</li>
-                        <li><strong>優點：</strong> 特別適合不宜碰水、體積巨大的原礦。</li>
-                    </ul>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">注意：請在通風良好處進行。</p>
                 </article>
             </div>
 
             <div class="warning-box">
-                <h3>⚠️ 淨化地雷：請務必避免</h3>
-                <p><strong>❌ 嚴禁鹽水泡法：</strong> 鹽分會滲入微小裂縫，長期會導致水晶霧化或結構崩裂（如方解石、螢石）。</p>
-                <p><strong>❌ 避免烈日曝曬：</strong> 紫水晶、粉晶、黃水晶等有色水晶，在陽光下曝曬過久會導致永久性褪色。</p>
+                <h3 style="color: #d32f2f;">⚠️ 淨化地雷：請務必避免</h3>
+                <p>❌ 嚴禁鹽水泡法：會導致水晶結構受損。 <br> ❌ 避免烈日曝曬：有色水晶（如紫水晶）會褪色。</p>
             </div>
         </section>
 
-        <section id="maintenance" class="section-wrapper">
-            <h2 class="section-title">💎 日常存放與保養原則</h2>
-            <div class="maintenance-list">
-                <div class="maintenance-grid">
-                    <div class="maintenance-item">
-                        <dt>1. 避免化學侵蝕</dt>
-                        <dd>噴灑香水、洗澡或游泳前應取下水晶，化學藥劑與氯水會損害晶面光澤。</dd>
-                    </div>
-                    <div class="maintenance-item">
-                        <dt>2. 獨立收納存放</dt>
-                        <dd>不同種類的水晶硬度不同，混放易造成細微刮痕。建議分裝在專屬絨布袋中。</dd>
-                    </div>
-                    <div class="maintenance-item">
-                        <dt>3. 情緒衝擊後的處理</dt>
-                        <dd>若出入醫院、參加葬禮或情緒極度崩潰後，建議當天立即進行深度淨化。</dd>
-                    </div>
-                    <div class="maintenance-item">
-                        <dt>4. 維持物理清潔</dt>
-                        <dd>表面若沾染指紋或油脂，可用拭鏡布沾微量清水輕拭，保持晶體透亮度。</dd>
-                    </div>
+        <section class="section-wrapper">
+            <h2 class="section-title">💎 日常保養原則</h2>
+            <div class="maintenance-grid">
+                <div>
+                    <h4 style="color: var(--primary-green);">1. 避免化學侵蝕</h4>
+                    <p>噴灑香水、洗澡或游泳前應取下水晶。</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--primary-green);">2. 獨立收納存放</h4>
+                    <p>不同硬度的水晶建議分裝在專屬絨布袋中。</p>
                 </div>
             </div>
         </section>
