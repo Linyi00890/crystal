@@ -3,136 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新會員註冊 - 水晶魔法</title>
-    <link rel="stylesheet" href="../style01.css"> 
+    <title>新會員註冊 | CrystalMagic 水晶魔法</title>
     
     <style>
-        .auth-container {
+        :root {
+            --primary-purple: #6a1b9a;
+            --dark-purple: #4a148c;
+            --accent-orange: #ff8a65;
+            --glass-white: rgba(255, 255, 255, 0.9);
+        }
+
+        /* 基礎設定與動態背景 */
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+            background: linear-gradient(-45deg, #f3e5f5, #e1f5fe, #fff3e0, #fce4ec);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            display: flex;
+            flex-direction: column;
+            -webkit-user-select: none; /* 禁止選取文字 */
+            user-select: none;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 返回首頁按鈕 */
+        .back-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            color: var(--primary-purple);
+            font-weight: bold;
+            padding: 10px 20px;
+            background: var(--glass-white);
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 100;
+        }
+
+        .back-home:hover {
+            background: var(--primary-purple);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* 註冊容器 */
+        .auth-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px; /* 增加上下間距 */
+        }
+
+        .auth-card {
+            background: var(--glass-white);
+            backdrop-filter: blur(10px);
+            width: 100%;
             max-width: 450px;
-            margin: 60px auto;
             padding: 40px;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             text-align: center;
+            box-sizing: border-box;
         }
 
-        .auth-container h1 {
-            color: #4a148c; 
-            margin-bottom: 30px;
-            border-bottom: 2px solid #ff8a65;
-            padding-bottom: 10px;
+        .auth-card h1 {
+            color: var(--primary-purple);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
         }
 
+        /* 表單樣式 */
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             text-align: left;
         }
 
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            font-weight: bold;
+            font-weight: 600;
             color: #555;
+            font-size: 0.85rem;
+            padding-left: 5px;
         }
 
         .form-group input {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
+            padding: 13px 16px;
+            border: 1.5px solid #eee;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: 0.3s;
+            background: rgba(255, 255, 255, 0.8);
             box-sizing: border-box;
-            font-size: 1em;
+            user-select: text; /* 允許輸入框選取 */
         }
 
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 0 4px rgba(106, 27, 154, 0.1);
+        }
+
+        /* 按鈕 */
         .submit-button {
             width: 100%;
-            background-color: #ff8a65; 
+            background: linear-gradient(135deg, #ff8a65, #ff5722);
             color: white;
-            padding: 15px;
+            padding: 16px;
             border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 1.1em;
+            border-radius: 14px;
+            font-size: 1.1rem;
             font-weight: bold;
-            transition: background-color 0.3s;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 8px 20px rgba(255, 138, 101, 0.2);
+            margin-top: 10px;
         }
 
         .submit-button:hover {
-            background-color: #ff5722;
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+            box-shadow: 0 12px 25px rgba(255, 138, 101, 0.3);
+        }
+
+        /* 底部文字與連結 */
+        .privacy-note {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+
+        .privacy-note a {
+            color: var(--primary-purple);
+            text-decoration: none;
         }
 
         .auth-links {
             margin-top: 25px;
-            font-size: 0.9em;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
         }
-        
+
         .auth-links a {
-            color: #6a1b9a;
+            color: var(--primary-purple);
             text-decoration: none;
-            margin: 0 10px;
+            font-weight: bold;
         }
-        
+
         .auth-links a:hover {
-            text-decoration: underline;
+            color: var(--accent-orange);
         }
-        
-        .privacy-note {
-            font-size: 0.8em;
-            color: #777;
-            margin-top: 15px;
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+            font-size: 0.8rem;
         }
     </style>
 </head>
 <body>
 
-<main>
-    
-    <section class="auth-container">
-        <h1>免費註冊新會員</h1>
-        
-        <form action="/api/register" method="POST">
-            
-            <div class="form-group">
-                <label for="username">設定使用者名稱</label>
-                <input type="text" id="username" name="username" placeholder="用於網站顯示" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="email">電子郵件 *</label>
-                <input type="email" id="email" name="email" placeholder="請使用常用信箱" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="password">設定密碼 * (至少8位)</label>
-                <input type="password" id="password" name="password" required minlength="8">
-            </div>
-            
-            <div class="form-group">
-                <label for="confirm_password">確認密碼 *</label>
-                <input type="password" id="confirm_password" name="confirm_password" required minlength="8">
-            </div>
-            
-            <button type="submit" class="submit-button">完成註冊</button>
-            
-            <p class="privacy-note">
-                點擊「完成註冊」即表示您同意我們的<a href="terms.html" target="_blank">服務條款</a>與<a href="privacy.html" target="_blank">隱私權政策</a>。
-            </p>
-            
-        </form>
-        
-        <div class="auth-links">
-            <a href="login.html">已經有帳號？立即登入</a>
-        </div>
-    </section>
+    <a href="index.html" class="back-home">🏠 返回首頁</a>
 
-    <a href="index.html" class="back-home"><span>🏠</span> 返回首頁</a>
+    <main class="auth-wrapper">
+        <section class="auth-card">
+            <h1>加入水晶魔法會員</h1>
+            
+            <form id="registerForm" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label for="username">使用者名稱</label>
+                    <input type="text" id="username" placeholder="用於網站顯示" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">電子郵件</label>
+                    <input type="email" id="email" placeholder="我們將發送驗證信至此" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">設定密碼 (至少 8 位)</label>
+                    <input type="password" id="password" placeholder="請設定強大的密碼" required minlength="8">
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm_password">確認密碼</label>
+                    <input type="password" id="confirm_password" placeholder="再次輸入密碼" required minlength="8">
+                </div>
+                
+                <button type="submit" class="submit-button">完成召喚並註冊</button>
+                
+                <p class="privacy-note">
+                    註冊即代表您同意本站的 <a href="#">服務條款</a> 與 <a href="#">隱私權政策</a>。
+                </p>
+            </form>
+            
+            <div class="auth-links">
+                已經有帳號？<a href="login.html">立即登入</a>
+            </div>
+        </section>
+    </main>
 
-</main>
+    <footer class="footer">
+        <p>&copy; 2026 CrystalMagic 水晶魔法版權所有</p>
+    </footer>
 
-<footer>
-    <p>&copy; 2025 水晶魔法版權所有 | <a href="contact.html">聯絡我們</a></p>
-</footer>
+    <script>
+        // 1. 安全保護：禁用右鍵與開發者工具快捷鍵
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.onkeydown = function(e) {
+            if (e.keyCode === 123 || 
+               (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || 
+               (e.ctrlKey && e.keyCode === 85)) {
+                return false;
+            }
+        };
+
+        // 2. 註冊邏輯處理
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+            const btn = event.target.querySelector('.submit-button');
+
+            // 檢查密碼是否一致
+            if (password !== confirmPassword) {
+                alert('🔮 提示：兩次輸入的密碼不一致，請重新檢查。');
+                return;
+            }
+
+            // 模擬註冊過程
+            btn.innerText = '正在建立能量連結...';
+            btn.style.opacity = '0.7';
+            btn.style.pointerEvents = 'none';
+
+            setTimeout(() => {
+                alert('註冊成功！歡迎來到水晶魔法的世界。');
+                window.location.href = 'login.html';
+            }, 1500);
+        }
+    </script>
 
 </body>
 </html>
