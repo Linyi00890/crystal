@@ -34,7 +34,7 @@
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             width: 100%;
-            height: 80px;
+            min-height: 80px;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -63,20 +63,23 @@
 
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 15px; /* 稍微縮小間距以容納更多項目 */
             list-style: none;
             margin: 0;
             padding: 0;
+            flex-wrap: wrap;
+            justify-content: flex-end;
         }
 
         .nav-links a {
             text-decoration: none;
             color: #555;
             font-weight: 500;
-            font-size: 1rem;
+            font-size: 0.95rem; /* 微調字體大小 */
             transition: 0.3s;
             padding: 8px 12px;
             border-radius: 8px;
+            white-space: nowrap;
         }
 
         .nav-links a:hover, .nav-links a.active {
@@ -213,14 +216,14 @@
     <div class="nav-content">
         <a href="index.html" class="logo">🔮 CrystalMagic</a>
         <ul class="nav-links">
-            <li><a href="index.html">首頁</a></li>
             <li><a href="origin.html">水晶起源</a></li>
             <li><a href="type.html">水晶種類</a></li>
             <li><a href="effect.html">功效解讀</a></li>
-            <li><a href="pick.html">挑選指南</a></li>
             <li><a href="pages.html">淨化保養</a></li>
+            <li><a href="pick.html">挑選指南</a></li> 
             <li><a href="exclusive.html">專屬商品</a></li>
-            <li><a href="question.html" class="active">常見問題</a></li>
+            <li><a href="share.html">粉絲回饋</a></li>
+            <li><a href="contact.html">客服諮詢</a></li>
         </ul>
     </div>
 </nav>
@@ -234,7 +237,6 @@
     <div class="main-content">
         <h2 class="section-title">常見 Q&A 快速導覽</h2>
 
-        <!-- Q1 -->
         <div class="accordion-item">
             <button class="accordion-header">
                 Q1: 水晶手鍊應該戴在左手還是右手？
@@ -251,7 +253,6 @@
             </div>
         </div>
 
-        <!-- Q2 -->
         <div class="accordion-item">
             <button class="accordion-header">
                 Q2: 我可以同時佩戴多條不同種類的水晶嗎？
@@ -264,7 +265,6 @@
             </div>
         </div>
 
-        <!-- Q3 -->
         <div class="accordion-item">
             <button class="accordion-header">
                 Q3: 水晶需要多久淨化（消磁）一次？
@@ -277,7 +277,6 @@
             </div>
         </div>
 
-        <!-- Q4 -->
         <div class="accordion-item">
             <button class="accordion-header">
                 Q4: 睡覺時可以戴著水晶嗎？
@@ -290,7 +289,6 @@
             </div>
         </div>
 
-        <!-- Q5 -->
         <div class="accordion-item">
             <button class="accordion-header">
                 Q5: 水晶斷了或珠子裂開代表什麼？
@@ -303,7 +301,6 @@
             </div>
         </div>
 
-        <!-- Q6 -->
         <div class="accordion-item">
             <button class="accordion-header">
                 Q6: 洗澡時可以戴著水晶嗎？
@@ -316,7 +313,6 @@
             </div>
         </div>
 
-        <!-- Q7 -->
         <div class="accordion-item">
             <button class="accordion-header">
                 Q7: 別人可以觸摸我的水晶嗎？
