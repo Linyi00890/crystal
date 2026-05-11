@@ -64,17 +64,50 @@
         #crystalDesc { font-size: 1.1rem; color: #555; max-width: 600px; margin: 0 auto 30px; }
 
         .hidden { display: none !important; }
-        .back-home { position: fixed; bottom: 20px; right: 20px; text-decoration: none; background: #fff; padding: 10px 20px; border-radius: 20px; color: #333; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+
+        /* --- 左下角返回主頁按鈕 (如圖樣式) --- */
+        .btn-back-home {
+            position: fixed;
+            left: 20px;
+            bottom: 30px; /* 避開工作列的高度 */
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #4a148c;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            z-index: 9999;
+            border: 1px solid #f3e5f5;
+        }
+
+        .btn-back-home:hover {
+            background-color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .btn-back-home .icon {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
     </style>
 </head>
 <body>
+
+<a href="index.html" class="btn-back-home">
+    <span class="icon">🏠</span> 返回首頁
+</a>
 
 <main class="quiz-container">
     <h1>🔮 深度能量水晶測驗</h1>
     <p class="subtitle">傾聽內心的聲音，發現與你靈魂共振的礦石</p>
     
     <form id="quizForm">
-        <!-- 題目將由 JavaScript 自動生成 -->
         <div id="questionsContainer"></div>
         <button type="submit" class="submit-btn">✨ 揭曉我的命定水晶 ✨</button>
     </form>
@@ -90,8 +123,7 @@
 </main>
 
 <script>
-    // 1. 水晶資料庫 (20種以上)
-    // 屬性說明：love(愛), wealth(財富), protect(防護), spirit(靈性), health(健康), power(行動力)
+    // 1. 水晶資料庫
     const crystalDatabase = [
         { id: "amethyst", name: "紫水晶", type: "靈性智慧", desc: "開發智慧、平穩情緒，適合需要思考與面對考驗的你。", attr: "spirit", img: "https://images.unsplash.com/photo-1567883111025-063a43627448?w=400" },
         { id: "citrine", name: "黃水晶", type: "自信財富", desc: "聚財之石，能增強自信與動力，吸引意想不到的財富機會。", attr: "wealth", img: "https://images.unsplash.com/photo-1615111784767-4d7a407d39f4?w=400" },
@@ -218,14 +250,10 @@
             scores[value]++;
         }
 
-        // 找出得分最高的類別
         let topAttr = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-        
-        // 從資料庫中隨機挑選符合該類別的水晶（增加隨機感）
         const candidates = crystalDatabase.filter(c => c.attr === topAttr);
         const result = candidates[Math.floor(Math.random() * candidates.length)];
 
-        // 顯示結果
         document.getElementById('quizForm').classList.add('hidden');
         const resSec = document.getElementById('resultSection');
         resSec.classList.remove('hidden');
