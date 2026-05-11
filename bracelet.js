@@ -2,24 +2,25 @@
  * bracelet.js
  */
 
-// --- 1. 購物車邏輯 ---
+// 1. 購物車
 let cartCount = 0;
 function addToCart(name) {
     cartCount++;
     const countLabel = document.getElementById('cartCount');
     const cartBtn = document.getElementById('cartButton');
     
-    countLabel.innerText = cartCount;
+    if (countLabel) countLabel.innerText = cartCount;
     alert(`✨ 【${name}】已成功加入魔法購物車！`);
 
-    // 動畫效果
-    cartBtn.style.transform = 'scale(1.3) rotate(-10deg)';
-    setTimeout(() => {
-        cartBtn.style.transform = 'scale(1) rotate(0deg)';
-    }, 200);
+    if (cartBtn) {
+        cartBtn.style.transform = 'scale(1.3) rotate(-10deg)';
+        setTimeout(() => {
+            cartBtn.style.transform = 'scale(1) rotate(0deg)';
+        }, 250);
+    }
 }
 
-// --- 2. 下拉式篩選邏輯 ---
+// 2. 雙重篩選邏輯
 const effectFilter = document.getElementById('effect-filter');
 const colorFilter = document.getElementById('color-filter');
 const products = document.querySelectorAll('.product-item');
@@ -35,7 +36,6 @@ function filterProducts() {
         const effectMatch = (effectValue === 'all' || itemEffect === effectValue);
         const colorMatch = (colorValue === 'all' || itemColor === colorValue);
 
-        // 如果兩個條件都符合則顯示，否則隱藏
         if (effectMatch && colorMatch) {
             item.classList.remove('hidden');
         } else {
@@ -44,19 +44,17 @@ function filterProducts() {
     });
 }
 
-effectFilter.addEventListener('change', filterProducts);
-colorFilter.addEventListener('change', filterProducts);
+if (effectFilter) effectFilter.addEventListener('change', filterProducts);
+if (colorFilter) colorFilter.addEventListener('change', filterProducts);
 
-// --- 3. 魔法守護腳本 ---
+// 3. 安全守護
 document.addEventListener('contextmenu', e => {
     e.preventDefault();
     alert("🔮 魔法能量守護中：本站圖文受智慧財產保護。");
 });
 
 document.onkeydown = e => {
-    if (e.keyCode === 123 || 
-        (e.ctrlKey && [83, 85].includes(e.keyCode)) || 
-        (e.ctrlKey && e.shiftKey && [73, 74].includes(e.keyCode))) {
-        return false;
-    }
+    if (e.keyCode === 123) return false;
+    if ((e.ctrlKey || e.metaKey) && [83, 85].includes(e.keyCode)) return false;
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && [73, 74].includes(e.keyCode)) return false;
 };
