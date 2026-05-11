@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>能量手鍊精選 - CrystalMagic</title>
-    <!-- 引入字體與 Icon -->
+    <!-- 引入 Google 字體與圖示 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="bracelet.css">
@@ -37,11 +37,11 @@
             <label for="effect-filter">🔮 功效篩選：</label>
             <select id="effect-filter">
                 <option value="all">全部功效</option>
-                <option value="love">人緣桃花 (愛)</option>
-                <option value="wealth">事業財運 (錢)</option>
-                <option value="wisdom">智慧學業 (腦)</option>
-                <option value="protection">避邪守護 (護)</option>
-                <option value="health">身心療癒 (安)</option>
+                <option value="love">人緣桃花</option>
+                <option value="wealth">事業財運</option>
+                <option value="wisdom">智慧學業</option>
+                <option value="protection">避邪守護</option>
+                <option value="health">身心療癒</option>
             </select>
         </div>
         <div class="filter-group">
@@ -58,9 +58,8 @@
         </div>
     </section>
 
-    <!-- 產品網格 (由 JavaScript 判斷隱藏/顯示) -->
     <section class="product-grid" id="productGrid">
-        <!-- 產品 1 - 20 如下列清單，data 屬性用於篩選 -->
+        <!-- 產品 1 - 20 -->
         <article class="product-item" data-effect="love" data-color="pink">
             <div class="image-container"><img src="picture/pink01.jpg" alt="粉晶"></div>
             <div class="product-details">
@@ -74,7 +73,7 @@
         <article class="product-item" data-effect="wealth" data-color="yellow">
             <div class="image-container"><img src="picture/yellow01.jpg" alt="黃水晶"></div>
             <div class="product-details">
-                <h4>王者財富：黃水晶</h4>
+                <h4>王者財富：黃水晶手鍊</h4>
                 <p>強勢招正財，增強事業野心。</p>
                 <div class="product-price">NT$ xxxxx</div>
                 <button class="btn-add-cart" onclick="addToCart('黃水晶手鍊')">加入購物車</button>
@@ -94,7 +93,7 @@
         <article class="product-item" data-effect="protection" data-color="black">
             <div class="image-container"><img src="picture/obsidian01.jpg" alt="黑曜石"></div>
             <div class="product-details">
-                <h4>大地護盾：金曜石</h4>
+                <h4>大地護盾：金曜石手鍊</h4>
                 <p>強效辟邪，阻擋負能量干擾。</p>
                 <div class="product-price">NT$ xxxxx</div>
                 <button class="btn-add-cart" onclick="addToCart('金曜石手鍊')">加入購物車</button>
@@ -105,103 +104,160 @@
             <div class="image-container"><img src="picture/aqua01.jpg" alt="海藍寶"></div>
             <div class="product-details">
                 <h4>勇氣之泉：海藍寶石</h4>
-                <p>加強溝通，平定焦躁情緒。</p>
+                <p>加強溝通表達，平定焦躁情緒。</p>
                 <div class="product-price">NT$ xxxxx</div>
                 <button class="btn-add-cart" onclick="addToCart('海藍寶手鍊')">加入購物車</button>
             </div>
         </article>
 
-        <!-- 這裡重複類推至 20 個，僅需修改 data-effect 和 data-color -->
-        <article class="product-item" data-effect="love" data-color="purple">
-            <div class="image-container"><img src="picture/p06.jpg" alt="草莓晶"></div>
-            <div class="product-details"><h4>人緣王者：草莓晶</h4><p>增進人際關係，帶來和諧氣場。</p><div class="product-price">NT$ xxxxx</div>
-            <button class="btn-add-cart" onclick="addToCart('草莓晶手鍊')">加入購物車</button></div>
+        <article class="product-item" data-effect="love" data-color="pink">
+            <div class="image-container"><img src="picture/strawberry01.jpg" alt="草莓晶"></div>
+            <div class="product-details">
+                <h4>人緣王者：草莓晶手鍊</h4>
+                <p>增進人際關係，帶來和諧氣場。</p>
+                <div class="product-price">NT$ xxxxx</div>
+                <button class="btn-add-cart" onclick="addToCart('草莓晶手鍊')">加入購物車</button>
+            </div>
         </article>
 
         <article class="product-item" data-effect="wealth" data-color="blue">
-            <div class="image-container"><img src="picture/p07.jpg" alt="綠幽靈"></div>
-            <div class="product-details"><h4>事業巅峰：綠幽靈</h4><p>招攬事業貴人，增加正財運。</p><div class="product-price">NT$ xxxxx</div>
-            <button class="btn-add-cart" onclick="addToCart('綠幽靈手鍊')">加入購物車</button></div>
+            <div class="image-container"><img src="picture/green01.jpg" alt="綠幽靈"></div>
+            <div class="product-details">
+                <h4>事業巔峰：綠幽靈手鍊</h4>
+                <p>招攬事業貴人，增加正財運勢。</p>
+                <div class="product-price">NT$ xxxxx</div>
+                <button class="btn-add-cart" onclick="addToCart('綠幽靈手鍊')">加入購物車</button>
+            </div>
         </article>
 
         <article class="product-item" data-effect="protection" data-color="black">
-            <div class="image-container"><img src="picture/p08.jpg" alt="黑髮晶"></div>
-            <div class="product-details"><h4>領袖能量：黑髮晶</h4><p>消除病氣，增強決斷力與領導力。</p><div class="product-price">NT$ xxxxx</div>
-            <button class="btn-add-cart" onclick="addToCart('黑髮晶手鍊')">加入購物車</button></div>
-        </article>
-
-        <article class="product-item" data-effect="wisdom" data-color="white">
-            <div class="image-container"><img src="picture/p09.jpg" alt="月光石"></div>
-            <div class="product-details"><h4>月神之光：月光石</h4><p>守護愛情，提升女性直覺能量。</p><div class="product-price">NT$ xxxxx</div>
-            <button class="btn-add-cart" onclick="addToCart('月光石手鍊')">加入購物車</button></div>
-        </article>
-
-        <article class="product-item" data-effect="health" data-color="white">
-            <div class="image-container"><img src="picture/p10.jpg" alt="白水晶"></div>
-            <div class="product-details"><h4>純淨磁場：白水晶</h4><p>水晶之王，淨化所有負向能量。</p><div class="product-price">NT$ xxxxx</div>
-            <button class="btn-add-cart" onclick="addToCart('白水晶手鍊')">加入購物車</button></div>
-        </article>
-
-        <!-- ... (後續產品 11-20 請依此格式增加) -->
-        <!-- 簡略展示後續 10 個產品的配置 -->
-        <article class="product-item" data-effect="wealth" data-color="yellow">
-            <div class="image-container"><img src="picture/p11.jpg" alt="鈦晶"></div>
-            <div class="product-details"><h4>富貴能量：金髮鈦晶</h4><p>最強招財石，適合創業與投資者。</p><div class="product-price">NT$ xxxxx</div>
-            <button class="btn-add-cart" onclick="addToCart('鈦晶手鍊')">加入購物車</button></div>
-        </article>
-        
-        <article class="product-item" data-effect="love" data-color="pink">
-            <div class="image-container"><img src="picture/p12.jpg" alt="紅紋石"></div>
-            <div class="product-details"><h4>真愛石：紅紋石</h4><p>吸引命中註定的靈魂伴侶。</p><div class="product-price">NT$ xxxxx</div>
-            <button class="btn-add-cart" onclick="addToCart('紅紋石手鍊')">加入購物車</button></div>
-        </article>
-
-        <article class="product-item" data-effect="protection" data-color="black">
-            <div class="image-container"><img src="picture/p13.jpg" alt="銀曜石"></div>
-            <div class="product-details"><h4>避邪銀盾：銀曜石</h4><p>驅趕小人，提升自身保護磁場。</p><div class="product-price">NT$ xxxxx</div>
-            <button class="btn-add-cart" onclick="addToCart('銀曜石手鍊')">加入購物車</button></div>
-        </article>
-
-        <article class="product-item" data-effect="health" data-color="blue">
-            <div class="image-container"><img src="picture/p14.jpg" alt="青金石"></div>
-            <div class="product-details"><h4>心靈寧靜：青金石</h4><p>開啟眉心輪，緩解壓力與憂鬱。</p><div class="product-price">NT$ xxxxx</div>
-            <button class="btn-add-cart" onclick="addToCart('青金石手鍊')">加入購物車</button></div>
-        </article>
-
-        <article class="product-item" data-effect="wisdom" data-color="blue">
-            <div class="image-container"><img src="picture/p15.jpg" alt="螢石"></div>
-            <div class="product-details"><h4>學習之石：多彩螢石</h4><p>提升思維條理，專注讀書學習。</p><div class="product-price">NT$ xxxxx</div>
-            <button class="btn-add-cart" onclick="addToCart('螢石手鍊')">加入購物車</button></div>
-        </article>
-
-        <article class="product-item" data-effect="wealth" data-color="black">
-            <div class="image-container"><img src="picture/p16.jpg" alt="金運石"></div>
-            <div class="product-details"><h4>強效金運：黑金運石</h4><p>強力守財，防止財氣外洩。</p><div class="product-price">NT$ xxxxx</div>
-            <button class="btn-add-cart" onclick="addToCart('金運石手鍊')">加入購物車</button></div>
-        </article>
-
-        <article class="product-item" data-effect="health" data-color="pink">
-            <div class="image-container"><img src="picture/p17.jpg" alt="紫鋰輝"></div>
-            <div class="product-details"><h4>溫柔療癒：紫鋰輝</h4><p>舒緩緊張，散發溫柔女性魅力。</p><div class="product-price">NT$ xxxxx</div>
-            <button class="btn-add-cart" onclick="addToCart('紫鋰輝手鍊')">加入購物車</button></div>
-        </article>
-
-        <article class="product-item" data-effect="protection" data-color="black">
-            <div class="image-container"><img src="picture/p18.jpg" alt="黑碧璽"></div>
-            <div class="product-details"><h4>負電清除：黑碧璽</h4><p>阻絕輻射，排除體內濁氣。</p><div class="product-price">NT$ xxxxx</div>
-            <button class="btn-add-cart" onclick="addToCart('黑碧璽手鍊')">加入購物車</button></div>
+            <div class="image-container"><img src="picture/black01.jpg" alt="黑髮晶"></div>
+            <div class="product-details">
+                <h4>領袖能量：黑髮晶手鍊</h4>
+                <p>消除病氣，增強領導力與決斷力。</p>
+                <div class="product-price">NT$ xxxxx</div>
+                <button class="btn-add-cart" onclick="addToCart('黑髮晶手鍊')">加入購物車</button>
+            </div>
         </article>
 
         <article class="product-item" data-effect="love" data-color="white">
-            <div class="image-container"><img src="picture/p19.jpg" alt="拉長石"></div>
-            <div class="product-details"><h4>光芒守護：拉長石</h4><p>招喚靈魂契合者，提升洞察力。</p><div class="product-price">NT$ xxxxx</div>
-            <button class="btn-add-cart" onclick="addToCart('拉長石手鍊')">加入購物車</button></div>
+            <div class="image-container"><img src="picture/moon01.jpg" alt="月光石"></div>
+            <div class="product-details">
+                <h4>月神之光：月光石手鍊</h4>
+                <p>守護愛情，提升溫柔的女性能量。</p>
+                <div class="product-price">NT$ xxxxx</div>
+                <button class="btn-add-cart" onclick="addToCart('月光石手鍊')">加入購物車</button>
+            </div>
+        </article>
+
+        <article class="product-item" data-effect="health" data-color="white">
+            <div class="image-container"><img src="picture/white01.jpg" alt="白水晶"></div>
+            <div class="product-details">
+                <h4>純淨磁場：白水晶鑽切</h4>
+                <p>淨化全身能量，排除負面干擾。</p>
+                <div class="product-price">NT$ xxxxx</div>
+                <button class="btn-add-cart" onclick="addToCart('白水晶手鍊')">加入購物車</button>
+            </div>
         </article>
 
         <article class="product-item" data-effect="wealth" data-color="yellow">
-            <div class="image-container"><img src="picture/p20.jpg" alt="太陽石"></div>
-            <div class="product-details"><h4>暖陽能量：金草莓太陽石</h4><p>增加自信心，招來貴人事業運。</p><div class="product-price">NT$ xxxxx</div>
-            <button class="btn-add-cart" onclick="addToCart('太陽石手鍊')">加入購物車</button></div>
+            <div class="image-container"><img src="picture/rutile01.jpg" alt="鈦晶"></div>
+            <div class="product-details">
+                <h4>富貴能量：金髮鈦晶</h4>
+                <p>最強招財石，適合投資與創業者。</p>
+                <div class="product-price">NT$ xxxxx</div>
+                <button class="btn-add-cart" onclick="addToCart('鈦晶手鍊')">加入購物車</button>
+            </div>
+        </article>
+
+        <article class="product-item" data-effect="love" data-color="pink">
+            <div class="image-container"><img src="picture/rhodo01.jpg" alt="紅紋石"></div>
+            <div class="product-details">
+                <h4>真愛石：紅紋石手鍊</h4>
+                <p>喚醒心中愛意，吸引靈魂伴侶。</p>
+                <div class="product-price">NT$ xxxxx</div>
+                <button class="btn-add-cart" onclick="addToCart('紅紋石手鍊')">加入購物車</button>
+            </div>
+        </article>
+
+        <article class="product-item" data-effect="protection" data-color="black">
+            <div class="image-container"><img src="picture/silver01.jpg" alt="銀曜石"></div>
+            <div class="product-details">
+                <h4>避邪銀盾：銀曜石手鍊</h4>
+                <p>驅趕小人與負能量，保持頭腦清明。</p>
+                <div class="product-price">NT$ xxxxx</div>
+                <button class="btn-add-cart" onclick="addToCart('銀曜石手鍊')">加入購物車</button>
+            </div>
+        </article>
+
+        <article class="product-item" data-effect="health" data-color="blue">
+            <div class="image-container"><img src="picture/lapis01.jpg" alt="青金石"></div>
+            <div class="product-details">
+                <h4>心靈寧靜：青金石手鍊</h4>
+                <p>開啟眉心輪，緩解壓力與憂鬱。</p>
+                <div class="product-price">NT$ xxxxx</div>
+                <button class="btn-add-cart" onclick="addToCart('青金石手鍊')">加入購物車</button>
+            </div>
+        </article>
+
+        <article class="product-item" data-effect="wisdom" data-color="blue">
+            <div class="image-container"><img src="picture/fluorite01.jpg" alt="螢石"></div>
+            <div class="product-details">
+                <h4>學習之石：多彩螢石</h4>
+                <p>提升思維條理，專注讀書學習。</p>
+                <div class="product-price">NT$ xxxxx</div>
+                <button class="btn-add-cart" onclick="addToCart('螢石手鍊')">加入購物車</button>
+            </div>
+        </article>
+
+        <article class="product-item" data-effect="wealth" data-color="black">
+            <div class="image-container"><img src="picture/hyper01.jpg" alt="金運石"></div>
+            <div class="product-details">
+                <h4>強效金運：黑金運石</h4>
+                <p>強力守財，防止財氣外洩流失。</p>
+                <div class="product-price">NT$ xxxxx</div>
+                <button class="btn-add-cart" onclick="addToCart('金運石手鍊')">加入購物車</button>
+            </div>
+        </article>
+
+        <article class="product-item" data-effect="health" data-color="purple">
+            <div class="image-container"><img src="picture/kunzite01.jpg" alt="紫鋰輝"></div>
+            <div class="product-details">
+                <h4>溫柔療癒：紫鋰輝手鍊</h4>
+                <p>舒緩緊張情緒，散發溫和魅力。</p>
+                <div class="product-price">NT$ xxxxx</div>
+                <button class="btn-add-cart" onclick="addToCart('紫鋰輝手鍊')">加入購物車</button>
+            </div>
+        </article>
+
+        <article class="product-item" data-effect="protection" data-color="black">
+            <div class="image-container"><img src="picture/tour01.jpg" alt="黑碧璽"></div>
+            <div class="product-details">
+                <h4>負電清除：黑碧璽手鍊</h4>
+                <p>阻絕輻射，排除體內沉重濁氣。</p>
+                <div class="product-price">NT$ xxxxx</div>
+                <button class="btn-add-cart" onclick="addToCart('黑碧璽手鍊')">加入購物車</button>
+            </div>
+        </article>
+
+        <article class="product-item" data-effect="wisdom" data-color="blue">
+            <div class="image-container"><img src="picture/labra01.jpg" alt="拉長石"></div>
+            <div class="product-details">
+                <h4>光芒守護：拉長石手鍊</h4>
+                <p>招喚契合的靈魂，激發創造靈感。</p>
+                <div class="product-price">NT$ xxxxx</div>
+                <button class="btn-add-cart" onclick="addToCart('拉長石手鍊')">加入購物車</button>
+            </div>
+        </article>
+
+        <article class="product-item" data-effect="wealth" data-color="yellow">
+            <div class="image-container"><img src="picture/sun01.jpg" alt="太陽石"></div>
+            <div class="product-details">
+                <h4>暖陽能量：金草莓太陽石</h4>
+                <p>增加自信心，招來貴人事業運。</p>
+                <div class="product-price">NT$ xxxxx</div>
+                <button class="btn-add-cart" onclick="addToCart('太陽石手鍊')">加入購物車</button>
+            </div>
         </article>
     </section>
 </main>
