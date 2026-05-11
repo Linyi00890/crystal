@@ -53,7 +53,7 @@
         }
 
         .card-inner {
-            width: 300px; height: 460px;
+            width: 300px; height: 480px;
             position: relative;
             transform-style: preserve-3d;
             transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -89,9 +89,10 @@
         }
 
         .crystal-img {
-            width: 150px; height: 150px; border-radius: 50%;
-            object-fit: cover; border: 5px solid #f0f0f0;
+            width: 180px; height: 180px; border-radius: 15px;
+            object-fit: cover; border: 3px solid #f0f0f0;
             margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .res-name { font-size: 1.5rem; color: var(--mystic-purple); font-weight: 900; margin: 0; }
@@ -105,10 +106,10 @@
             width: 100%;
             margin-top: 10px;
             font-size: 0.9rem;
-            line-height: 1.5;
+            line-height: 1.6;
             color: #555;
         }
-        .fortune-stat { display: flex; justify-content: space-between; margin-bottom: 5px; color: #4a148c; font-weight: bold; }
+        .fortune-stat { display: flex; justify-content: space-between; margin-bottom: 8px; color: #4a148c; font-weight: bold; border-bottom: 1px solid #eee; padding-bottom: 5px; }
 
         /* 按鈕樣式 */
         .nav-container {
@@ -126,9 +127,10 @@
         .reset-btn {
             background: var(--gold); color: #000; border: none; padding: 12px 30px;
             border-radius: 30px; cursor: pointer; font-weight: bold; margin-top: 15px; display: none;
+            box-shadow: 0 4px 15px rgba(212,175,55,0.4);
         }
 
-        @media (max-width: 480px) { .card-inner { width: 280px; height: 440px; } }
+        @media (max-width: 480px) { .card-inner { width: 280px; height: 460px; } }
     </style>
 </head>
 <body>
@@ -160,13 +162,13 @@
     <div class="card-inner" id="card">
         <div class="card-face card-back"></div>
         <div class="card-face card-front">
-            <img id="resImg" src="" class="crystal-img">
+            <img id="resImg" src="" class="crystal-img" alt="今日水晶">
             <h2 id="resName" class="res-name"></h2>
             <div id="resTag" class="res-tag"></div>
             <div class="fortune-box">
                 <div class="fortune-stat">
                     <span id="resZodiac"></span>
-                    <span id="resLuck">幸運指數：⭐⭐⭐⭐⭐</span>
+                    <span id="resLuck"></span>
                 </div>
                 <div id="resFortune"></div>
             </div>
@@ -187,16 +189,17 @@
 </div>
 
 <script>
-    // 水晶資料庫
+    // 嚴選水晶資料庫 - 使用精確的水晶圖片 ID
     const crystals = [
-        { name: "紫水晶", tag: "守護直覺", img: "https://images.unsplash.com/photo-1567883111025-063a43627448?w=400", desc: "今日直覺力強，紫水晶能幫你過濾雜訊，適合做重大決定。" },
-        { name: "粉水晶", tag: "招來好緣", img: "https://images.unsplash.com/photo-1614032155370-137b02b9f874?w=400", desc: "柔和的能量正包圍你，今日適合修復人際關係，增加親和力。" },
-        { name: "鈦晶", tag: "事業突破", img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400", desc: "財運與事業運交織，鈦晶將引導你展現領導風範，把握關鍵機會。" },
-        { name: "黑曜石", tag: "防小人辟邪", img: "https://images.unsplash.com/photo-1605142859862-978be7eba909?w=400", desc: "今日適合安靜行事，黑曜石會為你擋掉不必要的流言蜚語。" },
-        { name: "黃水晶", tag: "意外之財", img: "https://images.unsplash.com/photo-1615111784767-4d7a407d39f4?w=400", desc: "充滿陽光的一天。保持樂觀，今日在偏財運上會有小小驚喜。" },
-        { name: "拉長石", tag: "靈魂轉化", img: "https://images.unsplash.com/photo-1599707334298-291efdec822c?w=400", desc: "看似平淡的事物中藏著契機，拉長石提醒你留意夢境或偶發靈感。" },
-        { name: "海藍寶", tag: "平安溝通", img: "https://images.unsplash.com/photo-1599707334298-291efdec822c?w=400", desc: "適合表達真實感受的一天。溫柔的溝通會為你贏得尊重。" }
-        // ... 此處可擴充至30種以上，邏輯相同
+        { name: "紫水晶", tag: "守護直覺", img: "https://images.unsplash.com/photo-1523467136207-640bf076639e?w=500&q=80", desc: "今日直覺力強，紫水晶能幫你過濾雜訊，適合做重大決定。" },
+        { name: "粉水晶", tag: "招來好緣", img: "https://images.unsplash.com/photo-1567883111025-063a43627448?w=500&q=80", desc: "柔和的能量正包圍你，今日適合修復人際關係，增加親和力。" },
+        { name: "白水晶", tag: "淨化磁場", img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500&q=80", desc: "白水晶能放大你的正向意圖，清空思緒中的雜物，重新出發。" },
+        { name: "黑曜石", tag: "防小人辟邪", img: "https://images.unsplash.com/photo-1605142859862-978be7eba909?w=500&q=80", desc: "今日適合安靜行事，黑曜石會為你擋掉不必要的能量干擾。" },
+        { name: "黃水晶", tag: "意外之財", img: "https://images.unsplash.com/photo-1615111784767-4d7a407d39f4?w=500&q=80", desc: "充滿陽光的一天。保持樂觀，今日在偏財運上會有小小驚喜。" },
+        { name: "拉長石", tag: "靈魂轉化", img: "https://images.unsplash.com/photo-1635345155440-629f6487e908?w=500&q=80", desc: "看似平淡的事物中藏著契機，拉長石提醒你留意夢境或偶發靈感。" },
+        { name: "海藍寶", tag: "平安溝通", img: "https://images.unsplash.com/photo-1615111784524-212fd05001ba?w=500&q=80", desc: "適合表達真實感受的一天。溫柔的溝通會為你贏得尊重。" },
+        { name: "螢石", tag: "思緒清晰", img: "https://images.unsplash.com/photo-1599707334298-291efdec822c?w=500&q=80", desc: "大腦運作如飛的一天，螢石能輔助你專注於複雜的邏輯任務。" },
+        { name: "虎眼石", tag: "勇氣力量", img: "https://images.unsplash.com/photo-1614032155370-137b02b9f874?w=500&q=80", desc: "展現自信的時刻到了。虎眼石賦予你執行力，不再猶豫不決。" }
     ];
 
     const fortuneTexts = [
@@ -222,11 +225,18 @@
         const stars = "⭐".repeat(Math.floor(Math.random() * 2) + 4); // 4-5顆星
 
         // 注入內容
-        document.getElementById('resImg').src = crystal.img;
+        const resImg = document.getElementById('resImg');
+        resImg.src = crystal.img;
+        
+        // 確保圖片載入錯誤時有備用處理 (可選)
+        resImg.onerror = function() {
+            this.src = "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500";
+        };
+
         document.getElementById('resName').innerText = crystal.name;
         document.getElementById('resTag').innerText = "#" + crystal.tag;
-        document.getElementById('resZodiac').innerText = zodiac + " 今日指引";
-        document.getElementById('resLuck').innerText = "幸運指數：" + stars;
+        document.getElementById('resZodiac').innerText = zodiac + " 指引";
+        document.getElementById('resLuck').innerText = "幸運：" + stars;
         document.getElementById('resFortune').innerText = fortune + " " + crystal.desc;
 
         // 翻牌
@@ -239,9 +249,11 @@
     function resetCard() {
         document.getElementById('card').classList.remove('is-flipped');
         document.getElementById('resetBtn').style.display = 'none';
+        // 等待翻回背面的動畫結束後才允許再次點擊
         setTimeout(() => { isDrawing = false; }, 800);
     }
 
+    // 禁用右鍵保護 (防止直接存取圖片)
     document.addEventListener('contextmenu', e => e.preventDefault());
 </script>
 
