@@ -3,94 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>能量手鍊與飾品 - 產品列表 | CrystalMagic</title>
-    <link rel="stylesheet" href="styles.css"> 
-    
-    <style>
-        .page-header {
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); 
-            border-bottom: 5px solid #ec407a;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            padding: 40px 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .product-item {
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            text-align: center;
-            transition: transform 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .product-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .product-details {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .product-details h4 {
-            color: #ad1457;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        .product-price {
-            font-size: 1.3em;
-            font-weight: bold;
-            color: #ff8a65;
-            margin: 15px 0;
-        }
-
-        .view-detail {
-            display: inline-block;
-            background-color: #6a1b9a;
-            color: white;
-            padding: 10px 25px;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: 0.3s;
-            font-weight: bold;
-            margin-top: auto;
-        }
-
-        .view-detail:hover {
-            background-color: #ec407a;
-        }
-    </style>
+    <title>能量手鍊與飾品 - 精選系列 | CrystalMagic</title>
+    <!-- 引入 Google 字體與 Icon -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 引入外部 CSS -->
+    <link rel="stylesheet" href="bracelet.css">
 </head>
 <body>
 
+<!-- 導航 -->
 <header class="main-header">
-    <a href="index.html" class="logo">🔮 CrystalMagic</div>
+    <a href="index.html" class="logo">🔮 CrystalMagic</a>
     <div class="auth-buttons">
         <a href="index.html" class="nav-button login">回首頁</a>
         <a href="quiz.html" class="nav-button register">能量測驗</a>
     </div>
 </header>
+
+<!-- 懸浮購物車按鈕 -->
+<a href="#" class="cart-float" id="cartButton">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-count" id="cartCount">0</span>
+</a>
 
 <main>
     <section class="page-header">
@@ -99,67 +34,49 @@
     </section>
 
     <section class="product-grid">
-        
+        <!-- 產品 1 -->
         <article class="product-item">
-            <img src="picture/pink02.jpg" alt="玫瑰粉晶手鍊">
+            <div class="image-container"><img src="picture/pink02.jpg" alt="玫瑰粉晶"></div>
             <div class="product-details">
                 <h4>戀愛之心：粉晶手鍊</h4>
-                <p>專注心輪療癒，提升個人魅力與人緣，招正桃花。</p>
-                <div class="product-price">NT$ xxxxx</div>
-                <a href="#" class="view-detail">查看詳情</a>
+                <p>專注心輪療癒，提升個人魅力與人緣，招來正桃花。</p>
+                <div class="product-price">NT$ XXXXX</div>
+                <button class="btn-add-cart" onclick="addToCart('粉晶手鍊')">加入購物車</button>
             </div>
         </article>
         
+        <!-- 產品 2 -->
         <article class="product-item">
-            <img src="picture/yellow02.jpg" alt="黃水晶手鍊">
+            <div class="image-container"><img src="picture/yellow02.jpg" alt="黃水晶"></div>
             <div class="product-details">
                 <h4>王者財富：黃晶手鍊</h4>
-                <p>強勢招正財，增強事業野心與決斷力，適合職場菁英。</p>
-                <div class="product-price">NT$ xxxxx</div>
-                <a href="#" class="view-detail">查看詳情</a>
+                <p>強勢招正財，增強事業野心與決斷力，適合職場精英。</p>
+                <div class="product-price">NT$ XXXXX</div>
+                <button class="btn-add-cart" onclick="addToCart('黃晶手鍊')">加入購物車</button>
             </div>
         </article>
 
+        <!-- 產品 3 -->
         <article class="product-item">
-            <img src="picture/purple02.jpg" alt="紫水晶手鍊">
+            <div class="image-container"><img src="picture/purple02.jpg" alt="紫水晶"></div>
             <div class="product-details">
-                <h4>智慧之巔：烏拉圭紫晶手鍊</h4>
+                <h4>智慧之巔：烏拉圭紫晶</h4>
                 <p>開發智慧、集中注意力，穩定情緒並提升直覺力。</p>
-                <div class="product-price">NT$ xxxxx</div>
-                <a href="#" class="view-detail">查看詳情</a>
+                <div class="product-price">NT$ XXXXX</div>
+                <button class="btn-add-cart" onclick="addToCart('紫晶手鍊')">加入購物車</button>
             </div>
         </article>
 
+        <!-- 產品 4 -->
         <article class="product-item">
-            <img src="picture/white01.jpg" alt="白水晶手鍊">
+            <div class="image-container"><img src="picture/white01.jpg" alt="白水晶"></div>
             <div class="product-details">
-                <h4>純淨能量：白水晶鑽切手鍊</h4>
+                <h4>純淨能量：白水晶鑽切</h4>
                 <p>水晶之王，淨化磁場、排除負能量，帶來平衡與清晰。</p>
-                <div class="product-price">NT$ xxxxx</div>
-                <a href="#" class="view-detail">查看詳情</a>
+                <div class="product-price">NT$ XXXXX</div>
+                <button class="btn-add-cart" onclick="addToCart('白水晶手鍊')">加入購物車</button>
             </div>
         </article>
-
-        <article class="product-item">
-            <img src="picture/aquamarine02.jpg" alt="海藍寶手鍊">
-            <div class="product-details">
-                <h4>勇氣之泉：海藍寶石手鍊</h4>
-                <p>加強溝通表達能力，平定焦躁，保護旅行者平安。</p>
-                <div class="product-price">NT$ xxxxx</div>
-                <a href="#" class="view-detail">查看詳情</a>
-            </div>
-        </article>
-
-        <article class="product-item">
-            <img src="picture/obsidian02.jpg" alt="黑曜石項鍊">
-            <div class="product-details">
-                <h4>大地護盾：金曜石手鍊</h4>
-                <p>強效辟邪擋煞、吸收負能量，守護您的氣場不受干擾。</p>
-                <div class="product-price">NT$ xxxxx</div>
-                <a href="#" class="view-detail">查看詳情</a>
-            </div>
-        </article>
-
     </section>
 </main>
 
@@ -167,40 +84,8 @@
     <p>&copy; 2026 CrystalMagic. 每一顆水晶都承載著大地的祝福。</p>
 </footer>
 
-    <script>
-    // --- 魔法守護腳本 ---
-    
-    // 1. 禁用右鍵選單並跳出提醒
-    document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-        alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
-    }, false);
-
-    // 2. 禁用快捷鍵 (F12, Ctrl+U, Ctrl+Shift+I 等)
-    document.onkeydown = function (e) {
-        // 禁用 F12
-        if (e.keyCode === 123) {
-            return false;
-        }
-        // 禁用 Ctrl+Shift+I (開發者工具)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
-            return false;
-        }
-        // 禁用 Ctrl+Shift+J (開發者工具)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
-            return false;
-        }
-        // 禁用 Ctrl+U (檢視原始碼)
-        if (e.ctrlKey && e.keyCode === 85) {
-            return false;
-        }
-        // 禁用 Ctrl+S (存檔)
-        if (e.ctrlKey && e.keyCode === 83) {
-            return false;
-        }
-    };
-</script>
-
+<!-- 引入外部 JavaScript -->
+<script src="bracelet.js"></script>
 
 </body>
 </html>
