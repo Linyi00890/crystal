@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200">
+    <title>黃鐵礦 (Pyrite) 全方位能量指南 - 水晶魔法 | CrystalMagic</title>
+    
+    <style>
+        /* 全局基礎設定 */
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0 auto;
+            color: #333;
+            line-height: 1.8;
+            width: 1200px;
+            overflow-x: auto;
+        }
+
+        /* 導覽列 */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 1200px;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #212121;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            transition: 0.3s;
+        }
+
+        /* 頂部標題區 - 黃鐵礦改為充滿力量的金棕色系 */
+        .detail-header {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 45%, #b38728 100%);
+            color: #333;
+            width: 1200px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #c5a059;
+        }
+        
+        .detail-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            color: #1a1a1a;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+        }
+
+        .stat-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-pill {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 10px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #443410;
+            font-weight: bold;
+        }
+
+        /* 內容容器 */
+        .content-container {
+            width: 1000px;
+            margin: 50px auto;
+            position: relative;
+        }
+
+        .content-section {
+            background-color: white;
+            padding: 45px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .content-section h2 {
+            color: #212121;
+            border-left: 6px solid #b38728;
+            padding-left: 20px;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        /* 品種展示區 */
+        .variety-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .variety-card {
+            text-align: center;
+            padding: 20px;
+            background: #fffcf5;
+            border: 1px solid #e8dfc4;
+            border-radius: 15px;
+        }
+
+        .variety-card h3 {
+            font-size: 1.1rem;
+            color: #8c6d1f;
+            margin-bottom: 10px;
+        }
+
+        /* 核心功效 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .feature-item {
+            padding: 30px;
+            background-color: #fafafa;
+            border-radius: 15px;
+            border-left: 4px solid #b38728;
+        }
+
+        .feature-item strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: #000;
+        }
+
+        /* 能量組合區 */
+        .combo-box {
+            background: #443410;
+            color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .combo-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #63522a;
+        }
+
+        .combo-item:last-child { border: none; }
+
+        .tag {
+            background: #b38728;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+
+        /* FAQ 區塊 */
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-q {
+            font-weight: bold;
+            color: #8c6d1f;
+            display: block;
+        }
+
+        .faq-a {
+            color: #666;
+            padding-left: 20px;
+        }
+
+        /* 按鈕樣式 */
+        .back-btn {
+            display: inline-block;
+            background: #212121;
+            color: white;
+            padding: 15px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        /* 固定於左下角的返回按鈕 */
+        .fixed-back-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 2000;
+            background: rgba(179, 135, 40, 0.9);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .fixed-back-btn:hover {
+            background: #8c6d1f;
+            transform: scale(1.05);
+        }
+
+        .main-footer {
+            text-align: center;
+            padding: 60px 0;
+            background: #fff;
+            width: 1200px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 固定左下角按鈕 -->
+<a href="type.html" class="fixed-back-btn">🔙 返回列表</a>
+
+<header class="main-header">
+    <a href="index.html" class="logo">🔮 CrystalMagic</a>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="origin.html">水晶起源</a></li>
+            <li><a href="type.html" style="color: #b38728; font-weight: bold;">水晶種類</a></li>
+            <li><a href="care.html">淨化保養</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="detail-header">
+        <h1>黃鐵礦 Pyrite</h1>
+        <p>「太陽的能量之石，充滿意志力的金黃護盾」</p>
+        <div class="stat-container">
+            <div class="stat-pill">脈輪：太陽神經叢</div>
+            <div class="stat-pill">五行：金、土</div>
+            <div class="stat-pill">硬度：6 - 6.5</div>
+        </div>
+    </section>
+
+    <div class="content-container">
+        <section class="content-section">
+            <h2>🔬 礦物學基礎：大地的金黃幾何</h2>
+            <p>黃鐵礦是一種硫化物礦物，因其淺黃銅色和明亮的金屬光澤，常被誤認為黃金，故有「愚人金」之稱。它最迷人的地方在於其天然形成的<strong>立方體結構</strong>，這種幾何形狀在能量學中代表了極強的穩定性與秩序感。黃鐵礦富含鐵質，具備火與土的雙重屬性。</p>
+            
+            <h3>常見形態圖鑑</h3>
+            <div class="variety-grid">
+                <div class="variety-card"><h3>立方體原石</h3><p>能量最穩定有序</p></div>
+                <div class="variety-card"><h3>圓球形態</h3><p>能量圓潤且擴散</p></div>
+                <div class="variety-card"><h3>太陽花黃鐵</h3><p>放射狀結構，極具張力</p></div>
+                <div class="variety-card"><h3>共生礦</h3><p>常與黑碧璽、水晶共生</p></div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>🛡️ 核心能量功效</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <strong>招財與事業運</strong>
+                    黃鐵礦象徵著財富與繁榮。它能激發行動力，幫助使用者在事業上展現領導力，並吸引商業機會與橫財。
+                </div>
+                <div class="feature-item">
+                    <strong>強效保護護盾</strong>
+                    它是一種極佳的守護石，能阻擋負面能量與外界惡意。其金屬光澤具有「反射」作用，能將病氣與電磁輻射隔絕在外。
+                </div>
+                <div class="feature-item">
+                    <strong>增強意志與自信</strong>
+                    對應太陽神經叢，能消除自卑感與恐懼，讓人變得果敢、堅定，幫助落實計畫而非流於空想。
+                </div>
+                <div class="feature-item">
+                    <strong>邏輯與條理</strong>
+                    黃鐵礦的幾何頻率有助於大腦清晰運作，提升邏輯推理能力，在面對複雜問題時能快速找到核心點。
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>🔗 能量疊加：推薦組合</h2>
+            <div class="combo-box">
+                <div class="combo-item">
+                    <span class="tag">頂級招財</span> <strong>黃鐵礦 + 鈦晶</strong>：兩者皆具金元素能量，能將財運與權威感推升至頂點，適合創業商界。
+                </div>
+                <div class="combo-item">
+                    <span class="tag">創業守護</span> <strong>黃鐵礦 + 黑碧璽</strong>：一邊進財一邊守成，防止競爭者的負面干擾，確保根基穩固。
+                </div>
+                <div class="combo-item">
+                    <span class="tag">穩定落實</span> <strong>黃鐵礦 + 茶晶</strong>：將強大的行動力落實到現實生活中，避免好大喜功。
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>❓ 常見問題 Q&A</h2>
+            <div class="faq-item">
+                <span class="faq-q">Q：黃鐵礦可以用「水」淨化嗎？</span>
+                <p class="faq-a">A：<strong>絕對不行！</strong> 黃鐵礦含有硫化鐵，遇水或潮濕容易產生化學反應（生鏽）甚至變黑，失去光澤。建議使用消磁石或煙燻法。</p>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">Q：為什麼黃鐵礦被稱為「愚人金」？</span>
+                <p class="faq-a">A：這源於淘金熱時代，許多人誤認它為黃金。但在能量領域，它一點都不愚蠢，是珍貴的能量發電機。</p>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">Q：適合放在哪裡？</span>
+                <p class="faq-a">A：非常適合放在辦公桌的財位，或者門口玄關，能起到招財進寶與守護家宅的雙重效果。</p>
+            </div>
+        </section>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="type.html" class="back-btn">← 返回水晶百科清單</a>
+        </div>
+    </div>
+</main>
+
+<footer class="main-footer">
+    <p>&copy; 2026 CrystalMagic | 黃鐵礦：閃耀意志與財富的火焰</p>
+</footer>
+
+<script>
+    document.addEventListener('contextmenu', e => e.preventDefault());
+</script>
+
+</body>
+</html>
