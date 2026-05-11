@@ -1,0 +1,79 @@
+:root {
+    --primary-purple: #6a1b9a;
+    --dark-purple: #4a148c;
+    --white: #ffffff;
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    margin: 0; padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* 導覽列 */
+.main-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 5%; background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky; top: 0; z-index: 1000;
+}
+
+.logo a { font-size: 1.5rem; text-decoration: none; color: var(--primary-purple); font-weight: bold; }
+
+.nav-button { text-decoration: none; padding: 8px 20px; border-radius: 20px; margin-left: 10px; transition: var(--transition); }
+.login { color: var(--primary-purple); border: 1px solid var(--primary-purple); }
+.register { background: var(--primary-purple); color: white; }
+
+/* 英雄區 */
+.hero-section {
+    background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+    padding: 80px 5%; text-align: center;
+}
+
+.hero-content h1 { font-size: 2.5rem; color: var(--dark-purple); margin-bottom: 15px; }
+
+.main-cta {
+    display: inline-block; background: var(--primary-purple); color: white;
+    padding: 15px 30px; text-decoration: none; border-radius: 30px;
+    font-weight: bold; margin-top: 20px; transition: var(--transition);
+}
+
+/* 網格與卡片 */
+.guide-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; padding: 50px 5%; max-width: 1400px; margin: 0 auto;
+}
+
+.guide-item {
+    background: white; border-radius: 15px; padding: 25px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: var(--transition); border-top: 6px solid #ccc;
+}
+
+.guide-item:hover { transform: translateY(-10px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); }
+
+.card-image { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin: 15px 0; }
+
+.cta-button {
+    display: block; text-align: center; padding: 12px;
+    text-decoration: none; border-radius: 8px; font-weight: bold; color: white;
+}
+
+/* 1-10 區 主題色彩 */
+.layer-1 { border-color: #00897b; } .layer-1 .cta-button { background: #00897b; }
+.layer-2 { border-color: #3949ab; } .layer-2 .cta-button { background: #3949ab; }
+.layer-3 { border-color: #d81b60; } .layer-3 .cta-button { background: #d81b60; }
+.layer-4 { border-color: #f9a825; } .layer-4 .cta-button { background: #f9a825; }
+.layer-5 { border-color: #039be5; } .layer-5 .cta-button { background: #039be5; }
+.layer-6 { border-color: #fb8c00; } .layer-6 .cta-button { background: #fb8c00; }
+.layer-7 { border-color: #546e7a; } .layer-7 .cta-button { background: #546e7a; }
+.layer-8 { border-color: #9c27b0; } .layer-8 .cta-button { background: #9c27b0; }
+.layer-9 { border-color: #2e7d32; } .layer-9 .cta-button { background: #2e7d32; }
+/* 聯絡我們採用優雅的藍紫色 */
+.layer-10 { border-color: #5e35b1; } .layer-10 .cta-button { background: #5e35b1; }
+
+.footer { text-align: center; padding: 40px; background: #263238; color: white; margin-top: 50px; }
