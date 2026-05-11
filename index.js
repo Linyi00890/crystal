@@ -1,32 +1,34 @@
-// 🔮 CrystalMagic 魔法能量守護腳本
+// 🔮 CrystalMagic 魔法能量守護
 
-// 1. 禁用右鍵選單
-document.addEventListener('contextmenu', function (e) {
-    e.preventDefault();
-    alert("🔮 魔法能量守護中：本站內容受保護，無法使用右鍵選單。");
-}, false);
+// 1. 防止右鍵點擊與 F12 開發者工具
+document.addEventListener('contextmenu', e => e.preventDefault());
 
-// 2. 禁用開發者工具快捷鍵 (F12, Ctrl+Shift+I, Ctrl+U 等)
-document.onkeydown = function (e) {
-    // 禁用 F12
-    if (e.keyCode === 123) {
-        return false;
-    }
-    // 禁用 Ctrl+Shift+I (檢視原始碼)
-    if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
-        return false;
-    }
-    // 禁用 Ctrl+Shift+J (主控台)
-    if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
-        return false;
-    }
-    // 禁用 Ctrl+U (檢視網頁原始碼)
-    if (e.ctrlKey && e.keyCode === 85) {
-        return false;
-    }
-    // 禁用 Ctrl+S (存檔)
-    if (e.ctrlKey && e.keyCode === 83) {
-        e.preventDefault();
+document.onkeydown = function(e) {
+    if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) {
         return false;
     }
 };
+
+// 2. 頁面平滑滾動效果
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// 3. 簡單的卡片載入動畫
+window.addEventListener('load', () => {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach((card, index) => {
+        setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, index * 100);
+    });
+});
