@@ -41,17 +41,26 @@
 
         .nav-links {
             display: flex;
+            justify-content: center;
+            align-items: center;
             list-style: none;
-            gap: 30px;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
         }
 
         .nav-links a {
             text-decoration: none;
             color: #666;
             transition: 0.3s;
+            font-size: 1rem;
         }
 
-        /* 頂部標題區 - 採用溫潤的乳白色調 */
+        .nav-links a:hover {
+            color: #bcaaa4;
+        }
+
+        /* 頂部標題區 */
         .detail-header {
             text-align: center;
             padding: 100px 20px;
@@ -190,23 +199,6 @@
             padding-left: 20px;
         }
 
-        /* 按鈕樣式 */
-        .back-btn {
-            display: inline-block;
-            background: #212121;
-            color: white;
-            padding: 15px 45px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .back-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        }
-
         /* 左下角固定按鈕 */
         .fixed-back-btn {
             position: fixed;
@@ -241,17 +233,23 @@
 </head>
 <body>
 
-<!-- 固定左下角按鈕 -->
-<a href="type.html" class="fixed-back-btn">🔙 返回 type.html</a>
+<!-- 固定左下角按鈕 - 修正路徑返回根目錄的 type.html -->
+<a href="../type.html" class="fixed-back-btn">🔙 返回水晶種類</a>
 
 <header class="main-header">
-    <a href="index.html" class="logo">🔮 CrystalMagic</a>
+    <!-- Logo 修正路徑返回根目錄 -->
+    <a href="../index.html" class="logo">🔮 CrystalMagic</a>
     <nav>
         <ul class="nav-links">
-            <li><a href="index.html">首頁</a></li>
-            <li><a href="origin.html">水晶起源</a></li>
-            <li><a href="type.html" style="color: #bcaaa4; font-weight: bold;">水晶種類</a></li>
-            <li><a href="care.html">淨化保養</a></li>
+            <!-- 導覽列連結全部修正為 ../ 加上對應頁面 -->
+            <li><a href="../origin.html">水晶起源</a></li>
+            <li><a href="../type.html">水晶種類</a></li>
+            <li><a href="../effect.html">功效解讀</a></li>
+            <li><a href="../pages.html">淨化保養</a></li>
+            <li><a href="../pick.html">挑選指南</a></li> 
+            <li><a href="../exclusive.html">專屬商品</a></li>
+            <li><a href="../share.html">粉絲回饋</a></li>
+            <li><a href="../contact.html">客服諮詢</a></li>
         </ul>
     </nav>
 </header>
@@ -335,7 +333,7 @@
         </section>
 
         <div style="text-align: center; margin-top: 50px;">
-            <a href="javascript:history.back()" class="fixed-back-btn">🔙 返回列表</a>
+            <a href="../type.html" class="back-btn">🔙 返回列表</a>
         </div>
     </div>
 </main>
