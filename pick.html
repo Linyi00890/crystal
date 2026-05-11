@@ -29,7 +29,7 @@
             user-select: none; /* 禁用文字選取 */
         }
 
-        /* 導覽列佈局：Logo 與連結分居左右 */
+        /* --- 導覽列優化區塊 --- */
         .navbar {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -42,8 +42,8 @@
 
         .nav-content {
             display: flex;
-            justify-content: space-between; /* 關鍵：左右分居 */
-            align-items: center;
+            justify-content: space-between; /* 關鍵：將子元素推向兩端 */
+            align-items: center;            /* 垂直居中 */
             width: 100%;
             max-width: var(--max-content-width);
             margin: 0 auto;
@@ -56,12 +56,15 @@
             color: var(--primary-orange);
             text-decoration: none;
             letter-spacing: 1px;
+            flex-shrink: 0; /* 防止 Logo 被壓縮 */
         }
 
         .nav-links {
             display: flex;
-            gap: 25px;
+            gap: 15px;      /* 調整連結間距 */
             list-style: none;
+            margin: 0;
+            padding: 0;     /* 移除預設 padding */
         }
 
         .nav-links a {
@@ -69,8 +72,9 @@
             color: #555;
             font-weight: 500;
             transition: 0.3s;
-            padding: 5px 10px;
+            padding: 8px 12px;
             border-radius: 8px;
+            white-space: nowrap; /* 防止文字換行 */
         }
 
         .nav-links a:hover, .nav-links a.active {
@@ -78,7 +82,7 @@
             background: #fff3e0;
         }
 
-        /* 主視覺區 */
+        /* --- 頁面其餘樣式 --- */
         .guide-intro {
             text-align: center;
             padding: 100px 20px;
@@ -100,7 +104,6 @@
             color: #5d4037;
         }
 
-        /* 內容區塊 */
         .main-container {
             max-width: var(--max-content-width);
             margin: 0 auto;
@@ -142,13 +145,6 @@
             text-align: center;
         }
 
-        .method-box p {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        /* 測試推廣區 */
         .quiz-promo {
             text-align: center;
             background-color: #fff8f1;
@@ -156,12 +152,6 @@
             border-radius: 40px;
             margin: 80px 0;
             border: 2px dashed #ffab91;
-        }
-
-        .quiz-promo h2 {
-            color: var(--primary-orange);
-            font-size: 2.2rem;
-            margin-bottom: 20px;
         }
 
         .cta-button {
@@ -176,11 +166,6 @@
             font-size: 1.2rem;
             transition: 0.3s;
             box-shadow: 0 8px 25px rgba(216, 67, 21, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 12px 35px rgba(216, 67, 21, 0.4);
         }
 
         .main-footer {
@@ -200,19 +185,28 @@
             color: white;
             text-decoration: none;
             border-radius: 50px;
-            transition: 0.3s;
         }
 
-        .back-btn:hover {
-            background: #6a1b9a;
-            transform: translateY(-3px);
+        /* 響應式優化：手機版時改為上下堆疊或隱藏部分元素 */
+        @media (max-width: 900px) {
+            .nav-content {
+                padding: 15px 20px;
+            }
+            .nav-links {
+                gap: 5px;
+            }
+            .nav-links a {
+                font-size: 0.85rem;
+                padding: 6px 8px;
+            }
         }
 
-        /* 響應式優化 */
-        @media (max-width: 768px) {
-            .nav-content { flex-direction: column; gap: 15px; }
+        @media (max-width: 600px) {
+            .nav-content {
+                flex-direction: column; /* 手機版 Logo 在上，選單在下 */
+                gap: 15px;
+            }
             .guide-intro h1 { font-size: 2.2rem; }
-            .nav-links { gap: 15px; font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -220,7 +214,10 @@
 
 <nav class="navbar">
     <div class="nav-content">
+        <!-- 左側 Logo -->
         <a href="index.html" class="logo">🔮 CrystalMagic</a>
+        
+        <!-- 右側 導覽連結 -->
         <ul class="nav-links">
             <li><a href="index.html">首頁</a></li>
             <li><a href="origin.html">水晶起源</a></li>
@@ -245,21 +242,21 @@
             <article class="method-box">
                 <h3>1. 需求導向法</h3>
                 <p><strong>適合對象：</strong> 目標明確的理性行動派。</p>
-                <p><strong>如何操作：</strong> 條列出目前想強化的部分，如「招財」、「防小人」或「穩定情緒」，再對應特定水晶。</p>
+                <p><strong>如何操作：</strong> 條列出目前想強化的部分，如「招財」、「防小人」或「穩定情緒」。</p>
                 <p><strong>優點：</strong> 邏輯清晰，能針對性解決當下的生命課題。</p>
             </article>
 
             <article class="method-box">
                 <h3>2. 直覺吸引法</h3>
                 <p><strong>適合對象：</strong> 感知敏銳、相信緣分者。</p>
-                <p><strong>如何操作：</strong> 第一眼讓你感到舒服、溫暖，或是視線不由自主停留最久的那顆水晶，就是您的選擇。</p>
+                <p><strong>如何操作：</strong> 第一眼讓你感到舒服、溫暖，或是視線不由自主停留最久的那顆。</p>
                 <p><strong>優點：</strong> 這代表您的潛意識正需要該水晶的特定振動頻率。</p>
             </article>
 
             <article class="method-box">
                 <h3>3. 脈輪對應法</h3>
                 <p><strong>適合對象：</strong> 喜歡結合玄學與系統分析者。</p>
-                <p><strong>如何操作：</strong> 根據您目前阻塞的脈輪（如喉輪配海藍寶、心輪配粉晶）或星座來挑選。</p>
+                <p><strong>如何操作：</strong> 根據您目前阻塞的脈輪（如喉輪配海藍寶）來挑選。</p>
                 <p><strong>優點：</strong> 能輔助平衡個人先天命盤中較為不足的能量場。</p>
             </article>
         </div>
@@ -268,7 +265,6 @@
             <h2>✨ 仍在猶豫不決？</h2>
             <p>我們設計了一套能量演算法，只需回答 5 個問題，即可為您推薦最契合的命定水晶。</p>
             <a href="quiz.html" class="cta-button">立即開啟：命定水晶配對測試 »</a>
-            <p style="font-size: 0.9rem; margin-top: 30px; color: #8d6e63;">* 建議在靜心時施測，讓潛意識引領您的選擇。</p>
         </section>
 
         <div style="text-align: center;">
@@ -282,30 +278,10 @@
 </footer>
 
 <script>
-    // --- 魔法守護腳本 ---
-    
-    // 1. 禁用右鍵選單並跳出提醒
-    document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-        alert("🔮 魔法能量守護中：本站挑選指南受保護，無法使用右鍵選單。");
-    }, false);
-
-    // 2. 禁用快捷鍵 (F12, Ctrl+U, Ctrl+Shift+I 等)
+    // 禁用右鍵與開發者工具
+    document.addEventListener('contextmenu', e => e.preventDefault());
     document.onkeydown = function (e) {
-        // 禁用 F12
-        if (e.keyCode === 123) {
-            return false;
-        }
-        // 禁用 Ctrl+Shift+I (開發者工具)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
-            return false;
-        }
-        // 禁用 Ctrl+U (檢視原始碼)
-        if (e.ctrlKey && e.keyCode === 85) {
-            return false;
-        }
-        // 禁用 Ctrl+S (存檔)
-        if (e.ctrlKey && e.keyCode === 83) {
+        if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
             return false;
         }
     };
