@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日水晶神諭卡 | CrystalMagic 2026</title>
+    <style>
+        :root {
+            --gold: #d4af37;
+            --mystic-blue: #1a237e;
+            --glass: rgba(255, 255, 255, 0.95);
+            --primary-purple: #4a148c;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background: radial-gradient(circle at center, #1a237e 0%, #000 100%);
+            color: #fff;
+            margin: 0; padding: 0;
+            min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center;
+            overflow-x: hidden;
+            user-select: none;
+        }
+
+        /* 標題區域 */
+        header { text-align: center; padding: 50px 20px 20px; }
+        h1 { color: var(--gold); font-size: 2rem; letter-spacing: 5px; margin-bottom: 10px; text-shadow: 0 0 15px rgba(212, 175, 55, 0.5); }
+        .hint { color: #888; font-size: 0.9rem; letter-spacing: 1px; }
+
+        /* 3D 翻牌舞台 */
+        .card-stage {
+            perspective: 1200px;
+            margin: 40px auto;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            width: 320px; height: 480px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card-inner.is-flipped { transform: rotateY(180deg); }
+
+        .card-face {
+            position: absolute; width: 100%; height: 100%;
+            backface-visibility: hidden;
+            border-radius: 25px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            border: 3px solid var(--gold);
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+        }
+
+        /* 卡片背面 */
+        .card-back {
+            background: #121212;
+            background-image: radial-gradient(var(--gold) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .card-back-pattern {
+            width: 80%; height: 80%;
+            border: 1px solid var(--gold);
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 15px;
+        }
+        .card-back-pattern::after { content: "✨"; font-size: 60px; filter: drop-shadow(0 0 10px var(--gold)); }
+
+        /* 卡片正面 */
+        .card-front {
+            background: #fff; color: #333;
+            transform: rotateY(180deg);
+            padding: 30px; box-sizing: border-box;
+            text-align: center;
+        }
+
+        .crystal-img {
+            width: 180px; height: 180px; border-radius: 50%;
+            object-fit: cover; border: 8px solid #f8f9fa;
+            margin-bottom: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .crystal-name { font-size: 1.8rem; font-weight: 900; color: var(--primary-purple); margin: 0; }
+        .crystal-tag { 
+            display: inline-block; background: #f3e5f5; color: #7b1fa2; 
+            padding: 5px 18px; border-radius: 20px; font-size: 0.9rem; 
+            margin: 12px 0; font-weight: bold;
+        }
+        .crystal-guidance { font-size: 1.05rem; line-height: 1.8; color: #444; margin-top: 15px; text-align: justify; }
+
+        /* 按鈕樣式 */
+        .reset-btn {
+            background: transparent; border: 1px solid var(--gold); color: var(--gold);
+            padding: 12px 35px; border-radius: 50px; cursor: pointer; 
+            transition: 0.3s; font-weight: bold; margin-top: 20px;
+            display: none;
+        }
+        .reset-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px rgba(212,175,55,0.4); }
+
+        /* --- 導覽按鈕區 (左下角與右下角) --- */
+        .nav-container {
+            position: fixed; bottom: 30px; width: 100%;
+            display: flex; justify-content: space-between;
+            padding: 0 30px; box-sizing: border-box;
+            pointer-events: none; z-index: 1000;
+        }
+
+        .nav-group { display: flex; gap: 12px; pointer-events: auto; }
+
+        .floating-btn {
+            display: flex; align-items: center; padding: 12px 20px;
+            background: var(--glass); color: var(--primary-purple);
+            text-decoration: none; border-radius: 50px; font-weight: bold;
+            font-size: 0.9rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .floating-btn:hover { transform: translateY(-5px); background: #fff; box-shadow: 0 8px 25px rgba(0,0,0,0.4); }
+        .icon { margin-right: 8px; }
+
+        @media (max-width: 480px) {
+            .card-inner { width: 280px; height: 420px; }
+            .nav-container { padding: 0 15px; bottom: 20px; }
+            .floating-btn { padding: 10px 15px; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="nav-container">
+    <!-- 左下角按鈕組 -->
+    <div class="nav-group">
+        <a href="quiz.html" class="floating-btn"><span class="icon">⬅️</span> 返回上一頁</a>
+        <a href="index.html" class="floating-btn"><span class="icon">🏠</span> 返回首頁</a>
+    </div>
+    
+    <!-- 右下角按鈕組 -->
+    <div class="nav-group">
+        <a href="mbti.html" class="floating-btn"><span class="icon">🧠</span> MBTI 測驗</a>
+    </div>
+</div>
+
+<header>
+    <h1>今日神諭指引</h1>
+    <p class="hint">深呼吸，點擊卡牌翻開今日的能量</p>
+</header>
+
+<div class="card-stage" onclick="drawCard()">
+    <div class="card-inner" id="card">
+        <div class="card-face card-back">
+            <div class="card-back-pattern"></div>
+        </div>
+        <div class="card-face card-front">
+            <img id="resImg" src="" class="crystal-img">
+            <h2 id="resName" class="crystal-name"></h2>
+            <div id="resTag" class="crystal-tag"></div>
+            <p id="resDesc" class="crystal-guidance"></p>
+        </div>
+    </div>
+</div>
+
+<button class="reset-btn" id="resetBtn" onclick="resetCard()">重新抽取指引</button>
+
+<script>
+    // 超過 30 種水晶數據庫
+    const crystals = [
+        { name: "紫水晶", tag: "靈覺智慧", desc: "今日直覺敏銳，適合處理複雜的思緒。內心的平靜將帶領你找到正確的出口。", img: "https://images.unsplash.com/photo-1567883111025-063a43627448?w=400" },
+        { name: "鈦晶", tag: "事業財運", desc: "能量正旺的一天！大膽執行你的計畫，財富與成功的機會就在不遠處。", img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400" },
+        { name: "粉水晶", tag: "人緣療癒", desc: "今日的指引是『愛自己』。當你開始欣賞自己，周圍的關係也會隨之變得溫潤和諧。", img: "https://images.unsplash.com/photo-1614032155370-137b02b9f874?w=400" },
+        { name: "黑曜石", tag: "辟邪守護", desc: "請阻擋外界的喧囂，今日適合低調行事。守護好自己的磁場，不被負能量干擾。", img: "https://images.unsplash.com/photo-1605142859862-978be7eba909?w=400" },
+        { name: "海藍寶", tag: "勇氣溝通", desc: "像水一樣流動吧。溫和地表達你的需求，溝通中的阻礙將在今日自動瓦解。", img: "https://images.unsplash.com/photo-1599707334298-291efdec822c?w=400" },
+        { name: "黃水晶", tag: "招財自信", desc: "充滿自信的笑容是你的開運關鍵。今日適合啟動新的理財計畫或投資。", img: "https://images.unsplash.com/photo-1615111784767-4d7a407d39f4?w=400" },
+        { name: "拉長石", tag: "直覺轉化", desc: "生活中隱藏著奇蹟。留意今日閃過的念頭，那可能是靈魂給你的重要啟示。", img: "https://images.unsplash.com/photo-1599707334298-291efdec822c?w=400" },
+        { name: "月光石", tag: "柔美平衡", desc: "情緒如同潮汐起伏是正常的。給自己一點空間，在月光的能量中修復疲憊。", img: "https://images.unsplash.com/photo-1614032155370-137b02b9f874?w=400" },
+        { name: "超七", tag: "全能調和", desc: "今日運勢全面提升！無論是生活還是工作，你都能游刃有餘地處理一切。", img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400" },
+        { name: "綠幽靈", tag: "正財貴人", desc: "事業上有貴人相助的徵兆。保持積極的行動，財富會隨著你的努力而來。", img: "https://images.unsplash.com/photo-1615111784767-4d7a407d39f4?w=400" },
+        { name: "草莓晶", tag: "桃花增溫", desc: "魅力指數提升！今日適合多參加社交活動，美好的邂逅可能就在下一個轉角。", img: "https://images.unsplash.com/photo-1614032155370-137b02b9f874?w=400" },
+        { name: "藍磷灰", tag: "意志動力", desc: "打起精神！今日適合開啟健身或讀書計畫，你的意志力將會異常堅定。", img: "https://images.unsplash.com/photo-1599707334298-291efdec822c?w=400" },
+        { name: "紅石榴石", tag: "體力活力", desc: "活力四射的一天。多走動、多接觸自然，你的能量場會因為行動而變得紅潤。", img: "https://images.unsplash.com/photo-1615111784767-4d7a407d39f4?w=400" },
+        { name: "金曜石", tag: "擋煞吸財", desc: "穩如泰山。今日適合處理金錢相關決策，謹慎的態度會幫你避開所有陷阱。", img: "https://images.unsplash.com/photo-1605142859862-978be7eba909?w=400" },
+        { name: "天河石", tag: "希望幸運", desc: "翻轉運勢的時刻。拋開過去的擔憂，保持樂觀，好運就會被你的信心吸引。", img: "https://images.unsplash.com/photo-1599707334298-291efdec822c?w=400" },
+        { name: "螢石", tag: "專注清晰", desc: "排除雜念。今日適合學習或整理環境，清晰的思緒能幫你解決卡關已久的問題。", img: "https://images.unsplash.com/photo-1599707334298-291efdec822c?w=400" },
+        { name: "太陽石", tag: "正向光芒", desc: "成為別人的陽光吧！今日你的慷慨與熱情會為你贏得極高的人氣與尊重。", img: "https://images.unsplash.com/photo-1615111784767-4d7a407d39f4?w=400" },
+        { name: "孔雀石", tag: "平安變革", desc: "不要害怕改變。今日發生的波折是為了帶你走向更好的方向，請順應時勢。", img: "https://images.unsplash.com/photo-1599707334298-291efdec822c?w=400" },
+        { name: "青金石", tag: "真實洞察", desc: "看穿表象。今日適合深度思考人生的真義，你將會發現一直被忽視的真相。", img: "https://images.unsplash.com/photo-1567883111025-063a43627448?w=400" },
+        { name: "葡萄石", tag: "希望舒緩", desc: "心靈的放鬆日。今日適合與綠色植物共處，讓自然的能量帶走多餘的焦慮。", img: "https://images.unsplash.com/photo-1599707334298-291efdec822c?w=400" },
+        { name: "黑髮晶", tag: "執行權威", desc: "展現氣場的時刻。今日在職場上的決斷會受到肯定，適合爭取更好的職位。", img: "https://images.unsplash.com/photo-1605142859862-978be7eba909?w=400" },
+        { name: "紫鋰輝", tag: "療癒寬容", desc: "原諒是最大的解脫。今日適合修復一段緊張的關係，用愛與寬容化解衝突。", img: "https://images.unsplash.com/photo-1614032155370-137b02b9f874?w=400" },
+        { name: "舒俱徠", tag: "靈性修復", desc: "深度療癒的一天。適當的休息能幫你清理長久以來的疲勞感，讓元神歸位。", img: "https://images.unsplash.com/photo-1567883111025-063a43627448?w=400" },
+        { name: "捷克隕石", tag: "快速轉化", desc: "宇宙能量注入！今日可能會有突如其來的機會或邀約，請勇敢地接住它。", img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400" },
+        { name: "藍瑪瑙", tag: "和平冷靜", desc: "安靜地處理事情會更有效率。今日請減少情緒性的發言，用專業贏得信任。", img: "https://images.unsplash.com/photo-1599707334298-291efdec822c?w=400" },
+        { name: "碧璽", tag: "全方位保護", desc: "豐富的色彩帶來多元的運勢。今日適合多方嘗試，你會有意想不到的收穫。", img: "https://images.unsplash.com/photo-1615111784767-4d7a407d39f4?w=400" },
+        { name: "極光23", tag: "覺醒再生", desc: "你具備無限潛力。今日適合反思自己的成長，你會驚訝於自己已經變得如此強大。", img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400" },
+        { name: "黑碧璽", tag: "落地淨化", desc: "適合處理踏實的計畫。別被夢幻的願景迷惑，今日需要你步步為營。", img: "https://images.unsplash.com/photo-1605142859862-978be7eba909?w=400" },
+        { name: "茶晶", tag: "穩重排毒", desc: "釋放心理垃圾。把不愉快的事情寫下來並燒掉或刪除，今日是重生的起點。", img: "https://images.unsplash.com/photo-1605142859862-978be7eba909?w=400" },
+        { name: "白水晶", tag: "純粹光明", desc: "大道至簡。回歸最純粹的生活方式，你會發現煩惱其實都是自找的。", img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400" },
+        { name: "紅瑪瑙", tag: "自信熱情", desc: "勇敢地展現自我！今日你的熱情會感染周圍的人，為你帶來新的合作機會。", img: "https://images.unsplash.com/photo-1615111784767-4d7a407d39f4?w=400" }
+    ];
+
+    let isDrawing = false;
+
+    function drawCard() {
+        if (isDrawing) return;
+        isDrawing = true;
+
+        const card = document.getElementById('card');
+        const resetBtn = document.getElementById('resetBtn');
+        const result = crystals[Math.floor(Math.random() * crystals.length)];
+        
+        // 更新 UI 內容
+        document.getElementById('resImg').src = result.img;
+        document.getElementById('resName').innerText = result.name;
+        document.getElementById('resTag').innerText = "#" + result.tag;
+        document.getElementById('resDesc').innerText = result.desc;
+
+        // 啟動翻牌動畫
+        card.classList.add('is-flipped');
+        
+        setTimeout(() => {
+            resetBtn.style.display = 'block';
+        }, 800);
+    }
+
+    function resetCard() {
+        const card = document.getElementById('card');
+        const resetBtn = document.getElementById('resetBtn');
+        
+        card.classList.remove('is-flipped');
+        resetBtn.style.display = 'none';
+        
+        setTimeout(() => {
+            isDrawing = false;
+        }, 800);
+    }
+
+    // 基本安全防護
+    document.addEventListener('contextmenu', e => e.preventDefault());
+</script>
+
+</body>
+</html>
