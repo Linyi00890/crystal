@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✨ 功效解讀：脈輪對應與能量療癒 - 水晶魔法 | CrystalMagic</title>
-    <!-- 引用您的 CSS 檔案 -->
+    <title>✨ 功效解讀：脈輪能量掃描儀 - CrystalMagic</title>
     <link rel="stylesheet" href="effect.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- 引入雷達圖所需的庫 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -35,136 +36,97 @@
     </section>
 
     <div class="main-content">
-        <h2 class="section-title">✨ 七大脈輪能量中心</h2>
+        
+        <!-- 新增：脈輪能量掃描儀 -->
+        <section class="scanner-section">
+            <h2 class="section-title">🔮 脈輪能量掃描儀 (Chakra Balance Test)</h2>
+            <div class="scanner-container" id="scannerApp">
+                
+                <!-- 測驗題目區 -->
+                <div id="quizBox">
+                    <p class="quiz-intro">請直覺回答以下問題，我們將分析您目前的能量場狀態。</p>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="progressBar"></div>
+                    </div>
+                    <div class="question-card">
+                        <h3 id="questionText">正在初始化感應器...</h3>
+                        <div class="options-group" id="optionsGroup"></div>
+                    </div>
+                </div>
 
+                <!-- 結果呈現區 -->
+                <div id="resultBox" style="display: none;">
+                    <div class="result-layout">
+                        <div class="chart-container">
+                            <canvas id="chakraChart"></canvas>
+                        </div>
+                        <div class="result-info">
+                            <h3>掃描完成！<br>您的 <span id="weakestChakraName" class="highlight">---</span> 能量較為低迷</h3>
+                            <p id="analysisText">分析加載中...</p>
+                            <div class="recommendation-box">
+                                <strong>✨ 專屬能量補給方案：</strong>
+                                <p id="crystalSuggest">建議配戴：---</p>
+                            </div>
+                            <button onclick="location.reload()" class="cta-button">重新掃描能量</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 原始：七大脈輪卡片網格 -->
+        <h2 class="section-title">✨ 七大脈輪能量中心詳解</h2>
         <div class="chakra-grid">
-            <!-- 頂輪 -->
             <article class="chakra-card chakra-7">
                 <h3>頂輪 (Crown)</h3>
-                <p><strong>能量主題：</strong> 靈性連繫、純粹意識、智慧</p>
-                <ul>
-                    <li>💎 白水晶 - 能量放大與平衡</li>
-                    <li>💎 紫水晶 - 智慧與冷靜思考</li>
-                    <li>💎 透石膏 - 清理負面氣場</li>
-                </ul>
+                <p><strong>能量主題：</strong> 靈性連繫、智慧</p>
+                <ul><li>💎 白水晶、紫水晶</li></ul>
             </article>
-
-            <!-- 眉心輪 -->
             <article class="chakra-card chakra-6">
                 <h3>眉心輪 (Third Eye)</h3>
-                <p><strong>能量主題：</strong> 直覺、洞察力、想像力</p>
-                <ul>
-                    <li>💎 青金石 - 開啟靈性之眼</li>
-                    <li>💎 藍磷灰 - 激發創意與遠見</li>
-                    <li>💎 拉長石 - 潛意識的橋樑</li>
-                </ul>
+                <p><strong>能量主題：</strong> 直覺、洞察力</p>
+                <ul><li>💎 青金石、拉長石</li></ul>
             </article>
-
-            <!-- 喉輪 -->
             <article class="chakra-card chakra-5">
                 <h3>喉輪 (Throat)</h3>
-                <p><strong>能量主題：</strong> 誠實溝通、創意表達</p>
-                <ul>
-                    <li>💎 海藍寶 - 勇氣與流暢表達</li>
-                    <li>💎 藍玉髓 - 舒緩焦慮與平穩</li>
-                    <li>💎 天河石 - 充滿信心的溝通</li>
-                </ul>
+                <p><strong>能量主題：</strong> 誠實溝通、表達</p>
+                <ul><li>💎 海藍寶、藍玉髓</li></ul>
             </article>
-
-            <!-- 心輪 -->
             <article class="chakra-card chakra-4">
                 <h3>心輪 (Heart)</h3>
-                <p><strong>能量主題：</strong> 愛與慈悲、內在平靜</p>
-                <ul>
-                    <li>💎 粉水晶 - 愛情與自我接納</li>
-                    <li>💎 草莓晶 - 增進人緣魅力</li>
-                    <li>💎 葡萄石 - 希望與療癒之石</li>
-                </ul>
+                <p><strong>能量主題：</strong> 愛與慈悲、平靜</p>
+                <ul><li>💎 粉水晶、草莓晶</li></ul>
             </article>
-
-            <!-- 太陽輪 -->
             <article class="chakra-card chakra-3">
                 <h3>太陽輪 (Solar Plexus)</h3>
-                <p><strong>能量主題：</strong> 個人意志、自信、行動力</p>
-                <ul>
-                    <li>💎 黃水晶 - 招財與自信心</li>
-                    <li>💎 鈦晶 - 事業權威與果斷</li>
-                    <li>💎 虎眼石 - 消除恐懼與勇氣</li>
-                </ul>
+                <p><strong>能量主題：</strong> 自信、行動力</p>
+                <ul><li>💎 黃水晶、虎眼石</li></ul>
             </article>
-
-            <!-- 臍輪 -->
             <article class="chakra-card chakra-2">
                 <h3>臍輪 (Sacral)</h3>
-                <p><strong>能量主題：</strong> 熱情、創造力、情緒平衡</p>
-                <ul>
-                    <li>💎 橙月光 - 柔化情緒與直覺</li>
-                    <li>💎 紅瑪瑙 - 增進生命力與熱情</li>
-                    <li>💎 太陽石 - 正向積極的能量</li>
-                </ul>
+                <p><strong>能量主題：</strong> 熱情、創造力</p>
+                <ul><li>💎 橙月光、太陽石</li></ul>
             </article>
-
-            <!-- 底輪 -->
             <article class="chakra-card chakra-1">
                 <h3>底輪 (Root)</h3>
-                <p><strong>能量主題：</strong> 安全感、生存本能、穩定</p>
-                <ul>
-                    <li>💎 黑銀鈦 - 強力避邪與防小人</li>
-                    <li>💎 茶晶 - 接地能量與穩定情緒</li>
-                    <li>💎 石榴石 - 增強體力與生命力</li>
-                </ul>
+                <p><strong>能量主題：</strong> 安全感、穩定</p>
+                <ul><li>💎 黑銀鈦、茶晶</li></ul>
             </article>
-        </div>
-
-        <h2 class="section-title">📋 需求與水晶速查表</h2>
-        <div class="table-container">
-            <table class="needs-table">
-                <thead>
-                    <tr>
-                        <th>主要需求</th>
-                        <th>推薦水晶組合</th>
-                        <th>能量解析</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>💖 招桃花與好人緣</td>
-                        <td><strong>粉水晶 + 草莓晶</strong></td>
-                        <td>開啟心輪能量，吸引正向姻緣，提升個人親和力。</td>
-                    </tr>
-                    <tr>
-                        <td>💰 提升財運與事業</td>
-                        <td><strong>鈦晶 + 綠幽靈</strong></td>
-                        <td>主正偏財運，增強執行力，吸引職場貴人。</td>
-                    </tr>
-                    <tr>
-                        <td>🛡️ 避邪擋煞防小人</td>
-                        <td><strong>黑銀鈦 + 黑曜石</strong></td>
-                        <td>強效吸收環境負能量，建立能量保護網，化解是非。</td>
-                    </tr>
-                    <tr>
-                        <td>😴 靜心幫助深睡</td>
-                        <td><strong>茶晶 + 透石膏</strong></td>
-                        <td>安定過於活躍的思緒，接地穩定，淨化睡眠空間。</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
 
         <div class="cta-box">
-            <h3>迷惘於如何選擇？</h3>
-            <p>每個人當下的能量狀態都不同，讓測緣幫助您找到最需要的脈輪補給。</p>
-            <a href="quiz.html" class="cta-button">立即開始能量測驗 »</a>
+            <h3>需要更深入的靈魂諮詢？</h3>
+            <p>每顆水晶都有其獨特的頻率，讓我們的導師為您挑選命中注定的那一顆。</p>
+            <a href="contact.html" class="cta-button">聯繫能量導師 »</a>
         </div>
     </div>
 </main>
 
 <footer class="footer">
-    <p>&copy; 2026 CrystalMagic 水晶魔法 | 全站內容受魔法能量守護保護中</p>
+    <p>&copy; 2026 CrystalMagic 水晶魔法 | 能量場掃描技術受魔法保護</p>
 </footer>
 
-<!-- 引用您的 JS 檔案 -->
 <script src="effect.js"></script>
-
 </body>
 </html>
