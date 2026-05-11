@@ -1,1 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200">
+    <title>白水晶 (Clear Quartz) 全方位能量指南 - 水晶魔法 | CrystalMagic</title>
+    
+    <style>
+        /* 全局基礎設定 */
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0 auto;
+            color: #333;
+            line-height: 1.8;
+            width: 1200px;
+            overflow-x: auto;
+        }
 
+        /* 導覽列 */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 1200px;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #212121;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            transition: 0.3s;
+        }
+
+        /* 頂部標題區 - 白水晶改為明亮的銀白色系 */
+        .detail-header {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #e0e0e0 0%, #ffffff 100%);
+            color: #333;
+            width: 1200px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .detail-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            color: #1a1a1a;
+        }
+
+        .stat-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-pill {
+            background: rgba(0, 0, 0, 0.05);
+            padding: 10px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #444;
+            font-weight: bold;
+        }
+
+        /* 內容容器 */
+        .content-container {
+            width: 1000px;
+            margin: 50px auto;
+            position: relative;
+        }
+
+        .content-section {
+            background-color: white;
+            padding: 45px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .content-section h2 {
+            color: #212121;
+            border-left: 6px solid #00acc1;
+            padding-left: 20px;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        /* 品種展示區 */
+        .variety-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .variety-card {
+            text-align: center;
+            padding: 20px;
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 15px;
+        }
+
+        .variety-card h3 {
+            font-size: 1.1rem;
+            color: #00acc1;
+            margin-bottom: 10px;
+        }
+
+        /* 核心功效 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .feature-item {
+            padding: 30px;
+            background-color: #fafafa;
+            border-radius: 15px;
+            border-left: 4px solid #00acc1;
+        }
+
+        .feature-item strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: #000;
+        }
+
+        /* 能量組合區 */
+        .combo-box {
+            background: #37474f;
+            color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .combo-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #546e7a;
+        }
+
+        .combo-item:last-child { border: none; }
+
+        .tag {
+            background: #00acc1;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+
+        /* FAQ 區塊 */
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-q {
+            font-weight: bold;
+            color: #00838f;
+            display: block;
+        }
+
+        .faq-a {
+            color: #666;
+            padding-left: 20px;
+        }
+
+        /* 按鈕樣式 */
+        .back-btn {
+            display: inline-block;
+            background: #212121;
+            color: white;
+            padding: 15px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        /* 固定於左下角的返回按鈕 */
+        .fixed-back-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 2000;
+            background: rgba(0, 172, 193, 0.9);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .fixed-back-btn:hover {
+            background: #00838f;
+            transform: scale(1.05);
+        }
+
+        .main-footer {
+            text-align: center;
+            padding: 60px 0;
+            background: #fff;
+            width: 1200px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 固定左下角按鈕 -->
+<a href="type.html" class="fixed-back-btn">🔙 返回列表</a>
+
+<header class="main-header">
+    <a href="index.html" class="logo">🔮 CrystalMagic</a>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="origin.html">水晶起源</a></li>
+            <li><a href="type.html" style="color: #00acc1; font-weight: bold;">水晶種類</a></li>
+            <li><a href="care.html">淨化保養</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="detail-header">
+        <h1>白水晶 Clear Quartz</h1>
+        <p>「光明的守護者，水晶之王，萬用的能量放大器」</p>
+        <div class="stat-container">
+            <div class="stat-pill">脈輪：全脈輪 (對應頂輪)</div>
+            <div class="stat-pill">五行：金</div>
+            <div class="stat-pill">硬度：7</div>
+        </div>
+    </section>
+
+    <div class="content-container">
+        <section class="content-section">
+            <h2>🔬 礦物學基礎：純淨的結構</h2>
+            <p>白水晶是地球上分佈最廣的礦物之一，化學成分為二氧化矽（SiO2）。它擁有完美的六角柱晶體結構，其透明無暇的外觀象徵著平衡與圓滿。作為<strong>「萬用水晶」</strong>，白水晶具備壓電效應，能穩定電磁波並平衡周圍磁場，是所有能量療癒的起點。</p>
+            
+            <h3>常見品種與形態</h3>
+            <div class="variety-grid">
+                <div class="variety-card"><h3>全淨透明</h3><p>能量最透徹穩定</p></div>
+                <div class="variety-card"><h3>白晶簇</h3><p>多向發散，淨化利器</p></div>
+                <div class="variety-card"><h3>激光柱</h3><p>能量集中，精準導向</p></div>
+                <div class="variety-card"><h3>奶白水晶</h3><p>質地溫潤，舒緩壓力</p></div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>🛡️ 核心能量功效</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <strong>淨化負面磁場</strong>
+                    白水晶能吸收並阻斷負能量，清理個人與空間中的雜氣，將混亂的能量場梳理得井然有序。
+                </div>
+                <div class="feature-item">
+                    <strong>提升專注力</strong>
+                    對應頂輪，能幫助思緒清晰、增強記憶力，非常適合辦公室職員、考生或需要高度專注的創意工作者。
+                </div>
+                <div class="feature-item">
+                    <strong>能量放大效果</strong>
+                    白水晶如同能量的「擴音器」，它能與其他水晶共鳴，顯著增強其他寶石的特質與功效。
+                </div>
+                <div class="feature-item">
+                    <strong>情緒穩定與平和</strong>
+                    幫助排解壓力，讓浮躁的心安定下來。在冥想時握著白水晶，能更容易進入深層的放鬆狀態。
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>🔗 能量疊加：推薦組合</h2>
+            <div class="combo-box">
+                <div class="combo-item">
+                    <span class="tag">全方位守護</span> <strong>白水晶 + 黑曜石</strong>：白水晶排濁、黑曜石吸附，是清理病氣與防小人的最強拍檔。
+                </div>
+                <div class="combo-item">
+                    <span class="tag">智慧靈感</span> <strong>白水晶 + 紫水晶</strong>：開啟大腦潛能，在冷靜判斷中帶有直覺與創意。
+                </div>
+                <div class="combo-item">
+                    <span class="tag">愛情療癒</span> <strong>白水晶 + 粉晶</strong>：淨化心碎與過往傷痛，讓純粹的愛流動，提升人緣與魅力。
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>❓ 常見問題 Q&A</h2>
+            <div class="faq-item">
+                <span class="faq-q">Q：白水晶應該戴哪隻手？</span>
+                <p class="faq-a">A：通常建議戴在「左手」。遵循左進右出的原則，白水晶的純淨能量能由左手進入身體，幫助穩定磁場。</p>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">Q：白水晶需要常淨化嗎？</span>
+                <p class="faq-a">A：是的。因為白水晶容易吸收外界的雜氣，建議每週進行一次消磁（如日光浴或使用晶簇）以保持其透明的頻率。</p>
+            </div>
+            <div class="faq-item">
+                <span class="faq-q">Q：為什麼我的白水晶變渾濁了？</span>
+                <p class="faq-a">A：這可能是水晶吸附過多負面能量的徵兆，或者是長時間接觸汗水導致。建議深層淨化後觀察，若仍渾濁則代表它為您承擔了能量衝擊。</p>
+            </div>
+        </section>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="type.html" class="back-btn">← 返回水晶百科清單</a>
+        </div>
+    </div>
+</main>
+
+<footer class="main-footer">
+    <p>&copy; 2026 CrystalMagic | 白水晶：您的純淨能量之源</p>
+</footer>
+
+<script>
+    document.addEventListener('contextmenu', e => e.preventDefault());
+</script>
+
+</body>
+</html>
