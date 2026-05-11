@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>能量手鍊與飾品 - 精選系列 | CrystalMagic</title>
-    <!-- 引入 Google 字體提升質感 -->
+    <!-- 引入 Google 字體與 Icon -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
             --primary-pink: #f8bbd0;
             --dark-pink: #ad1457;
-            --accent-gold: #d4af37;
             --deep-purple: #6a1b9a;
             --soft-white: #fafafa;
             --text-gray: #555;
@@ -30,7 +30,7 @@
             line-height: 1.6;
         }
 
-        /* --- 導航欄優化 --- */
+        /* --- 導航欄 --- */
         .main-header {
             display: flex;
             justify-content: space-between;
@@ -62,42 +62,17 @@
             font-weight: 500;
         }
 
-        .nav-button.login {
-            color: var(--deep-purple);
-            border: 1px solid var(--deep-purple);
-        }
-
-        .nav-button.register {
-            background-color: var(--deep-purple);
-            color: white;
-        }
-
-        .nav-button:hover {
-            opacity: 0.8;
-            transform: scale(1.05);
-        }
+        .nav-button.login { color: var(--deep-purple); border: 1px solid var(--deep-purple); }
+        .nav-button.register { background-color: var(--deep-purple); color: white; }
 
         /* --- 標題區 --- */
         .page-header {
             text-align: center;
             padding: 80px 20px;
             background: linear-gradient(135deg, #fff5f8 0%, #fce4ec 100%);
-            position: relative;
-            overflow: hidden;
         }
 
-        .page-header h1 {
-            font-size: 2.5rem;
-            color: var(--dark-pink);
-            margin-bottom: 15px;
-            letter-spacing: 2px;
-        }
-
-        .page-header p {
-            color: #777;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+        .page-header h1 { font-size: 2.5rem; color: var(--dark-pink); margin-bottom: 15px; }
 
         /* --- 產品網格 --- */
         .product-grid {
@@ -114,65 +89,22 @@
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            display: flex;
-            flex-direction: column;
-            border: 1px solid rgba(0,0,0,0.03);
-        }
-
-        .product-item:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(173, 20, 87, 0.1);
-        }
-
-        .image-container {
-            overflow: hidden;
-            height: 280px;
-        }
-
-        .product-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s;
-        }
-
-        .product-item:hover img {
-            transform: scale(1.1);
-        }
-
-        /* --- 產品內容 --- */
-        .product-details {
-            padding: 25px;
-            flex-grow: 1;
+            transition: all 0.4s;
             display: flex;
             flex-direction: column;
         }
 
-        .product-details h4 {
-            color: #333;
-            font-size: 1.25rem;
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
+        .product-item:hover { transform: translateY(-10px); }
 
-        .product-details p {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            height: 3em; /* 限制兩行文字高度 */
-            overflow: hidden;
-        }
+        .image-container { height: 280px; overflow: hidden; }
+        .product-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+        .product-item:hover img { transform: scale(1.1); }
 
-        .product-price {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: #ef6c00;
-            margin-bottom: 20px;
-            font-family: 'Playfair Display', serif;
-        }
+        .product-details { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .product-details h4 { font-size: 1.25rem; margin-bottom: 12px; color: #333; }
+        .product-price { font-size: 1.4rem; font-weight: bold; color: #ef6c00; margin-bottom: 20px; }
 
-        .view-detail {
+        .btn-add-cart {
             display: block;
             background: linear-gradient(to right, #6a1b9a, #8e24aa);
             color: white;
@@ -182,34 +114,61 @@
             text-align: center;
             font-weight: bold;
             transition: 0.3s;
-            margin-top: auto;
-            box-shadow: 0 4px 15px rgba(106, 27, 154, 0.2);
+            border: none;
+            cursor: pointer;
         }
 
-        .view-detail:hover {
-            background: linear-gradient(to right, #ec407a, #d81b60);
-            box-shadow: 0 6px 20px rgba(236, 64, 122, 0.3);
+        .btn-add-cart:hover { background: linear-gradient(to right, #ec407a, #d81b60); }
+
+        /* --- 懸浮購物車按鈕 (核心功能) --- */
+        .cart-float {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            width: 65px;
+            height: 65px;
+            background-color: var(--deep-purple);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            text-decoration: none;
+            z-index: 2000;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .cart-float:hover {
+            transform: scale(1.1) rotate(-10deg);
+            background-color: var(--dark-pink);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: #ff3d00;
+            color: white;
+            font-size: 0.75rem;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            border: 2px solid white;
         }
 
         /* --- 頁腳 --- */
-        .footer {
-            background-color: #333;
-            color: #aaa;
-            padding: 40px 20px;
-            text-align: center;
-            font-size: 0.9rem;
-            margin-top: 50px;
-        }
-
-        /* 響應式微調 */
-        @media (max-width: 600px) {
-            .page-header h1 { font-size: 1.8rem; }
-            .product-grid { padding: 30px 20px; }
-        }
+        .footer { background-color: #333; color: #aaa; padding: 40px 20px; text-align: center; margin-top: 50px; }
     </style>
 </head>
 <body>
 
+<!-- 導航 -->
 <header class="main-header">
     <a href="index.html" class="logo">🔮 CrystalMagic</a>
     <div class="auth-buttons">
@@ -218,6 +177,12 @@
     </div>
 </header>
 
+<!-- 懸浮購物車按鈕 -->
+<a href="#" class="cart-float" id="cartButton">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-count" id="cartCount">0</span>
+</a>
+
 <main>
     <section class="page-header">
         <h1>✨ 能量手鍊與飾品</h1>
@@ -225,91 +190,74 @@
     </section>
 
     <section class="product-grid">
-        
-        <!-- 玫瑰粉晶 -->
+        <!-- 產品 1 -->
         <article class="product-item">
-            <div class="image-container">
-                <img src="picture/pink02.jpg" alt="玫瑰粉晶手鍊">
-            </div>
+            <div class="image-container"><img src="picture/pink02.jpg" alt="玫瑰粉晶"></div>
             <div class="product-details">
                 <h4>戀愛之心：粉晶手鍊</h4>
                 <p>專注心輪療癒，提升個人魅力與人緣，招來正桃花。</p>
-                <div class="product-price">NT$ 1,280</div>
-                <a href="#" class="view-detail">查看詳情</a>
+                <div class="product-price">NT$ XXXXX</div>
+                <button class="btn-add-cart" onclick="addToCart('粉晶手鍊')">加入購物車</button>
             </div>
         </article>
         
-        <!-- 黃水晶 -->
+        <!-- 產品 2 -->
         <article class="product-item">
-            <div class="image-container">
-                <img src="picture/yellow02.jpg" alt="黃水晶手鍊">
-            </div>
+            <div class="image-container"><img src="picture/yellow02.jpg" alt="黃水晶"></div>
             <div class="product-details">
                 <h4>王者財富：黃晶手鍊</h4>
                 <p>強勢招正財，增強事業野心與決斷力，適合職場精英。</p>
-                <div class="product-price">NT$ 1,580</div>
-                <a href="#" class="view-detail">查看詳情</a>
+                <div class="product-price">NT$ XXXXX</div>
+                <button class="btn-add-cart" onclick="addToCart('黃晶手鍊')">加入購物車</button>
             </div>
         </article>
 
-        <!-- 紫水晶 -->
+        <!-- 產品 3 -->
         <article class="product-item">
-            <div class="image-container">
-                <img src="picture/purple02.jpg" alt="紫水晶手鍊">
-            </div>
+            <div class="image-container"><img src="picture/purple02.jpg" alt="紫水晶"></div>
             <div class="product-details">
                 <h4>智慧之巔：烏拉圭紫晶</h4>
                 <p>開發智慧、集中注意力，穩定情緒並提升直覺力。</p>
-                <div class="product-price">NT$ 1,880</div>
-                <a href="#" class="view-detail">查看詳情</a>
+                <div class="product-price">NT$ XXXXX</div>
+                <button class="btn-add-cart" onclick="addToCart('紫晶手鍊')">加入購物車</button>
             </div>
         </article>
 
-        <!-- 白水晶 -->
+        <!-- 產品 4 -->
         <article class="product-item">
-            <div class="image-container">
-                <img src="picture/white01.jpg" alt="白水晶手鍊">
-            </div>
+            <div class="image-container"><img src="picture/white01.jpg" alt="白水晶"></div>
             <div class="product-details">
                 <h4>純淨能量：白水晶鑽切</h4>
                 <p>水晶之王，淨化磁場、排除負能量，帶來平衡與清晰。</p>
-                <div class="product-price">NT$ 980</div>
-                <a href="#" class="view-detail">查看詳情</a>
+                <div class="product-price">NT$ XXXXX</div>
+                <button class="btn-add-cart" onclick="addToCart('白水晶手鍊')">加入購物車</button>
             </div>
         </article>
-
-        <!-- 海藍寶 -->
-        <article class="product-item">
-            <div class="image-container">
-                <img src="picture/aquamarine02.jpg" alt="海藍寶手鍊">
-            </div>
-            <div class="product-details">
-                <h4>勇氣之泉：海藍寶石</h4>
-                <p>加強溝通表達能力，平定焦躁，保護旅行者平安。</p>
-                <div class="product-price">NT$ 2,100</div>
-                <a href="#" class="view-detail">查看詳情</a>
-            </div>
-        </article>
-
-        <!-- 黑曜石 -->
-        <article class="product-item">
-            <div class="image-container">
-                <img src="picture/obsidian02.jpg" alt="金曜石手鍊">
-            </div>
-            <div class="product-details">
-                <h4>大地護盾：金曜石手鍊</h4>
-                <p>強效辟邪擋煞、吸收負能量，守護氣場不受干擾。</p>
-                <div class="product-price">NT$ 1,150</div>
-                <a href="#" class="view-detail">查看詳情</a>
-            </div>
-        </article>
-
     </section>
 </main>
 
 <footer class="footer">
     <p>&copy; 2026 CrystalMagic. 每一顆水晶都承載著大地的祝福。</p>
 </footer>
+
+<script>
+    // 簡易購物車邏輯
+    let count = 0;
+    function addToCart(itemName) {
+        count++;
+        document.getElementById('cartCount').innerText = count;
+        
+        // 簡單的視覺回饋
+        alert('✨ ' + itemName + ' 已加入購物車！');
+        
+        // 讓購物車按鈕動一下
+        const cartBtn = document.getElementById('cartButton');
+        cartBtn.style.transform = 'scale(1.3)';
+        setTimeout(() => {
+            cartBtn.style.transform = 'scale(1)';
+        }, 200);
+    }
+</script>
 
 </body>
 </html>
