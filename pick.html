@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>挑選指南：如何找到你的命定水晶 - 水晶魔法 | CrystalMagic</title>
+    <title>專業挑選指南：如何找到您的命定水晶 - 水晶魔法 | CrystalMagic</title>
     
     <style>
         :root {
             --primary-orange: #d84315;
             --hover-orange: #ff8a65;
+            --deep-purple: #4a148c;
             --max-content-width: 1200px;
         }
 
@@ -19,17 +20,17 @@
         }
 
         body {
-            font-family: 'Noto Sans TC', sans-serif;
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
             background-color: #fdfaf9;
             color: #333;
             line-height: 1.8;
             width: 100%; 
             overflow-x: hidden;
             -webkit-user-select: none;
-            user-select: none; /* 禁用文字選取 */
+            user-select: none;
         }
 
-        /* --- 導覽列優化區塊 --- */
+        /* --- 導覽列 --- */
         .navbar {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -42,8 +43,8 @@
 
         .nav-content {
             display: flex;
-            justify-content: space-between; /* 關鍵：將子元素推向兩端 */
-            align-items: center;            /* 垂直居中 */
+            justify-content: space-between;
+            align-items: center;
             width: 100%;
             max-width: var(--max-content-width);
             margin: 0 auto;
@@ -56,15 +57,15 @@
             color: var(--primary-orange);
             text-decoration: none;
             letter-spacing: 1px;
-            flex-shrink: 0; /* 防止 Logo 被壓縮 */
+            flex-shrink: 0;
         }
 
         .nav-links {
             display: flex;
-            gap: 15px;      /* 調整連結間距 */
+            gap: 10px;
             list-style: none;
-            margin: 0;
-            padding: 0;     /* 移除預設 padding */
+            flex-wrap: wrap; /* 讓導覽列在項目過多時自動換行 */
+            justify-content: flex-end;
         }
 
         .nav-links a {
@@ -74,7 +75,8 @@
             transition: 0.3s;
             padding: 8px 12px;
             border-radius: 8px;
-            white-space: nowrap; /* 防止文字換行 */
+            white-space: nowrap;
+            font-size: 0.95rem;
         }
 
         .nav-links a:hover, .nav-links a.active {
@@ -82,74 +84,111 @@
             background: #fff3e0;
         }
 
-        /* --- 頁面其餘樣式 --- */
+        /* --- 頁面內容樣式 --- */
         .guide-intro {
             text-align: center;
             padding: 100px 20px;
             background: linear-gradient(135deg, #fce4ec 0%, #fff3e0 100%);
             border-bottom: 4px solid #ffab91;
-            width: 100%;
         }
         
         .guide-intro h1 {
-            color: #4a148c;
-            font-size: 3.2rem;
+            color: var(--deep-purple);
+            font-size: 2.8rem;
             margin-bottom: 20px;
-        }
-
-        .guide-intro p {
-            font-size: 1.3rem;
-            max-width: 850px;
-            margin: 0 auto;
-            color: #5d4037;
         }
 
         .main-container {
             max-width: var(--max-content-width);
             margin: 0 auto;
-            padding: 80px 40px;
+            padding: 60px 40px;
         }
 
         .section-title {
             text-align: center;
             color: #bf360c;
-            margin-bottom: 60px;
-            font-size: 2.5rem;
-            font-weight: bold;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            position: relative;
         }
 
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-orange);
+            margin: 15px auto;
+        }
+
+        /* 三大方法卡片 */
         .picking-methods {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 35px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
         }
 
         .method-box {
             background-color: white;
-            padding: 45px 35px;
-            border-radius: 30px;
+            padding: 40px 30px;
+            border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             border-top: 6px solid #ff8a65;
-            transition: all 0.3s ease;
+            transition: 0.3s;
         }
 
         .method-box:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 45px rgba(216, 67, 21, 0.12);
+            transform: translateY(-10px);
         }
 
         .method-box h3 {
             color: var(--primary-orange);
-            font-size: 1.6rem;
-            margin-bottom: 25px;
-            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        /* 專業知識表格 */
+        .pro-table-wrapper {
+            overflow-x: auto;
+            margin: 40px 0;
+        }
+
+        .pro-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .pro-table th {
+            background: var(--deep-purple);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .pro-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* 注意事項 */
+        .notice-card {
+            background: #fff9c4;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 10px solid #fbc02d;
+            margin-top: 50px;
         }
 
         .quiz-promo {
             text-align: center;
             background-color: #fff8f1;
-            padding: 80px 40px;
-            border-radius: 40px;
+            padding: 60px 40px;
+            border-radius: 30px;
             margin: 80px 0;
             border: 2px dashed #ffab91;
         }
@@ -157,56 +196,27 @@
         .cta-button {
             display: inline-block;
             margin-top: 30px;
-            padding: 20px 55px;
+            padding: 18px 50px;
             background: linear-gradient(135deg, #ff8a65, #d84315);
             color: white;
             text-decoration: none;
-            border-radius: 60px;
+            border-radius: 50px;
             font-weight: bold;
-            font-size: 1.2rem;
             transition: 0.3s;
-            box-shadow: 0 8px 25px rgba(216, 67, 21, 0.3);
         }
 
         .main-footer {
             text-align: center;
-            padding: 80px 0;
+            padding: 50px 0;
             background: #fff;
             border-top: 1px solid #eee;
-            width: 100%;
             color: #888;
         }
 
-        .back-btn {
-            display: inline-block;
-            margin: 50px auto;
-            padding: 12px 40px;
-            background: #4a148c;
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-        }
-
-        /* 響應式優化：手機版時改為上下堆疊或隱藏部分元素 */
-        @media (max-width: 900px) {
-            .nav-content {
-                padding: 15px 20px;
-            }
-            .nav-links {
-                gap: 5px;
-            }
-            .nav-links a {
-                font-size: 0.85rem;
-                padding: 6px 8px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .nav-content {
-                flex-direction: column; /* 手機版 Logo 在上，選單在下 */
-                gap: 15px;
-            }
-            .guide-intro h1 { font-size: 2.2rem; }
+        @media (max-width: 768px) {
+            .nav-content { flex-direction: column; }
+            .nav-links { justify-content: center; margin-top: 15px; }
+            .guide-intro h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -214,17 +224,17 @@
 
 <nav class="navbar">
     <div class="nav-content">
-        <!-- 左側 Logo -->
         <a href="index.html" class="logo">🔮 CrystalMagic</a>
-        
-        <!-- 右側 導覽連結 -->
         <ul class="nav-links">
             <li><a href="index.html">首頁</a></li>
             <li><a href="origin.html">水晶起源</a></li>
             <li><a href="type.html">水晶種類</a></li>
             <li><a href="effect.html">功效解讀</a></li>
-            <li><a href="pick.html" class="active">挑選指南</a></li>
             <li><a href="pages.html">淨化保養</a></li>
+            <li><a href="exclusive.html">專屬商品</a></li>
+            <li><a href="question.html">常見問題</a></li>
+            <li><a href="share.html">粉絲回饋</a></li>
+            <li><a href="contact.html">客服諮詢</a></li>
         </ul>
     </div>
 </nav>
@@ -232,98 +242,102 @@
 <main>
     <section class="guide-intro">
         <h1>🛍️ 挑選指南：找到您的命定水晶</h1>
-        <p>挑選水晶就像找尋靈魂伴侶。遵循直覺與了解需求，讓能量石成為您最好的夥伴。</p>
+        <p>水晶的能量與人體的生物場息息相關。透過科學觀察與靈性直覺，我們將協助您與適合的能量頻率接軌。</p>
     </section>
 
     <div class="main-container">
-        <h2 class="section-title">🔍 三大核心挑選法詳解</h2>
-        
+        <h2 class="section-title">🔍 核心挑選邏輯</h2>
         <div class="picking-methods">
             <article class="method-box">
-                <h3>1. 需求導向法</h3>
-                <p><strong>適合對象：</strong> 目標明確的理性行動派。</p>
-                <p><strong>如何操作：</strong> 條列出目前想強化的部分，如「招財」、「防小人」或「穩定情緒」。</p>
-                <p><strong>優點：</strong> 邏輯清晰，能針對性解決當下的生命課題。</p>
+                <h3>1. 能量需求導向</h3>
+                <p><strong>適合對象：</strong> 目標明確的行動派。</p>
+                <p>根據生活現況進行分析。例如：需要自信者挑選「黃水晶」，需要平靜者挑選「紫水晶」。這是一種邏輯性的能量補足過程。</p>
             </article>
 
             <article class="method-box">
-                <h3>2. 直覺吸引法</h3>
-                <p><strong>適合對象：</strong> 感知敏銳、相信緣分者。</p>
-                <p><strong>如何操作：</strong> 第一眼讓你感到舒服、溫暖，或是視線不由自主停留最久的那顆。</p>
-                <p><strong>優點：</strong> 這代表您的潛意識正需要該水晶的特定振動頻率。</p>
+                <h3>2. 生物頻率共振</h3>
+                <p><strong>適合對象：</strong> 感知敏銳的覺察者。</p>
+                <p>親自接觸水晶。當你感到手心微熱、發麻，或是在眾多水晶中視覺被某一特定光芒吸引時，這即是「頻率共振」的表現。</p>
             </article>
 
             <article class="method-box">
-                <h3>3. 脈輪對應法</h3>
-                <p><strong>適合對象：</strong> 喜歡結合玄學與系統分析者。</p>
-                <p><strong>如何操作：</strong> 根據您目前阻塞的脈輪（如喉輪配海藍寶）來挑選。</p>
-                <p><strong>優點：</strong> 能輔助平衡個人先天命盤中較為不足的能量場。</p>
+                <h3>3. 脈輪系統平衡</h3>
+                <p><strong>適合對象：</strong> 追求身心靈平衡者。</p>
+                <p>根據人體七大脈輪的色光與能量狀態挑選。透過對應色系的水晶，調整能量場的流動，達到內在和諧。</p>
             </article>
+        </div>
+
+        <h2 class="section-title">📊 脈輪與水晶對應快速檢索</h2>
+        <div class="pro-table-wrapper">
+            <table class="pro-table">
+                <thead>
+                    <tr>
+                        <th>對應脈輪</th>
+                        <th>能量焦點</th>
+                        <th>建議水晶種類</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>頂輪 (Crown Chakra)</td>
+                        <td>靈性連接、智慧</td>
+                        <td>白水晶、舒俱徠石、月光石</td>
+                    </tr>
+                    <tr>
+                        <td>眉心輪 (Third Eye)</td>
+                        <td>洞察力、直覺</td>
+                        <td>紫水晶、青金石</td>
+                    </tr>
+                    <tr>
+                        <td>喉輪 (Throat Chakra)</td>
+                        <td>溝通表達、創造力</td>
+                        <td>海藍寶、天河石、藍磷灰</td>
+                    </tr>
+                    <tr>
+                        <td>心輪 (Heart Chakra)</td>
+                        <td>愛、慈悲、情緒療癒</td>
+                        <td>粉晶、綠幽靈、紅紋石</td>
+                    </tr>
+                    <tr>
+                        <td>太陽輪 (Solar Plexus)</td>
+                        <td>自信、意志力、財運</td>
+                        <td>黃水晶、虎眼石、鈦晶</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="notice-card">
+            <h3>🛡️ 專業鑑定小建議</h3>
+            <p>在挑選高品質水晶時，應觀察其：</p>
+            <ul>
+                <li><strong>淨度：</strong> 天然水晶多有冰裂、棉絮，這是自然生長的證明。</li>
+                <li><strong>色澤：</strong> 天然色澤層次分明，過於均勻且鮮艷的色彩可能經過人工染製。</li>
+                <li><strong>觸感：</strong> 天然水晶導熱快，初次觸碰會有冰涼感，且會隨體溫迅速升溫。</li>
+            </ul>
         </div>
 
         <section id="matching-quiz" class="quiz-promo">
             <h2>✨ 仍在猶豫不決？</h2>
-            <p>我們設計了一套能量演算法，只需回答 5 個問題，即可為您推薦最契合的命定水晶。</p>
+            <p>我們設計了獨家的「能量頻率配對測試」，只需 2 分鐘，即可精準鎖定您的靈魂之石。</p>
             <a href="quiz.html" class="cta-button">立即開啟：命定水晶配對測試 »</a>
         </section>
-
-        <div style="text-align: center;">
-            <a href="index.html" class="back-btn">← 返回首頁探索更多</a>
-        </div>
     </div>
 </main>
 
 <footer class="main-footer">
-    <p>&copy; 2026 CrystalMagic 水晶魔法 | 全站內容受魔法能量守護保護中</p>
+    <p>&copy; 2026 CrystalMagic 水晶魔法 | 全站內容受魔法能量與版權法守護</p>
 </footer>
 
 <script>
-    function filterCrystals(type, value) {
-        const links = document.querySelectorAll('.crystal-link');
-        links.forEach(link => {
-            link.classList.add('hidden');
-            if (type === 'all') {
-                link.classList.remove('hidden');
-            } else if (link.getAttribute('data-' + type) === value) {
-                link.classList.remove('hidden');
-            }
-        });
-    }
-
-    
-    // --- 魔法守護腳本 ---
-    
-    // 1. 禁用右鍵選單並跳出提醒
-    document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-        alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
-    }, false);
-
-    // 2. 禁用快捷鍵 (F12, Ctrl+U, Ctrl+Shift+I 等)
+    // 禁用右鍵與開發者工具腳本保持不變
+    document.addEventListener('contextmenu', e => e.preventDefault());
     document.onkeydown = function (e) {
-        // 禁用 F12
-        if (e.keyCode === 123) {
-            return false;
-        }
-        // 禁用 Ctrl+Shift+I (開發者工具)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
-            return false;
-        }
-        // 禁用 Ctrl+Shift+J (開發者工具)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
-            return false;
-        }
-        // 禁用 Ctrl+U (檢視原始碼)
-        if (e.ctrlKey && e.keyCode === 85) {
-            return false;
-        }
-        // 禁用 Ctrl+S (存檔)
-        if (e.ctrlKey && e.keyCode === 83) {
+        if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && e.keyCode === 85)) {
             return false;
         }
     };
 </script>
-
 
 </body>
 </html>
