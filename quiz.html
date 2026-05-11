@@ -65,42 +65,59 @@
 
         .hidden { display: none !important; }
 
-        /* --- 左下角返回主頁按鈕 (如圖樣式) --- */
-        .btn-back-home {
+        /* --- 懸浮按鈕通用樣式 --- */
+        .floating-btn {
             position: fixed;
-            left: 20px;
-            bottom: 30px; /* 避開工作列的高度 */
             display: flex;
             align-items: center;
-            padding: 10px 20px;
+            padding: 10px 18px;
             background-color: rgba(255, 255, 255, 0.9);
             color: #4a148c;
             text-decoration: none;
             border-radius: 30px;
             font-weight: bold;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 9999;
             border: 1px solid #f3e5f5;
         }
 
-        .btn-back-home:hover {
+        .floating-btn:hover {
             background-color: #fff;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(106, 27, 154, 0.2);
+            color: #8e24aa;
         }
 
-        .btn-back-home .icon {
-            margin-right: 8px;
-            font-size: 1.2rem;
+        .floating-btn .icon { margin-right: 8px; font-size: 1.2rem; }
+
+        /* 左下角：返回首頁 */
+        .btn-left { left: 20px; bottom: 30px; }
+
+        /* 右下角：MBTI 與 抽卡 (堆疊排列) */
+        .btn-mbti { right: 20px; bottom: 85px; } /* 位於抽卡按鈕上方 */
+        .btn-draw { right: 20px; bottom: 30px; }
+
+        @media (max-width: 480px) {
+            .floating-btn { padding: 8px 12px; font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
 
-<a href="index.html" class="btn-back-home">
+<!-- 左下角按鈕 -->
+<a href="index.html" class="btn-left floating-btn">
     <span class="icon">🏠</span> 返回首頁
+</a>
+
+<!-- 右下角按鈕組 -->
+<a href="mbti-crystal.html" class="btn-mbti floating-btn">
+    <span class="icon">🧠</span> MBTI 水晶
+</a>
+
+<a href="daily-card.html" class="btn-draw floating-btn">
+    <span class="icon">🃏</span> 每日抽卡
 </a>
 
 <main class="quiz-container">
