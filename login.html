@@ -13,7 +13,7 @@
             --glass-white: rgba(255, 255, 255, 0.9);
         }
 
-        /* 禁止選取文字以保護內容 */
+        /* 全局基礎與動態背景 */
         body {
             margin: 0;
             padding: 0;
@@ -24,8 +24,9 @@
             animation: gradientBG 15s ease infinite;
             display: flex;
             flex-direction: column;
-            -webkit-user-select: none;
+            -webkit-user-select: none; /* 禁止選取文字保護內容 */
             user-select: none;
+            overflow-x: hidden;
         }
 
         @keyframes gradientBG {
@@ -34,62 +35,66 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* 返回首頁按鈕樣式 */
+        /* 左下角返回按鈕 - 固定定位 */
         .back-home {
-            position: absolute;
-            top: 20px;
-            left: 20px;
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
             text-decoration: none;
             color: var(--primary-purple);
             font-weight: bold;
-            padding: 10px 20px;
+            padding: 12px 24px;
             background: var(--glass-white);
             border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 8px;
-            z-index: 100;
+            z-index: 9999;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         .back-home:hover {
             background: var(--primary-purple);
             color: white;
-            transform: translateX(5px);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(106, 27, 154, 0.3);
         }
 
-        .login-wrapper {
+        /* 登入卡片容器 */
+        .auth-wrapper {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
-        .login-card {
+        .auth-card {
             background: var(--glass-white);
-            backdrop-filter: blur(10px); 
+            backdrop-filter: blur(15px);
             width: 100%;
             max-width: 400px;
-            padding: 40px;
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 50px 40px;
+            border-radius: 28px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             text-align: center;
             box-sizing: border-box;
         }
 
         .brand-icon {
-            font-size: 3rem;
-            margin-bottom: 10px;
+            font-size: 3.5rem;
+            margin-bottom: 15px;
             display: block;
         }
 
-        h1 {
+        .auth-card h1 {
             color: var(--primary-purple);
             font-size: 1.8rem;
-            margin: 0 0 8px 0;
+            margin: 0 0 10px 0;
             letter-spacing: 2px;
         }
 
@@ -97,42 +102,46 @@
             color: #888;
             font-size: 0.9rem;
             margin-bottom: 35px;
+            display: block;
         }
 
-        .input-group {
-            margin-bottom: 20px;
+        /* 表單元素樣式 */
+        .form-group {
+            margin-bottom: 25px;
             text-align: left;
         }
 
-        .input-group label {
+        .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
             color: #555;
             font-size: 0.85rem;
+            padding-left: 5px;
         }
 
-        .input-group input {
+        .form-group input {
             width: 100%;
             padding: 14px 16px;
             border: 1.5px solid #eee;
-            border-radius: 12px;
+            border-radius: 14px;
             font-size: 1rem;
             transition: 0.3s;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.7);
             box-sizing: border-box;
-            -webkit-user-select: text; /* 允許輸入框選取文字 */
-            user-select: text;
+            user-select: text; /* 允許輸入框編輯 */
         }
 
-        .input-group input:focus {
+        .form-group input:focus {
             outline: none;
             border-color: var(--primary-purple);
             box-shadow: 0 0 0 4px rgba(106, 27, 154, 0.1);
+            background: #fff;
         }
 
         .forgot-pass {
             text-align: right;
+            margin-top: -15px;
             margin-bottom: 25px;
         }
 
@@ -140,10 +149,14 @@
             color: #999;
             font-size: 0.8rem;
             text-decoration: none;
+            transition: 0.3s;
         }
 
-        .forgot-pass a:hover { color: var(--accent-orange); }
+        .forgot-pass a:hover {
+            color: var(--accent-orange);
+        }
 
+        /* 登入按鈕 */
         .login-btn {
             width: 100%;
             background: linear-gradient(135deg, #7b1fa2, #4a148c);
@@ -161,25 +174,46 @@
         .login-btn:hover {
             transform: translateY(-2px);
             filter: brightness(1.1);
+            box-shadow: 0 12px 25px rgba(74, 20, 140, 0.3);
         }
 
-        .register-lead {
+        /* 跳轉連結 */
+        .auth-links {
             margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0,0,0,0.05);
             font-size: 0.9rem;
             color: #666;
         }
 
-        .register-lead a {
+        .auth-links a {
             color: var(--accent-orange);
             text-decoration: none;
             font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .auth-links a:hover {
+            border-bottom: 1.5px solid var(--accent-orange);
         }
 
         .footer {
             text-align: center;
             padding: 20px;
-            color: #888;
+            color: #aaa;
             font-size: 0.8rem;
+        }
+
+        /* 手機版適應 */
+        @media (max-width: 480px) {
+            .back-home {
+                bottom: 20px;
+                left: 20px;
+                padding: 10px 18px;
+            }
+            .auth-card {
+                padding: 40px 25px;
+            }
         }
     </style>
 </head>
@@ -187,19 +221,19 @@
 
     <a href="index.html" class="back-home">🏠 返回首頁</a>
 
-    <main class="login-wrapper">
-        <section class="login-card">
+    <main class="auth-wrapper">
+        <section class="auth-card">
             <span class="brand-icon">🔮</span>
             <h1>歡迎回來</h1>
-            <p class="subtitle">連結您的專屬水晶能量</p>
+            <span class="subtitle">連結您的專屬水晶能量</span>
             
             <form id="loginForm" onsubmit="handleLogin(event)">
-                <div class="input-group">
+                <div class="form-group">
                     <label for="email">電子郵件</label>
                     <input type="email" id="email" placeholder="輸入您的 Email" required>
                 </div>
                 
-                <div class="input-group">
+                <div class="form-group">
                     <label for="password">密碼</label>
                     <input type="password" id="password" placeholder="輸入您的密碼" required>
                 </div>
@@ -211,7 +245,7 @@
                 <button type="submit" class="login-btn">開啟連結</button>
             </form>
             
-            <div class="register-lead">
+            <div class="auth-links">
                 還不是會員？<a href="register.html">探索新能量</a>
             </div>
         </section>
@@ -222,10 +256,8 @@
     </footer>
 
     <script>
-        // 禁用右鍵
+        // 1. 安全防護：禁用右鍵與開發者工具快捷鍵
         document.addEventListener('contextmenu', e => e.preventDefault());
-
-        // 禁用 F12 與相關開發者快捷鍵
         document.onkeydown = function(e) {
             if (e.keyCode === 123 || 
                (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || 
@@ -234,7 +266,7 @@
             }
         };
 
-        // 登入邏輯處理
+        // 2. 登入邏輯處理
         function handleLogin(event) {
             event.preventDefault();
             const btn = event.target.querySelector('.login-btn');
@@ -243,12 +275,12 @@
             btn.style.opacity = '0.7';
             btn.style.pointerEvents = 'none';
 
-            // 模擬請求延遲
             setTimeout(() => {
                 alert('登入成功！即將帶領您進入水晶世界。');
                 window.location.href = 'index.html';
             }, 1500);
         }
     </script>
+
 </body>
 </html>
