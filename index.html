@@ -13,10 +13,26 @@
         <div class="logo">
             <a href="index.html">🔮 CrystalMagic</a>
         </div>
-        <nav class="auth-buttons">
+        
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="origin.html">起源</a></li>
+                <li><a href="type.html">種類</a></li>
+                <li><a href="effect.html">功效</a></li>
+                <li><a href="pick.html">挑選</a></li>
+                <li><a href="pages.html">淨化</a></li>
+                <li><a href="exclusive.html" class="active">專屬商品</a></li>
+                <li><a href="question.html">Q&A</a></li>
+                <li><a href="share.html">回饋</a></li>
+                <li><a href="blog.html">專欄</a></li>
+                <li><a href="contact.html" class="nav-contact">聯絡我們</a></li>
+            </ul>
+        </nav>
+
+        <div class="auth-buttons">
             <a href="login.html" class="nav-button login">登入</a>
             <a href="register.html" class="nav-button register">註冊</a>
-        </nav>
+        </div>
     </header>
 
     <main>
@@ -28,6 +44,7 @@
             </div>
         </section>
 
+        <!-- 九大功能模組 -->
         <section class="guide-grid">
             <article class="guide-item layer-1">
                 <div class="card-content">
@@ -116,38 +133,6 @@
         <p>&copy; 2026 CrystalMagic. 所有內容僅供參考，能量感受因人而異。</p>
     </footer>
 
-
-    <script>
-    // 1. 禁用右鍵選單
-    document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-        alert("🔮 魔法能量守護中：本站內容受保護，無法使用右鍵選單。");
-    }, false);
-
-    // 2. 禁用鍵盤快捷鍵 (F12, Ctrl+Shift+I, Ctrl+U 等)
-    document.onkeydown = function (e) {
-        // 禁用 F12
-        if (e.keyCode === 123) {
-            return false;
-        }
-        // 禁用 Ctrl+Shift+I (開發者工具)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
-            return false;
-        }
-        // 禁用 Ctrl+Shift+J (開發者控制台)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
-            return false;
-        }
-        // 禁用 Ctrl+U (查看原始碼)
-        if (e.ctrlKey && e.keyCode === 85) {
-            return false;
-        }
-        // 禁用 Ctrl+S (儲存網頁)
-        if (e.ctrlKey && e.keyCode === 83) {
-            return false;
-        }
-    };
-    </script>
-    
+    <script src="security.js"></script>
 </body>
 </html>
