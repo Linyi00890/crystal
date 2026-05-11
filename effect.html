@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✨ 脈輪能量掃描與水晶療癒 - CrystalMagic</title>
+    <title>✨ 脈輪能量掃描與水晶療癒全書 - CrystalMagic</title>
     <link rel="stylesheet" href="effect.css">
-    <!-- 引入專業字體與圖表庫 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- 引入專業圖表庫 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -33,8 +33,8 @@
     <!-- 英雄區塊 -->
     <section class="page-header">
         <div class="header-content">
-            <h1>🌈 七大脈輪能量中心</h1>
-            <p>透過頻率共振，找回身心靈的內在平衡。</p>
+            <h1>🌈 脈輪能量與水晶共振</h1>
+            <p>探索七大能量中心，透過水晶頻率校準您的身心靈平衡。</p>
         </div>
     </section>
 
@@ -42,22 +42,22 @@
         
         <!-- 脈輪掃描儀區塊 -->
         <section class="scanner-section" id="chakra-tester">
-            <div class="section-badge">互動體驗</div>
-            <h2 class="section-title">脈輪能量掃描儀 (Balance Test)</h2>
+            <div class="section-badge">互動探測</div>
+            <h2 class="section-title">脈輪能量場掃描儀 (Chakra Scanner)</h2>
             
             <div class="scanner-wrapper">
                 <!-- 測驗進行中 -->
                 <div id="quizContainer">
                     <div class="quiz-header">
-                        <span id="progressStep">問題 1 / 7</span>
+                        <span id="progressStep">準備掃描...</span>
                         <div class="progress-bar-container">
                             <div class="progress-bar-fill" id="quizProgress"></div>
                         </div>
                     </div>
                     <div class="question-box">
-                        <h3 id="questionTitle">準備好開始掃描您的能量場了嗎？</h3>
+                        <h3 id="questionTitle">點擊下方按鈕，開始檢測您的能量狀態</h3>
                         <div id="optionsWrapper" class="options-grid">
-                            <button class="start-btn" onclick="startQuiz()">開始能量掃描</button>
+                            <button class="start-btn" onclick="startQuiz()">開啟能量掃描儀</button>
                         </div>
                     </div>
                 </div>
@@ -69,35 +69,78 @@
                             <canvas id="chakraRadarChart"></canvas>
                         </div>
                         <div class="analysis-area">
-                            <h3>診斷結果：<span id="focusChakra" class="highlight-text">---</span></h3>
-                            <div class="status-tag">能量需補強</div>
-                            <p id="analysisDesc">請先完成測試以獲取深度能量分析報告。</p>
+                            <h3>診斷報告：<span id="focusChakra" class="highlight-text">---</span></h3>
+                            <div class="status-tag">需要能量校正</div>
+                            <p id="analysisDesc">請完成測試以獲取深度報告。</p>
                             <div class="advice-box">
-                                <strong>🔮 療癒建議：</strong>
-                                <p id="crystalAdvice">推薦水晶：---</p>
+                                <strong>🔮 療癒水晶建議：</strong>
+                                <p id="crystalAdvice">載入中...</p>
                             </div>
-                            <button class="reset-btn" onclick="location.reload()">重新檢測</button>
+                            <button class="reset-btn" onclick="location.reload()">重新檢測能量</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 脈輪詳細卡片區 -->
-        <h2 class="section-title">✨ 水晶與脈輪對應表</h2>
+        <!-- 脈輪詳細百科網格 -->
+        <h2 class="section-title">✨ 七大脈輪百科全書</h2>
         <div class="chakra-grid">
-            <div class="chakra-card" data-color="#9c27b0">
-                <div class="chakra-icon">7</div>
+            <!-- 頂輪 -->
+            <div class="chakra-card" style="--chakra-color: #9c27b0;">
+                <div class="chakra-num">7</div>
                 <h3>頂輪 (Crown)</h3>
-                <p>靈性、智慧、純粹意識</p>
-                <div class="crystal-tags"><span>白水晶</span><span>紫水晶</span></div>
+                <p class="chakra-theme">靈性、智慧、大我意識</p>
+                <p class="chakra-detail">位於頭頂，連結宇宙能量。阻塞時會感到迷惘、憂鬱或與世界脫節。</p>
+                <div class="crystal-tags"><span>白水晶</span><span>紫水晶</span><span>透石膏</span></div>
             </div>
-            <!-- ... 其他脈輪卡片會依此類推 ... -->
-            <div class="chakra-card" data-color="#f44336">
-                <div class="chakra-icon">1</div>
+            <!-- 眉心輪 -->
+            <div class="chakra-card" style="--chakra-color: #3f51b5;">
+                <div class="chakra-num">6</div>
+                <h3>眉心輪 (Third Eye)</h3>
+                <p class="chakra-theme">直覺、洞察力、想像力</p>
+                <p class="chakra-detail">位於雙眉間。平衡時具備敏銳洞察力；失衡時易思緒混亂或產生幻覺。</p>
+                <div class="crystal-tags"><span>青金石</span><span>拉長石</span><span>藍磷灰</span></div>
+            </div>
+            <!-- 喉輪 -->
+            <div class="chakra-card" style="--chakra-color: #03a9f4;">
+                <div class="chakra-num">5</div>
+                <h3>喉輪 (Throat)</h3>
+                <p class="chakra-theme">表達、溝通、誠實</p>
+                <p class="chakra-detail">位於咽喉處。掌控自我表達能力。失衡時可能不敢發聲或過度八卦。</p>
+                <div class="crystal-tags"><span>海藍寶</span><span>藍玉髓</span><span>天河石</span></div>
+            </div>
+            <!-- 心輪 -->
+            <div class="chakra-card" style="--chakra-color: #4caf50;">
+                <div class="chakra-num">4</div>
+                <h3>心輪 (Heart)</h3>
+                <p class="chakra-theme">愛、慈悲、內在平靜</p>
+                <p class="chakra-detail">位於胸腔中心。情緒能量的樞紐。失衡時易感到孤獨、怨恨或防禦心強。</p>
+                <div class="crystal-tags"><span>粉水晶</span><span>綠幽靈</span><span>葡萄石</span></div>
+            </div>
+            <!-- 太陽輪 -->
+            <div class="chakra-card" style="--chakra-color: #ffeb3b;">
+                <div class="chakra-num">3</div>
+                <h3>太陽輪 (Solar Plexus)</h3>
+                <p class="chakra-theme">自信、行動力、個人意志</p>
+                <p class="chakra-detail">位於肚臍上方。力量的來源。失衡時會缺乏自信、優柔寡斷或權力慾強。</p>
+                <div class="crystal-tags"><span>黃水晶</span><span>虎眼石</span><span>鈦晶</span></div>
+            </div>
+            <!-- 臍輪 -->
+            <div class="chakra-card" style="--chakra-color: #ff9800;">
+                <div class="chakra-num">2</div>
+                <h3>臍輪 (Sacral)</h3>
+                <p class="chakra-theme">熱情、創造力、情緒平衡</p>
+                <p class="chakra-detail">位於下腹部。掌管感受與創造。失衡時會情緒麻木或對生活失去熱情。</p>
+                <div class="crystal-tags"><span>橙月光</span><span>太陽石</span><span>紅瑪瑙</span></div>
+            </div>
+            <!-- 底輪 -->
+            <div class="chakra-card" style="--chakra-color: #f44336;">
+                <div class="chakra-num">1</div>
                 <h3>底輪 (Root)</h3>
-                <p>安全感、生存本能、穩定</p>
-                <div class="crystal-tags"><span>黑曜石</span><span>茶晶</span></div>
+                <p class="chakra-theme">安全感、穩定、生存本能</p>
+                <p class="chakra-detail">位於脊椎底部。生命的根基。失衡時會感到極度焦慮、恐懼或缺乏鬥志。</p>
+                <div class="crystal-tags"><span>黑曜石</span><span>茶晶</span><span>黑銀鈦</span></div>
             </div>
         </div>
 
@@ -105,7 +148,7 @@
 </main>
 
 <footer class="footer">
-    <p>&copy; 2026 CrystalMagic 水晶魔法 | 全站內容受能量守護</p>
+    <p>&copy; 2026 CrystalMagic 水晶魔法 | 能量網頁受保護中</p>
 </footer>
 
 <script src="effect.js"></script>
