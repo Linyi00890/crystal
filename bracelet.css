@@ -1,0 +1,155 @@
+:root {
+    --primary-pink: #f8bbd0;
+    --dark-pink: #ad1457;
+    --deep-purple: #6a1b9a;
+    --soft-white: #fafafa;
+    --text-gray: #555;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background-color: var(--soft-white);
+    color: #333;
+    line-height: 1.6;
+}
+
+/* --- 導航欄 --- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--deep-purple);
+    text-decoration: none;
+}
+
+.nav-button {
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+.nav-button.login { color: var(--deep-purple); border: 1px solid var(--deep-purple); }
+.nav-button.register { background-color: var(--deep-purple); color: white; }
+
+/* --- 標題區 --- */
+.page-header {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #fff5f8 0%, #fce4ec 100%);
+}
+
+.page-header h1 { font-size: 2.5rem; color: var(--dark-pink); margin-bottom: 15px; }
+
+/* --- 產品網格 --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 60px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-item {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: all 0.4s;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-item:hover { transform: translateY(-10px); }
+
+.image-container { height: 280px; overflow: hidden; }
+.product-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+.product-item:hover img { transform: scale(1.1); }
+
+.product-details { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+.product-details h4 { font-size: 1.25rem; margin-bottom: 12px; color: #333; }
+.product-price { font-size: 1.4rem; font-weight: bold; color: #ef6c00; margin-bottom: 20px; }
+
+.btn-add-cart {
+    display: block;
+    background: linear-gradient(to right, #6a1b9a, #8e24aa);
+    color: white;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: bold;
+    transition: 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-add-cart:hover { background: linear-gradient(to right, #ec407a, #d81b60); }
+
+/* --- 懸浮購物車按鈕 --- */
+.cart-float {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    width: 65px;
+    height: 65px;
+    background-color: var(--deep-purple);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    text-decoration: none;
+    z-index: 2000;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cart-float:hover {
+    transform: scale(1.1) rotate(-10deg);
+    background-color: var(--dark-pink);
+}
+
+.cart-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #ff3d00;
+    color: white;
+    font-size: 0.75rem;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border: 2px solid white;
+}
+
+/* --- 頁腳 --- */
+.footer { background-color: #333; color: #aaa; padding: 40px 20px; text-align: center; margin-top: 50px; }
