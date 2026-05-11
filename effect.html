@@ -6,10 +6,9 @@
     <title>✨ 功效解讀：脈輪對應與能量療癒 - 水晶魔法 | CrystalMagic</title>
     
     <style>
-
         :root {
             --primary-purple: #673ab7;
-            --max-width: 1200px; /* 內容區塊仍建議保持適中寬度以利閱讀 */
+            --max-width: 1200px;
         }
 
         * {
@@ -25,11 +24,15 @@
             line-height: 1.6;
             width: 100%;
             overflow-x: hidden;
+            -webkit-user-select: none;
+            user-select: none; /* 禁用選取保護 */
         }
 
+        /* 1. 導覽列：Logo 與連結分居左右兩側 */
         .main-header {
             width: 100%;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
@@ -38,10 +41,9 @@
 
         .nav-container {
             width: 100%;
-            max-width: 100%; 
-            padding: 15px 60px; 
+            padding: 15px 50px; 
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* 關鍵：左右分開 */
             align-items: center;
         }
 
@@ -55,34 +57,27 @@
 
         .nav-menu {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             align-items: center;
+            list-style: none;
         }
 
-        .nav-button {
+        .nav-menu a {
             text-decoration: none;
-            padding: 8px 25px;
-            border-radius: 20px;
+            color: #555;
+            padding: 8px 15px;
             font-size: 0.95rem;
             font-weight: 500;
             transition: 0.3s;
+            border-radius: 20px;
         }
 
-        .nav-button.login {
-            color: #666;
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--primary-purple);
+            background-color: #f3e5f5;
         }
 
-        .nav-button.register {
-            background-color: var(--primary-purple);
-            color: white;
-        }
-
-        .nav-button:hover {
-            opacity: 0.8;
-            transform: translateY(-2px);
-        }
-
-        
+        /* 頁面標題區 */
         .page-header {
             text-align: center;
             padding: 100px 20px;
@@ -96,7 +91,6 @@
             color: #4a148c;
             margin-bottom: 15px;
         }
-
 
         .main-content {
             max-width: var(--max-width);
@@ -122,7 +116,7 @@
             border-radius: 2px;
         }
 
-
+        /* 脈輪卡片 */
         .chakra-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -166,7 +160,6 @@
             font-size: 0.95rem;
         }
 
-        
         .chakra-7 { border-top-color: #9c27b0; }
         .chakra-6 { border-top-color: #3f51b5; }
         .chakra-5 { border-top-color: #03a9f4; }
@@ -175,7 +168,7 @@
         .chakra-2 { border-top-color: #ff9800; }
         .chakra-1 { border-top-color: #f44336; }
 
-
+        /* 表格樣式 */
         .table-container {
             background: white;
             padding: 40px;
@@ -204,7 +197,6 @@
             border-bottom: 1px solid #eee;
         }
 
-  
         .cta-box {
             text-align: center;
             margin: 80px 0;
@@ -231,10 +223,8 @@
         .cta-button:hover {
             background-color: #f4511e;
             transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 112, 67, 0.4);
         }
 
-        
         .footer {
             text-align: center;
             padding: 60px 20px;
@@ -242,24 +232,27 @@
             color: #bdc3c7;
             width: 100%;
         }
+
+        @media (max-width: 768px) {
+            .nav-container { padding: 15px 20px; flex-direction: column; gap: 15px; }
+            .page-header h1 { font-size: 2.5rem; }
+        }
     </style>
 </head>
 <body>
 
 <header class="main-header">
     <div class="nav-container">
-
         <a href="index.html" class="logo">🔮 CrystalMagic</a>
-        
-
-        <nav class="nav-menu">
-            <a href="index.html" class="nav-button login">首頁</a>
-            <li><a href="origin.html" class="active">水晶起源</a></li>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="origin.html">水晶起源</a></li>
                 <li><a href="type.html">水晶種類</a></li>
+                <li><a href="effect.html" class="active">功效解讀</a></li>
                 <li><a href="pick.html">挑選指南</a></li>
                 <li><a href="pages.html">淨化保養</a></li>
-                <li><a href="exclusive.html">專屬商品</a></li>
-                <li><a href="question.html">常見問題</a></li>
+            </ul>
         </nav>
     </div>
 </header>
@@ -288,8 +281,7 @@
                 <p><strong>能量主題：</strong> 直覺、洞察力、想像力</p>
                 <ul>
                     <li>💎 青金石 - 開啟靈性之眼</li>
-                    <li>💎 蘇打石 - 邏輯與直覺平衡</li>
-                    <li>💎 拉長石 - 潛意識的橋樑</li>
+                    <li>💎 藍磷灰 - 激發創意與遠見</li> <li>💎 拉長石 - 潛意識的橋樑</li>
                 </ul>
             </article>
 
@@ -318,7 +310,7 @@
                 <p><strong>能量主題：</strong> 個人意志、自信、行動力</p>
                 <ul>
                     <li>💎 黃水晶 - 招財與自信心</li>
-                    <li>💎 金髮晶 - 事業權威與果斷</li>
+                    <li>💎 鈦晶 - 事業權威與果斷</li>
                     <li>💎 虎眼石 - 消除恐懼與勇氣</li>
                 </ul>
             </article>
@@ -327,7 +319,7 @@
                 <h3>臍輪 (Sacral)</h3>
                 <p><strong>能量主題：</strong> 熱情、創造力、情緒平衡</p>
                 <ul>
-                    <li>💎 月光石 - 柔化情緒與直覺</li>
+                    <li>💎 橙月光 - 柔化情緒與直覺</li>
                     <li>💎 紅瑪瑙 - 增進生命力與熱情</li>
                     <li>💎 太陽石 - 正向積極的能量</li>
                 </ul>
@@ -337,7 +329,7 @@
                 <h3>底輪 (Root)</h3>
                 <p><strong>能量主題：</strong> 安全感、生存本能、穩定</p>
                 <ul>
-                    <li>💎 黑曜石 - 強力避邪與保護</li>
+                    <li>💎 黑銀鈦 - 強力避邪與防小人</li>
                     <li>💎 茶晶 - 接地能量與穩定情緒</li>
                     <li>💎 石榴石 - 增強體力與生命力</li>
                 </ul>
@@ -357,23 +349,23 @@
                 <tbody>
                     <tr>
                         <td>💖 招桃花與好人緣</td>
-                        <td><strong>粉水晶 + 月光石</strong></td>
-                        <td>開啟心輪能量，吸引正向姻緣，平衡情感波動。</td>
+                        <td><strong>粉水晶 + 草莓晶</strong></td>
+                        <td>開啟心輪能量，吸引正向姻緣，提升個人親和力。</td>
                     </tr>
                     <tr>
                         <td>💰 提升財運與事業</td>
-                        <td><strong>金髮晶 + 綠幽靈</strong></td>
+                        <td><strong>鈦晶 + 綠幽靈</strong></td>
                         <td>主正偏財運，增強執行力，吸引職場貴人。</td>
                     </tr>
                     <tr>
                         <td>🛡️ 避邪擋煞防小人</td>
-                        <td><strong>黑曜石 + 黑碧璽</strong></td>
-                        <td>強效吸收環境負能量，建立能量保護網。</td>
+                        <td><strong>黑銀鈦 + 黑碧璽</strong></td>
+                        <td>強效吸收環境負能量，建立能量保護網，化解是非。</td>
                     </tr>
                     <tr>
                         <td>😴 靜心幫助深睡</td>
-                        <td><strong>紫水晶 + 透石膏</strong></td>
-                        <td>安定過於活躍的思緒，淨化睡眠空間。</td>
+                        <td><strong>茶晶 + 透石膏</strong></td>
+                        <td>安定過於活躍的思緒，接地穩定，淨化睡眠空間。</td>
                     </tr>
                 </tbody>
             </table>
@@ -388,8 +380,42 @@
 </main>
 
 <footer class="footer">
-    <p>&copy; 2026 CrystalMagic 水晶魔法 | 探索內在神祕的療癒光芒</p>
+    <p>&copy; 2026 CrystalMagic 水晶魔法 | 全站內容受魔法能量守護保護中</p>
 </footer>
+
+<script>
+    // --- 魔法守護腳本 ---
+    
+    // 1. 禁用右鍵選單並跳出提醒
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+        alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
+    }, false);
+
+    // 2. 禁用快捷鍵 (F12, Ctrl+U, Ctrl+Shift+I 等)
+    document.onkeydown = function (e) {
+        // 禁用 F12
+        if (e.keyCode === 123) {
+            return false;
+        }
+        // 禁用 Ctrl+Shift+I (開發者工具)
+        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+            return false;
+        }
+        // 禁用 Ctrl+Shift+J (開發者工具)
+        if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
+            return false;
+        }
+        // 禁用 Ctrl+U (檢視原始碼)
+        if (e.ctrlKey && e.keyCode === 85) {
+            return false;
+        }
+        // 禁用 Ctrl+S (存檔)
+        if (e.ctrlKey && e.keyCode === 83) {
+            return false;
+        }
+    };
+</script>
 
 </body>
 </html>
