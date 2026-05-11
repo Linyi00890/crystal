@@ -160,7 +160,7 @@
             gap: 25px;
         }
 
-        .crystal-link { text-decoration: none; color: inherit; display: block; transition: 0.3s; }
+        .crystal-link { text-decoration: none; color: inherit; display: block; }
 
         .crystal-card {
             background: white;
@@ -177,7 +177,13 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .crystal-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .crystal-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 15px 30px rgba(106, 27, 154, 0.15); 
+            border-color: var(--primary-purple);
+        }
+        .crystal-card:hover .crystal-name { color: var(--primary-purple); }
+
         .crystal-card img { width: 140px; height: 100%; object-fit: cover; background: #f0f0f0; }
         .card-body { padding: 15px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
         
@@ -189,7 +195,7 @@
         .bg-love { background-color: var(--color-love); }
         .bg-health { background-color: var(--color-health); }
 
-        .crystal-name { font-size: 1.1rem; margin-bottom: 5px; color: #333; }
+        .crystal-name { font-size: 1.1rem; margin-bottom: 5px; color: #333; transition: 0.3s; }
         .crystal-desc { font-size: 0.8rem; color: #666; line-height: 1.5; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
 
         .hidden { display: none !important; }
@@ -249,8 +255,8 @@
 <main class="content-container">
     <div class="crystal-grid" id="crystalGrid">
         
-        <!-- 白色系 (5) -->
-        <a href="#" class="crystal-link" data-effect="peace" data-color="white">
+        <!-- 白色系 -->
+        <a href="quartz/white.html" class="crystal-link" data-effect="peace" data-color="white">
             <article class="crystal-card">
                 <img src="picture/white-quartz.jpg" alt="白水晶">
                 <div class="card-body">
@@ -260,7 +266,7 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="spirit" data-color="white">
+        <a href="quartz/selenite.html" class="crystal-link" data-effect="spirit" data-color="white">
             <article class="crystal-card">
                 <img src="picture/selenite.jpg" alt="透石膏">
                 <div class="card-body">
@@ -270,7 +276,7 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="peace" data-color="white">
+        <a href="quartz/moonstone.html" class="crystal-link" data-effect="peace" data-color="white">
             <article class="crystal-card">
                 <img src="picture/white-moonstone.jpg" alt="月光石">
                 <div class="card-body">
@@ -280,7 +286,7 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="protection" data-color="white">
+        <a href="quartz/agate.html" class="crystal-link" data-effect="protection" data-color="white">
             <article class="crystal-card">
                 <img src="picture/white-agate.jpg" alt="白瑪瑙">
                 <div class="card-body">
@@ -290,7 +296,7 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="spirit" data-color="white">
+        <a href="quartz/howlite.html" class="crystal-link" data-effect="spirit" data-color="white">
             <article class="crystal-card">
                 <img src="picture/howlite.jpg" alt="白紋石">
                 <div class="card-body">
@@ -301,8 +307,8 @@
             </article>
         </a>
 
-        <!-- 粉紅系 (4) -->
-        <a href="#" class="crystal-link" data-effect="love" data-color="pink">
+        <!-- 粉色系 -->
+        <a href="quartz/pink.html" class="crystal-link" data-effect="love" data-color="pink">
             <article class="crystal-card">
                 <img src="picture/rose-quartz.jpg" alt="粉晶">
                 <div class="card-body">
@@ -312,7 +318,7 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="love" data-color="pink">
+        <a href="quartz/red.html" class="crystal-link" data-effect="love" data-color="pink">
             <article class="crystal-card">
                 <img src="picture/rhodochrosite.jpg" alt="紅紋石">
                 <div class="card-body">
@@ -322,17 +328,18 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="love" data-color="pink">
+        <!-- 已將原本誤植的孔雀石替換為黑銀鈦，色系改為黑色 -->
+        <a href="quartz/silver.html" class="crystal-link" data-effect="protection" data-color="black">
             <article class="crystal-card">
-                <img src="picture/pink-kunzite.jpg" alt="孔賽石">
+                <img src="picture/black-silver-rutilated.jpg" alt="黑銀鈦">
                 <div class="card-body">
-                    <span class="tag bg-love">心靈平靜</span>
-                    <h3 class="crystal-name">孔賽石 (Kunzite)</h3>
-                    <p class="crystal-desc">充滿溫柔的女性力量，幫助釋放過去的情感傷害。</p>
+                    <span class="tag bg-protection">極致避邪</span>
+                    <h3 class="crystal-name">黑銀鈦 (Black Silver Rutilated)</h3>
+                    <p class="crystal-desc">具備強大避邪與招財能量，能防止靈異干擾並提升領導力。</p>
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="love" data-color="pink">
+        <a href="quartz/protein.html" class="crystal-link" data-effect="love" data-color="pink">
             <article class="crystal-card">
                 <img src="picture/pink-opal.jpg" alt="粉蛋白石">
                 <div class="card-body">
@@ -343,8 +350,8 @@
             </article>
         </a>
 
-        <!-- 黃金色系 (5) -->
-        <a href="#" class="crystal-link" data-effect="wealth" data-color="yellow">
+        <!-- 黃色系 -->
+        <a href="quartz/yellow.html" class="crystal-link" data-effect="wealth" data-color="yellow">
             <article class="crystal-card">
                 <img src="picture/citrine.jpg" alt="黃水晶">
                 <div class="card-body">
@@ -354,7 +361,7 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="wealth" data-color="yellow">
+        <a href="quartz/titanium.html" class="crystal-link" data-effect="wealth" data-color="yellow">
             <article class="crystal-card">
                 <img src="picture/gold-rutilated.jpg" alt="鈦晶">
                 <div class="card-body">
@@ -364,7 +371,7 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="wealth" data-color="yellow">
+        <a href="quartz/huang.html" class="crystal-link" data-effect="wealth" data-color="yellow">
             <article class="crystal-card">
                 <img src="picture/tiger-eye.jpg" alt="黃虎眼石">
                 <div class="card-body">
@@ -374,7 +381,7 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="wealth" data-color="yellow">
+        <a href="quartz/pyrite.html" class="crystal-link" data-effect="wealth" data-color="yellow">
             <article class="crystal-card">
                 <img src="picture/pyrite.jpg" alt="黃鐵礦">
                 <div class="card-body">
@@ -384,7 +391,7 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="wealth" data-color="yellow">
+        <a href="quartz/amber.html" class="crystal-link" data-effect="wealth" data-color="yellow">
             <article class="crystal-card">
                 <img src="picture/amber.jpg" alt="琥珀">
                 <div class="card-body">
@@ -395,8 +402,8 @@
             </article>
         </a>
 
-        <!-- 紫色系 (4) -->
-        <a href="#" class="crystal-link" data-effect="spirit" data-color="purple">
+        <!-- 紫色系 -->
+        <a href="quartz/purple.html" class="crystal-link" data-effect="spirit" data-color="purple">
             <article class="crystal-card">
                 <img src="picture/amethyst.jpg" alt="紫水晶">
                 <div class="card-body">
@@ -406,7 +413,7 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="wealth" data-color="purple">
+        <a href="quartz/ametrine.html" class="crystal-link" data-effect="wealth" data-color="purple">
             <article class="crystal-card">
                 <img src="picture/ametrine.jpg" alt="紫黃晶">
                 <div class="card-body">
@@ -416,7 +423,7 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="spirit" data-color="purple">
+        <a href="quartz/charoite.html" class="crystal-link" data-effect="spirit" data-color="purple">
             <article class="crystal-card">
                 <img src="picture/charoite.jpg" alt="紫龍晶">
                 <div class="card-body">
@@ -426,7 +433,7 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="peace" data-color="purple">
+        <a href="quartz/lavender.html" class="crystal-link" data-effect="peace" data-color="purple">
             <article class="crystal-card">
                 <img src="picture/lavender-quartz.jpg" alt="薰衣草紫晶">
                 <div class="card-body">
@@ -437,8 +444,8 @@
             </article>
         </a>
 
-        <!-- 綠色系 (4) -->
-        <a href="#" class="crystal-link" data-effect="wealth" data-color="green">
+        <!-- 綠色系 -->
+        <a href="quartz/green.html" class="crystal-link" data-effect="wealth" data-color="green">
             <article class="crystal-card">
                 <img src="picture/green-phantom.jpg" alt="綠幽靈">
                 <div class="card-body">
@@ -448,7 +455,7 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="health" data-color="green">
+        <a href="quartz/peacock.html" class="crystal-link" data-effect="health" data-color="green">
             <article class="crystal-card">
                 <img src="picture/malachite.jpg" alt="孔雀石">
                 <div class="card-body">
@@ -458,7 +465,7 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="wealth" data-color="green">
+        <a href="quartz/aventurine.html" class="crystal-link" data-effect="wealth" data-color="green">
             <article class="crystal-card">
                 <img src="picture/aventurine.jpg" alt="東菱玉">
                 <div class="card-body">
@@ -468,7 +475,7 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="health" data-color="green">
+        <a href="quartz/prehnite.html" class="crystal-link" data-effect="health" data-color="green">
             <article class="crystal-card">
                 <img src="picture/prehnite.jpg" alt="葡萄石">
                 <div class="card-body">
@@ -479,8 +486,8 @@
             </article>
         </a>
 
-        <!-- 藍色系 (4) -->
-        <a href="#" class="crystal-link" data-effect="peace" data-color="blue">
+        <!-- 藍色系 -->
+        <a href="quartz/aquamarine.html" class="crystal-link" data-effect="peace" data-color="blue">
             <article class="crystal-card">
                 <img src="picture/aquamarine.jpg" alt="海藍寶">
                 <div class="card-body">
@@ -490,7 +497,7 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="spirit" data-color="blue">
+        <a href="quartz/lapis.html" class="crystal-link" data-effect="spirit" data-color="blue">
             <article class="crystal-card">
                 <img src="picture/lapis-lazuli.jpg" alt="青金石">
                 <div class="card-body">
@@ -500,7 +507,7 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="peace" data-color="blue">
+        <a href="quartz/larimar.html" class="crystal-link" data-effect="peace" data-color="blue">
             <article class="crystal-card">
                 <img src="picture/larimar.jpg" alt="拉利瑪">
                 <div class="card-body">
@@ -510,7 +517,7 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="peace" data-color="blue">
+        <a href="quartz/kyanite.html" class="crystal-link" data-effect="peace" data-color="blue">
             <article class="crystal-card">
                 <img src="picture/kyanite.jpg" alt="藍晶石">
                 <div class="card-body">
@@ -521,8 +528,8 @@
             </article>
         </a>
 
-        <!-- 黑色系 (4) -->
-        <a href="#" class="crystal-link" data-effect="protection" data-color="black">
+        <!-- 黑色系 -->
+        <a href="quartz/obsidian.html" class="crystal-link" data-effect="protection" data-color="black">
             <article class="crystal-card">
                 <img src="picture/obsidian.jpg" alt="黑曜石">
                 <div class="card-body">
@@ -532,7 +539,7 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="protection" data-color="black">
+        <a href="quartz/black.html" class="crystal-link" data-effect="protection" data-color="black">
             <article class="crystal-card">
                 <img src="picture/black-tourmaline.jpg" alt="黑碧璽">
                 <div class="card-body">
@@ -542,7 +549,7 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="health" data-color="black">
+        <a href="quartz/smoky.html" class="crystal-link" data-effect="health" data-color="black">
             <article class="crystal-card">
                 <img src="picture/smoky-quartz.jpg" alt="茶晶">
                 <div class="card-body">
@@ -552,7 +559,7 @@
                 </div>
             </article>
         </a>
-        <a href="#" class="crystal-link" data-effect="protection" data-color="black">
+        <a href="quartz/brain.html" class="crystal-link" data-effect="protection" data-color="black">
             <article class="crystal-card">
                 <img src="picture/onyx.jpg" alt="黑瑪瑙">
                 <div class="card-body">
@@ -567,7 +574,7 @@
 </main>
 
 <footer class="footer">
-    <p>&copy; 2026 CrystalMagic 水晶魔法 | 全站 30 種能量水晶受魔法護衛中</p>
+    <p>&copy; 2026 CrystalMagic 水晶魔法 | 全站能量水晶受魔法護衛中</p>
 </footer>
 
 <script>
@@ -582,11 +589,10 @@
                 link.classList.remove('hidden');
             }
         });
-        // 滾動回頂部
         window.scrollTo({ top: 150, behavior: 'smooth' });
     }
 
-    // 魔法守護：禁用右鍵與常見開發者快捷鍵
+    // 魔法守護
     document.addEventListener('contextmenu', function (e) {
         e.preventDefault();
         alert("🔮 魔法能量守護中：本站內容受保護，無法使用右鍵選單。");
