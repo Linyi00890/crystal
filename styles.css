@@ -1,249 +1,107 @@
-/* ==========================================================================
-   1. 全域設定 (Base Styles)
-   ========================================================================== */
-* {
-    box-sizing: border-box;
+/* 全局設定 */
+body {
+    font-family: 'Noto Sans TC', sans-serif;
     margin: 0;
     padding: 0;
-}
-
-body {
-    font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
     background-color: #f8f9fa;
     color: #333;
-    line-height: 1.6;
-    overflow-x: hidden;
 }
 
-/* ==========================================================================
-   2. 導覽列 (Navigation)
-   ========================================================================== */
+/* 導覽列 */
 .main-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 5%;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    padding: 1rem 5%;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
+.logo a { font-size: 1.5rem; text-decoration: none; color: #6a1b9a; font-weight: bold; }
+.nav-button { text-decoration: none; padding: 8px 20px; border-radius: 20px; margin-left: 10px; }
+.login { color: #6a1b9a; border: 1px solid #6a1b9a; }
+.register { background: #6a1b9a; color: white; }
 
-.logo a {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #6a1b9a;
-    text-decoration: none;
-}
-
-.auth-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.nav-button {
-    text-decoration: none;
-    padding: 8px 22px;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.nav-button.login { color: #6a1b9a; border: 1px solid #6a1b9a; }
-.nav-button.login:hover { background: #f3e5f5; }
-.nav-button.register { background: #6a1b9a; color: white; }
-.nav-button.register:hover { background: #4a148c; }
-
-/* ==========================================================================
-   3. 區塊橫幅 (Hero Section) - 視覺強化
-   ========================================================================== */
+/* 英雄區 */
 .hero-section {
-    background: linear-gradient(135deg, #4a148c 0%, #6a1b9a 40%, #ba68c8 100%);
-    color: white;
+    background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+    padding: 80px 5%;
     text-align: center;
-    padding: 120px 20px;
-    position: relative;
-    overflow: hidden;
+}
+.hero-content h1 { font-size: 2.5rem; color: #4a148c; }
+.main-cta {
+    display: inline-block;
+    background: #6a1b9a;
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 30px;
+    margin-top: 20px;
+    font-weight: bold;
 }
 
-/* 背景紋理 */
-.hero-section::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
-    opacity: 0.12;
-    pointer-events: none;
-}
-
-.hero-content { position: relative; z-index: 2; }
-
-.hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 18px;
-    font-weight: 700;
-    text-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    letter-spacing: 1.5px;
-}
-
-.hero-content p {
-    font-size: 1.2rem;
-    opacity: 0.9;
-    max-width: 700px;
+/* 網格系統 */
+.guide-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 50px 5%;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-.main-cta {
-    display: inline-block;
-    margin-top: 35px;
-    padding: 15px 45px;
-    background: #ff8a65;
-    color: white;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: bold;
-    font-size: 1.1rem;
-    box-shadow: 0 8px 20px rgba(255, 138, 101, 0.4);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.main-cta:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 28px rgba(255, 138, 101, 0.5);
-    background: #ff7043;
-}
-
-/* ==========================================================================
-   4. 網格佈局 (Grid) 與 卡片互動
-   ========================================================================== */
-.guide-grid {
-    max-width: 1300px;
-    margin: 80px auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 40px;
-    padding: 0 25px;
-}
-
+/* 卡片基礎樣式 */
 .guide-item {
     background: white;
-    border-radius: 24px;
-    padding: 35px;
+    border-radius: 15px;
+    padding: 25px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    border-top: 8px solid #ddd;
-    position: relative;
+    justify-content: space-between;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    border-top: 5px solid #ccc;
 }
-
-.guide-item:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 22px 45px rgba(0,0,0,0.12);
-}
+.guide-item:hover { transform: translateY(-10px); }
 
 .card-image {
     width: 100%;
-    height: 220px;
+    height: 200px;
     object-fit: cover;
-    border-radius: 16px;
-    margin-bottom: 25px;
+    border-radius: 10px;
+    margin: 15px 0;
 }
-
-.guide-item h2 { font-size: 1.5rem; margin-bottom: 18px; }
-.guide-item p { color: #666; flex-grow: 1; margin-bottom: 20px; }
-
-/* 類別配色系統 */
-.layer-1 { border-top-color: #00897b; background: linear-gradient(to bottom, #ffffff, #f0f7f7); }
-.layer-2 { border-top-color: #3949ab; background: linear-gradient(to bottom, #ffffff, #f0f2f9); }
-.layer-3 { border-top-color: #d81b60; background: linear-gradient(to bottom, #ffffff, #fdf2f5); }
-.layer-4 { border-top-color: #f9a825; background: linear-gradient(to bottom, #ffffff, #fff9e6); }
-.layer-5 { border-top-color: #039be5; background: linear-gradient(to bottom, #ffffff, #f0f9ff); }
-.layer-6 { border-top-color: #fb8c00; background: linear-gradient(to bottom, #ffffff, #fff4e5); }
-.layer-7 { border-top-color: #546e7a; background: linear-gradient(to bottom, #ffffff, #f1f3f4); }
 
 .cta-button {
     display: block;
-    text-decoration: none;
     text-align: center;
-    padding: 14px;
-    border-radius: 50px;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 8px;
     font-weight: bold;
-    transition: 0.3s;
+    transition: opacity 0.3s;
 }
+.cta-button:hover { opacity: 0.9; }
 
-.cta-button:hover { filter: brightness(1.1); transform: scale(1.03); }
+/* 1-9 區的主題色彩 */
+.layer-1 { border-color: #00897b; } .layer-1 .cta-button { background: #00897b; color: white; }
+.layer-2 { border-color: #3949ab; } .layer-2 .cta-button { background: #3949ab; color: white; }
+.layer-3 { border-color: #d81b60; } .layer-3 .cta-button { background: #d81b60; color: white; }
+.layer-4 { border-color: #f9a825; } .layer-4 .cta-button { background: #f9a825; color: white; }
+.layer-5 { border-color: #039be5; } .layer-5 .cta-button { background: #039be5; color: white; }
+.layer-6 { border-color: #fb8c00; } .layer-6 .cta-button { background: #fb8c00; color: white; }
+.layer-7 { border-color: #546e7a; } .layer-7 .cta-button { background: #546e7a; color: white; }
 
-/* ==========================================================================
-   5. 通用區塊標題
-   ========================================================================== */
-.section-title { text-align: center; margin-bottom: 55px; padding: 0 20px; }
-.section-title h2 { font-size: 2.2rem; color: #4a148c; margin-bottom: 12px; }
-.section-title p { color: #777; font-size: 1.1rem; }
+/* 8區：回饋 - 採用溫暖的紫色粉色調 */
+.layer-8 { border-color: #9c27b0; } .layer-8 .cta-button { background: #9c27b0; color: white; }
 
-/* ==========================================================================
-   6. 使用者見證 (Testimonials)
-   ========================================================================== */
-.testimonials-section { background-color: #f3e5f5; padding: 100px 0; }
-.testimonials-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 35px;
-    padding: 0 25px;
-}
+/* 9區：部落格 - 採用沉穩的深綠色調 */
+.layer-9 { border-color: #2e7d32; } .layer-9 .cta-button { background: #2e7d32; color: white; }
 
-.testimonial-card {
-    background: white;
-    border-radius: 20px;
-    padding: 30px;
-    width: 100%;
-    max-width: 480px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-}
-
-.user-info { display: flex; align-items: center; gap: 15px; margin-bottom: 18px; }
-.user-avatar { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 2px solid #ba68c8; }
-.stars { color: #ffb300; }
-.testimonial-text { font-style: italic; color: #555; margin-bottom: 22px; }
-.review-photo { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; }
-
-/* ==========================================================================
-   7. 部落格區塊 (Blog)
-   ========================================================================== */
-.blog-section { padding: 100px 0; max-width: 1250px; margin: 0 auto; }
-.blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 40px; padding: 0 25px; }
-.blog-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 12px 35px rgba(0,0,0,0.06); transition: 0.3s; }
-.blog-card:hover { transform: translateY(-8px); }
-.blog-image-wrapper { height: 210px; overflow: hidden; }
-.blog-image { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-.blog-card:hover .blog-image { transform: scale(1.1); }
-.blog-content { padding: 25px; }
-.blog-tag { background: #f3e5f5; color: #6a1b9a; padding: 5px 14px; border-radius: 50px; font-size: 0.8rem; font-weight: bold; display: inline-block; margin-bottom: 15px; }
-.blog-content h3 { font-size: 1.35rem; margin-bottom: 15px; color: #333; }
-.read-more { color: #6a1b9a; text-decoration: none; font-weight: bold; }
-
-.center-button { text-align: center; margin-top: 55px; }
-.secondary-cta {
-    display: inline-block; padding: 13px 40px; border: 2px solid #6a1b9a;
-    color: #6a1b9a; text-decoration: none; border-radius: 50px; font-weight: bold; transition: 0.3s;
-}
-.secondary-cta:hover { background: #6a1b9a; color: white; }
-
-/* ==========================================================================
-   8. 頁尾與響應式
-   ========================================================================== */
-.footer { text-align: center; padding: 60px 20px; background: #2a0a52; color: white; margin-top: 80px; }
-.footer p { opacity: 0.7; font-size: 0.9rem; }
-
-@media (max-width: 600px) {
-    .hero-content h1 { font-size: 2.1rem; }
-    .main-header { flex-direction: column; gap: 15px; padding: 20px; }
-    .section-title h2 { font-size: 1.8rem; }
-    .guide-grid, .blog-grid { grid-template-columns: 1fr; }
+/* 頁尾 */
+.footer {
+    text-align: center;
+    padding: 40px;
+    background: #263238;
+    color: white;
+    margin-top: 50px;
 }
