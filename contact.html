@@ -4,117 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>聯絡我們 - 水晶魔法客服諮詢</title>
-    <link rel="stylesheet" href="styles.css"> 
-    
-    <style>
-        .contact-container {
-            display: flex;
-            gap: 40px;
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .contact-form, .contact-info {
-            flex: 1;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            background-color: white;
-        }
-
-        .contact-form h2 {
-            border-bottom: 3px solid #ff8a65;
-            padding-bottom: 10px;
-            color: #6a1b9a;
-            margin-bottom: 25px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #4a148c;
-        }
-
-        .form-group input, .form-group textarea, .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #ba68c8;
-        }
-        
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 15px;
-            background-color: #ff8a65;
-            color: white;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .btn-submit:hover {
-            background-color: #ff7043;
-            transform: translateY(-2px);
-        }
-
-        .contact-info h2 {
-            border-bottom: 3px solid #6a1b9a;
-            padding-bottom: 10px;
-            color: #ff8a65;
-            margin-bottom: 25px;
-        }
-
-        .info-item {
-            margin-bottom: 20px;
-            padding: 15px;
-            background-color: #f3e5f5;
-            border-left: 6px solid #6a1b9a;
-            border-radius: 8px;
-        }
-
-        .info-item strong {
-            display: block;
-            color: #4a148c;
-            margin-bottom: 8px;
-            font-size: 1.1rem;
-        }
-        
-        @media (max-width: 768px) {
-            .contact-container {
-                flex-direction: column;
-            }
-        }
-    </style>
+    <!-- 引入外部 CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="contact.css">
 </head>
 <body>
 
 <header class="main-header">
-    <a href="index.html" class="logo">🔮 CrystalMagic</div>
-    <div class="auth-buttons">
+    <a href="index.html" class="logo">🔮 CrystalMagic</a>
+    <nav class="auth-buttons">
         <a href="index.html" class="nav-button login">回首頁</a>
         <a href="quiz.html" class="nav-button register">能量測驗</a>
-    </div>
+    </nav>
 </header>
 
 <main>
@@ -124,11 +25,10 @@
     </section>
 
     <section class="contact-container">
-        
+        <!-- 左側：表單區域 -->
         <div class="contact-form">
             <h2>表單快速提問</h2>
-            <form onsubmit="alert('感謝您的訊息！這是一個範例網頁，暫不具備後端送出功能。'); return false;">
-                
+            <form id="crystalContactForm">
                 <div class="form-group">
                     <label for="name">您的姓名 *</label>
                     <input type="text" id="name" name="name" placeholder="例如：王小明" required>
@@ -159,6 +59,7 @@
             </form>
         </div>
 
+        <!-- 右側：資訊區域 -->
         <div class="contact-info">
             <h2>其他聯絡管道</h2>
             
@@ -180,11 +81,10 @@
                 <p><small>例假日及國定假日暫停服務。</small></p>
             </div>
             
-            <div style="text-align: center; margin-top: 30px; color: #888;">
+            <div class="magic-footer-note">
                 <p>✨ 祝您今日充滿正能量 ✨</p>
             </div>
         </div>
-        
     </section>
 </main>
 
@@ -192,40 +92,8 @@
     <p>&copy; 2026 CrystalMagic. 每一顆水晶都承載著大地的祝福。</p>
 </footer>
 
-    <script>
-    // --- 魔法守護腳本 ---
-    
-    // 1. 禁用右鍵選單並跳出提醒
-    document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-        alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
-    }, false);
-
-    // 2. 禁用快捷鍵 (F12, Ctrl+U, Ctrl+Shift+I 等)
-    document.onkeydown = function (e) {
-        // 禁用 F12
-        if (e.keyCode === 123) {
-            return false;
-        }
-        // 禁用 Ctrl+Shift+I (開發者工具)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
-            return false;
-        }
-        // 禁用 Ctrl+Shift+J (開發者工具)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
-            return false;
-        }
-        // 禁用 Ctrl+U (檢視原始碼)
-        if (e.ctrlKey && e.keyCode === 85) {
-            return false;
-        }
-        // 禁用 Ctrl+S (存檔)
-        if (e.ctrlKey && e.keyCode === 83) {
-            return false;
-        }
-    };
-</script>
-
+<!-- 引入外部 JavaScript -->
+<script src="contact.js"></script>
 
 </body>
 </html>
