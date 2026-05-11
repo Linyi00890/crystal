@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>能量分享專區 - CrystalMagic 水晶魔法</title>
+    <style>
+        :root {
+            --primary-purple: #6a1b9a;
+            --soft-purple: #f3e5f5;
+            --text-dark: #333;
+            --bg-light: #fdfbff;
+            --accent-gold: #ffd700;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* --- 導覽列 --- */
+        .navbar {
+            background: #fff;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary-purple); text-decoration: none; }
+        .nav-links a { text-decoration: none; color: #666; margin-left: 20px; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary-purple); }
+
+        /* --- 標題區 --- */
+        .feedback-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary-purple);
+            margin-bottom: 10px;
+        }
+
+        .section-title p { color: #888; font-size: 1.1rem; }
+
+        /* --- 彈性佈局容器 --- */
+        .feedback-flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            align-items: stretch; /* 讓所有卡片高度一致 */
+        }
+
+        /* --- 見證卡片 --- */
+        .testimonial-card, .contribution-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            flex: 1;
+            min-width: 320px;
+            max-width: 380px;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover { transform: translateY(-5px); }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+            border: 2px solid var(--soft-purple);
+        }
+
+        .user-info h4 { font-size: 1.1rem; margin-bottom: 4px; }
+        .stars { color: var(--accent-gold); font-size: 0.9rem; }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+            min-height: 80px;
+        }
+
+        .review-photo {
+            width: 100%;
+            height: 200px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        /* --- 投稿專區卡片 --- */
+        .contribution-card {
+            background: linear-gradient(145deg, #ffffff, var(--soft-purple));
+            border: 2px dashed var(--primary-purple);
+        }
+
+        .contribution-header { margin-bottom: 20px; }
+        .contribution-header h3 { color: var(--primary-purple); margin-bottom: 8px; }
+
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; font-size: 0.9rem; font-weight: bold; margin-bottom: 5px; color: var(--primary-purple); }
+        
+        .form-group input[type="text"], 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--primary-purple); }
+
+        .submit-story-btn {
+            width: 100%;
+            background: var(--primary-purple);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .submit-story-btn:hover { background: #4a148c; transform: scale(1.02); }
+
+        /* --- 頁尾 --- */
+        footer { text-align: center; padding: 40px; color: #888; font-size: 0.9rem; }
+
+        /* --- 響應式優化 --- */
+        @media (max-width: 768px) {
+            .feedback-flex-container { flex-direction: column; align-items: center; }
+            .testimonial-card, .contribution-card { max-width: 100%; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="index.html" class="logo">🔮 CrystalMagic</a>
+    <div class="nav-links">
+        <a href="index.html">首頁</a>
+        <a href="exclusive.html">專屬商品</a>
+        <a href="share.html" style="color:var(--primary-purple)">能量分享</a>
+    </div>
+</nav>
+
+<main>
+    <section class="feedback-section">
+        <div class="section-title">
+            <h2>來自心靈的真實回饋</h2>
+            <p>與我們分享你的水晶能量故事，讓我們共同編織光的網路</p>
+        </div>
+        
+        <div class="feedback-flex-container">
+            <!-- 見證 1：王小姐 -->
+            <div class="testimonial-card">
+                <div class="user-info">
+                    <img src="picture/king01.jpg" alt="王小姐" class="user-avatar" onerror="this.src='https://via.placeholder.com/60'">
+                    <div>
+                        <h4>王小姐</h4>
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                    </div>
+                </div>
+                <p class="testimonial-text">「自從在臥室擺放了紫水晶簇，感覺睡眠品質變好了，原本紛亂的心情也平靜許多，能量真的很神奇。」</p>
+                <img src="picture/purple04.jpg" alt="實拍回饋" class="review-photo" onerror="this.src='https://via.placeholder.com/400x200?text=Crystal+Photo'">
+            </div>
+
+            <!-- 見證 2：林先生 -->
+            <div class="testimonial-card">
+                <div class="user-info">
+                    <img src="picture/lin01.jpg" alt="林先生" class="user-avatar" onerror="this.src='https://via.placeholder.com/60'">
+                    <div>
+                        <h4>林先生</h4>
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                    </div>
+                </div>
+                <p class="testimonial-text">「買給女友的粉晶手鍊設計非常細緻，完全不像傳統水晶那樣沉重，非常時尚！她每天都戴著，感覺人緣也變好了。」</p>
+                <img src="picture/pink03.jpg" alt="實拍回饋" class="review-photo" onerror="this.src='https://via.placeholder.com/400x200?text=Crystal+Photo'">
+            </div>
+
+            <!-- 投稿專區 -->
+            <div class="contribution-card">
+                <div class="contribution-header">
+                    <h3>✨ 我要投稿</h3>
+                    <p style="font-size: 0.8rem; color: #777;">分享您的感悟，點亮他人的能量之路。</p>
+                </div>
+                <form id="storyForm" class="contribution-form">
+                    <div class="form-group">
+                        <label>您的稱呼</label>
+                        <input type="text" id="userName" placeholder="例如：林小姐" required>
+                    </div>
+                    <div class="form-group">
+                        <label>能量故事</label>
+                        <textarea id="userStory" rows="4" placeholder="分享您的使用感受或水晶帶給您的改變..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>上傳實拍 (可選)</label>
+                        <input type="file" accept="image/*" style="border:none; padding:0; background:none;">
+                    </div>
+                    <button type="submit" class="submit-story-btn">提交感悟</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    &copy; 2026 CrystalMagic 水晶魔法 - 願能量與你同在
+</footer>
+
+<script>
+    // 提交表單的模擬效果
+    document.getElementById('storyForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('userName').value;
+        
+        // 模擬提交後的動作
+        alert('親愛的 ' + name + '，感謝您的分享！您的故事已經提交，經過能量審核後將會出現在牆上。✨');
+        
+        // 重置表單
+        this.reset();
+    });
+
+    // --- 魔法守護腳本 (禁止右鍵等) ---
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.onkeydown = function(e) {
+        if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73)) return false;
+    };
+</script>
+
+</body>
+</html>
