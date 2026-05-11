@@ -30,7 +30,7 @@
             user-select: none;
         }
 
-        /* 1. 導覽列 */
+        /* 導覽列 */
         .main-header {
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
@@ -73,7 +73,7 @@
 
         .nav-links a:hover { color: var(--primary-purple); }
 
-        /* 2. 篩選控制台 */
+        /* 篩選控制台 */
         .filter-section {
             background: #fff;
             border-bottom: 1px solid #eee;
@@ -146,7 +146,7 @@
         }
         .dropdown-menu li a:hover { background: #f3e5f5; color: var(--primary-purple); }
 
-        /* 3. 內容容器 */
+        /* 內容容器 */
         .content-container {
             max-width: var(--content-width);
             margin: 40px auto;
@@ -160,7 +160,7 @@
             gap: 25px;
         }
 
-        .crystal-link { text-decoration: none; color: inherit; display: block; }
+        .crystal-link { text-decoration: none; color: inherit; display: block; transition: 0.3s; }
 
         .crystal-card {
             background: white;
@@ -178,7 +178,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .crystal-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .crystal-card img { width: 140px; height: 100%; object-fit: cover; background: #eee;}
+        .crystal-card img { width: 140px; height: 100%; object-fit: cover; background: #f0f0f0; }
         .card-body { padding: 15px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
         
         .tag { display: inline-block; padding: 2px 10px; border-radius: 50px; color: white; font-size: 0.7rem; font-weight: bold; margin-bottom: 5px; width: fit-content; }
@@ -252,100 +252,51 @@
         <!-- 白色系 (5) -->
         <a href="#" class="crystal-link" data-effect="peace" data-color="white">
             <article class="crystal-card">
-                <img src="picture/white01.jpg" alt="白水晶">
+                <img src="picture/white-quartz.jpg" alt="白水晶">
                 <div class="card-body">
-                    <span class="tag bg-peace">王者之晶</span>
+                    <span class="tag bg-peace">水晶之王</span>
                     <h3 class="crystal-name">白水晶 (Clear Quartz)</h3>
-                    <p class="crystal-desc">平衡身心靈，淨化全身負能量，並能放大其他水晶的效應。</p>
+                    <p class="crystal-desc">淨化全身負能量，放大其他水晶效應，平衡身心靈。</p>
                 </div>
             </article>
         </a>
-
         <a href="#" class="crystal-link" data-effect="spirit" data-color="white">
             <article class="crystal-card">
                 <img src="picture/selenite.jpg" alt="透石膏">
                 <div class="card-body">
-                    <span class="tag bg-spirit">淨化之光</span>
+                    <span class="tag bg-spirit">高頻淨化</span>
                     <h3 class="crystal-name">透石膏 (Selenite)</h3>
-                    <p class="crystal-desc">具有強大的高頻振動能量，能自動清理空間負能量，不需經常淨化。</p>
+                    <p class="crystal-desc">清理周遭負能量場，不需要額外淨化，帶來純淨白光。</p>
                 </div>
             </article>
         </a>
-
         <a href="#" class="crystal-link" data-effect="peace" data-color="white">
             <article class="crystal-card">
-                <img src="picture/moonstone_white.jpg" alt="月光石">
+                <img src="picture/white-moonstone.jpg" alt="月光石">
                 <div class="card-body">
-                    <span class="tag bg-peace">月神之淚</span>
-                    <h3 class="crystal-name">月光石 (Moonstone)</h3>
-                    <p class="crystal-desc">散發柔和白光，有助於舒緩情緒、提升女性魅力與直覺。</p>
+                    <span class="tag bg-peace">溫柔直覺</span>
+                    <h3 class="crystal-name">月光石 (White Moonstone)</h3>
+                    <p class="crystal-desc">舒緩情緒與壓力，提升女性魅力與神祕感。</p>
                 </div>
             </article>
         </a>
-
         <a href="#" class="crystal-link" data-effect="protection" data-color="white">
             <article class="crystal-card">
-                <img src="picture/white_agate.jpg" alt="白瑪瑙">
+                <img src="picture/white-agate.jpg" alt="白瑪瑙">
                 <div class="card-body">
-                    <span class="tag bg-protection">平靜守護</span>
+                    <span class="tag bg-protection">安定守護</span>
                     <h3 class="crystal-name">白瑪瑙 (White Agate)</h3>
-                    <p class="crystal-desc">象徵友愛與希望，能幫助消除壓力與疲勞，帶來寧靜守護。</p>
+                    <p class="crystal-desc">象徵希望與平衡，有助於舒緩心理壓力與負面情緒。</p>
                 </div>
             </article>
         </a>
-
         <a href="#" class="crystal-link" data-effect="spirit" data-color="white">
             <article class="crystal-card">
                 <img src="picture/howlite.jpg" alt="白紋石">
                 <div class="card-body">
-                    <span class="tag bg-spirit">沉靜之石</span>
+                    <span class="tag bg-spirit">沉靜冥想</span>
                     <h3 class="crystal-name">白紋石 (Howlite)</h3>
-                    <p class="crystal-desc">幫助平息憤怒與煩躁，開啟通往更高智慧的意識連接。</p>
-                </div>
-            </article>
-        </a>
-
-        <!-- 黃金色系 (4) -->
-        <a href="#" class="crystal-link" data-effect="wealth" data-color="yellow">
-            <article class="crystal-card">
-                <img src="picture/citrine.jpg" alt="黃水晶">
-                <div class="card-body">
-                    <span class="tag bg-wealth">財富之石</span>
-                    <h3 class="crystal-name">黃水晶 (Citrine)</h3>
-                    <p class="crystal-desc">主偏財運，增加企圖心與自信心，非常適合經商者。</p>
-                </div>
-            </article>
-        </a>
-
-        <a href="#" class="crystal-link" data-effect="wealth" data-color="yellow">
-            <article class="crystal-card">
-                <img src="picture/tigereye.jpg" alt="黃虎眼石">
-                <div class="card-body">
-                    <span class="tag bg-wealth">勇氣行動</span>
-                    <h3 class="crystal-name">黃虎眼石 (Tiger Eye)</h3>
-                    <p class="crystal-desc">如同老虎般的銳利眼光，增強果斷力，招來財富能量。</p>
-                </div>
-            </article>
-        </a>
-
-        <a href="#" class="crystal-link" data-effect="wealth" data-color="yellow">
-            <article class="crystal-card">
-                <img src="picture/pyrite.jpg" alt="黃鐵礦">
-                <div class="card-body">
-                    <span class="tag bg-wealth">愚人金</span>
-                    <h3 class="crystal-name">黃鐵礦 (Pyrite)</h3>
-                    <p class="crystal-desc">極強的金元素能量，能抵擋負面能量，為事業帶來突破。</p>
-                </div>
-            </article>
-        </a>
-
-        <a href="#" class="crystal-link" data-effect="wealth" data-color="yellow">
-            <article class="crystal-card">
-                <img src="picture/rutilated_gold.jpg" alt="鈦晶">
-                <div class="card-body">
-                    <span class="tag bg-wealth">水晶之王</span>
-                    <h3 class="crystal-name">鈦晶 (Rutilated Quartz)</h3>
-                    <p class="crystal-desc">能量最強大的財富水晶，主正財、偏財、人緣及避邪。</p>
+                    <p class="crystal-desc">平息憤怒與焦慮，提升睡眠品質與冥想深度。</p>
                 </div>
             </article>
         </a>
@@ -353,44 +304,93 @@
         <!-- 粉紅系 (4) -->
         <a href="#" class="crystal-link" data-effect="love" data-color="pink">
             <article class="crystal-card">
-                <img src="picture/rose_quartz.jpg" alt="粉晶">
+                <img src="picture/rose-quartz.jpg" alt="粉晶">
                 <div class="card-body">
-                    <span class="tag bg-love">愛情之石</span>
+                    <span class="tag bg-love">招好人緣</span>
                     <h3 class="crystal-name">粉晶 (Rose Quartz)</h3>
-                    <p class="crystal-desc">增進異性緣，舒緩緊繃情緒，讓內心充滿慈愛與包容。</p>
+                    <p class="crystal-desc">增進桃花與異性緣，療癒心輪並讓人充滿慈愛。</p>
                 </div>
             </article>
         </a>
-
         <a href="#" class="crystal-link" data-effect="love" data-color="pink">
             <article class="crystal-card">
                 <img src="picture/rhodochrosite.jpg" alt="紅紋石">
                 <div class="card-body">
                     <span class="tag bg-love">靈魂伴侶</span>
                     <h3 class="crystal-name">紅紋石 (Rhodochrosite)</h3>
-                    <p class="crystal-desc">吸引真愛，療癒過去的情感創傷，喚醒對生活的熱情。</p>
+                    <p class="crystal-desc">吸引靈魂伴侶，激發對生活的熱情與積極。 </p>
                 </div>
             </article>
         </a>
-
         <a href="#" class="crystal-link" data-effect="love" data-color="pink">
             <article class="crystal-card">
-                <img src="picture/kunzite.jpg" alt="孔賽石">
+                <img src="picture/pink-kunzite.jpg" alt="孔賽石">
                 <div class="card-body">
-                    <span class="tag bg-love">溫婉之愛</span>
+                    <span class="tag bg-love">心靈平靜</span>
                     <h3 class="crystal-name">孔賽石 (Kunzite)</h3>
-                    <p class="crystal-desc">充滿平靜的粉紫光能量，使人變得謙遜，減少壓力。</p>
+                    <p class="crystal-desc">充滿溫柔的女性力量，幫助釋放過去的情感傷害。</p>
+                </div>
+            </article>
+        </a>
+        <a href="#" class="crystal-link" data-effect="love" data-color="pink">
+            <article class="crystal-card">
+                <img src="picture/pink-opal.jpg" alt="粉蛋白石">
+                <div class="card-body">
+                    <span class="tag bg-love">幸福守護</span>
+                    <h3 class="crystal-name">粉蛋白石 (Pink Opal)</h3>
+                    <p class="crystal-desc">又稱天使之石，能增加魅力並帶來幸運與愛情。</p>
                 </div>
             </article>
         </a>
 
-        <a href="#" class="crystal-link" data-effect="love" data-color="pink">
+        <!-- 黃金色系 (5) -->
+        <a href="#" class="crystal-link" data-effect="wealth" data-color="yellow">
             <article class="crystal-card">
-                <img src="picture/pink_tourmaline.jpg" alt="粉碧璽">
+                <img src="picture/citrine.jpg" alt="黃水晶">
                 <div class="card-body">
-                    <span class="tag bg-love">桃花之舞</span>
-                    <h3 class="crystal-name">粉碧璽 (Pink Tourmaline)</h3>
-                    <p class="crystal-desc">高度淨化情感區，不僅招桃花也能改善與周遭的人際關係。</p>
+                    <span class="tag bg-wealth">招偏財運</span>
+                    <h3 class="crystal-name">黃水晶 (Citrine)</h3>
+                    <p class="crystal-desc">增強個人自信，主招偏財與生意興隆。</p>
+                </div>
+            </article>
+        </a>
+        <a href="#" class="crystal-link" data-effect="wealth" data-color="yellow">
+            <article class="crystal-card">
+                <img src="picture/gold-rutilated.jpg" alt="鈦晶">
+                <div class="card-body">
+                    <span class="tag bg-wealth">能量王者</span>
+                    <h3 class="crystal-name">鈦晶 (Gold Rutilated Quartz)</h3>
+                    <p class="crystal-desc">財富能量最強大的水晶，助事業發展並辟邪。</p>
+                </div>
+            </article>
+        </a>
+        <a href="#" class="crystal-link" data-effect="wealth" data-color="yellow">
+            <article class="crystal-card">
+                <img src="picture/tiger-eye.jpg" alt="黃虎眼石">
+                <div class="card-body">
+                    <span class="tag bg-wealth">勇氣行動</span>
+                    <h3 class="crystal-name">黃虎眼石 (Tiger Eye)</h3>
+                    <p class="crystal-desc">提升勇氣與決斷力，帶來財富並驅散負面能量。</p>
+                </div>
+            </article>
+        </a>
+        <a href="#" class="crystal-link" data-effect="wealth" data-color="yellow">
+            <article class="crystal-card">
+                <img src="picture/pyrite.jpg" alt="黃鐵礦">
+                <div class="card-body">
+                    <span class="tag bg-wealth">聚財守護</span>
+                    <h3 class="crystal-name">黃鐵礦 (Pyrite)</h3>
+                    <p class="crystal-desc">形狀如金磚，能聚財並保護持有者遠離外界負能量。</p>
+                </div>
+            </article>
+        </a>
+        <a href="#" class="crystal-link" data-effect="wealth" data-color="yellow">
+            <article class="crystal-card">
+                <img src="picture/amber.jpg" alt="琥珀">
+                <div class="card-body">
+                    <span class="tag bg-wealth">活化招財</span>
+                    <h3 class="crystal-name">琥珀 (Amber)</h3>
+                    <p class="crystal-desc">古老的有機寶石，活化氣場、安神招財並保平安。</p>
                 </div>
             </article>
         </a>
@@ -400,42 +400,39 @@
             <article class="crystal-card">
                 <img src="picture/amethyst.jpg" alt="紫水晶">
                 <div class="card-body">
-                    <span class="tag bg-spirit">智慧之光</span>
+                    <span class="tag bg-spirit">智慧開發</span>
                     <h3 class="crystal-name">紫水晶 (Amethyst)</h3>
-                    <p class="crystal-desc">開發智慧、幫助思考，有助於眠並穩定職場中的情緒。</p>
+                    <p class="crystal-desc">鎮定神經、開發智慧，有助於眠與職場貴人運。</p>
                 </div>
             </article>
         </a>
-
         <a href="#" class="crystal-link" data-effect="wealth" data-color="purple">
             <article class="crystal-card">
                 <img src="picture/ametrine.jpg" alt="紫黃晶">
                 <div class="card-body">
-                    <span class="tag bg-wealth">調和之石</span>
+                    <span class="tag bg-wealth">和諧智慧</span>
                     <h3 class="crystal-name">紫黃晶 (Ametrine)</h3>
-                    <p class="crystal-desc">結合紫色智慧與黃色財富，能化解衝突，帶來極佳運氣。</p>
+                    <p class="crystal-desc">融合紫晶與黃晶的雙重能量，化解衝突並平衡財運。</p>
                 </div>
             </article>
         </a>
-
         <a href="#" class="crystal-link" data-effect="spirit" data-color="purple">
             <article class="crystal-card">
                 <img src="picture/charoite.jpg" alt="紫龍晶">
                 <div class="card-body">
-                    <span class="tag bg-spirit">高維意識</span>
+                    <span class="tag bg-spirit">轉換思維</span>
                     <h3 class="crystal-name">紫龍晶 (Charoite)</h3>
-                    <p class="crystal-desc">產量稀少，有助於激發靈感與創意，並帶來強大的慈悲心。</p>
+                    <p class="crystal-desc">激發靈感、整合身心靈，對抗抑鬱並帶來勇氣。</p>
                 </div>
             </article>
         </a>
-
-        <a href="#" class="crystal-link" data-effect="protection" data-color="purple">
+        <a href="#" class="crystal-link" data-effect="peace" data-color="purple">
             <article class="crystal-card">
-                <img src="picture/fluorite_purple.jpg" alt="紫螢石">
+                <img src="picture/lavender-quartz.jpg" alt="薰衣草紫晶">
                 <div class="card-body">
-                    <span class="tag bg-protection">秩序之光</span>
-                    <h3 class="crystal-name">紫螢石 (Purple Fluorite)</h3>
-                    <p class="crystal-desc">排除雜念，讓思緒清晰，對抗電腦輻射與磁場干擾。</p>
+                    <span class="tag bg-peace">寧靜力量</span>
+                    <h3 class="crystal-name">薰衣草紫晶 (Lavender Amethyst)</h3>
+                    <p class="crystal-desc">色澤溫潤，主要用於舒壓與提升內心的平靜。 </p>
                 </div>
             </article>
         </a>
@@ -443,100 +440,83 @@
         <!-- 綠色系 (4) -->
         <a href="#" class="crystal-link" data-effect="wealth" data-color="green">
             <article class="crystal-card">
-                <img src="picture/green_phantom.jpg" alt="綠幽靈">
+                <img src="picture/green-phantom.jpg" alt="綠幽靈">
                 <div class="card-body">
                     <span class="tag bg-wealth">事業正財</span>
                     <h3 class="crystal-name">綠幽靈 (Green Phantom)</h3>
-                    <p class="crystal-desc">招正財，是生意人的最愛，幫助事業蒸蒸日上。</p>
+                    <p class="crystal-desc">增強事業運與正財，被稱為「正財水晶」之首。</p>
                 </div>
             </article>
         </a>
-
         <a href="#" class="crystal-link" data-effect="health" data-color="green">
             <article class="crystal-card">
                 <img src="picture/malachite.jpg" alt="孔雀石">
                 <div class="card-body">
-                    <span class="tag bg-health">吸收痛苦</span>
+                    <span class="tag bg-health">吸收不適</span>
                     <h3 class="crystal-name">孔雀石 (Malachite)</h3>
-                    <p class="crystal-desc">具有強大的吸收負能量能力，對於身體疲勞有顯著療癒作用。</p>
+                    <p class="crystal-desc">強力吸取負能量，緩解肌肉與心靈的疲勞感。</p>
                 </div>
             </article>
         </a>
-
         <a href="#" class="crystal-link" data-effect="wealth" data-color="green">
             <article class="crystal-card">
-                <img src="picture/green_aventurine.jpg" alt="東菱玉">
+                <img src="picture/aventurine.jpg" alt="東菱玉">
                 <div class="card-body">
-                    <span class="tag bg-wealth">機會之石</span>
-                    <h3 class="crystal-name">東菱玉 (Green Aventurine)</h3>
-                    <p class="crystal-desc">主幸運、主生機。能吸引好機會並增強決策能力。</p>
+                    <span class="tag bg-wealth">舒心開運</span>
+                    <h3 class="crystal-name">東菱玉 (Aventurine)</h3>
+                    <p class="crystal-desc">主欣欣向榮之氣，能帶來機會並保持積極樂觀。</p>
                 </div>
             </article>
         </a>
-
         <a href="#" class="crystal-link" data-effect="health" data-color="green">
             <article class="crystal-card">
                 <img src="picture/prehnite.jpg" alt="葡萄石">
                 <div class="card-body">
-                    <span class="tag bg-health">希望之石</span>
+                    <span class="tag bg-health">指引之石</span>
                     <h3 class="crystal-name">葡萄石 (Prehnite)</h3>
-                    <p class="crystal-desc">能指引方向，幫助排毒與增強免疫系統，帶來平靜感受。</p>
+                    <p class="crystal-desc">提升免疫力並能幫助清理脈輪，指向正確的方向。</p>
                 </div>
             </article>
         </a>
 
-        <!-- 藍色系 (5) -->
+        <!-- 藍色系 (4) -->
         <a href="#" class="crystal-link" data-effect="peace" data-color="blue">
             <article class="crystal-card">
                 <img src="picture/aquamarine.jpg" alt="海藍寶">
                 <div class="card-body">
-                    <span class="tag bg-peace">溝通勇氣</span>
+                    <span class="tag bg-peace">自信表達</span>
                     <h3 class="crystal-name">海藍寶 (Aquamarine)</h3>
-                    <p class="crystal-desc">強化表達能力與喉輪能量，守護航海與交通安全。</p>
+                    <p class="crystal-desc">對應喉輪，強化表達溝通能力，保佑平安順遂。</p>
                 </div>
             </article>
         </a>
-
         <a href="#" class="crystal-link" data-effect="spirit" data-color="blue">
             <article class="crystal-card">
-                <img src="picture/lapis.jpg" alt="青金石">
+                <img src="picture/lapis-lazuli.jpg" alt="青金石">
                 <div class="card-body">
-                    <span class="tag bg-spirit">冥想之眼</span>
+                    <span class="tag bg-spirit">靈覺提升</span>
                     <h3 class="crystal-name">青金石 (Lapis Lazuli)</h3>
-                    <p class="crystal-desc">增強靈覺與洞察力，能消除憂鬱，帶來深度寧靜。</p>
+                    <p class="crystal-desc">冷靜思緒並開啟第三眼，帶來智慧與深層真理。</p>
                 </div>
             </article>
         </a>
-
-        <a href="#" class="crystal-link" data-effect="peace" data-color="blue">
-            <article class="crystal-card">
-                <img src="picture/kyanite.jpg" alt="藍晶石">
-                <div class="card-body">
-                    <span class="tag bg-peace">自我覺醒</span>
-                    <h3 class="crystal-name">藍晶石 (Kyanite)</h3>
-                    <p class="crystal-desc">落實靈性工作，不需要淨化，能瞬間打破僵化的思想。</p>
-                </div>
-            </article>
-        </a>
-
         <a href="#" class="crystal-link" data-effect="peace" data-color="blue">
             <article class="crystal-card">
                 <img src="picture/larimar.jpg" alt="拉利瑪">
                 <div class="card-body">
-                    <span class="tag bg-peace">海紋石</span>
+                    <span class="tag bg-peace">情緒海洋</span>
                     <h3 class="crystal-name">拉利瑪 (Larimar)</h3>
-                    <p class="crystal-desc">來自多明尼加的珍寶，對應喉輪，療癒心靈深處的恐懼。</p>
+                    <p class="crystal-desc">具備海洋的療癒力，釋放內心糾結並重獲平靜。</p>
                 </div>
             </article>
         </a>
-
-        <a href="#" class="crystal-link" data-effect="spirit" data-color="blue">
+        <a href="#" class="crystal-link" data-effect="peace" data-color="blue">
             <article class="crystal-card">
-                <img src="picture/blue_lace_agate.jpg" alt="藍紋瑪瑙">
+                <img src="picture/kyanite.jpg" alt="藍晶石">
                 <div class="card-body">
-                    <span class="tag bg-spirit">溫柔交流</span>
-                    <h3 class="crystal-name">藍紋瑪瑙 (Blue Lace Agate)</h3>
-                    <p class="crystal-desc">平撫憤怒的情緒，使人更有耐心，改善溝通不順的狀況。</p>
+                    <span class="tag bg-peace">穩定心神</span>
+                    <h3 class="crystal-name">藍晶石 (Kyanite)</h3>
+                    <p class="crystal-desc">協助冷靜思考並落實計劃，是非常優秀的能量調節器。</p>
                 </div>
             </article>
         </a>
@@ -546,42 +526,39 @@
             <article class="crystal-card">
                 <img src="picture/obsidian.jpg" alt="黑曜石">
                 <div class="card-body">
-                    <span class="tag bg-protection">避邪化煞</span>
+                    <span class="tag bg-protection">強力避邪</span>
                     <h3 class="crystal-name">黑曜石 (Obsidian)</h3>
-                    <p class="crystal-desc">極強的保護力，吸收病氣與負面能量，像是隱形的護身盾牌。</p>
+                    <p class="crystal-desc">吸收負能量與病氣，是最佳的守護與保護之石。</p>
                 </div>
             </article>
         </a>
-
         <a href="#" class="crystal-link" data-effect="protection" data-color="black">
             <article class="crystal-card">
-                <img src="picture/black_tourmaline.jpg" alt="黑碧璽">
+                <img src="picture/black-tourmaline.jpg" alt="黑碧璽">
                 <div class="card-body">
-                    <span class="tag bg-protection">能量接地</span>
+                    <span class="tag bg-protection">能量排毒</span>
                     <h3 class="crystal-name">黑碧璽 (Black Tourmaline)</h3>
-                    <p class="crystal-desc">最強大的接地能量，能排除電磁輻射，並保護人體氣場。</p>
+                    <p class="crystal-desc">防範電腦輻射，排除壓力並改善人體氣場循環。</p>
                 </div>
             </article>
         </a>
-
         <a href="#" class="crystal-link" data-effect="health" data-color="black">
             <article class="crystal-card">
-                <img src="picture/smoky_quartz.jpg" alt="茶晶">
+                <img src="picture/smoky-quartz.jpg" alt="茶晶">
                 <div class="card-body">
-                    <span class="tag bg-health">安定身心</span>
+                    <span class="tag bg-health">穩定扎根</span>
                     <h3 class="crystal-name">茶晶 (Smoky Quartz)</h3>
-                    <p class="crystal-desc">幫助穩固能量，紓解壓力，對於強化海底輪非常有益。</p>
+                    <p class="crystal-desc">強化海底輪能量，使人穩定沉著並提升活力。</p>
                 </div>
             </article>
         </a>
-
         <a href="#" class="crystal-link" data-effect="protection" data-color="black">
             <article class="crystal-card">
-                <img src="picture/meteorite.jpg" alt="天鐵">
+                <img src="picture/onyx.jpg" alt="黑瑪瑙">
                 <div class="card-body">
-                    <span class="tag bg-protection">宇宙能量</span>
-                    <h3 class="crystal-name">天鐵 (Meteorite)</h3>
-                    <p class="crystal-desc">來自外太空的隕鐵，能量極其陽剛，具備強大的保平安避邪作用。</p>
+                    <span class="tag bg-protection">勇氣毅力</span>
+                    <h3 class="crystal-name">黑瑪瑙 (Black Onyx)</h3>
+                    <p class="crystal-desc">增強意志力與信心，幫助我們在逆境中持之以恆。</p>
                 </div>
             </article>
         </a>
@@ -594,29 +571,25 @@
 </footer>
 
 <script>
-    // 篩選功能：精確邏輯
+    // 篩選邏輯
     function filterCrystals(type, value) {
         const links = document.querySelectorAll('.crystal-link');
         links.forEach(link => {
             link.classList.add('hidden');
             if (type === 'all') {
                 link.classList.remove('hidden');
-            } else {
-                const attrValue = link.getAttribute('data-' + type);
-                if (attrValue === value) {
-                    link.classList.remove('hidden');
-                }
+            } else if (link.getAttribute('data-' + type) === value) {
+                link.classList.remove('hidden');
             }
         });
-        
-        // 點擊後滾動回頂部以便查看
-        window.scrollTo({ top: document.querySelector('.filter-section').offsetTop - 80, behavior: 'smooth' });
+        // 滾動回頂部
+        window.scrollTo({ top: 150, behavior: 'smooth' });
     }
 
-    // --- 魔法守護腳本 ---
+    // 魔法守護：禁用右鍵與常見開發者快捷鍵
     document.addEventListener('contextmenu', function (e) {
         e.preventDefault();
-        alert("🔮 魔法能量守護中：本站內容受保護。");
+        alert("🔮 魔法能量守護中：本站內容受保護，無法使用右鍵選單。");
     }, false);
 
     document.onkeydown = function (e) {
