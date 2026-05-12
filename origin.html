@@ -3,194 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>水晶介紹：起源 - 水晶魔法 | CrystalMagic</title>
-    <style>
-        :root {
-            --primary-purple: #4a148c;
-            --light-purple: #f3e5f5;
-            --glass-white: rgba(255, 255, 255, 0.95);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-            width: 100%;
-            overflow-x: hidden;
-            -webkit-user-select: none;
-            user-select: none;
-        }
-
-        /* 導覽列 */
-        .navbar {
-            background-color: var(--glass-white);
-            backdrop-filter: blur(10px);
-            width: 100%;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            width: 100%;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 40px;
-        }
-
-        .logo {
-            font-size: 1.6rem;
-            font-weight: bold;
-            color: var(--primary-purple);
-            text-decoration: none;
-            letter-spacing: 1px;
-            white-space: nowrap;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-            margin: 0;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #555;
-            font-weight: 500;
-            transition: 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-purple);
-        }
-
-        /* Hero 區塊 */
-        #hero {
-            text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(135deg, #e1f5fe 0%, #f3e5f5 100%);
-            border-radius: 0 0 50px 50px;
-            width: 100%;
-        }
-
-        #hero h1 {
-            color: var(--primary-purple);
-            margin-bottom: 15px;
-            font-size: clamp(2rem, 5vw, 3rem);
-        }
-
-        /* 手風琴主題色 */
-        .theme-1 { --theme-color: #5c6bc0; --theme-bg: #e8eaf6; }
-        .theme-2 { --theme-color: #26a69a; --theme-bg: #e0f2f1; }
-        .theme-3 { --theme-color: #ffa726; --theme-bg: #fff3e0; }
-        .theme-4 { --theme-color: #ec407a; --theme-bg: #fce4ec; }
-        .theme-5 { --theme-color: #8d6e63; --theme-bg: #efebe9; }
-
-        #accordion-container {
-            width: 90%;
-            max-width: 850px;
-            margin: 60px auto;
-        }
-
-        .section-title {
-            text-align: center;
-            color: var(--primary-purple);
-            margin-bottom: 40px;
-            font-size: 1.8rem;
-        }
-
-        .accordion-item {
-            background: #ffffff;
-            margin-bottom: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            overflow: hidden;
-            border-left: 10px solid var(--theme-color);
-            transition: 0.3s ease;
-        }
-
-        .accordion-header {
-            width: 100%;
-            padding: 25px 30px;
-            background: var(--theme-bg);
-            border: none;
-            text-align: left;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .accordion-header h3 {
-            margin: 0;
-            font-size: 1.15rem;
-            color: #333;
-        }
-
-        .accordion-header span {
-            transition: transform 0.3s ease;
-            color: var(--theme-color);
-            font-weight: bold;
-        }
-
-        .accordion-item.active .accordion-header span {
-            transform: rotate(180deg);
-        }
-
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out;
-        }
-
-        .accordion-item.active .accordion-content {
-            max-height: 800px;
-        }
-
-        .accordion-inner-padding {
-            padding: 30px;
-            color: #444;
-            line-height: 1.9;
-            user-select: text;
-        }
-
-        .accordion-inner-padding b {
-            color: var(--primary-purple);
-        }
-
-        .main-footer {
-            text-align: center;
-            padding: 60px 0;
-            background: #ffffff;
-            margin-top: 80px;
-            border-top: 1px solid #eee;
-            color: #999;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .nav-container { flex-direction: column; gap: 15px; text-align: center; }
-            .nav-links { flex-wrap: wrap; justify-content: center; gap: 10px; }
-        }
-    </style>
+    <title>水晶介紹 : 起源 - 水晶魔法 | CrystalMagic 2026 RWD</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <canvas id="particle-canvas"></canvas>
+
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="logo">🔮 CrystalMagic</a>
+            <a href="index.html" class="logo">CRYSTAL MAGIC</a>
             <ul class="nav-links">
                 <li><a href="index.html">首頁</a></li>
                 <li><a href="type.html">水晶種類</a></li>
@@ -207,110 +30,90 @@
 
     <main>
         <section id="hero">
-            <h1>水晶介紹：起源</h1>
-            <p>跨越億萬年的時空旅程，探索大自然最純粹的幾何語言。</p>
+            <h1>起源 : 從地心到靈魂</h1>
+            <p>探索大自然最純粹的幾何語言</p>
         </section>
 
         <div id="accordion-container">
-            <h2 class="section-title">✨ 溯源：從地心到靈魂 ✨</h2>
+            <h2 class="section-title">✨ 靈魂溯源 ✨</h2>
 
-            <div class="accordion-item theme-1 active">
-                <button class="accordion-header">
-                    <h3>1. 🌋 地心孕育：高溫高壓的淬鍊</h3>
-                    <span>▼</span>
-                </button>
-                <div class="accordion-content">
-                    <div class="accordion-inner-padding">
-                        <p>水晶的物質起源於地殼深處。當富含二氧化矽的岩漿冷卻，或是地下熱液滲入岩石縫隙，在<b>極端的高溫與穩定的壓力</b>下，矽原子與氧原子開始精準地排列。這是一個漫長的等待，往往需要數百萬年甚至上億年，才能在黑暗中緩慢長成晶瑩剔透的晶體結構。</p>
+            <div class="accordion-item item-1 active">
+                <div class="accordion-main">
+                    <button class="accordion-header">
+                        <h3>1. 🌋 地心孕育</h3>
+                        <span>▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-inner-padding">
+                            <p>水晶的物質起源於地殼深處。當富含二氧化矽的岩漿冷卻，或是地下熱液滲入岩石縫隙，在<b>極端的高溫與穩定的壓力</b>下，矽原子與氧原子開始精準地排列。這是一個漫長的等待，往往需要數百萬年甚至上億年，才能在黑暗中緩慢長成晶瑩剔透的晶體結構。</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="accordion-item theme-2">
-                <button class="accordion-header">
-                    <h3>2. 🏛️ 文明初見：遠古祖先的崇敬</h3>
-                    <span>▼</span>
-                </button>
-                <div class="accordion-content">
-                    <div class="accordion-inner-padding">
-                        <p>人類對水晶的運用可追溯至石器時代。<b>古埃及人</b>將青金石與紅玉髓鑲嵌在法老的飾品中以祈求保護；<b>瑪雅文明</b>視水晶為大地的眼睛，能洞察未來。對遠古祖先而言，這些在土裡發現的「不化的冰塊」是神靈賜予的禮物，是人類最早接觸到的神聖幾何物件。</p>
+            <div class="accordion-item item-2">
+                <div class="accordion-main">
+                    <button class="accordion-header">
+                        <h3>2. 🏛️ 文明初見</h3>
+                        <span>▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-inner-padding">
+                            <p>人類對水晶的運用可追溯至石器時代。<b>古埃及人</b>將青金石與紅玉髓鑲嵌在法老的飾品中以祈求保護；<b>瑪雅文明</b>視水晶為大地的眼睛，能洞察未來。對遠古祖先而言，這些在土裡發現的「不化的冰塊」是神靈賜予的禮物。</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="accordion-item theme-3">
-                <button class="accordion-header">
-                    <h3>3. 📜 神話起源：諸神與大地的眼淚</h3>
-                    <span>▼</span>
-                </button>
-                <div class="accordion-content">
-                    <div class="accordion-inner-padding">
-                        <p>在希臘神話中，「水晶」(Krystallos) 意為冰。相傳紫水晶是由酒神戴歐尼修斯的悔恨與女神阿提米絲的守護演變而來。而在<b>亞特蘭提斯的傳說</b>中，巨大的水晶柱被認為是文明的能源中心。這些故事雖然魔幻，卻賦予了水晶跨越物理層面、連結集體潛意識的靈性歷史。</p>
+            <div class="accordion-item item-3">
+                <div class="accordion-main">
+                    <button class="accordion-header">
+                        <h3>3. 📜 神話起源</h3>
+                        <span>▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-inner-padding">
+                            <p>在希臘神話中，「水晶」意為冰。相傳紫水晶是由酒神戴歐尼修斯的悔恨與女神阿提米絲的守護演變而來。而在<b>亞特蘭提斯的傳說</b>中，巨大的水晶柱被認為是文明的能源中心。賦予了水晶跨越物理層面的靈性歷史。</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="accordion-item theme-4">
-                <button class="accordion-header">
-                    <h3>4. ⚡ 頻率之源：宇宙振動的儲存器</h3>
-                    <span>▼</span>
-                </button>
-                <div class="accordion-content">
-                    <div class="accordion-inner-padding">
-                        <p>從科學視角看，水晶起源於「秩序」。其穩定的<b>晶格結構</b>使其具備壓電效應，能將機械能轉化為電信號。這種特性讓水晶成為天然的頻率放大器。它吸收了地球磁場長達萬年的振動，並將這股穩定的原始能量儲存其中，成為我們調節身心頻率的精密工具。</p>
+            <div class="accordion-item item-4">
+                <div class="accordion-main">
+                    <button class="accordion-header">
+                        <h3>4. ⚡ 頻率之源</h3>
+                        <span>▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-inner-padding">
+                            <p>從科學視角看，水晶起源於「秩序」。其穩定的<b>晶格結構</b>使其具備壓電效應。它吸收了地球磁場長達萬年的振動，並將這股穩定的原始能量儲存其中，成為我們調節身心頻率的精密工具。</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="accordion-item theme-5">
-                <button class="accordion-header">
-                    <h3>5. 🧘 靈魂回歸：從地質標本到生命夥伴</h3>
-                    <span>▼</span>
-                </button>
-                <div class="accordion-content">
-                    <div class="accordion-inner-padding">
-                        <p>在當代社會，水晶的起源意義演變成了<b>「回歸自然」</b>的象徵。當現代人對水泥叢林感到疲憊時，這些源自地心深處、保有原始純粹頻率的礦石，幫助我們重新連結地球的根基。從博物館的陳列架走進人們的冥想空間，水晶完成了從物質奇蹟到身心夥伴的轉化之旅。</p>
+            <div class="accordion-item item-5">
+                <div class="accordion-main">
+                    <button class="accordion-header">
+                        <h3>5. 🧘 靈魂回歸</h3>
+                        <span>▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-inner-padding">
+                            <p>在當代社會，水晶的起源意義演變成了<b>「回歸自然」</b>的象徵。當現代人對水泥叢林感到疲憊時，這些源自地心深處、保有原始純粹頻率的礦石，幫助我們重新連結地球的根基。完成從物質奇蹟到身心夥伴的轉化之旅。</p>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </main>
 
     <footer class="main-footer">
-        <p>&copy; 2026 CrystalMagic 水晶魔法 版權所有</p>
+        <p>&copy; 2026 CrystalMagic 版權所有</p>
     </footer>
 
-    <script>
-        // 手風琴互動邏輯
-        document.querySelectorAll('.accordion-header').forEach(button => {
-            button.addEventListener('click', () => {
-                const currentItem = button.parentElement;
-                const isActive = currentItem.classList.contains('active');
-                
-                document.querySelectorAll('.accordion-item').forEach(item => {
-                    item.classList.remove('active');
-                });
-
-                if (!isActive) {
-                    currentItem.classList.add('active');
-                }
-            });
-        });
-
-        // 魔法守護腳本
-        document.addEventListener('contextmenu', function (e) {
-            e.preventDefault();
-            alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
-        }, false);
-
-        document.onkeydown = function (e) {
-            if (e.keyCode === 123 || 
-                (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || 
-                (e.ctrlKey && e.keyCode === 85) || 
-                (e.ctrlKey && e.keyCode === 83)) {
-                return false;
-            }
-        };
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
