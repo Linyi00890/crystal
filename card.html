@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>星座運勢水晶神諭 2026</title>
+    <title>極致奢華 | 星座運勢水晶神諭 2026</title>
     <style>
         :root {
             --gold: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
@@ -31,48 +31,40 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* 頂部導航 */
-        header { text-align: center; padding: 50px 20px 20px; }
+        header { text-align: center; padding: 40px 20px 10px; }
         h1 { 
             background: var(--gold);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size: 2.2rem; letter-spacing: 5px; margin: 0; 
+            font-size: 1.8rem; letter-spacing: 5px; margin: 0; 
             filter: drop-shadow(0 0 10px rgba(212,175,55,0.5));
         }
-        .date-display { color: #ccc; font-size: 0.9rem; margin-top: 10px; letter-spacing: 2px; }
 
-        /* 星座選擇區 - 玻璃擬態 */
         .zodiac-selector {
             margin: 20px 0;
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            padding: 20px 40px;
+            padding: 15px 30px;
             border-radius: 50px;
             border: 1px solid var(--glass-border);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
         select {
-            padding: 8px 20px;
-            border-radius: 20px;
-            background: rgba(255,255,255,0.9);
-            color: #333;
-            font-weight: bold;
-            border: none;
-            outline: none;
-            cursor: pointer;
+            padding: 5px 15px; border-radius: 20px; border: none; font-weight: bold; cursor: pointer;
         }
 
         /* 3D 卡牌舞台 */
         .card-stage {
             perspective: 1500px;
-            margin: 30px auto;
+            margin: 20px auto;
             cursor: pointer;
+            padding-bottom: 20px;
         }
 
         .card-inner {
-            width: 320px; height: 520px;
+            width: 320px;
+            min-height: 520px; /* 改為最小高度，讓它能隨內容增長 */
             position: relative;
             transform-style: preserve-3d;
             transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
@@ -80,58 +72,47 @@
 
         .card-inner.is-flipped { transform: rotateY(180deg); }
 
-        /* 卡片發光效果 */
-        .card-inner.is-flipped .card-front {
-            box-shadow: 0 0 50px rgba(212, 175, 55, 0.6);
-        }
-
         .card-face {
             position: absolute; width: 100%; height: 100%;
             backface-visibility: hidden;
             border-radius: 25px;
-            border: 2px solid transparent;
-            background-image: linear-gradient(#1a1a2e, #1a1a2e), var(--gold);
+            box-sizing: border-box;
+            /* 金色漸層邊框效果 */
+            border: 3px solid transparent;
+            background-image: linear-gradient(white, white), var(--gold);
             background-origin: border-box;
             background-clip: content-box, border-box;
         }
 
         /* 卡片背面 */
         .card-back {
+            background-image: linear-gradient(#1a1a2e, #1a1a2e), var(--gold);
             display: flex; align-items: center; justify-content: center;
-            overflow: hidden;
         }
-        .card-back::before {
-            content: "";
-            position: absolute; width: 150%; height: 150%;
-            background: conic-gradient(from 0deg, transparent, rgba(212,175,55,0.3), transparent);
-            animation: rotate 4s linear infinite;
-        }
-        @keyframes rotate { 100% { transform: rotate(360deg); } }
-        .card-back::after {
-            content: "✨"; font-size: 80px; z-index: 1;
-            filter: drop-shadow(0 0 20px var(--gold-solid));
-        }
+        .card-back::after { content: "✨"; font-size: 80px; filter: drop-shadow(0 0 20px var(--gold-solid)); }
 
         /* 卡片正面 */
         .card-front {
             background: #fff; color: #333;
             transform: rotateY(180deg);
-            padding: 25px; box-sizing: border-box;
+            padding: 20px;
             display: flex; flex-direction: column; align-items: center;
-            text-align: center;
+            height: auto;
+            position: relative;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
         }
 
         .crystal-img {
             width: 100%; height: 200px; border-radius: 15px;
             object-fit: cover; margin-bottom: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .res-name { font-size: 1.8rem; color: var(--mystic-purple); margin: 0; font-weight: 900; }
+        .res-name { font-size: 1.6rem; color: var(--mystic-purple); margin: 0; font-weight: 900; }
         .res-tag { 
             background: var(--mystic-purple); color: #fff; 
             padding: 4px 15px; border-radius: 20px; 
-            font-size: 0.85rem; margin: 10px 0; 
+            font-size: 0.8rem; margin: 8px 0; 
         }
 
         .info-grid {
@@ -139,48 +120,47 @@
             width: 100%; margin: 10px 0;
         }
         .info-item {
-            background: #f0f0f0; padding: 8px; border-radius: 10px;
-            font-size: 0.75rem; color: #666;
+            background: #f4f4f9; padding: 10px; border-radius: 12px;
+            font-size: 0.75rem; color: #666; text-align: center;
         }
-        .info-item b { display: block; color: var(--mystic-purple); font-size: 0.85rem; }
+        .info-item b { display: block; color: var(--mystic-purple); font-size: 0.85rem; margin-bottom: 2px; }
 
         .fortune-box {
-            background: #f9f9f9; border-radius: 15px; padding: 15px;
-            margin-top: 10px; font-size: 0.9rem; line-height: 1.6; color: #444;
-            border-left: 4px solid var(--gold-solid);
+            background: #fff9ea; border-radius: 15px; padding: 15px;
+            margin-top: 5px; font-size: 0.9rem; line-height: 1.6; color: #444;
+            border: 1px solid #faedcd; width: 100%; box-sizing: border-box;
         }
 
-        /* 按鈕與交互 */
         .reset-btn {
-            background: var(--gold); border: none; padding: 15px 40px;
+            background: var(--gold); border: none; padding: 12px 35px;
             border-radius: 50px; cursor: pointer; font-weight: bold;
-            color: #4a148c; margin-top: 20px; display: none;
-            transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            color: #4a148c; margin: 20px 0; display: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
-        .reset-btn:hover { transform: scale(1.05); filter: brightness(1.1); }
 
         .nav-container {
-            position: fixed; bottom: 30px; width: 100%;
+            position: fixed; bottom: 20px; width: 100%;
             display: flex; justify-content: space-between;
-            padding: 0 30px; box-sizing: border-box; pointer-events: none;
+            padding: 0 20px; box-sizing: border-box; pointer-events: none;
         }
-        .nav-group { display: flex; gap: 15px; pointer-events: auto; }
+        .nav-group { display: flex; gap: 10px; pointer-events: auto; }
         .btn {
-            padding: 12px 20px; background: rgba(255,255,255,0.15); 
+            padding: 10px 15px; background: rgba(255,255,255,0.1); 
             backdrop-filter: blur(5px); color: #fff;
-            text-decoration: none; border-radius: 30px; font-weight: bold; font-size: 0.85rem;
-            border: 1px solid var(--glass-border); transition: 0.3s;
+            text-decoration: none; border-radius: 30px; font-size: 0.75rem;
+            border: 1px solid var(--glass-border);
         }
-        .btn:hover { background: rgba(255,255,255,0.3); }
 
-        @media (max-width: 480px) { .card-inner { width: 300px; height: 500px; } }
+        @media (max-width: 480px) {
+            .card-inner { width: 290px; }
+            h1 { font-size: 1.5rem; }
+        }
     </style>
 </head>
 <body>
 
 <header>
     <h1>水晶神諭．2026</h1>
-    <div class="date-display" id="currentDate"></div>
 </header>
 
 <div class="zodiac-selector">
@@ -208,7 +188,7 @@
             </div>
 
             <div class="fortune-box">
-                <div style="font-weight: bold; color: #d4af37; margin-bottom: 5px;" id="resLuck"></div>
+                <div style="font-weight: bold; color: #b38728; margin-bottom: 5px; text-align:center;" id="resLuck"></div>
                 <div id="resFortune"></div>
             </div>
         </div>
@@ -219,16 +199,17 @@
 
 <div class="nav-container">
     <div class="nav-group">
-        <a href="#" class="btn">⬅️ 返回</a>
-        <a href="#" class="btn">🏠 首頁</a>
+        <a href="quiz.html" class="btn">⬅️ 返回</a>
+        <a href="index.html" class="btn">🏠 首頁</a>
     </div>
     <div class="nav-group">
-        <a href="#" class="btn">🔮 MBTI</a>
+        <a href="mbti.html" class="btn">🔮 MBTI</a>
     </div>
 </div>
 
 <script>
     const crystals = [
+        { name: "天河石", tag: "幸運自信", chakra: "喉輪", color: "青藍色", img: "https://images.unsplash.com/photo-1603510520630-1b9da88b1b59?w=500", desc: "又稱信心之石，幫助人在投機中獲勝，舒緩緊張情緒。" },
         { name: "紫水晶", tag: "靈性守護", chakra: "頂輪", color: "紫色", img: "https://images.unsplash.com/photo-1523467136207-640bf076639e?w=500", desc: "提升直覺與智慧，幫助你在複雜的局勢中保持清明。" },
         { name: "粉水晶", tag: "溫柔愛意", chakra: "心輪", color: "粉紅色", img: "https://images.unsplash.com/photo-1567883111025-063a43627448?w=500", desc: "修復內心創傷，吸引良好的人緣與純粹的愛情能量。" },
         { name: "鈦晶", tag: "財富霸氣", chakra: "太陽神經叢", color: "金色", img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500", desc: "強化信心與決斷力，是事業突破與招財的最強助力。" },
@@ -257,8 +238,7 @@
         { name: "黑髮晶", tag: "領袖魅力", chakra: "海底輪", color: "黑髮狀", img: "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=500", desc: "極強的辟邪除穢能力，助你提升領導能力，避開不潔之物。" },
         { name: "蛋白石", tag: "藝術靈感", chakra: "頂輪", color: "幻彩", img: "https://images.unsplash.com/photo-1605559911160-a3d95d213904?w=500", desc: "激發無限的想像力與創造力，讓你在藝術或寫作中突破自我。" },
         { name: "紫龍晶", tag: "轉化心靈", chakra: "頂輪", color: "紫色紋理", img: "https://images.unsplash.com/photo-1612041761408-01309f4039cc?w=500", desc: "幫助面對恐懼，將負面轉化為正面，適合靈性修行與沈思。" },
-        { name: "石榴石", tag: "氣血守護", chakra: "海底輪", color: "深紅色", img: "https://images.unsplash.com/photo-1596541223130-5d31a73fb6c6?w=500", desc: "美容養顏，對抗疲勞，讓整個人容光煥發，增加親和力。" },
-        { name: "綠髮晶", tag: "事業好運", chakra: "心輪", color: "綠髮狀", img: "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=500", desc: "象徵財富與權力，特別助於職場晉升與業務開發。" }
+        { name: "石榴石", tag: "氣血守護", chakra: "海底輪", color: "深紅色", img: "https://images.unsplash.com/photo-1596541223130-5d31a73fb6c6?w=500", desc: "美容養顏，對抗疲勞，讓整個人容光煥發，增加親和力。" }
     ];
 
     const fortuneTexts = [
@@ -269,8 +249,6 @@
         "這是一個修復關係的好時機，主動溝通吧。"
     ];
 
-    document.getElementById('currentDate').innerText = new Date().toLocaleDateString() + " 星象觀測中";
-
     let isDrawing = false;
 
     function drawCard() {
@@ -279,9 +257,8 @@
 
         const crystal = crystals[Math.floor(Math.random() * crystals.length)];
         const fortune = fortuneTexts[Math.floor(Math.random() * fortuneTexts.length)];
-        const starCount = Math.floor(Math.random() * 2) + 4;
+        const starCount = 5;
 
-        // 數據填充
         document.getElementById('resImg').src = crystal.img;
         document.getElementById('resName').innerText = crystal.name;
         document.getElementById('resTag').innerText = "✦ " + crystal.tag + " ✦";
@@ -290,7 +267,6 @@
         document.getElementById('resLuck').innerText = "能量指數：" + "⭐".repeat(starCount);
         document.getElementById('resFortune').innerText = fortune + " " + crystal.desc;
 
-        // 翻牌
         document.getElementById('card').classList.add('is-flipped');
         setTimeout(() => {
             document.getElementById('resetBtn').style.display = 'inline-block';
@@ -302,8 +278,6 @@
         document.getElementById('resetBtn').style.display = 'none';
         setTimeout(() => { isDrawing = false; }, 800);
     }
-
-    document.addEventListener('contextmenu', e => e.preventDefault());
 </script>
 
 </body>
