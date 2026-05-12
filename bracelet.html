@@ -7,16 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="bracelet.css">
-    <!-- 高級防護：禁止選取與圖片拖拽 -->
-    <style>
-        body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
-        img { -webkit-user-drag: none; pointer-events: none; }
-        .image-container img { pointer-events: auto; }
-    </style>
 </head>
 <body oncontextmenu="return false" onselectstart="return false">
 
-<!-- 頂部促銷列 -->
+<!-- 頂部閃購列 -->
 <div class="urgent-sale-bar">
     <p>🔥 限時閃購：全館滿額 NT$2,000 享 88 折，剩餘時間：<span id="countdown">08:00:00</span></p>
 </div>
@@ -29,7 +23,7 @@
     </nav>
 </header>
 
-<!-- 右下角雙懸浮按鈕：收藏夾與購物車 -->
+<!-- 右下角懸浮按鈕組 -->
 <div class="float-action-group">
     <a href="javascript:void(0)" class="float-btn wish-float" onclick="openWishlist()">
         <i class="fas fa-heart"></i>
@@ -42,9 +36,8 @@
 </div>
 
 <main>
-    <!-- 英雄區 -->
+    <!-- 封面圖區塊 -->
     <section class="hero-banner">
-        <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>喚醒您的內在能量</h1>
             <p>每一顆礦石都承載大地的脈動，尋找專屬於您的頻率。</p>
@@ -52,7 +45,7 @@
         </div>
     </section>
 
-    <!-- 篩選區 -->
+    <!-- 能量過濾選單 -->
     <section class="filter-wrapper">
         <div class="filter-container">
             <div class="filter-group">
@@ -69,17 +62,15 @@
         </div>
     </section>
 
-    <!-- 商品網格 -->
+    <!-- 商品顯示區 -->
     <section class="product-grid" id="productGrid"></section>
 </main>
 
-<!-- 核心彈窗容器 (收藏、購物車、預覽共用) -->
+<!-- 共通 Modal 彈窗 -->
 <div id="commonModal" class="modal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeModal()">&times;</span>
-        <div id="modalBodyContent">
-            <!-- 這裡的內容會由 JS 動態生成 -->
-        </div>
+        <div id="modalBodyContent"></div>
     </div>
 </div>
 
