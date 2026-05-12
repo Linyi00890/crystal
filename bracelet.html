@@ -3,77 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrystalMagic | 頂級能量水晶館</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>CrystalLight | 輕珠寶能量美學</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="bracelet.css">
 </head>
-<body oncontextmenu="return false" onselectstart="return false">
+<body oncontextmenu="return false">
 
-<!-- 頂部閃購列 -->
-<div class="urgent-sale-bar">
-    <p>✨ 尊榮禮遇：全館消費滿 NT$5,000 享精品級包裝，結帳輸入「VIP88」享限時優惠</p>
+<!-- Toast 訊息通知容器 -->
+<div id="toast-container"></div>
+
+<div class="top-announcement">
+    ✨ 新開幕慶！全館滿 NT$999 免運，加入會員再享 9 折優惠 ✨
 </div>
 
-<!-- 導航欄 -->
-<header class="main-header">
-    <a href="index.html" class="logo">🔮 CrystalMagic</a>
-    <nav class="nav-links">
-        <a href="javascript:void(0)" class="nav-button" onclick="openCheckout()">結帳清單</a>
-    </nav>
+<header class="minimal-header">
+    <a href="index.html" class="brand-logo">CrystalLight</a>
 </header>
 
-<!-- 右下角懸浮按鈕組 -->
-<div class="float-action-group">
-    <a href="javascript:void(0)" class="float-btn wish-float" onclick="openWishlist()">
+<!-- 右下角懸浮控制中心 -->
+<div class="floating-hub">
+    <button class="hub-btn wish" onclick="openWishlist()" title="我的收藏">
         <i class="fas fa-heart"></i>
-        <span class="count-badge" id="wishCount">0</span>
-    </a>
-    <a href="javascript:void(0)" class="float-btn cart-float" onclick="openCheckout()">
-        <i class="fas fa-shopping-bag"></i>
-        <span class="count-badge" id="cartCount">0</span>
-    </a>
+        <span class="hub-badge" id="wishCount">0</span>
+    </button>
+    <button class="hub-btn cart" onclick="openCheckout()" title="購物車">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="hub-badge" id="cartCount">0</span>
+    </button>
 </div>
 
 <main>
-    <!-- 封面圖區塊 -->
-    <section class="hero-banner">
-        <div class="hero-content">
-            <h1>典藏級能量水晶</h1>
-            <p>精選全球優質礦源，為您媒合專屬的高頻能量場。</p>
-            <a href="#productGrid" class="shop-now-btn">品味全系列</a>
+    <section class="store-hero">
+        <div class="hero-text">
+            <h2>日常裡的能量美學</h2>
+            <p>親民價格，點綴您的每一天</p>
         </div>
     </section>
 
-    <!-- 能量過濾選單 -->
-    <section class="filter-wrapper">
-        <div class="filter-group">
-            <i class="fas fa-magic"></i>
-            <select id="effect-filter" onchange="renderProducts()">
-                <option value="all">✨ 所有能量鑑定</option>
-                <option value="love">❤ 桃花人緣</option>
-                <option value="wealth">💰 財富事業</option>
-                <option value="wisdom">🧠 靈性智慧</option>
-                <option value="protection">🛡 守護避邪</option>
-                <option value="health">🌿 身心療癒</option>
-            </select>
+    <!-- 增強型控制面板 -->
+    <section class="control-panel">
+        <div class="filter-wrapper">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="搜尋商品名稱..." oninput="renderProducts()">
+            </div>
+            <div class="filter-group">
+                <div class="select-box">
+                    <label>能量分類</label>
+                    <select id="effect-filter" onchange="renderProducts()">
+                        <option value="all">全部能量</option>
+                        <option value="love">❤ 桃花人緣</option>
+                        <option value="wealth">💰 財富事業</option>
+                        <option value="wisdom">🧠 靈性智慧</option>
+                        <option value="protection">🛡 守護避邪</option>
+                    </select>
+                </div>
+                <div class="select-box">
+                    <label>色系挑選</label>
+                    <select id="color-filter" onchange="renderProducts()">
+                        <option value="all">所有顏色</option>
+                        <option value="pink">浪漫粉</option>
+                        <option value="yellow">活力黃</option>
+                        <option value="blue">靜謐藍</option>
+                        <option value="black">經典黑</option>
+                        <option value="purple">神秘紫</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- 商品顯示區 -->
-    <section class="product-grid" id="productGrid"></section>
+    <div class="product-grid" id="productGrid"></div>
 </main>
 
-<!-- 共通 Modal 彈窗 (結帳/預覽/收藏) -->
-<div id="commonModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="closeModal()">&times;</span>
-        <div id="modalBodyContent"></div>
+<!-- 模組化彈窗 -->
+<div id="commonModal" class="modal-overlay">
+    <div class="modal-window">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        <div id="modalContent"></div>
     </div>
 </div>
 
-<footer class="footer-bottom">
-    &copy; 2026 CrystalMagic Premium Jewelry. 版權所有。
+<footer class="site-footer">
+    <div class="footer-links">
+        <span>配送說明</span> | <span>水晶淨化</span> | <span>關於我們</span>
+    </div>
+    <p>&copy; 2026 CrystalLight Jewelry Co. 讓光芒與你隨行</p>
 </footer>
 
 <script src="bracelet.js"></script>
