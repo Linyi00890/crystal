@@ -278,6 +278,23 @@
         document.getElementById('resetBtn').style.display = 'none';
         setTimeout(() => { isDrawing = false; }, 800);
     }
+
+    // --- 魔法守護腳本 (全域執行) ---
+document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+    alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
+}, false);
+
+document.onkeydown = function (e) {
+    // 禁用 F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S
+    if (e.keyCode === 123 || 
+        (e.ctrlKey && e.shiftKey && e.keyCode === 73) || 
+        (e.ctrlKey && e.shiftKey && e.keyCode === 74) || 
+        (e.ctrlKey && e.keyCode === 85) || 
+        (e.ctrlKey && e.keyCode === 83)) {
+        return false;
+    }
+};
 </script>
 
 </body>
