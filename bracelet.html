@@ -3,604 +3,374 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bracelet | 精緻水晶飾品</title>
+    <title>BRACELET | 晶石之美 - 天然水晶飾品專賣</title>
     <style>
         :root {
-            --primary-gold: #d4af37;
-            --rose-gold: #e5b3a3; /* 適合水晶的柔和色調 */
-            --soft-purple: #f3e5f5;
-            --dark-gray: #4a4a4a;
-            --white: #ffffff;
-            --accent-red: #ff5a5f;
-            --crystal-border: rgba(229, 179, 163, 0.4);
+            --primary-gold: #c5a059;
+            --rose-gold: #e5b3a3;
+            --soft-bg: #fffbfb;
+            --text-dark: #3a3a3a;
+            --accent-red: #d9534f;
+            --border-light: rgba(197, 160, 89, 0.2);
         }
 
         body {
-            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+            font-family: "PingFang TC", "Microsoft JhengHei", "Malgun Gothic", sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #fffafb; /* 淡淡的粉底色 */
-            color: var(--dark-gray);
-            user-select: none;
+            background-color: var(--soft-bg);
+            color: var(--text-dark);
+            user-select: none; /* 禁止選取保護代碼 */
         }
 
-        /* 1. 頂部公告 */
-        .announcement-bar {
-            background: linear-gradient(90deg, #d4af37, #e5b3a3);
+        /* 1. 頂部公告與語言切換 */
+        .top-bar {
+            background: linear-gradient(90deg, #b8924a, #d4af37);
             color: white;
-            text-align: center;
-            padding: 10px 0;
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 1px;
+            padding: 8px 5%;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        header {
+        .lang-selector select {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 4px;
+            padding: 2px 5px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        /* 2. 主導航欄 (Logo & 選單) */
+        nav {
             background: white;
-            padding: 30px 20px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(229, 179, 163, 0.1);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
         }
 
-        h1 {
-            font-weight: 300;
-            letter-spacing: 5px;
-            margin-bottom: 20px;
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 3px;
             color: var(--primary-gold);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
         }
 
-        /* 2. 美化下拉選單 */
-        .filter-container select {
-            padding: 10px 20px;
-            border: 1px solid var(--rose-gold);
-            border-radius: 25px;
-            margin: 5px;
+        .logo span {
+            font-size: 14px;
+            margin-left: 10px;
+            color: #999;
+            font-weight: normal;
+        }
+
+        /* 3. 精美下拉選單 */
+        .filter-section {
+            padding: 30px 5%;
+            text-align: center;
             background: white;
-            color: var(--dark-gray);
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .custom-select {
+            display: inline-block;
+            margin: 10px;
+            position: relative;
+        }
+
+        .custom-select select {
+            appearance: none;
+            padding: 12px 40px 12px 20px;
+            border: 2px solid var(--border-light);
+            border-radius: 50px;
+            background: white;
+            color: var(--text-dark);
+            font-size: 15px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: 0.3s;
+            min-width: 180px;
         }
 
-        .filter-container select:hover {
-            background: var(--soft-purple);
+        .custom-select select:hover {
+            border-color: var(--primary-gold);
+            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.1);
         }
 
-        /* 顏色選單特定顏色 */
-        option[value="pink"] { color: #ffb6c1; }
-        option[value="purple"] { color: #9370db; }
-        option[value="yellow"] { color: #ffd700; }
-        option[value="black"] { color: #000000; }
+        .custom-select::after {
+            content: '▼';
+            font-size: 12px;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-gold);
+            pointer-events: none;
+        }
 
-        /* 3. 商品網格與外框修改 */
-        .product-grid {
+        /* 4. 商品卡片樣式 */
+        .container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 35px;
+            gap: 40px;
             padding: 50px 8%;
         }
 
-        .product-card {
+        .card {
             background: white;
-            border-radius: 15px;
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
             overflow: hidden;
             position: relative;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            /* 修改後的水晶風格邊框 */
-            border: 1.5px solid var(--crystal-border);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            transition: all 0.5s ease;
         }
 
-        .product-card:hover {
-            transform: translateY(-10px);
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(197, 160, 89, 0.15);
             border-color: var(--primary-gold);
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.15);
         }
 
-        .product-image {
-            width: 100%;
-            height: 280px;
-            background: linear-gradient(45deg, #fdfbfb 0%, #ebedee 100%);
+        .card-img {
+            height: 300px;
+            background: #fdfdfd;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--rose-gold);
+            color: #ccc;
             font-style: italic;
         }
 
-        .badge {
+        .hot-tag {
             position: absolute;
             top: 15px;
             left: 15px;
-            background: rgba(212, 175, 55, 0.9);
+            background: var(--accent-red);
             color: white;
-            padding: 4px 12px;
-            font-size: 11px;
-            border-radius: 3px;
-            z-index: 10;
+            padding: 5px 15px;
+            font-size: 12px;
+            border-radius: 50px;
+            font-weight: bold;
         }
 
-        .product-info {
-            padding: 20px;
+        .card-body {
+            padding: 25px;
             text-align: center;
         }
 
-        .product-name {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 10px;
+        .card-title {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #222;
         }
 
-        .price {
+        .card-price {
+            font-size: 22px;
             color: var(--primary-gold);
-            font-size: 20px;
             font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .stock-label {
-            font-size: 12px;
-            background: #fff5f5;
-            color: var(--accent-red);
-            padding: 2px 8px;
-            border-radius: 10px;
-            display: inline-block;
             margin-bottom: 15px;
         }
 
-        /* 按鈕組 */
-        .btn-group {
+        .card-stock {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .btn-box {
             display: flex;
             gap: 10px;
         }
 
-        .btn-add {
+        .btn {
             flex: 1;
-            padding: 10px;
-            border-radius: 5px;
+            padding: 12px;
+            border-radius: 10px;
             border: 1px solid var(--primary-gold);
             background: white;
             color: var(--primary-gold);
             cursor: pointer;
-            font-size: 13px;
+            font-size: 14px;
             transition: 0.3s;
         }
 
-        .btn-add:hover {
+        .btn:hover {
             background: var(--primary-gold);
             color: white;
         }
 
-        /* 4. 右下角懸浮按鈕與計數器 */
-        .floating-menu {
+        /* 5. 右下角懸浮按鈕 */
+        .fixed-actions {
             position: fixed;
             bottom: 40px;
-            right: 40px;
+            right: 30px;
             display: flex;
             flex-direction: column;
             gap: 15px;
-            z-index: 1000;
+            z-index: 9999;
         }
 
-        .float-btn {
+        .action-circle {
             width: 60px;
             height: 60px;
-            border-radius: 50%;
             background: white;
-            border: 1px solid var(--rose-gold);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            cursor: pointer;
-            position: relative;
-            font-size: 24px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            cursor: pointer;
+            border: 1px solid var(--rose-gold);
+            position: relative;
+            font-size: 22px;
             transition: 0.3s;
         }
 
-        .float-btn:hover {
+        .action-circle:hover {
+            background: var(--soft-bg);
             transform: scale(1.1);
-            background: var(--soft-purple);
         }
 
-        .counter-badge {
+        .count-dot {
             position: absolute;
-            top: 0;
-            right: 0;
+            top: 2px;
+            right: 2px;
             background: var(--accent-red);
             color: white;
-            font-size: 12px;
-            width: 20px;
-            height: 20px;
+            font-size: 11px;
+            min-width: 18px;
+            height: 18px;
             border-radius: 50%;
-            display: none; /* 有數據時顯示 */
+            display: none;
             align-items: center;
             justify-content: center;
+            font-weight: bold;
         }
-
     </style>
 </head>
 <body oncontextmenu="return false;">
 
-    <div class="announcement-bar">
-        💎 天然能量水晶專賣 | 全館消費滿 NT$1,200 免運費 💎
-    </div>
-
-    <header>
-        <h1>BRACELET</h1>
-        <div class="filter-container">
-            <select id="effect-filter">
-                <option value="">按功效篩選</option>
-                <option value="1">招正財 / 偏財</option>
-                <option value="2">守護愛情 / 桃花</option>
-                <option value="3">辟邪保平安</option>
-                <option value="4">提升智慧 / 學業</option>
-            </select>
-            <select id="color-filter">
-                <option value="">按水晶顏色</option>
-                <option value="pink">浪漫粉色系</option>
-                <option value="purple">神祕紫色系</option>
-                <option value="yellow">富貴黃色系</option>
-                <option value="black">沈穩黑色系</option>
+    <!-- 頂部資訊欄 -->
+    <div class="top-bar">
+        <div>✨ 全館滿 NT$1,200 免運 | 加入會員首購享 9 折</div>
+        <div class="lang-selector">
+            <select onchange="alert('語系已切換：' + this.value)">
+                <option value="zh-TW">繁體中文</option>
+                <option value="zh-CN">简体中文</option>
+                <option value="en">English</option>
+                <option value="ko">한국어</option>
             </select>
         </div>
-    </header>
+    </div>
 
-    <main class="product-grid" id="product-container"></main>
+    <!-- 主導航欄 -->
+    <nav>
+        <a href="bracelet.html" class="logo">
+            BRACELET <span>晶石之美</span>
+        </a>
+    </nav>
 
-    <div class="floating-menu">
-        <button class="float-btn" id="wishlist-btn">
-            ❤️ <span class="counter-badge" id="wishlist-count">0</span>
-        </button>
-        <button class="float-btn" id="cart-btn">
-            🛒 <span class="counter-badge" id="cart-count">0</span>
-        </button>
+    <!-- 篩選區域 -->
+    <section class="filter-section">
+        <div class="custom-select">
+            <select>
+                <option value="">依照能量功效挑選</option>
+                <option value="1">招財進寶、事業成功</option>
+                <option value="2">甜蜜愛情、人際和諧</option>
+                <option value="3">守護避邪、磁場淨化</option>
+                <option value="4">舒緩情緒、安定身心</option>
+            </select>
+        </div>
+        <div class="custom-select">
+            <select>
+                <option value="">依照水晶色系挑選</option>
+                <option value="pink">浪漫粉色系 (愛與療癒)</option>
+                <option value="purple">高貴紫色系 (智慧靈性)</option>
+                <option value="yellow">明亮黃色系 (財富動力)</option>
+                <option value="black">沈穩黑色系 (守護能量)</option>
+                <option value="clear">純淨透明系 (淨化放大)</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- 商品展示區 -->
+    <main class="container" id="product-list"></main>
+
+    <!-- 懸浮按鈕 -->
+    <div class="fixed-actions">
+        <div class="action-circle" onclick="alert('進入收藏清單')">
+            ❤️ <span class="count-dot" id="fav-count">0</span>
+        </div>
+        <div class="action-circle" onclick="alert('進入結帳頁面')">
+            🛒 <span class="count-dot" id="cart-count">0</span>
+        </div>
     </div>
 
     <script>
-        // 商品清單 (35種)
-        const crystals = [
+        // 35種不重複水晶清單
+        const crystalNames = [
             "粉晶", "紫水晶", "黃水晶", "白水晶", "黑曜石", "鈦晶", "金髮晶", "草莓晶", "海藍寶", "月光石",
             "拉長石", "葡萄石", "綠幽靈", "天河石", "金運石", "黑尖晶", "藍磷灰", "太陽石", "螢石", "青金石",
             "櫻花瑪瑙", "彼得石", "紅紋石", "摩根石", "紫黃晶", "舒俱萊", "紅瑪瑙", "銀曜石", "茶晶", "虎眼石",
             "綠松石", "白松石", "紫龍晶", "彩虹眼曜石", "粉澳寶"
         ];
 
-        let cartCount = 0;
-        let wishlistCount = 0;
+        let countC = 0;
+        let countF = 0;
 
-        // 生成商品
-        const container = document.getElementById('product-container');
-        crystals.forEach((name, index) => {
-            const price = Math.floor(Math.random() * (1980 - 450 + 1)) + 450;
-            const stock = Math.floor(Math.random() * 10) + 1;
+        const list = document.getElementById('product-list');
+        crystalNames.forEach((name, i) => {
+            const price = Math.floor(Math.random() * (1680 - 390 + 1)) + 390;
+            const stock = Math.floor(Math.random() * 12) + 1;
+            
             const card = document.createElement('div');
-            card.className = 'product-card';
+            card.className = 'card';
             card.innerHTML = `
-                <div class="badge">BEST SELLER</div>
-                <div class="product-image">Crystal Image ${index + 1}</div>
-                <div class="product-info">
-                    <div class="product-name">天然 ${name} 手鍊</div>
-                    <div class="price">NT$ ${price}</div>
-                    <div class="stock-label">僅剩 ${stock} 件 - 售完不補</div>
-                    <div class="btn-group">
-                        <button class="btn-add" onclick="updateCount('wishlist')">收藏</button>
-                        <button class="btn-add" onclick="updateCount('cart')">加入購物車</button>
+                <div class="hot-tag">熱銷推薦</div>
+                <div class="card-img">水晶飾品圖片 - ${i+1}</div>
+                <div class="card-body">
+                    <div class="card-title">天然${name}設計飾品</div>
+                    <div class="card-price">NT$ ${price}</div>
+                    <div class="card-stock">限量剩餘：${stock} 件</div>
+                    <div class="btn-box">
+                        <button class="btn" onclick="add('f')">收藏</button>
+                        <button class="btn" onclick="add('c')">購物車</button>
                     </div>
                 </div>
             `;
-            container.appendChild(card);
+            list.appendChild(card);
         });
 
-        // 核心功能：更新購物車與收藏數量
-        function updateCount(type) {
-            if (type === 'cart') {
-                cartCount++;
-                const badge = document.getElementById('cart-count');
-                badge.innerText = cartCount;
-                badge.style.display = 'flex';
-                showToast("已加入購物車");
+        function add(type) {
+            if(type === 'c') {
+                countC++;
+                const d = document.getElementById('cart-count');
+                d.innerText = countC;
+                d.style.display = 'flex';
             } else {
-                wishlistCount++;
-                const badge = document.getElementById('wishlist-count');
-                badge.innerText = wishlistCount;
-                badge.style.display = 'flex';
-                showToast("已加入收藏清單");
+                countF++;
+                const d = document.getElementById('fav-count');
+                d.innerText = countF;
+                d.style.display = 'flex';
             }
         }
 
-        // 簡單的通知提示
-        function showToast(msg) {
-            console.log(msg); // 實際開發可加入浮動小窗
-        }
-
-        // 高級防護
+        // 高級防護腳本
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.onkeydown = e => {
-            if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) return false;
-        };
-    </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bracelet | 精品水晶飾品</title>
-    <style>
-        /* 全域樣式 */
-        :root {
-            --primary-gold: #c5a059;
-            --dark-gray: #333;
-            --light-gray: #f9f9f9;
-            --white: #ffffff;
-            --accent-red: #e74c3c;
-        }
-
-        body {
-            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--light-gray);
-            color: var(--dark-gray);
-            user-select: none; /* 禁止選取文字 */
-        }
-
-        /* 1. 頂部公告欄 */
-        .announcement-bar {
-            background-color: var(--dark-gray);
-            color: white;
-            text-align: center;
-            padding: 8px 0;
-            font-size: 14px;
-            letter-spacing: 1px;
-        }
-
-        /* 2. 導航導覽與篩選 */
-        header {
-            background: white;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .filter-container {
-            margin-top: 15px;
-        }
-
-        select {
-            padding: 8px 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin: 0 5px;
-            outline: none;
-            cursor: pointer;
-        }
-
-        /* 3. 商品網格佈局 */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-            padding: 40px 10%;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            transition: transform 0.3s ease;
-            border: 1px solid #eee;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 250px;
-            background: #eee; /* 預留圖片位置 */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            position: relative;
-        }
-
-        /* 熱銷小標題 */
-        .badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: var(--accent-red);
-            color: white;
-            padding: 3px 10px;
-            font-size: 12px;
-            border-radius: 20px;
-        }
-
-        .product-info {
-            padding: 15px;
-            text-align: center;
-        }
-
-        .product-name {
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        .price {
-            color: var(--primary-gold);
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .stock-info {
-            font-size: 12px;
-            color: #888;
-            margin-bottom: 15px;
-        }
-
-        /* 按鈕樣式 */
-        .btn-group {
-            display: flex;
-            gap: 5px;
-            justify-content: center;
-        }
-
-        .btn-action {
-            padding: 8px 12px;
-            border: 1px solid var(--dark-gray);
-            background: transparent;
-            cursor: pointer;
-            transition: 0.3s;
-            font-size: 13px;
-        }
-
-        .btn-action:hover {
-            background: var(--dark-gray);
-            color: white;
-        }
-
-        /* 4. 右下角懸浮按鈕 */
-        .floating-menu {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            z-index: 999;
-        }
-
-        .float-btn {
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            background: var(--white);
-            border: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            transition: 0.3s;
-        }
-
-        .float-btn:hover {
-            background: var(--primary-gold);
-            color: white;
-        }
-
-        /* 5. 禁止右鍵與代碼保護相關樣式 (隱藏滑鼠指針) */
-        /* 這邊僅作為範例，實際體驗通常不隱藏，但可透過JS限制 */
-    </style>
-</head>
-<body oncontextmenu="return false;">
-
-    <!-- 頂部公告 -->
-    <div class="announcement-bar">
-        ✨ 全館滿 $1,500 免運 | 加入會員首購享 9 折優惠 ✨
-    </div>
-
-    <!-- 導覽與篩選 -->
-    <header>
-        <h1>BRACELET CRYSTAL</h1>
-        <div class="filter-container">
-            <select id="effect-filter">
-                <option value="">選擇功效</option>
-                <option value="wealth">招財旺運</option>
-                <option value="love">感情桃花</option>
-                <option value="peace">辟邪平安</option>
-                <option value="health">健康療癒</option>
-            </select>
-            <select id="color-filter">
-                <option value="">選擇水晶顏色</option>
-                <option value="pink">粉色系</option>
-                <option value="purple">紫色系</option>
-                <option value="yellow">黃色系</option>
-                <option value="black">黑色系</option>
-                <option value="clear">透明系</option>
-            </select>
-        </div>
-    </header>
-
-    <!-- 商品列表 -->
-    <main class="product-grid" id="product-display">
-        <!-- 商品將由 JavaScript 自動生成 -->
-    </main>
-
-    <!-- 右下角懸浮功能 -->
-    <div class="floating-menu">
-        <button class="float-btn" title="查看收藏">❤️</button>
-        <button class="float-btn" title="查看購物車">🛒</button>
-    </div>
-
-    <script>
-        // 1. 30+ 水晶種類數據
-        const crystals = [
-            "粉晶", "紫水晶", "黃水晶", "白水晶", "黑曜石", 
-            "鈦晶", "金髮晶", "草莓晶", "海藍寶", "月光石",
-            "拉長石", "葡萄石", "綠幽靈", "天河石", "金運石",
-            "黑尖晶", "藍磷灰", "太陽石", "螢石", "青金石",
-            "櫻花瑪瑙", "彼得石", "紅紋石", "摩根石", "紫黃晶",
-            "舒俱萊", "紅瑪瑙", "銀曜石", "茶晶", "虎眼石",
-            "綠松石", "白松石", "紫龍晶", "彩虹眼曜石", "粉澳寶"
-        ];
-
-        const container = document.getElementById('product-display');
-
-        // 2. 自動生成商品卡片
-        crystals.forEach((name, index) => {
-            const price = Math.floor(Math.random() * (1980 - 390 + 1)) + 390;
-            const stock = Math.floor(Math.random() * 15) + 1;
-            const badgeText = index % 3 === 0 ? "HOT 熱銷" : (index % 5 === 0 ? "限量" : "");
-
-            const card = document.createElement('div');
-            card.className = 'product-card';
-            card.innerHTML = `
-                ${badgeText ? `<div class="badge">${badgeText}</div>` : ''}
-                <div class="product-image">水晶圖片展示 (ID: ${index+1})</div>
-                <div class="product-info">
-                    <div class="product-name">天然${name}設計款</div>
-                    <div class="price">NT$ ${price}</div>
-                    <div class="stock-info">庫存剩餘：${stock} 件</div>
-                    <div class="btn-group">
-                        <button class="btn-action" onclick="alert('已加入收藏')">收藏</button>
-                        <button class="btn-action" onclick="alert('已加入購物車')">加入購物車</button>
-                    </div>
-                </div>
-            `;
-            container.appendChild(card);
-        });
-
-        // 3. 高級防護：禁止右鍵、禁止 F12 檢查
-        document.addEventListener('contextmenu', event => event.preventDefault());
-
-        document.onkeydown = function(e) {
-            // 禁用 F12
-            if (e.keyCode == 123) return false;
-            // 禁用 Ctrl+Shift+I (檢查元件)
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 73) return false;
-            // 禁用 Ctrl+U (檢視原始碼)
-            if (e.ctrlKey && e.keyCode == 85) return false;
-        };
-
-        // 監測開發者工具是否打開 (簡易混淆)
-        setInterval(function() {
-            if (window.outerHeight - window.innerHeight > 200 || window.outerWidth - window.innerWidth > 200) {
-                document.body.innerHTML = "為了保護原創設計，禁止開啟開發者工具。";
+            if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73) || (e.ctrlKey && e.keyCode == 85)) {
+                return false;
             }
-        }, 1000);
+        };
     </script>
 </body>
 </html>
