@@ -3,394 +3,353 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRACELET | 頂級珠寶設計</title>
-    <!-- 引入極致美感字體 -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Noto+Sans+TC:wght@100;300;500&display=swap" rel="stylesheet">
+    <title>BRACELET | 頂級靈魂珠寶設計</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Inter:wght@100;300;400;600&family=Noto+Serif+TC:wght@300;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --p-gold: #b38b59; /* 磨砂金 */
-            --p-gold-light: #d4af37;
-            --p-dark: #121212;
-            --bg-soft: #faf9f6; /* 羊皮紙白 */
-            --glass: rgba(255, 255, 255, 0.85);
-            --serif: 'Cinzel', serif;
-            --sans: 'Montserrat', 'Noto Sans TC', sans-serif;
+            --gold: #bda67e;
+            --dark: #0f0f0f;
+            --light-grey: #f9f9f9;
+            --transition: cubic-bezier(0.23, 1, 0.32, 1);
+            --serif: 'Bodoni Moda', serif;
+            --sans: 'Inter', 'Noto Serif TC', sans-serif;
         }
 
-        /* 0. 基礎樣式與滾動條 */
-        * { box-sizing: border-box; }
-        body { 
-            font-family: var(--sans); margin: 0; background: var(--bg-soft); 
-            color: var(--p-dark); line-height: 1.6; overflow-x: hidden;
-        }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-thumb { background: var(--p-gold); border-radius: 10px; }
+        /* 基礎樣式 */
+        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--sans); margin: 0; background: #fff; color: var(--dark); overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* 1. 精品開場動畫 */
-        #loader { 
-            position: fixed; inset: 0; background: #fff; z-index: 10000; 
-            display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            transition: 1s cubic-bezier(0.7, 0, 0.3, 1);
+        /* 動態能量背景 */
+        .aura-container { position: fixed; inset: 0; z-index: -1; overflow: hidden; }
+        .aura-blob { 
+            position: absolute; width: 60vw; height: 60vw; 
+            background: radial-gradient(circle, rgba(189,166,126,0.08) 0%, rgba(255,255,255,0) 70%);
+            filter: blur(80px); border-radius: 50%; animation: move 25s infinite alternate; 
         }
-        .loader-logo { font-family: var(--serif); font-size: 32px; letter-spacing: 12px; color: var(--p-gold); animation: logo-fade 2s infinite; }
-        @keyframes logo-fade { 0%, 100% { opacity: 0.3; transform: scale(0.98); } 50% { opacity: 1; transform: scale(1); } }
+        @keyframes move { from { transform: translate(-10%, -10%); } to { transform: translate(30%, 20%); } }
 
-        /* 2. 奢華導航欄 */
+        /* 導航欄 */
         nav { 
-            position: sticky; top: 0; z-index: 2000; background: var(--glass);
-            backdrop-filter: blur(15px); padding: 15px 5%; border-bottom: 1px solid rgba(0,0,0,0.05);
+            position: fixed; top: 0; width: 100%; z-index: 5000; padding: 25px 5%;
             display: flex; justify-content: space-between; align-items: center;
+            transition: 0.5s var(--transition);
         }
-        .logo h1 { font-family: var(--serif); font-size: 26px; margin: 0; letter-spacing: 6px; color: var(--p-dark); font-weight: 700; }
-        .lang-select { border: none; background: transparent; font-size: 11px; letter-spacing: 1px; color: #888; cursor: pointer; text-transform: uppercase; }
+        nav.scrolled { background: rgba(255,255,255,0.9); backdrop-filter: blur(20px); padding: 15px 5%; border-bottom: 1px solid rgba(0,0,0,0.03); }
+        .logo { font-family: var(--serif); font-size: 28px; letter-spacing: 8px; font-weight: 700; color: inherit; text-decoration: none; }
 
-        /* 3. 專業篩選面板 */
-        .filter-hero { padding: 60px 5% 40px; text-align: center; }
-        .filter-hero h2 { font-family: var(--serif); font-weight: 400; letter-spacing: 4px; margin-bottom: 30px; }
-        .filter-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-        .filter-grid select { 
-            background: white; border: 1px solid #e0e0e0; padding: 12px 25px; 
-            font-size: 12px; letter-spacing: 1px; transition: 0.4s; color: #555;
-            appearance: none; min-width: 160px; text-align-last: center;
-        }
-        .filter-grid select:hover { border-color: var(--p-gold); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        /* 品牌故事區塊 */
+        .brand-story { padding: 120px 10%; text-align: center; margin-top: 80px; }
+        .brand-story h2 { font-family: var(--serif); font-size: clamp(24px, 4vw, 36px); margin-bottom: 30px; font-weight: 400; }
+        .brand-story p { max-width: 700px; margin: 0 auto; line-height: 2; letter-spacing: 1px; color: #666; font-weight: 300; }
 
-        /* 4. 商品卡片升級：微浮雕效果 */
-        .main-grid { 
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-            gap: 60px; padding: 20px 8% 100px; 
+        /* 商品格線 */
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 60px 30px; padding: 50px 8%; }
+        .item-card { position: relative; opacity: 0; transform: translateY(30px); transition: 1s var(--transition); }
+        .item-card.visible { opacity: 1; transform: translateY(0); }
+        .item-image { aspect-ratio: 4/5; background: var(--light-grey); overflow: hidden; position: relative; cursor: pointer; }
+        .item-image img { width: 100%; height: 100%; object-fit: cover; transition: 1.2s var(--transition); }
+        .item-card:hover .item-image img { transform: scale(1.08); }
+        .item-meta { margin-top: 20px; text-align: center; }
+        .item-meta h3 { font-family: var(--serif); font-size: 20px; font-weight: 400; margin: 10px 0; }
+        .quick-add { 
+            position: absolute; bottom: 20px; right: 20px; width: 45px; height: 45px;
+            background: var(--dark); color: white; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            opacity: 0; transform: translateY(10px); transition: 0.3s;
         }
-        .card { 
-            background: #fff; padding: 0; border: none; overflow: hidden; 
-            transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1); position: relative;
-            opacity: 0; transform: translateY(40px);
-        }
-        .card.show { opacity: 1; transform: translateY(0); }
-        .card:hover { transform: translateY(-10px); }
+        .item-card:hover .quick-add { opacity: 1; transform: translateY(0); }
 
-        .img-box { 
-            width: 100%; height: 380px; background: #fdfdfd; overflow: hidden; position: relative;
+        /* 購物車與結帳樣式 */
+        .cart-drawer { 
+            position: fixed; inset: 0 auto 0 100%; width: 100%; max-width: 450px; background: #fff; z-index: 6000;
+            box-shadow: -20px 0 50px rgba(0,0,0,0.05); transition: 0.5s var(--transition);
+            display: flex; flex-direction: column; padding: 40px;
         }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 1.2s; filter: contrast(95%); }
-        .card:hover .img-box img { transform: scale(1.1); filter: contrast(105%); }
-
-        /* 隱藏按鈕：滑入顯示 */
-        .card-actions { 
-            position: absolute; bottom: -60px; left: 0; width: 100%; height: 60px;
-            display: flex; transition: 0.4s ease;
-        }
-        .card:hover .card-actions { bottom: 0; }
-        .action-btn { 
-            flex: 1; border: none; font-size: 11px; letter-spacing: 2px; cursor: pointer; transition: 0.3s;
-        }
-        .btn-fav { background: #f8f8f8; color: #333; }
-        .btn-cart { background: var(--p-dark); color: #fff; }
-        .action-btn:hover { background: var(--p-gold); color: #fff; }
-
-        .info-box { padding: 25px 15px; text-align: center; }
-        .info-box .tag { font-size: 10px; color: var(--p-gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; display: block; }
-        .info-box h3 { font-size: 17px; font-weight: 400; margin: 10px 0; letter-spacing: 1px; }
-        .info-box .price { font-family: var(--serif); font-size: 20px; color: #444; }
-
-        /* 5. 側邊購物車與結帳 */
-        .sidebar { 
-            position: fixed; top: 0; right: -450px; width: 400px; height: 100%; 
-            background: #fff; z-index: 3000; box-shadow: -20px 0 50px rgba(0,0,0,0.1); 
-            transition: 0.5s cubic-bezier(0.7, 0, 0.3, 1); padding: 40px; display: flex; flex-direction: column;
-        }
-        .sidebar.open { right: 0; }
-        .side-header { border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 20px; display: flex; justify-content: space-between; }
-        .side-header h3 { font-family: var(--serif); letter-spacing: 3px; margin: 0; }
+        .cart-drawer.active { right: 0; }
         
-        .cart-item { display: flex; gap: 15px; margin-bottom: 20px; align-items: center; animation: fadeIn 0.5s forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+        .checkout-modal { 
+            position: fixed; inset: 0; background: #fff; z-index: 7000; 
+            display: none; padding: 5vh 8%; overflow-y: auto;
+        }
+        .checkout-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 80px; max-width: 1200px; margin: 0 auto; }
         
-        .checkout-bar { border-top: 1px solid #eee; padding-top: 25px; }
-        .total-row { display: flex; justify-content: space-between; font-size: 18px; font-family: var(--serif); margin-bottom: 25px; }
-        .gold-btn { 
-            width: 100%; padding: 18px; background: var(--p-dark); color: white; border: none; 
-            letter-spacing: 3px; font-weight: 600; cursor: pointer; transition: 0.3s;
+        .method-card { 
+            border: 1px solid #eee; padding: 20px; cursor: pointer; transition: 0.3s; border-radius: 4px;
         }
-        .gold-btn:hover { background: var(--p-gold); }
-
-        /* 6. 專業結帳彈窗 */
-        #checkout-modal { 
-            position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 4000; 
-            display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px);
-        }
-        .modal-body { 
-            background: #fff; width: 95%; max-width: 600px; padding: 50px; position: relative; 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-        }
-        .step-indicator { display: flex; justify-content: space-between; margin-bottom: 40px; font-size: 10px; color: #ccc; letter-spacing: 2px; }
-        .step-indicator .active { color: var(--p-gold); border-bottom: 1px solid var(--p-gold); padding-bottom: 5px; }
+        .method-card.active { border-color: var(--gold); background: #faf8f5; }
         
-        .input-group { margin-bottom: 25px; }
-        .input-group label { display: block; font-size: 11px; text-transform: uppercase; color: #999; margin-bottom: 8px; letter-spacing: 1px; }
-        .input-group input { width: 100%; padding: 15px; border: 1px solid #eee; background: #fafafa; font-family: var(--sans); outline: none; transition: 0.3s; }
-        .input-group input:focus { border-color: var(--p-gold); background: #fff; }
-
-        /* 7. 浮動按鈕 */
-        .fab-container { position: fixed; bottom: 40px; right: 40px; z-index: 2500; display: flex; flex-direction: column; gap: 20px; }
-        .fab { 
-            width: 65px; height: 65px; background: #fff; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; font-size: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08); cursor: pointer; transition: 0.4s; position: relative;
+        .input-box { margin-bottom: 25px; }
+        .input-box label { display: block; font-size: 11px; letter-spacing: 1px; color: var(--gold); margin-bottom: 8px; }
+        .input-box input, .input-box select { 
+            width: 100%; border: none; border-bottom: 1px solid #eee; padding: 12px 0; 
+            font-size: 15px; outline: none; transition: 0.3s; background: transparent;
         }
-        .fab:hover { background: var(--p-dark); color: #fff; transform: scale(1.1); }
-        .fab .badge { 
-            position: absolute; top: -5px; right: -5px; background: var(--p-gold); color: white; 
-            width: 22px; height: 22px; border-radius: 50%; font-size: 10px; display: none; align-items: center; justify-content: center;
+        .input-box input:focus { border-color: var(--dark); }
+
+        .btn-gold { 
+            background: var(--dark); color: white; border: none; padding: 20px; 
+            letter-spacing: 2px; cursor: pointer; transition: 0.3s; width: 100%;
+        }
+        .btn-gold:hover { background: var(--gold); }
+
+        .control-dot { 
+            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; 
+            background: var(--dark); color: white; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 4000;
+        }
+        .badge { position: absolute; top: 0; right: 0; background: var(--gold); font-size: 10px; width: 20px; height: 20px; border-radius: 50%; display: none; align-items: center; justify-content: center; }
+
+        @media (max-width: 768px) {
+            .checkout-grid { grid-template-columns: 1fr; }
+            .cart-drawer { max-width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 開場動畫 -->
-    <div id="loader">
-        <div class="loader-logo">BRACELET</div>
-        <div style="height: 1px; width: 100px; background: #eee; margin-top: 20px;">
-            <div id="progress" style="height: 100%; width: 0%; background: var(--p-gold); transition: 0.5s;"></div>
-        </div>
+    <div class="aura-container">
+        <div class="aura-blob"></div>
+        <div class="aura-blob" style="right:0; bottom:0; animation-delay:-12s;"></div>
     </div>
 
-    <nav>
-        <div class="logo"><h1>BRACELET</h1></div>
-        <select class="lang-select" onchange="changeLang(this.value)">
-            <option value="zh-TW">Traditional Chinese</option>
-            <option value="en">English</option>
-            <option value="ko">Korean</option>
-        </select>
+    <nav id="navbar">
+        <a href="#" class="logo">BRACELET</a>
+        <div style="font-size: 12px; letter-spacing: 2px;">COLLECTION 2026</div>
     </nav>
 
-    <header class="filter-hero">
-        <h2 id="t-hero-title">COLLECTION</h2>
-        <div class="filter-grid">
-            <select id="sel-eff"><option class="t-eff">SELECT EFFECT</option></select>
-            <select id="sel-col">
-                <option class="t-col">CRYSTAL COLOR</option>
-                <option value="white">Pure White</option>
-                <option value="black">Deep Black</option>
-                <option value="red">Passion Red</option>
-                <option value="yellow">Golden Yellow</option>
-                <option value="orange">Solar Orange</option>
-                <option value="green">Nature Green</option>
-                <option value="blue">Ocean Blue</option>
-                <option value="purple">Royal Purple</option>
-                <option value="pink">Soft Pink</option>
-                <option value="gold">Luxury Gold</option>
-                <option value="brown">Earth Brown</option>
-            </select>
-            <select id="sel-pri"><option class="t-pri">PRICE RANGE</option></select>
-        </div>
-    </header>
+    <section class="brand-story">
+        <p style="font-size: 11px; color: var(--gold); margin-bottom: 15px; letter-spacing: 3px;">THE ART OF ENERGY</p>
+        <h2>每一顆晶石，都在等待它的靈魂主人</h2>
+        <p>挑選世界各地最具生命力的天然原礦，透過職人之手注入意念。這不僅是飾品，更是您內在能量的延伸。</p>
+    </section>
 
-    <main class="main-grid" id="product-box"></main>
+    <main class="gallery" id="product-gallery"></main>
 
-    <div class="fab-container">
-        <div class="fab" onclick="alert('Added to Favorites')">♡<div class="badge" id="f-badge">0</div></div>
-        <div class="fab" onclick="toggleCart()">🛒<div class="badge" id="c-badge">0</div></div>
+    <div class="control-dot" onclick="toggleCart()">
+        🛒 <div class="badge" id="cart-badge">0</div>
     </div>
 
     <!-- 購物車抽屜 -->
-    <div id="cart-sidebar" class="sidebar">
-        <div class="side-header">
-            <h3 class="t-cart-title">SHOPPING BAG</h3>
-            <span style="cursor:pointer; font-size: 24px;" onclick="toggleCart()">✕</span>
+    <div class="cart-drawer" id="cart-drawer">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
+            <h3 style="font-family:var(--serif); font-size:24px; margin:0;">Shopping Bag</h3>
+            <span style="cursor:pointer; font-size:12px; letter-spacing:1px;" onclick="toggleCart()">CLOSE</span>
         </div>
-        <div style="flex:1; overflow-y:auto;" id="cart-list">
-            <!-- Items injected by JS -->
-        </div>
-        <div class="checkout-bar">
-            <div class="total-row">
-                <span class="t-total">TOTAL</span>
-                <span id="cart-total-price">NT$ 0</span>
+        <div id="cart-items-list" style="flex:1; overflow-y:auto;"></div>
+        <div style="border-top:1px solid #eee; padding-top:20px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
+                <span>Subtotal</span>
+                <span id="drawer-total">NT$ 0</span>
             </div>
-            <button class="gold-btn t-go-checkout" onclick="openCheckout()">PROCEED TO CHECKOUT</button>
+            <button class="btn-gold" onclick="openCheckout()">PROCEED TO CHECKOUT</button>
         </div>
     </div>
 
-    <!-- 專業結帳彈窗 -->
-    <div id="checkout-modal">
-        <div class="modal-body">
-            <span style="position:absolute; top:30px; right:30px; cursor:pointer;" onclick="closeCheckout()">✕</span>
-            <div class="step-indicator">
-                <span class="active">01 SHIPPING</span>
-                <span>02 PAYMENT</span>
-                <span>03 REVIEW</span>
+    <!-- 結帳頁面 -->
+    <div class="checkout-modal" id="checkout-modal">
+        <div style="margin-bottom:40px;"><span style="cursor:pointer; color:var(--gold); font-size:12px;" onclick="closeCheckout()">← RETURN TO BAG</span></div>
+        <div class="checkout-grid">
+            <div class="checkout-form">
+                <h2 style="font-family:var(--serif); font-size:32px; margin-bottom:40px;">Delivery Details</h2>
+                
+                <section class="input-box">
+                    <label>RECIPIENT NAME</label>
+                    <input type="text" id="order-name" placeholder="收件人姓名">
+                </section>
+
+                <section class="input-box">
+                    <label>PHONE NUMBER</label>
+                    <input type="tel" id="order-phone" placeholder="0912-345-678">
+                </section>
+
+                <section style="margin-bottom:40px;">
+                    <label style="font-size:11px; color:var(--gold); display:block; margin-bottom:15px;">SHIPPING METHOD</label>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
+                        <div class="method-card" id="m-home" onclick="setDelivery(event, 'home', 100)">
+                            <strong>宅急便</strong>
+                            <small>NT$ 100</small>
+                        </div>
+                        <div class="method-card" id="m-store" onclick="setDelivery(event, 'store', 60)">
+                            <strong>超商取貨</strong>
+                            <small>NT$ 60</small>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="input-box">
+                    <label id="addr-label">SHIPPING ADDRESS</label>
+                    <input type="text" id="order-addr" placeholder="完整地址或門市名稱">
+                </section>
+
+                <section class="input-box">
+                    <label>PAYMENT METHOD</label>
+                    <select id="pay-method">
+                        <option value="credit">信用卡在線支付</option>
+                        <option value="transfer">銀行轉帳</option>
+                        <option value="cod">貨到付款 (僅限超商)</option>
+                    </select>
+                </section>
+
+                <button class="btn-gold" style="margin-top:20px;" onclick="confirmPurchase()">COMPLETE ORDER</button>
             </div>
-            <h2 style="font-family: var(--serif); margin-bottom: 30px;" class="t-checkout-info">Shipping Details</h2>
-            <div class="input-group">
-                <label class="t-label-name">Full Name</label>
-                <input type="text" placeholder="e.g. Alexander Wang">
+
+            <div class="checkout-summary" style="background:var(--light-grey); padding:40px; border-radius:8px;">
+                <h3 style="font-family:var(--serif); margin-bottom:25px;">Summary</h3>
+                <div id="summary-items-list"></div>
+                <div style="border-top:1px solid #ddd; margin-top:20px; padding-top:20px;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:14px;">
+                        <span>Subtotal</span>
+                        <span id="sum-subtotal">NT$ 0</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:14px;">
+                        <span>Shipping</span>
+                        <span id="sum-shipping">NT$ 0</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; font-weight:700; font-size:18px; margin-top:15px;">
+                        <span>TOTAL</span>
+                        <span id="sum-total">NT$ 0</span>
+                    </div>
+                </div>
             </div>
-            <div class="input-group">
-                <label class="t-label-phone">Phone Number</label>
-                <input type="tel" placeholder="+886 912 345 678">
-            </div>
-            <div class="input-group">
-                <label class="t-label-addr">Shipping Address</label>
-                <input type="text" placeholder="Street, City, Postal Code">
-            </div>
-            <button class="gold-btn t-btn-submit" style="margin-top:20px;" onclick="confirmOrder()">PLACE ORDER</button>
         </div>
     </div>
 
     <script>
-        const i18n = {
-            "zh-TW": {
-                eff: "功效選擇", col: "色系篩選", pri: "價格搜尋",
-                wealth: "💰 招財事業 (Fortune)", love: "💕 桃花人緣 (Romance)", peace: "🛡️ 辟邪平安 (Protection)", heal: "🌿 情緒療癒 (Healing)",
-                low: "NT$ 1,500 以下", mid: "NT$ 1,500 - 3,000", high: "NT$ 3,000 以上",
-                btn_f: "收藏 FAVORITE", btn_c: "加入購物車 ADD TO BAG",
-                cart_title: "購物清單", total: "總計金額", go_checkout: "立即前往結帳",
-                checkout_info: "配送資訊", label_name: "收件人姓名", label_phone: "聯絡電話", label_addr: "收件地址", btn_submit: "確認並完成下單"
-            },
-            "en": {
-                eff: "SELECT EFFECT", col: "CRYSTAL COLOR", pri: "PRICE RANGE",
-                wealth: "💰 Fortune & Wealth", love: "💕 Love & Romance", peace: "🛡️ Protection", heal: "🌿 Soul Healing",
-                low: "Under NT$ 1,500", mid: "NT$ 1,500 - 3,000", high: "Over NT$ 3,000",
-                btn_f: "FAVORITE", btn_c: "ADD TO BAG",
-                cart_title: "SHOPPING BAG", total: "SUBTOTAL", go_checkout: "PROCEED TO CHECKOUT",
-                checkout_info: "SHIPPING DETAILS", label_name: "FULL NAME", label_phone: "PHONE", label_addr: "ADDRESS", btn_submit: "PLACE ORDER"
-            }
-            // 可在此繼續擴充韓國語等
-        };
-
         const products = [
-            {n:"金鈦晶", c:"gold", e:"wealth", p:5800, t:"Executive Luxury"},
-            {n:"頂級粉晶", c:"pink", e:"love", p:1200, t:"Romantic Energy"},
-            {n:"黑曜石", c:"black", e:"peace", p:980, t:"Ultimate Shield"},
-            {n:"拉長石", c:"blue", e:"heal", p:2200, t:"Mystic Insight"},
-            {n:"月光石", c:"white", e:"love", p:2800, t:"Feminine Grace"},
-            {n:"綠幽靈", c:"green", e:"wealth", p:3500, t:"Career Growth"},
-            {n:"紫水晶", c:"purple", e:"heal", p:1500, t:"Wisdom & Peace"},
-            {n:"紅瑪瑙", c:"red", e:"heal", p:880, t:"Vitality Pulse"}
+            { id: 1, name: "極境墨黑 | 曜石", price: 3200, tag: "ENERGY" },
+            { id: 2, name: "月光女神 | 拉長石", price: 4500, tag: "PURE" },
+            { id: 3, name: "鈦金之王 | 髮晶", price: 8800, tag: "WEALTH" },
+            { id: 4, name: "粉漾初衷 | 芙蓉晶", price: 2800, tag: "LOVE" }
         ];
 
-        let curLang = "zh-TW";
         let cart = [];
-        let fCount = 0;
+        let shippingFee = 0;
+        const FREE_SHIPPING_THRESHOLD = 5000;
 
-        function render() {
-            const box = document.getElementById('product-box');
-            box.innerHTML = "";
-            const t = i18n[curLang] || i18n["en"];
-
+        // 初始化商品
+        function initGallery() {
+            const container = document.getElementById('product-gallery');
             products.forEach(p => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <div class="img-box">
-                        <div style="height:100%; display:flex; align-items:center; justify-content:center; color:#eee; font-family:var(--serif); letter-spacing:2px;">${p.n}</div>
-                        <div class="card-actions">
-                            <button class="action-btn btn-fav" onclick="addFav()">${t.btn_f}</button>
-                            <button class="action-btn btn-cart" onclick="addToCart('${p.n}', ${p.p})">${t.btn_c}</button>
-                        </div>
+                const div = document.createElement('div');
+                div.className = 'item-card';
+                div.innerHTML = `
+                    <div class="item-image">
+                        <div style="height:100%; display:flex; align-items:center; justify-content:center; color:#ccc; font-size:11px; letter-spacing:2px;">PRODUCT_IMAGE</div>
+                        <div class="quick-add" onclick="addToCart(${p.id})">+</div>
                     </div>
-                    <div class="info-box">
-                        <span class="tag">${p.t}</span>
-                        <h3>${p.n} 天然設計手鍊</h3>
-                        <div class="price">NT$ ${p.p.toLocaleString()}</div>
+                    <div class="item-meta">
+                        <small style="color:var(--gold); letter-spacing:2px;">${p.tag}</small>
+                        <h3>${p.name}</h3>
+                        <div style="font-weight:300;">NT$ ${p.price.toLocaleString()}</div>
                     </div>
                 `;
-                box.appendChild(card);
+                container.appendChild(div);
             });
-            setTimeout(reveal, 200);
-        }
-
-        function reveal() {
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(c => {
-                if(c.getBoundingClientRect().top < window.innerHeight - 50) c.classList.add('show');
-            });
-        }
-        window.onscroll = reveal;
-
-        function changeLang(v) {
-            curLang = v;
-            const t = i18n[v] || i18n["en"];
-            document.querySelector('.t-eff').innerText = t.eff;
-            document.querySelector('.t-col').innerText = t.col;
-            document.querySelector('.t-pri').innerText = t.pri;
-            document.querySelector('.t-cart-title').innerText = t.cart_title;
-            document.querySelector('.t-total').innerText = t.total;
-            document.querySelector('.t-go-checkout').innerText = t.go_checkout;
             
-            const ef = document.getElementById('sel-eff');
-            ef.innerHTML = `<option>${t.eff}</option>
-                <option value="wealth">${t.wealth}</option><option value="love">${t.love}</option>
-                <option value="peace">${t.peace}</option><option value="heal">${t.heal}</option>`;
+            // 監測滾動動效
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.item-card').forEach(c => observer.observe(c));
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            cart.push(product);
+            updateCart();
+            toggleCart(true);
+        }
+
+        function updateCart() {
+            const drawerList = document.getElementById('cart-items-list');
+            const summaryList = document.getElementById('summary-items-list');
+            drawerList.innerHTML = ""; summaryList.innerHTML = "";
             
-            const pr = document.getElementById('sel-pri');
-            pr.innerHTML = `<option>${t.pri}</option>
-                <option value="1">${t.low}</option><option value="2">${t.mid}</option><option value="3">${t.high}</option>`;
-
-            render();
-        }
-
-        function addToCart(name, price) {
-            cart.push({name, price});
-            updateCartUI();
-            if(!document.getElementById('cart-sidebar').classList.contains('open')) toggleCart();
-        }
-
-        function updateCartUI() {
-            const list = document.getElementById('cart-list');
-            list.innerHTML = "";
-            let total = 0;
-            cart.forEach((item, idx) => {
-                total += item.price;
-                list.innerHTML += `
-                    <div class="cart-item">
-                        <div style="width:60px; height:60px; background:#f5f5f5;"></div>
-                        <div style="flex:1">
-                            <div style="font-weight:600; font-size:13px;">${item.name}</div>
-                            <div style="color:var(--p-gold); font-size:12px;">NT$ ${item.price.toLocaleString()}</div>
-                        </div>
-                        <span style="cursor:pointer; color:#ccc;" onclick="removeItem(${idx})">✕</span>
+            let subtotal = 0;
+            cart.forEach((item, index) => {
+                subtotal += item.price;
+                const itemHTML = `
+                    <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-size:13px;">
+                        <span>${item.name}</span>
+                        <span>NT$ ${item.price.toLocaleString()}</span>
                     </div>
                 `;
+                drawerList.innerHTML += itemHTML;
+                summaryList.innerHTML += itemHTML;
             });
-            document.getElementById('cart-total-price').innerText = `NT$ ${total.toLocaleString()}`;
-            document.getElementById('c-badge').innerText = cart.length;
-            document.getElementById('c-badge').style.display = cart.length > 0 ? 'flex' : 'none';
+
+            // 免運邏輯
+            let currentShipping = (subtotal >= FREE_SHIPPING_THRESHOLD || subtotal === 0) ? 0 : shippingFee;
+            
+            document.getElementById('drawer-total').innerText = `NT$ ${subtotal.toLocaleString()}`;
+            document.getElementById('sum-subtotal').innerText = `NT$ ${subtotal.toLocaleString()}`;
+            document.getElementById('sum-shipping').innerText = currentShipping === 0 && subtotal > 0 ? "FREE" : `NT$ ${currentShipping}`;
+            document.getElementById('sum-total').innerText = `NT$ ${(subtotal + currentShipping).toLocaleString()}`;
+            
+            // 徽章
+            const badge = document.getElementById('cart-badge');
+            badge.innerText = cart.length;
+            badge.style.display = cart.length > 0 ? 'flex' : 'none';
         }
 
-        function removeItem(idx) { cart.splice(idx, 1); updateCartUI(); }
-        function toggleCart() { document.getElementById('cart-sidebar').classList.toggle('open'); }
-        function openCheckout() { 
-            if(cart.length === 0) return;
-            document.getElementById('checkout-modal').style.display = 'flex'; 
-        }
-        function closeCheckout() { document.getElementById('checkout-modal').style.display = 'none'; }
-        function addFav() { 
-            fCount++; 
-            document.getElementById('f-badge').innerText = fCount; 
-            document.getElementById('f-badge').style.display = 'flex';
+        function setDelivery(e, type, fee) {
+            shippingFee = fee;
+            document.querySelectorAll('.method-card').forEach(c => c.classList.remove('active'));
+            e.currentTarget.classList.add('active');
+            
+            const label = document.getElementById('addr-label');
+            const input = document.getElementById('order-addr');
+            if(type === 'store') {
+                label.innerText = "STORE NAME / NO. (指定超商門市)";
+                input.placeholder = "請輸入門市名稱與店號";
+            } else {
+                label.innerText = "SHIPPING ADDRESS (收件地址)";
+                input.placeholder = "請輸入完整收件地址";
+            }
+            updateCart();
         }
 
-        function confirmOrder() {
-            alert("Order Confirmed! A confirmation email will be sent to you shortly.");
-            cart = []; updateCartUI(); closeCheckout(); toggleCart();
+        function toggleCart(open = false) {
+            const drawer = document.getElementById('cart-drawer');
+            if(open) drawer.classList.add('active');
+            else drawer.classList.toggle('active');
         }
 
-        window.onload = () => {
-            let p = 0;
-            const iv = setInterval(() => {
-                p += 10;
-                document.getElementById('progress').style.width = p + '%';
-                if(p >= 100) {
-                    clearInterval(iv);
-                    document.getElementById('loader').style.opacity = '0';
-                    setTimeout(() => {
-                        document.getElementById('loader').style.display = 'none';
-                        changeLang('zh-TW');
-                    }, 1000);
-                }
-            }, 100);
+        function openCheckout() {
+            if(cart.length === 0) { alert("您的購物籃是空的"); return; }
+            toggleCart(false);
+            document.getElementById('checkout-modal').style.display = 'block';
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkout-modal').style.display = 'none';
+        }
+
+        function confirmPurchase() {
+            const name = document.getElementById('order-name').value;
+            const phone = document.getElementById('order-phone').value;
+            const addr = document.getElementById('order-addr').value;
+
+            if(!name || !phone || !addr) {
+                alert("請填寫完整的收件資訊以便安排發貨。");
+                return;
+            }
+
+            alert(`【訂單成立】\n感謝您的信任，${name}。\n我們將盡快將能量晶石送往：${addr}`);
+            cart = [];
+            updateCart();
+            closeCheckout();
+        }
+
+        // 滾動效果
+        window.onscroll = () => {
+            const nav = document.getElementById('navbar');
+            if(window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
         };
+
+        window.onload = initGallery;
     </script>
 </body>
 </html>
