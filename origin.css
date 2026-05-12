@@ -12,7 +12,7 @@ body {
     overflow-x: hidden;
 }
 
-/* 側邊欄 */
+/* 側邊欄保持不變 */
 .side-nav {
     width: 260px; background: linear-gradient(180deg, var(--deep-purple) 0%, var(--sidebar-bg) 100%);
     color: white; padding: 40px 0; position: fixed; height: 100vh; z-index: 100;
@@ -28,9 +28,7 @@ body {
     display: flex; align-items: center; color: rgba(255,255,255,0.6);
     text-decoration: none; padding: 12px 15px; border-radius: 10px; transition: 0.3s;
 }
-.nav-links li.active a, .nav-links a:hover {
-    background: rgba(255,255,255,0.12); color: white;
-}
+.nav-links li.active a, .nav-links a:hover { background: rgba(255,255,255,0.12); color: white; }
 .nav-links a span { margin-right: 12px; }
 
 /* 主內容區 */
@@ -43,10 +41,10 @@ body {
 .content-header h1 { font-size: 2.5rem; text-align: center; color: var(--deep-purple); margin-bottom: 10px; }
 .subtitle { text-align: center; color: #777; margin-bottom: 50px; font-style: italic; }
 
-/* 文章卡片 */
+/* 文章卡片：無圖片優化 */
 .article-card {
     background: white; border-radius: 12px; padding: 50px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.05); max-width: 900px; margin: 0 auto;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05); max-width: 800px; margin: 0 auto;
     border: 1px solid #e0dcd0;
 }
 
@@ -55,13 +53,12 @@ body {
 .content-item { margin-bottom: 40px; border-bottom: 1px solid #f0f0f0; padding-bottom: 30px; }
 .content-item:last-child { border: none; }
 
-.content-grid { display: flex; gap: 35px; align-items: flex-start; }
-.image-box { flex: 1; border-radius: 12px; overflow: hidden; border: 4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
-.image-box img { width: 100%; height: 200px; object-fit: cover; transition: 0.5s; }
-.image-box img:hover { transform: scale(1.05); }
+/* 讓文字區塊橫跨整個寬度 */
+.text-box.no-image {
+    width: 100%;
+}
 
-.text-box { flex: 1.3; }
-.step-tag { color: #bbb; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; }
+.step-tag { color: #bbb; font-size: 0.85rem; font-weight: bold; }
 .text-box h3 { font-size: 1.6rem; margin: 8px 0; color: #222; }
 
 .accordion-tab {
@@ -79,7 +76,5 @@ body {
     .nav-links { display: flex; overflow-x: auto; padding: 0 10px; }
     .nav-links li { padding: 5px; }
     .main-content { margin-left: 0 !important; padding: 20px; }
-    .content-grid { flex-direction: column; }
-    .image-box img { height: 250px; }
     .article-card { padding: 25px; }
 }
