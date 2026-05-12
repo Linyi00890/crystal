@@ -1,105 +1,148 @@
 /**
- * CrystalMagic 頂級珠寶 JS - 30款獨一無二中高階商品
+ * CrystalLight 專業電商版整合 JS
  */
 
-// 基礎類型定義
-const baseTypes = [
-    { name: "極光粉晶", color: "pink", effect: "love", desc: "頂級馬達加斯加粉晶，對應心輪，吸引高頻率桃花。" },
-    { name: "金鈦晶", color: "yellow", effect: "wealth", desc: "水晶之王，強大招財能量，助事業突破瓶頸與偏財運。" },
-    { name: "深海青金石", color: "blue", effect: "wisdom", desc: "阿富汗精選，開啟智慧之眼，提升覺知與冷靜判斷力。" },
-    { name: "極黑曜石", color: "black", effect: "protection", desc: "墨西哥彩虹黑曜，強效避邪，阻隔外界所有負面磁場。" },
-    { name: "夢幻紫水晶", color: "purple", effect: "wisdom", desc: "烏拉圭深紫晶，守護純真愛情，開發靈感與貴人運。" }
+const baseSettings = [
+    { name: "粉紅戀語", color: "pink", effect: "love", keywords: "好人緣、桃花" },
+    { name: "招財金光", color: "yellow", effect: "wealth", keywords: "事業、財運" },
+    { name: "智慧藍海", color: "blue", effect: "wisdom", keywords: "冷靜、思考" },
+    { name: "靜心黑曜", color: "black", effect: "protection", keywords: "避邪、擋煞" },
+    { name: "紫色夢境", color: "purple", effect: "wisdom", keywords: "靈感、貴人" }
 ];
 
-// 形容詞與款式組合，確保 30 款全部不同
-const adjectives = ["大師級", "珍藏版", "靈氣", "純淨", "典藏", "皇家"];
-const formats = ["圓珠手鍊", "切面手串", "能量原礦", "18K金鑲嵌", "設計師款", "古法金串飾"];
-
+const styles = ["彈性手串", "精緻細鍊", "能量原礦吊墜", "簡約繞圈手鍊", "文青編織款", "純銀扣頭款"];
 const crystalProducts = [];
 
-// 生成 30 個完全不同的中高價位商品
-let idCounter = 1;
-baseTypes.forEach(base => {
-    formats.forEach(fmt => {
-        const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
-        // 價格隨機訂在 2800 ~ 8800
-        const randomPrice = Math.floor(Math.random() * 60) * 100 + 2800;
-        
+// 生成 30 款親民價位商品 (NT$ 390 - 1190)
+let counter = 1;
+baseSettings.forEach(base => {
+    styles.forEach((style, index) => {
+        const randomPrice = Math.floor(Math.random() * 80) * 10 + 390;
         crystalProducts.push({
-            id: idCounter++,
-            name: `${adj}${base.name}${fmt}`,
+            id: counter++,
+            name: `${base.name} ${style}`,
             effect: base.effect,
             color: base.color,
             price: randomPrice,
-            desc: `${base.desc} 此件作品能量純淨，經大師親自開光祈福。`
+            tag: counter % 8 === 0 ? 'HOT' : (counter % 5 === 0 ? 'NEW' : null),
+            desc: `【${base.keywords}】專屬您的能量飾品，輕盈無負擔。`
         });
     });
 });
 
-// 資料儲存 (localStorage)
-let cart = JSON.parse(localStorage.getItem('cm-cart-premium')) || [];
-let wishlist = JSON.parse(localStorage.getItem('cm-wish-premium')) || [];
+let cart = JSON.parse(localStorage.getItem('cl-cart')) || [];
+let wishlist = JSON.parse(localStorage.getItem('cl-wish')) || [];
+
+// 自定義通知函式
+function showToast(msg) {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerText = msg;
+    container.appendChild(toast);
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 500);
+    }, 2000);
+}
 
 function renderProducts() {
     const grid = document.getElementById('productGrid');
-    const filter = document.getElementById('effect-filter').value;
-    if(!grid) return;
+    const effectFilter = document.getElementById('effect-filter').value;
+    const colorFilter = document.getElementById('color-filter').value;
+    const searchQuery = document.getElementById('search-input').value.toLowerCase();
+    
     grid.innerHTML = '';
 
-    const filtered = crystalProducts.filter(p => filter === 'all' || p.effect === filter);
+    const filtered = crystalProducts.filter(p => {
+        const matchEffect = (effectFilter === 'all' || p.effect === effectFilter);
+        const matchColor = (colorFilter === 'all' || p.color === colorFilter);
+        const matchSearch = p.name.toLowerCase().includes(searchQuery);
+        return matchEffect && matchColor && matchSearch;
+    });
+
+    if(filtered.length === 0) {
+        grid.innerHTML = `
+            <div style="grid-column: 1/-1; text-align:center; padding:100px 20px;">
+                <i class="fas fa-search" style="font-size:3rem; color:#f0f0f0; margin-bottom:20px;"></i>
+                <p style="color:#bbb;">找不到相關商品，試試看其他關鍵字？</p>
+                <button onclick="resetFilters()" style="margin-top:10px; border:none; background:none; color:var(--primary); text-decoration:underline; cursor:pointer;">重設篩選條件</button>
+            </div>`;
+        return;
+    }
 
     filtered.forEach(p => {
         const isWished = wishlist.some(item => item.id === p.id);
-        const item = document.createElement('article');
-        item.className = 'product-item';
-        item.innerHTML = `
-            <div class="image-container">
-                <img src="picture/${p.color}01.jpg" onerror="this.src='https://via.placeholder.com/400x500?text=${p.name}'">
-                <button class="quick-view-btn" onclick="openQuickView(${p.id})">鑑賞細節</button>
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+            ${p.tag ? `<span class="badge ${p.tag === 'NEW' ? 'badge-new' : 'badge-hot'}">${p.tag}</span>` : ''}
+            <div class="img-box">
+                <img src="picture/${p.color}01.jpg" loading="lazy" onerror="this.src='https://via.placeholder.com/400x400?text=Crystal'">
             </div>
-            <div style="padding:20px; text-align:center;">
-                <h3 style="font-size:1.1rem; margin-bottom:10px;">${p.name}</h3>
-                <div style="color:var(--sale-red); font-weight:700; font-size:1.2rem;">NT$ ${p.price.toLocaleString()}</div>
+            <div class="info-box">
+                <h3>${p.name}</h3>
+                <div class="price-tag">NT$ ${p.price.toLocaleString()}</div>
             </div>
-            <div class="action-group">
-                <button class="btn-add-cart" onclick="addToCart(${p.id})">加入購物袋</button>
-                <button class="btn-wish ${isWished ? 'active' : ''}" onclick="toggleWish(${p.id})">
-                    <i class="${isWished ? 'fas' : 'far'} fa-heart"></i>
+            <div class="card-btns">
+                <button class="btn-action" onclick="addToCart(${p.id})">加入購物車</button>
+                <button class="btn-action" style="border-left:1px solid #f9f9f9; flex:none; width:60px;" onclick="toggleWish(${p.id})">
+                    <i class="${isWished ? 'fas' : 'far'} fa-heart" style="color:${isWished ? '#ff7675' : '#eee'}"></i>
                 </button>
             </div>
         `;
-        grid.appendChild(item);
+        grid.appendChild(card);
     });
 }
 
-// 核心功能：加入購物車
-function addToCart(id) {
-    const p = crystalProducts.find(x => x.id === id);
-    cart.push(p);
-    saveData();
-    alert(`【${p.name}】已加入您的購物清單`);
-}
-
-// 核心功能：切換收藏
-function toggleWish(id) {
-    const p = crystalProducts.find(x => x.id === id);
-    const idx = wishlist.findIndex(item => item.id === id);
-    if(idx === -1) wishlist.push(p);
-    else wishlist.splice(idx, 1);
-    saveData();
+function resetFilters() {
+    document.getElementById('effect-filter').value = 'all';
+    document.getElementById('color-filter').value = 'all';
+    document.getElementById('search-input').value = '';
     renderProducts();
 }
 
-function saveData() {
-    localStorage.setItem('cm-cart-premium', JSON.stringify(cart));
-    localStorage.setItem('cm-wish-premium', JSON.stringify(wishlist));
-    document.getElementById('cartCount').innerText = cart.length;
+function addToCart(id) {
+    const existing = cart.find(item => item.id === id);
+    if(existing) {
+        existing.qty += 1;
+    } else {
+        const p = crystalProducts.find(x => x.id === id);
+        cart.push({...p, qty: 1});
+    }
+    updateUI();
+    showToast("✨ 已加入購物車");
+}
+
+function changeQty(index, delta) {
+    cart[index].qty += delta;
+    if(cart[index].qty <= 0) cart.splice(index, 1);
+    updateUI();
+    openCheckout();
+}
+
+function toggleWish(id) {
+    const idx = wishlist.findIndex(item => item.id === id);
+    if(idx === -1) {
+        wishlist.push(crystalProducts.find(x => x.id === id));
+        showToast("💖 已收藏商品");
+    } else {
+        wishlist.splice(idx, 1);
+    }
+    updateUI();
+    renderProducts();
+}
+
+function updateUI() {
+    localStorage.setItem('cl-cart', JSON.stringify(cart));
+    localStorage.setItem('cl-wish', JSON.stringify(wishlist));
+    const totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
+    document.getElementById('cartCount').innerText = totalQty;
     document.getElementById('wishCount').innerText = wishlist.length;
 }
 
-// 彈窗控制
-function openModal(html) {
-    document.getElementById('modalBodyContent').innerHTML = html;
+function openModal(content) {
+    document.getElementById('modalContent').innerHTML = content;
     document.getElementById('commonModal').style.display = 'block';
 }
 
@@ -107,113 +150,55 @@ function closeModal() {
     document.getElementById('commonModal').style.display = 'none';
 }
 
-// 快速預覽 (含細節)
-function openQuickView(id) {
-    const p = crystalProducts.find(x => x.id === id);
-    openModal(`
-        <img src="picture/${p.color}01.jpg" style="width:100%; height:350px; object-fit:cover; border-radius:10px;" onerror="this.src='https://via.placeholder.com/400'">
-        <h2 style="font-family:'Playfair Display'; margin-top:20px;">${p.name}</h2>
-        <p style="color:#666; margin:15px 0; line-height:1.8;">${p.desc}</p>
-        <div style="font-size:1.8rem; color:var(--sale-red); font-weight:bold;">NT$ ${p.price.toLocaleString()}</div>
-        <button class="btn-add-cart" style="width:100%; margin-top:20px;" onclick="addToCart(${p.id}); closeModal();">立即典藏</button>
-    `);
-}
-
-// 購物車結帳清單 (含圖片縮圖)
 function openCheckout() {
-    let total = cart.reduce((sum, p) => sum + p.price, 0);
-    let html = `<h2>您的選購清單</h2><hr style="margin:15px 0; border:0; border-top:1px solid #eee;">`;
-    
+    let html = `<h3 style="font-family:'Montserrat'">Shopping Cart</h3><hr style="border:none; border-top:1px solid #eee; margin:15px 0;">`;
     if(cart.length === 0) {
-        html += "<p style='padding:30px;'>清單目前空無一物。</p>";
+        html += "<p style='text-align:center; padding:40px; color:#999;'>您的購物車目前是空的。</p>";
     } else {
-        cart.forEach((p, i) => {
+        let total = 0;
+        cart.forEach((item, index) => {
+            total += (item.price * item.qty);
             html += `
-            <div class="modal-list-item">
-                <img src="picture/${p.color}01.jpg" class="modal-list-img" onerror="this.src='https://via.placeholder.com/80'">
-                <div class="modal-list-info">
-                    <div class="modal-list-name">${p.name}</div>
-                    <div class="modal-list-price">NT$ ${p.price.toLocaleString()}</div>
+            <div class="modal-item">
+                <img src="picture/${item.color}01.jpg" class="modal-img">
+                <div style="flex:1">
+                    <div style="font-weight:bold; font-size:0.9rem;">${item.name}</div>
+                    <div style="color:var(--price-color); font-size:0.85rem;">NT$ ${item.price}</div>
+                    <div class="qty-control">
+                        <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+                        <span style="font-size:0.9rem; font-weight:bold;">${item.qty}</span>
+                        <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+                    </div>
                 </div>
-                <i class="fas fa-trash-alt" style="cursor:pointer; color:#ddd;" onclick="removeFromCart(${i})"></i>
+                <div style="font-weight:bold;">$${(item.price * item.qty).toLocaleString()}</div>
             </div>`;
         });
-        html += `<h3 style="text-align:right; margin:25px 0;">結帳金額：NT$ ${total.toLocaleString()}</h3>`;
-        html += `<button class="btn-add-cart" style="width:100%" onclick="openShippingForm()">前往寄件資訊</button>`;
+        html += `<h3 style="text-align:right; margin-top:20px;">總計: NT$ ${total.toLocaleString()}</h3>`;
+        html += `<button class="btn-action" style="width:100%; background:var(--primary); color:white; margin-top:20px; border-radius:12px;" onclick="alert('導向結帳頁面...')">立即結帳</button>`;
     }
     openModal(html);
 }
 
-function removeFromCart(i) {
-    cart.splice(i, 1);
-    saveData();
-    openCheckout();
-}
-
-// 我的收藏夾 (含圖片縮圖)
 function openWishlist() {
-    let html = `<h2>願望收藏夾</h2><hr style="margin:15px 0; border:0; border-top:1px solid #eee;">`;
+    let html = `<h3>My Wishlist</h3><br>`;
     if(wishlist.length === 0) {
-        html += "<p style='padding:30px;'>尚未收藏任何心動好物。</p>";
+        html += "<p style='text-align:center; color:#999; padding:20px;'>尚無收藏商品</p>";
     } else {
-        wishlist.forEach((p, i) => {
+        wishlist.forEach(item => {
             html += `
-            <div class="modal-list-item">
-                <img src="picture/${p.color}01.jpg" class="modal-list-img" onerror="this.src='https://via.placeholder.com/80'">
-                <div class="modal-list-info">
-                    <div class="modal-list-name">${p.name}</div>
-                    <div class="modal-list-price">NT$ ${p.price.toLocaleString()}</div>
+            <div class="modal-item">
+                <img src="picture/${item.color}01.jpg" class="modal-img">
+                <div style="flex:1">
+                    <div style="font-weight:bold">${item.name}</div>
+                    <div style="color:var(--price-color)">NT$ ${item.price}</div>
                 </div>
-                <button style="border:none; background:none; color:red; cursor:pointer;" onclick="removeWish(${i})">移除</button>
+                <button class="btn-action" style="padding:8px 12px; font-size:0.75rem; flex:none; border-radius:5px;" onclick="addToCart(${item.id})">移至購物車</button>
             </div>`;
         });
     }
     openModal(html);
 }
 
-function removeWish(i) {
-    wishlist.splice(i, 1);
-    saveData();
-    openWishlist();
-    renderProducts();
-}
-
-// 寄件資料 (含清單摘要圖)
-function openShippingForm() {
-    let total = cart.reduce((sum, p) => sum + p.price, 0);
-    let thumbs = `<div style="display:flex; gap:8px; overflow-x:auto; margin-bottom:20px; padding-bottom:10px;">`;
-    cart.forEach(p => {
-        thumbs += `<img src="picture/${p.color}01.jpg" style="width:50px; height:50px; border-radius:4px; object-fit:cover; flex-shrink:0; border:1px solid #eee;">`;
-    });
-    thumbs += `</div>`;
-
-    let html = `
-        <h2>🚛 貴賓配送資訊</h2>
-        <p style="font-size:0.85rem; color:#888; margin-bottom:15px;">您選購的珍寶如下：</p>
-        ${thumbs}
-        <div class="shipping-form">
-            <label>收件人貴賓姓名</label><input type="text" id="ship_name" placeholder="請輸入姓名">
-            <label>聯繫電話</label><input type="tel" id="ship_phone" placeholder="請輸入聯繫電話">
-            <label>配送詳細地址</label><input type="text" id="ship_addr" placeholder="請輸入收件地址">
-            <div style="background:#f9f9f9; padding:15px; border-radius:5px; margin-top:10px;">
-                <p>運送方式：全程保價專車宅配</p>
-                <h3 style="margin-top:10px; color:var(--sale-red);">應付總額：NT$ ${total.toLocaleString()}</h3>
-            </div>
-            <button class="btn-add-cart" style="width:100%; margin-top:20px;" onclick="submitOrder()">確認提交訂單</button>
-        </div>
-    `;
-    openModal(html);
-}
-
-function submitOrder() {
-    const name = document.getElementById('ship_name').value;
-    if(!name) { alert("請填寫貴賓姓名"); return; }
-    alert(`感謝您的訂購，${name} 貴賓。\n專屬珠寶顧問將於 24 小時內連繫您確認。`);
-    cart = [];
-    saveData();
-    closeModal();
-}
-
-// 初始化啟動
+// 啟動渲染
 renderProducts();
-saveData();
+updateUI();
