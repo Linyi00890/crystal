@@ -10,9 +10,9 @@
 </head>
 <body>
 
-<!-- 6. 今日優惠倒數 (Urgent Sale) -->
+<!-- 促銷倒數 -->
 <div class="urgent-sale-bar">
-    <p>🔥 限時閃購：全館滿額 88 折，距離結束還剩：<span id="countdown">00:00:00</span></p>
+    <p>🔥 限時閃購：全館滿額 NT$2,000 享 88 折，剩餘時間：<span id="countdown">08:00:00</span></p>
 </div>
 
 <header class="main-header">
@@ -23,61 +23,85 @@
     </nav>
 </header>
 
+<!-- 浮動購物車 -->
 <a href="#" class="cart-float" id="cartButton">
     <i class="fas fa-shopping-bag"></i>
     <span class="cart-count" id="cartCount">0</span>
 </a>
 
 <main>
-    <!-- 1. 動態廣告輪播感 (Hero Banner) -->
+    <!-- Hero Banner -->
     <section class="hero-banner">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <span class="fade-in">PREMIUM COLLECTION</span>
-            <h1 class="fade-in">喚醒您的內在能量</h1>
-            <p class="fade-in">精選全球稀有原礦，為您的心靈尋找最純淨的頻率。</p>
-            <a href="#productGrid" class="shop-now-btn fade-in">探索全系列</a>
+            <span class="subtitle">PREMIUM CRYSTAL SELECTION</span>
+            <h1>喚醒您的內在能量</h1>
+            <p>每一顆礦石都承載大地的脈動，尋找專屬於您的頻率。</p>
+            <a href="#productGrid" class="shop-now-btn">探索全系列</a>
         </div>
     </section>
 
-    <!-- 篩選與標籤區 -->
+    <!-- 篩選區 -->
     <section class="filter-wrapper">
         <div class="filter-container">
-            <select id="effect-filter"><option value="all">所有功效</option><option value="love">人緣桃花</option><option value="wealth">事業財運</option><option value="wisdom">智慧學業</option><option value="protection">避邪守護</option><option value="health">身心療癒</option></select>
-            <select id="color-filter"><option value="all">所有色系</option><option value="pink">粉色</option><option value="yellow">黃色</option><option value="purple">紫色</option><option value="white">白色</option><option value="blue">藍色</option><option value="green">綠色</option><option value="black">黑色</option></select>
+            <div class="filter-group">
+                <i class="fas fa-filter"></i>
+                <select id="effect-filter">
+                    <option value="all">所有功效</option>
+                    <option value="love">人緣桃花</option>
+                    <option value="wealth">事業財運</option>
+                    <option value="wisdom">智慧學業</option>
+                    <option value="protection">避邪守護</option>
+                    <option value="health">身心療癒</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <i class="fas fa-palette"></i>
+                <select id="color-filter">
+                    <option value="all">所有色系</option>
+                    <option value="pink">粉色</option>
+                    <option value="yellow">黃色</option>
+                    <option value="purple">紫色</option>
+                    <option value="blue">藍色</option>
+                    <option value="green">綠色</option>
+                    <option value="black">黑色</option>
+                    <option value="white">白色</option>
+                </select>
+            </div>
         </div>
     </section>
 
-    <!-- 8. 30樣水晶商品網格 -->
-    <section class="product-grid" id="productGrid">
-        <!-- 商品卡片會由 JavaScript 動態生成或直接寫在 HTML -->
-        <!-- 此處展示結構範例，JS部分已包含30樣資料 -->
-    </section>
+    <!-- 30 樣商品網格 (由 JS 渲染) -->
+    <section class="product-grid" id="productGrid"></section>
 </main>
 
-<!-- 5. 快速預覽 (Quick View) 彈窗結構 -->
+<!-- 快速預覽 Modal -->
 <div id="quickViewModal" class="modal">
     <div class="modal-content">
         <span class="close-modal">&times;</span>
         <div class="modal-body">
-            <div class="modal-img"><img id="modalImg" src="" alt=""></div>
-            <div class="modal-info">
-                <h2 id="modalTitle"></h2>
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p id="modalDesc"></p>
+            <div class="modal-img-side">
+                <img id="modalImg" src="" alt="商品圖片">
+            </div>
+            <div class="modal-info-side">
+                <h2 id="modalTitle">商品名稱</h2>
+                <div class="modal-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <span>(5.0 滿意度)</span>
+                </div>
+                <p id="modalDesc">商品描述加載中...</p>
                 <div class="modal-price">NT$ XXXXX</div>
-                <button class="btn-add-cart">立即加入購物車</button>
+                <button class="btn-modal-add" id="modalAddBtn">加入購物車</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- 4. 電商底部 -->
 <footer class="footer">
     <div class="footer-grid">
         <div class="footer-box">
-            <h3>關於我們</h3>
-            <p>CrystalMagic 致力於傳遞純粹的水晶能量，每一件飾品皆經過月光淨化。</p>
+            <div class="footer-logo">🔮 CrystalMagic</div>
+            <p>專業的水晶能量顧問，每一件商品皆經過深度淨化與祝福。</p>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-facebook"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
@@ -85,19 +109,29 @@
             </div>
         </div>
         <div class="footer-box">
-            <h3>快速連結</h3>
-            <ul><li>售後服務</li><li>運送政策</li><li>隱私條款</li></ul>
+            <h3>客服資訊</h3>
+            <ul>
+                <li><a href="#">運送說明</a></li>
+                <li><a href="#">退換貨政策</a></li>
+                <li><a href="#">品牌故事</a></li>
+            </ul>
         </div>
         <div class="footer-box">
-            <h3>訂閱電子報</h3>
+            <h3>訂閱優惠</h3>
+            <p>領取新朋友 NT$100 折扣碼</p>
             <div class="subscribe-form">
-                <input type="email" placeholder="輸入您的 Email">
+                <input type="email" placeholder="您的 Email">
                 <button>訂閱</button>
             </div>
             <div class="payment-icons">
-                <i class="fab fa-cc-visa"></i><i class="fab fa-cc-mastercard"></i><i class="fab fa-cc-apple-pay"></i>
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-apple-pay"></i>
             </div>
         </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 CrystalMagic Crystal Store. All Rights Reserved.
     </div>
 </footer>
 
