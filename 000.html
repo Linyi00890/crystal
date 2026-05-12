@@ -1,143 +1,241 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrystalMagic | 您的水晶能量導師</title>
-    <!-- 引入 Google 字體 -->
+    <title>2026 命定水晶能量測驗 | CrystalMagic</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+    
+    <style>
+        :root {
+            --primary-purple: #6a1b9a;
+            --accent-gold: #ffd700;
+            --bg-color: #f0f2f5;
+        }
+
+        html { scroll-behavior: smooth; } /* 啟用平滑捲動 */
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0; padding: 0; line-height: 1.6;
+            user-select: none; -webkit-user-select: none;
+        }
+
+        .quiz-container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+
+        h1 { text-align: center; color: #4a148c; margin-bottom: 10px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+        .subtitle { text-align: center; color: #7b1fa2; margin-bottom: 40px; font-style: italic; }
+
+        /* 題目區塊 */
+        .question-block { 
+            background: #fff; padding: 35px; margin-bottom: 30px; 
+            border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, border 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .question-block:hover { transform: translateY(-5px); }
+
+        /* 彩色側邊條 */
+        .color-0 { border-left: 8px solid #ff7675; } .color-1 { border-left: 8px solid #74b9ff; }
+        .color-2 { border-left: 8px solid #fab1a0; } .color-3 { border-left: 8px solid #55efc4; }
+        .color-4 { border-left: 8px solid #a29bfe; } .color-5 { border-left: 8px solid #ffe14d; }
+
+        .question-text { font-size: 1.3rem; font-weight: 700; margin-bottom: 20px; color: #2d3436; display: flex; align-items: center; }
+        .q-number { 
+            background: #4a148c; color: #fff; width: 28px; height: 28px; 
+            display: inline-flex; justify-content: center; align-items: center; 
+            border-radius: 50%; margin-right: 12px; font-size: 0.9rem;
+        }
+
+        .options-list { display: flex; flex-direction: column; gap: 12px; }
+        
+        .options-list label { 
+            padding: 16px; border: 2px solid #f1f2f6; border-radius: 12px; 
+            cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* 選取後的樣式 */
+        .options-list label.selected {
+            background: var(--primary-purple);
+            color: #fff;
+            border-color: var(--primary-purple);
+            box-shadow: 0 4px 15px rgba(106, 27, 154, 0.2);
+        }
+        
+        .options-list label:hover:not(.selected) { background: #fff; border-color: var(--primary-purple); }
+        .options-list input { margin-right: 15px; transform: scale(1.3); accent-color: var(--primary-purple); }
+
+        .submit-btn { 
+            width: 100%; padding: 22px; background: linear-gradient(135deg, #6a1b9a, #4a148c);
+            color: #fff; border: none; border-radius: 50px; 
+            font-size: 1.5rem; font-weight: bold; cursor: pointer;
+            margin: 40px 0 100px; box-shadow: 0 6px 25px rgba(106, 27, 154, 0.4);
+            transition: all 0.3s ease;
+        }
+        .submit-btn:hover { transform: scale(1.02); filter: brightness(1.1); }
+
+        /* 結果頁面 */
+        #resultSection { 
+            text-align: center; background: #fff; padding: 60px 30px; 
+            border-radius: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); 
+            animation: slideUp 0.8s ease;
+        }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+
+        .crystal-img { 
+            width: 260px; height: 260px; object-fit: cover; 
+            border-radius: 50%; border: 10px solid #f3e5f5;
+            margin: 20px 0; box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        #crystalName { color: var(--primary-purple); font-size: 2.8rem; margin: 10px 0; font-weight: 900; }
+        .crystal-tag { 
+            display: inline-block; padding: 6px 20px; background: linear-gradient(90deg, #e1bee7, #f3e5f5); 
+            color: #4a148c; border-radius: 30px; font-weight: bold; margin-bottom: 25px;
+        }
+        #crystalDesc { font-size: 1.2rem; color: #555; max-width: 600px; margin: 0 auto 40px; line-height: 1.8; }
+
+        .hidden { display: none !important; }
+
+        /* 懸浮按鈕 */
+        .floating-btn {
+            position: fixed; display: flex; align-items: center; padding: 12px 20px;
+            background-color: rgba(255, 255, 255, 0.95); color: #4a148c;
+            text-decoration: none; border-radius: 40px; font-weight: bold;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1); transition: all 0.3s ease;
+            z-index: 9999; border: 1px solid rgba(106, 27, 154, 0.1);
+        }
+        .floating-btn:hover { transform: translateY(-5px); background-color: #fff; color: #8e24aa; }
+        .btn-left { left: 25px; bottom: 35px; }
+        .btn-mbti { right: 25px; bottom: 95px; }
+        .btn-draw { right: 25px; bottom: 35px; }
+    </style>
 </head>
 <body>
 
-    <!-- 導覽列 -->
-    <header class="navbar">
-        <div class="container">
-            <a href="index.html" class="logo">🔮 CrystalMagic</a>
-            <nav class="nav-links">
-                <a href="encyclopedia.html" class="nav-item">水晶百科</a>
-                <a href="chakras.html" class="nav-item">脈輪功效</a>
-                <a href="shop.html" class="nav-item">專屬商品</a>
-                <span class="auth-group">
-                    <a href="login.html" class="btn-login-outline">登入</a>
-                    <a href="register.html" class="btn-register-solid">註冊</a>
-                </span>
-            </nav>
-        </div>
-    </header>
+<a href="index.html" class="btn-left floating-btn">🏠 返回首頁</a>
+<a href="mbti.html" class="btn-mbti floating-btn">🧠 MBTI 水晶</a>
+<a href="card.html" class="btn-draw floating-btn">🃏 每日抽卡</a>
 
-    <main>
-        <!-- Hero 區塊 -->
-        <section class="hero">
-            <div class="container">
-                <h1>開啟您的水晶能量之旅</h1>
-                <p>探索大地精華，連結內在平衡與療癒力量</p>
-                <a href="quiz.html" class="btn-hero-cta">立即尋找你的命定水晶</a>
+<main class="quiz-container">
+    <div id="quizContent">
+        <h1>🔮 深度能量水晶測驗</h1>
+        <p class="subtitle">色彩指引心靈，發現與你靈魂共振的命定礦石</p>
+        
+        <form id="quizForm">
+            <div id="questionsContainer"></div>
+            <button type="submit" class="submit-btn">✨ 揭曉我的命定水晶 ✨</button>
+        </form>
+    </div>
+
+    <section id="resultSection" class="hidden">
+        <p style="letter-spacing: 2px; color: #888;">測驗完成！與您共鳴的能量夥伴是：</p>
+        <img id="crystalImage" src="" alt="水晶圖片" class="crystal-img">
+        <br>
+        <div class="crystal-tag" id="crystalType">能量分類</div>
+        <h1 id="crystalName"></h1>
+        <p id="crystalDesc"></p>
+        <button onclick="location.reload()" style="padding: 15px 40px; border-radius: 30px; cursor: pointer; border: 2px solid #eee; background: #fff; font-weight: bold; color: #666;">重新檢測能量</button>
+    </section>
+</main>
+
+<script>
+    const crystalDatabase = [
+        { id: "amethyst", name: "紫水晶", type: "靈性智慧", desc: "紫色光譜能開發智慧、平穩情緒，適合正在尋求內心平靜與突破考驗的你。", attr: "spirit", img: "https://images.unsplash.com/photo-1567883111025-063a43627448?w=400" },
+        { id: "citrine", name: "黃水晶", type: "自信財富", desc: "燦爛如陽，能增強自信心與創造力，吸引事業成功與豐盛的財富運勢。", attr: "wealth", img: "https://images.unsplash.com/photo-1615111784767-4d7a407d39f4?w=400" },
+        { id: "rose_quartz", name: "粉水晶", type: "人緣桃花", desc: "散發溫柔的粉色頻率，能療癒心輪、增加親和力，吸引美好的姻緣與人際連結。", attr: "love", img: "https://images.unsplash.com/photo-1614032155370-137b02b9f874?w=400" },
+        { id: "obsidian", name: "黑曜石", type: "極強辟邪", desc: "強大的吸納性，能排除負能量並提供保護，像無形的盾牌守護你的磁場環境。", attr: "protect", img: "https://images.unsplash.com/photo-1605142859862-978be7eba909?w=400" },
+        { id: "aquamarine", name: "海藍寶", type: "勇氣溝通", desc: "如海洋般清透，有助於平復情緒波動，增強表達能力與自我認同感。", attr: "health", img: "https://images.unsplash.com/photo-1599707334298-291efdec822c?w=400" },
+        { id: "rutilated_quartz", name: "鈦晶", type: "事業招財", desc: "內含強大金絲能量，象徵果斷與財富，助你在事業決策上擁有精準直覺。", attr: "power", img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400" },
+        { id: "clear_quartz", name: "白水晶", type: "淨化磁場", desc: "水晶之王，能平衡、淨化並放大周圍能量，讓你的思緒回歸純粹、專注目標。", attr: "spirit", img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400" }
+    ];
+
+    const questions = [
+        { q: "選擇一張你最想踏入的場景？", options: [{ text: "迷霧森林的深夜", attr: "spirit" }, { text: "充滿陽光的果園", attr: "power" }, { text: "平靜無波的海面", attr: "health" }] },
+        { q: "當你感到壓力大時，你通常會？", options: [{ text: "獨自冥想或睡覺", attr: "spirit" }, { text: "找親友傾訴或擁抱", attr: "love" }, { text: "瘋狂購物或吃大餐", attr: "wealth" }] },
+        { q: "你最希望目前的生活發生什麼改變？", options: [{ text: "財富大幅度增長", attr: "wealth" }, { text: "找到對的人理解我", attr: "love" }, { text: "遠離勾心鬥角的小人", attr: "protect" }] },
+        { q: "你喜歡哪種香味？", options: [{ text: "沉穩的檀香或乳香", attr: "spirit" }, { text: "甜美的玫瑰或茉莉", attr: "love" }, { text: "清爽的薄荷或柑橘", attr: "power" }] },
+        { q: "你的工作風格更傾向於？", options: [{ text: "追求效率與金錢回報", attr: "wealth" }, { text: "與人和諧相處並合作", attr: "love" }, { text: "保護自己不被受傷", attr: "protect" }] },
+        { q: "晚上睡不著時，腦袋裡通常在想？", options: [{ text: "思考人生的意義", attr: "spirit" }, { text: "未完成的工作任務", attr: "power" }, { text: "過去或未來的感情", attr: "love" }] },
+        { q: "你認為「成功」的定義是？", options: [{ text: "擁有巨大的財富", attr: "wealth" }, { text: "身體健康內心平安", attr: "health" }, { text: "受到眾人的保護與尊重", attr: "protect" }] },
+        { q: "哪種天氣讓你覺得能量最充沛？", options: [{ text: "大雨過後的清晨", attr: "health" }, { text: "烈日當頭的午後", attr: "power" }, { text: "繁星點點的晴夜", attr: "spirit" }] },
+        { q: "面對新的挑戰，你的第一反應是？", options: [{ text: "謹慎評估，防範風險", attr: "protect" }, { text: "直覺應對，隨機應變", attr: "spirit" }, { text: "衝了再說，把握機會", attr: "power" }] },
+        { q: "你現在最想修復的能量是？", options: [{ text: "受損的心靈與自信", attr: "love" }, { text: "疲憊的肉體與精神", attr: "health" }, { text: "乾涸的錢包與事業", attr: "wealth" }] }
+    ];
+
+    // 生成題目
+    const container = document.getElementById('questionsContainer');
+    questions.forEach((item, index) => {
+        const colorClass = `color-${index % 6}`;
+        const block = document.createElement('div');
+        block.className = `question-block ${colorClass}`;
+        block.id = `q-block-${index}`;
+        block.innerHTML = `
+            <div class="question-text"><span class="q-number">${index + 1}</span>${item.q}</div>
+            <div class="options-list">
+                ${item.options.map((opt) => `
+                    <label>
+                        <input type="radio" name="q${index}" value="${opt.attr}" required onclick="handleSelect(${index})">
+                        ${opt.text}
+                    </label>
+                `).join('')}
             </div>
-        </section>
+        `;
+        container.appendChild(block);
+    });
 
-        <!-- 9 大類別網格 -->
-        <section id="guide" class="guide-section">
-            <div class="container">
-                <div class="guide-grid">
-                    <!-- 01 歷史 -->
-                    <div class="card layer-1">
-                        <div class="card-content">
-                            <h3>01 水晶起源</h3>
-                            <div class="img-placeholder">HISTORY</div>
-                            <p>探討大地礦石的形成與千年歷史文化。</p>
-                        </div>
-                        <a href="origin.html" class="card-btn btn-teal">深入探索 »</a>
-                    </div>
-                    
-                    <!-- 02 百科 -->
-                    <div class="card layer-2">
-                        <div class="card-content">
-                            <h3>02 種類百科</h3>
-                            <div class="img-placeholder">ENCYCLOPEDIA</div>
-                            <p>細分白水晶、紫水晶、黃水晶等礦石特性。</p>
-                        </div>
-                        <a href="type.html" class="card-btn btn-indigo">查看清單 »</a>
-                    </div>
-                    
-                    <!-- 03 功效 -->
-                    <div class="card layer-3">
-                        <div class="card-content">
-                            <h3>03 能量功效</h3>
-                            <div class="img-placeholder">ENERGY</div>
-                            <p>對應人體七大脈輪，調整身心頻率。</p>
-                        </div>
-                        <a href="effect.html" class="card-btn btn-pink">查看功效 »</a>
-                    </div>
-                    
-                    <!-- 04 淨化 -->
-                    <div class="card layer-4">
-                        <div class="card-content">
-                            <h3>04 淨化保養</h3>
-                            <div class="img-placeholder">CARE</div>
-                            <p>教導日光、月光、海鹽等消磁與保養方法。</p>
-                        </div>
-                        <a href="pages.html" class="card-btn btn-orange">了解步驟 »</a>
-                    </div>
-                    
-                    <!-- 05 指南 -->
-                    <div class="card layer-5">
-                        <div class="card-content">
-                            <h3>05 挑選指南</h3>
-                            <div class="img-placeholder">GUIDE</div>
-                            <p>根據個人直覺、生命靈數或星座選購夥伴。</p>
-                        </div>
-                        <a href="pick.html" class="card-btn btn-blue">開始配對 »</a>
-                    </div>
+    // 處理選取與自動跳轉
+    function handleSelect(currentIndex) {
+        // 1. 更新視覺樣式
+        const labels = document.querySelectorAll(`#q-block-${currentIndex} label`);
+        labels.forEach(l => l.classList.remove('selected'));
+        
+        const checkedInput = document.querySelector(`input[name="q${currentIndex}"]:checked`);
+        if (checkedInput) checkedInput.parentElement.classList.add('selected');
 
-                    <!-- 06 商品 -->
-                    <div class="card layer-6">
-                        <div class="card-content">
-                            <h3>06 專屬商品</h3>
-                            <div class="img-placeholder">SHOP</div>
-                            <p>高品質手作飾品、原礦收藏與獨家課程。</p>
-                        </div>
-                        <a href="exclusive.html" class="card-btn btn-dark-orange">前往選購 »</a>
-                    </div>
+        // 2. 自動捲動到下一題
+        const nextIndex = currentIndex + 1;
+        const nextBlock = document.getElementById(`q-block-${nextIndex}`);
+        const submitBtn = document.querySelector('.submit-btn');
 
-                    <!-- 07 QA -->
-                    <div class="card layer-7">
-                        <div class="card-content">
-                            <h3>07 常見問題</h3>
-                            <div class="img-placeholder">Q&A</div>
-                            <p>整理了入門者最常詢問的迷思與解惑。</p>
-                        </div>
-                        <a href="question.html" class="card-btn btn-gray">查看問題 »</a>
-                    </div>
+        setTimeout(() => {
+            if (nextBlock) {
+                nextBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                submitBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, 400); // 給一點時間讓使用者看見顏色變化
+    }
 
-                    <!-- 08 回饋 -->
-                    <div class="card layer-8">
-                        <div class="card-content">
-                            <h3>08 粉絲回饋</h3>
-                            <div class="img-placeholder">REVIEWS</div>
-                            <p>分享你的水晶故事，看看其他夥伴的心得。</p>
-                        </div>
-                        <a href="share.html" class="card-btn btn-purple">觀看分享 »</a>
-                    </div>
+    // 提交表單
+    document.getElementById('quizForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const scores = { love: 0, wealth: 0, protect: 0, spirit: 0, health: 0, power: 0 };
+        for (let value of formData.values()) { scores[value]++; }
 
-                    <!-- 09 聯絡 -->
-                    <div class="card layer-9">
-                        <div class="card-content">
-                            <h3>09 聯絡我們</h3>
-                            <div class="img-placeholder">CONTACT</div>
-                            <p>有任何疑難雜症？專業客服隨時為您服務。</p>
-                        </div>
-                        <a href="contact.html" class="card-btn btn-deep-purple">立即聯繫 »</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+        let topAttr = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+        const candidates = crystalDatabase.filter(c => c.attr === topAttr);
+        const result = candidates[Math.floor(Math.random() * candidates.length)];
 
-    <footer class="footer">
-        <p>&copy; 2026 CrystalMagic | 水晶魔法能量守護</p>
-    </footer>
+        document.getElementById('quizContent').classList.add('hidden');
+        const resSec = document.getElementById('resultSection');
+        resSec.classList.remove('hidden');
+        
+        document.getElementById('crystalName').innerText = result.name;
+        document.getElementById('crystalDesc').innerText = result.desc;
+        document.getElementById('crystalType').innerText = result.type;
+        document.getElementById('crystalImage').src = result.img;
 
-    <script src="index.js"></script>
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // 禁止右鍵
+    document.addEventListener('contextmenu', e => e.preventDefault());
+</script>
+
 </body>
 </html>
