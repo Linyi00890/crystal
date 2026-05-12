@@ -57,76 +57,98 @@ const questions = [
     { q: "你現在最想修復的能量是？", options: [{ text: "受損的心靈與自信", attr: "love" }, { text: "疲憊的肉體與精神", attr: "health" }, { text: "乾涸的錢包與事業", attr: "wealth" }] }
 ];
 
-// 初始化生成題目
+// --- 1. 測驗功能邏輯 (僅在有測驗容器的頁面執行) ---
 const container = document.getElementById('questionsContainer');
-questions.forEach((item, index) => {
-    const colorClass = `color-${index % 6}`;
-    const block = document.createElement('div');
-    block.className = `question-block ${colorClass}`;
-    block.id = `q-block-${index}`;
-    block.innerHTML = `
-        <div class="question-text"><span class="q-number">${index + 1}</span>${item.q}</div>
-        <div class="options-list">
-            ${item.options.map((opt) => `
-                <label>
-                    <input type="radio" name="q${index}" value="${opt.attr}" required onclick="handleSelect(${index})">
-                    ${opt.text}
-                </label>
-            `).join('')}
-        </div>
-    `;
-    container.appendChild(block);
-});
+if (container) {
+    questions.forEach((item, index) => {
+        const colorClass = `color-${index % 6}`;
+        const block = document.createElement('div');
+        block.className = `question-block ${colorClass}`;
+        block.id = `q-block-${index}`;
+        block.innerHTML = `
+            <div class="question-text"><span class="q-number">${index + 1}</span>${item.q}</div>
+            <div class="options-list">
+                ${item.options.map((opt) => `
+                    <label>
+                        <input type="radio" name="q${index}" value="${opt.attr}" required onclick="handleSelect(${index})">
+                        ${opt.text}
+                    </label>
+                `).join('')}
+            </div>
+        `;
+        container.appendChild(block);
+    });
+}
 
 // 處理選取與「自動跳轉」
 window.handleSelect = function(currentIndex) {
     const labels = document.querySelectorAll(`#q-block-${currentIndex} label`);
-    labels.forEach(l => l.classList.remove('selected'));
-    const checkedInput = document.querySelector(`input[name="q${currentIndex}"]:checked`);
-    if (checkedInput) checkedInput.parentElement.classList.add('selected');
+    if (labels.length > 0) {
+        labels.forEach(l => l.classList.remove('selected'));
+        const checkedInput = document.querySelector(`input[name="q${currentIndex}"]:checked`);
+        if (checkedInput) checkedInput.parentElement.classList.add('selected');
 
-    const nextIndex = currentIndex + 1;
-    const nextBlock = document.getElementById(`q-block-${nextIndex}`);
-    const submitBtn = document.querySelector('.submit-btn');
+        const nextIndex = currentIndex + 1;
+        const nextBlock = document.getElementById(`q-block-${nextIndex}`);
+        const submitBtn = document.querySelector('.submit-btn');
 
-    setTimeout(() => {
-        if (nextBlock) {
-            nextBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        } else {
-            submitBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-    }, 400);
+        setTimeout(() => {
+            if (nextBlock) {
+                nextBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else if (submitBtn) {
+                submitBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, 400);
+    }
 };
 
 // 提交計算結果
-document.getElementById('quizForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const formData = new FormData(this);
-    const scores = { love: 0, wealth: 0, protect: 0, spirit: 0, health: 0, power: 0 };
-    for (let value of formData.values()) { scores[value]++; }
+const quizForm = document.getElementById('quizForm');
+if (quizForm) {
+    quizForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const scores = { love: 0, wealth: 0, protect: 0, spirit: 0, health: 0, power: 0 };
+        for (let value of formData.values()) { scores[value]++; }
 
-    let topAttr = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-    const candidates = crystalDatabase.filter(c => c.attr === topAttr);
-    const result = candidates[Math.floor(Math.random() * candidates.length)];
+        let topAttr = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+        const candidates = crystalDatabase.filter(c => c.attr === topAttr);
+        const result = candidates[Math.floor(Math.random() * candidates.length)];
 
-    document.getElementById('quizContent').classList.add('hidden');
-    document.getElementById('resultSection').classList.remove('hidden');
-    
-    document.getElementById('crystalName').innerText = result.name;
-    document.getElementById('crystalDesc').innerText = result.desc;
-    document.getElementById('crystalType').innerText = result.type;
-    document.getElementById('crystalImage').src = result.img;
+        document.getElementById('quizContent').classList.add('hidden');
+        document.getElementById('resultSection').classList.remove('hidden');
+        
+        document.getElementById('crystalName').innerText = result.name;
+        document.getElementById('crystalDesc').innerText = result.desc;
+        document.getElementById('crystalType').innerText = result.type;
+        document.getElementById('crystalImage').src = result.img;
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+// --- 2. 導覽列自動高亮腳本 ---
+document.addEventListener("DOMContentLoaded", function() {
+    const currentLocation = window.location.pathname.split("/").pop();
+    const navLinks = document.querySelectorAll(".nav-links li a");
+    navLinks.forEach(link => {
+        const linkPath = link.getAttribute("href");
+        if (linkPath === currentLocation || (currentLocation === "" && linkPath === "index.html")) {
+            link.parentElement.classList.add("active");
+        } else {
+            link.parentElement.classList.remove("active");
+        }
+    });
 });
 
-// --- 魔法守護腳本 ---
+// --- 3. 魔法守護腳本 (全域執行) ---
 document.addEventListener('contextmenu', function (e) {
     e.preventDefault();
     alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
 }, false);
 
 document.onkeydown = function (e) {
+    // 禁用 F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S
     if (e.keyCode === 123 || 
         (e.ctrlKey && e.shiftKey && e.keyCode === 73) || 
         (e.ctrlKey && e.shiftKey && e.keyCode === 74) || 
