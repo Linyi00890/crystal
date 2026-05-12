@@ -1,43 +1,68 @@
 /**
- * CrystalMagic 終極整合 JS
+ * CrystalMagic 頂級珠寶 JS - 30款獨一無二中高階商品
  */
 
-const crystalProducts = [
-    { id: 1, name: "極光粉晶手鍊", effect: "love", color: "pink", icon: "❤", price: 1680, desc: "招來正桃花與完美人緣。" },
-    { id: 2, name: "王者黃水晶", effect: "wealth", color: "yellow", icon: "💰", price: 2200, desc: "招正財與偏財，增強事業心。" },
-    { id: 3, name: "烏拉圭紫晶", effect: "wisdom", color: "purple", icon: "🧠", price: 1350, desc: "開發智慧、集中精神。" },
-    { id: 4, name: "金曜石護盾", effect: "protection", color: "black", icon: "🛡", price: 980, desc: "吸收負能量，辟邪擋煞。" },
-    { id: 5, name: "天河石之泉", effect: "health", color: "blue", icon: "🌿", price: 1580, desc: "平復焦慮，帶來勇氣。" }
+// 基礎類型定義
+const baseTypes = [
+    { name: "極光粉晶", color: "pink", effect: "love", desc: "頂級馬達加斯加粉晶，對應心輪，吸引高頻率桃花。" },
+    { name: "金鈦晶", color: "yellow", effect: "wealth", desc: "水晶之王，強大招財能量，助事業突破瓶頸與偏財運。" },
+    { name: "深海青金石", color: "blue", effect: "wisdom", desc: "阿富汗精選，開啟智慧之眼，提升覺知與冷靜判斷力。" },
+    { name: "極黑曜石", color: "black", effect: "protection", desc: "墨西哥彩虹黑曜，強效避邪，阻隔外界所有負面磁場。" },
+    { name: "夢幻紫水晶", color: "purple", effect: "wisdom", desc: "烏拉圭深紫晶，守護純真愛情，開發靈感與貴人運。" }
 ];
 
-// 補充生成至 30 樣
-for(let i=6; i<=30; i++) {
-    const base = crystalProducts[i % 5];
-    crystalProducts.push({...base, id: i, name: `${base.name.substring(0,4)} No.${i}`, price: base.price + i});
-}
+// 形容詞與款式組合，確保 30 款全部不同
+const adjectives = ["大師級", "珍藏版", "靈氣", "純淨", "典藏", "皇家"];
+const formats = ["圓珠手鍊", "切面手串", "能量原礦", "18K金鑲嵌", "設計師款", "古法金串飾"];
 
-let cart = JSON.parse(localStorage.getItem('cm-cart')) || [];
-let wishlist = JSON.parse(localStorage.getItem('cm-wish')) || [];
+const crystalProducts = [];
 
-// 渲染商品
+// 生成 30 個完全不同的中高價位商品
+let idCounter = 1;
+baseTypes.forEach(base => {
+    formats.forEach(fmt => {
+        const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
+        // 價格隨機訂在 2800 ~ 8800
+        const randomPrice = Math.floor(Math.random() * 60) * 100 + 2800;
+        
+        crystalProducts.push({
+            id: idCounter++,
+            name: `${adj}${base.name}${fmt}`,
+            effect: base.effect,
+            color: base.color,
+            price: randomPrice,
+            desc: `${base.desc} 此件作品能量純淨，經大師親自開光祈福。`
+        });
+    });
+});
+
+// 資料儲存 (localStorage)
+let cart = JSON.parse(localStorage.getItem('cm-cart-premium')) || [];
+let wishlist = JSON.parse(localStorage.getItem('cm-wish-premium')) || [];
+
 function renderProducts() {
     const grid = document.getElementById('productGrid');
+    const filter = document.getElementById('effect-filter').value;
+    if(!grid) return;
     grid.innerHTML = '';
-    crystalProducts.forEach(p => {
+
+    const filtered = crystalProducts.filter(p => filter === 'all' || p.effect === filter);
+
+    filtered.forEach(p => {
         const isWished = wishlist.some(item => item.id === p.id);
         const item = document.createElement('article');
         item.className = 'product-item';
         item.innerHTML = `
             <div class="image-container">
-                <img src="picture/${p.color}01.jpg" onerror="this.src='https://via.placeholder.com/300x300?text=Crystal'">
-                <button class="quick-view-btn" onclick="openQuickView(${p.id})">快速預覽</button>
+                <img src="picture/${p.color}01.jpg" onerror="this.src='https://via.placeholder.com/400x500?text=${p.name}'">
+                <button class="quick-view-btn" onclick="openQuickView(${p.id})">鑑賞細節</button>
             </div>
-            <div class="product-info">
-                <h4>${p.name}</h4>
-                <div class="price-tag">NT$ ${p.price}</div>
+            <div style="padding:20px; text-align:center;">
+                <h3 style="font-size:1.1rem; margin-bottom:10px;">${p.name}</h3>
+                <div style="color:var(--sale-red); font-weight:700; font-size:1.2rem;">NT$ ${p.price.toLocaleString()}</div>
             </div>
             <div class="action-group">
-                <button class="btn-add-cart" onclick="addToCart(${p.id})">加入購物車</button>
+                <button class="btn-add-cart" onclick="addToCart(${p.id})">加入購物袋</button>
                 <button class="btn-wish ${isWished ? 'active' : ''}" onclick="toggleWish(${p.id})">
                     <i class="${isWished ? 'fas' : 'far'} fa-heart"></i>
                 </button>
@@ -47,33 +72,34 @@ function renderProducts() {
     });
 }
 
-// 購物車與收藏邏輯
+// 核心功能：加入購物車
 function addToCart(id) {
     const p = crystalProducts.find(x => x.id === id);
     cart.push(p);
     saveData();
-    alert(`已將 ${p.name} 加入購物車`);
+    alert(`【${p.name}】已加入您的購物清單`);
 }
 
+// 核心功能：切換收藏
 function toggleWish(id) {
     const p = crystalProducts.find(x => x.id === id);
-    const index = wishlist.findIndex(item => item.id === id);
-    if (index === -1) wishlist.push(p);
-    else wishlist.splice(index, 1);
+    const idx = wishlist.findIndex(item => item.id === id);
+    if(idx === -1) wishlist.push(p);
+    else wishlist.splice(idx, 1);
     saveData();
     renderProducts();
 }
 
 function saveData() {
-    localStorage.setItem('cm-cart', JSON.stringify(cart));
-    localStorage.setItem('cm-wish', JSON.stringify(wishlist));
+    localStorage.setItem('cm-cart-premium', JSON.stringify(cart));
+    localStorage.setItem('cm-wish-premium', JSON.stringify(wishlist));
     document.getElementById('cartCount').innerText = cart.length;
     document.getElementById('wishCount').innerText = wishlist.length;
 }
 
-// 彈窗顯示核心
-function openModal(contentHtml) {
-    document.getElementById('modalBodyContent').innerHTML = contentHtml;
+// 彈窗控制
+function openModal(html) {
+    document.getElementById('modalBodyContent').innerHTML = html;
     document.getElementById('commonModal').style.display = 'block';
 }
 
@@ -81,77 +107,113 @@ function closeModal() {
     document.getElementById('commonModal').style.display = 'none';
 }
 
-// 1. 快速預覽
+// 快速預覽 (含細節)
 function openQuickView(id) {
     const p = crystalProducts.find(x => x.id === id);
-    const html = `
-        <img src="picture/${p.color}01.jpg" style="width:100%; border-radius:15px;" onerror="this.src='https://via.placeholder.com/300x300'">
-        <h2 style="margin:15px 0;">${p.name}</h2>
-        <p style="color:#666; margin-bottom:15px;">${p.desc}</p>
-        <div style="font-size:1.5rem; color:var(--sale-red); font-weight:bold;">NT$ ${p.price}</div>
-        <button class="btn-add-cart" style="width:100%; margin-top:20px;" onclick="addToCart(${p.id}); closeModal();">立即購買</button>
-    `;
-    openModal(html);
+    openModal(`
+        <img src="picture/${p.color}01.jpg" style="width:100%; height:350px; object-fit:cover; border-radius:10px;" onerror="this.src='https://via.placeholder.com/400'">
+        <h2 style="font-family:'Playfair Display'; margin-top:20px;">${p.name}</h2>
+        <p style="color:#666; margin:15px 0; line-height:1.8;">${p.desc}</p>
+        <div style="font-size:1.8rem; color:var(--sale-red); font-weight:bold;">NT$ ${p.price.toLocaleString()}</div>
+        <button class="btn-add-cart" style="width:100%; margin-top:20px;" onclick="addToCart(${p.id}); closeModal();">立即典藏</button>
+    `);
 }
 
-// 2. 收藏清單
-function openWishlist() {
-    let html = `<h2>❤ 我的收藏</h2><hr style="margin:15px 0;">`;
-    if(wishlist.length === 0) html += "<p style='text-align:center; padding:20px;'>清單空空如也</p>";
-    else {
-        wishlist.forEach((p, i) => {
-            html += `<div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #eee;">
-                <span>${p.name}</span>
-                <span style="color:red; cursor:pointer;" onclick="removeFromWish(${i})">移除</span>
-            </div>`;
-        });
-    }
-    openModal(html);
-}
-
-function removeFromWish(index) {
-    wishlist.splice(index, 1);
-    saveData();
-    openWishlist(); // 刷新彈窗內容
-    renderProducts(); // 刷新主頁面愛心狀態
-}
-
-// 3. 購物車/結算畫面
+// 購物車結帳清單 (含圖片縮圖)
 function openCheckout() {
     let total = cart.reduce((sum, p) => sum + p.price, 0);
-    let html = `<h2>🛒 購物清單</h2><hr style="margin:15px 0;">`;
-    if(cart.length === 0) html += "<p style='text-align:center; padding:20px;'>購物車是空的</p>";
-    else {
+    let html = `<h2>您的選購清單</h2><hr style="margin:15px 0; border:0; border-top:1px solid #eee;">`;
+    
+    if(cart.length === 0) {
+        html += "<p style='padding:30px;'>清單目前空無一物。</p>";
+    } else {
         cart.forEach((p, i) => {
-            html += `<div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-                <span>${p.name}</span><span>$${p.price} <i class="fas fa-trash" onclick="removeFromCart(${i})" style="cursor:pointer; color:#ccc; margin-left:10px;"></i></span>
+            html += `
+            <div class="modal-list-item">
+                <img src="picture/${p.color}01.jpg" class="modal-list-img" onerror="this.src='https://via.placeholder.com/80'">
+                <div class="modal-list-info">
+                    <div class="modal-list-name">${p.name}</div>
+                    <div class="modal-list-price">NT$ ${p.price.toLocaleString()}</div>
+                </div>
+                <i class="fas fa-trash-alt" style="cursor:pointer; color:#ddd;" onclick="removeFromCart(${i})"></i>
             </div>`;
         });
-        html += `<hr><h3 style="text-align:right; margin-top:15px;">總計: NT$ ${total}</h3>`;
-        html += `<button class="btn-add-cart" style="width:100%; margin-top:20px;" onclick="processFinal()">確認結帳</button>`;
+        html += `<h3 style="text-align:right; margin:25px 0;">結帳金額：NT$ ${total.toLocaleString()}</h3>`;
+        html += `<button class="btn-add-cart" style="width:100%" onclick="openShippingForm()">前往寄件資訊</button>`;
     }
     openModal(html);
 }
 
-function removeFromCart(index) {
-    cart.splice(index, 1);
+function removeFromCart(i) {
+    cart.splice(i, 1);
     saveData();
     openCheckout();
 }
 
-function processFinal() {
-    alert("訂單已送出，感謝購買！");
+// 我的收藏夾 (含圖片縮圖)
+function openWishlist() {
+    let html = `<h2>願望收藏夾</h2><hr style="margin:15px 0; border:0; border-top:1px solid #eee;">`;
+    if(wishlist.length === 0) {
+        html += "<p style='padding:30px;'>尚未收藏任何心動好物。</p>";
+    } else {
+        wishlist.forEach((p, i) => {
+            html += `
+            <div class="modal-list-item">
+                <img src="picture/${p.color}01.jpg" class="modal-list-img" onerror="this.src='https://via.placeholder.com/80'">
+                <div class="modal-list-info">
+                    <div class="modal-list-name">${p.name}</div>
+                    <div class="modal-list-price">NT$ ${p.price.toLocaleString()}</div>
+                </div>
+                <button style="border:none; background:none; color:red; cursor:pointer;" onclick="removeWish(${i})">移除</button>
+            </div>`;
+        });
+    }
+    openModal(html);
+}
+
+function removeWish(i) {
+    wishlist.splice(i, 1);
+    saveData();
+    openWishlist();
+    renderProducts();
+}
+
+// 寄件資料 (含清單摘要圖)
+function openShippingForm() {
+    let total = cart.reduce((sum, p) => sum + p.price, 0);
+    let thumbs = `<div style="display:flex; gap:8px; overflow-x:auto; margin-bottom:20px; padding-bottom:10px;">`;
+    cart.forEach(p => {
+        thumbs += `<img src="picture/${p.color}01.jpg" style="width:50px; height:50px; border-radius:4px; object-fit:cover; flex-shrink:0; border:1px solid #eee;">`;
+    });
+    thumbs += `</div>`;
+
+    let html = `
+        <h2>🚛 貴賓配送資訊</h2>
+        <p style="font-size:0.85rem; color:#888; margin-bottom:15px;">您選購的珍寶如下：</p>
+        ${thumbs}
+        <div class="shipping-form">
+            <label>收件人貴賓姓名</label><input type="text" id="ship_name" placeholder="請輸入姓名">
+            <label>聯繫電話</label><input type="tel" id="ship_phone" placeholder="請輸入聯繫電話">
+            <label>配送詳細地址</label><input type="text" id="ship_addr" placeholder="請輸入收件地址">
+            <div style="background:#f9f9f9; padding:15px; border-radius:5px; margin-top:10px;">
+                <p>運送方式：全程保價專車宅配</p>
+                <h3 style="margin-top:10px; color:var(--sale-red);">應付總額：NT$ ${total.toLocaleString()}</h3>
+            </div>
+            <button class="btn-add-cart" style="width:100%; margin-top:20px;" onclick="submitOrder()">確認提交訂單</button>
+        </div>
+    `;
+    openModal(html);
+}
+
+function submitOrder() {
+    const name = document.getElementById('ship_name').value;
+    if(!name) { alert("請填寫貴賓姓名"); return; }
+    alert(`感謝您的訂購，${name} 貴賓。\n專屬珠寶顧問將於 24 小時內連繫您確認。`);
     cart = [];
     saveData();
     closeModal();
 }
 
-// 安全防護
-(function() {
-    document.onkeydown = e => { if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) return false; };
-    setInterval(() => { debugger; }, 2000);
-})();
-
-// 初始化
+// 初始化啟動
 renderProducts();
 saveData();
