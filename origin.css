@@ -1,10 +1,12 @@
-/* 全域設定 */
+/* --- 保留原本的變數與基礎設定 --- */
 :root {
     --deep-purple: #1a0a2e;
     --sidebar-bg: #2d134d;
     --accent-purple: #9d50bb;
     --gold: #d4af37;
 }
+
+html { scroll-behavior: smooth; }
 
 body {
     font-family: 'Noto Sans TC', sans-serif;
@@ -14,9 +16,10 @@ body {
     display: flex;
     min-height: 100vh;
     color: #333;
+    overflow-x: hidden; /* 防止手機版左右滑動 */
 }
 
-/* 側邊欄設計 */
+/* --- 側邊欄：電腦版預設 --- */
 .side-nav {
     width: 280px;
     background: linear-gradient(180deg, var(--deep-purple) 0%, var(--sidebar-bg) 100%);
@@ -26,6 +29,7 @@ body {
     height: 100vh;
     box-shadow: 4px 0 15px rgba(0,0,0,0.3);
     z-index: 100;
+    transition: transform 0.3s ease; /* 增加過場動畫 */
 }
 
 .sidebar-header {
@@ -55,31 +59,17 @@ body {
 .nav-links li.active a, .nav-links a:hover {
     background: rgba(255,255,255,0.15);
     color: white;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    backdrop-filter: blur(5px);
 }
 
-/* 主內容區 */
+/* --- 主內容區：電腦版預設 --- */
 .main-content {
-    margin-left: 280px;
+    margin-left: 280px; /* 這裡在手機版會出問題 */
     flex-grow: 1;
     padding: 40px 60px;
     position: relative;
-    background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); /* 紙質紋理 */
+    background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
 }
 
-.crystal-ribbon {
-    text-align: center;
-    letter-spacing: 15px;
-    opacity: 0.4;
-    margin-bottom: 20px;
-}
-
-.content-header { text-align: center; margin-bottom: 50px; }
-.content-header h1 { font-size: 3rem; color: #1a0a2e; margin-bottom: 10px; }
-.subtitle { font-size: 1.1rem; color: #666; letter-spacing: 1px; }
-
-/* 文章卡片設計 */
 .article-card {
     background: white;
     border-radius: 5px;
@@ -91,58 +81,75 @@ body {
     border: 1px solid #e0dcd0;
 }
 
-/* 卡片四角邊框裝飾 */
-.article-card::before {
-    content: "";
-    position: absolute;
-    top: 15px; left: 15px; right: 15px; bottom: 15px;
-    border: 1.5px solid #dcd7c9;
-    pointer-events: none;
-}
-
-.section-title {
-    text-align: center;
-    font-size: 2rem;
-    color: #4a148c;
-    margin-bottom: 40px;
-    font-weight: bold;
-}
-
 .content-grid {
     display: flex;
     gap: 40px;
     align-items: flex-start;
 }
 
-.image-box {
-    flex: 1;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    border: 5px solid white;
-}
-
+.image-box { flex: 1; border-radius: 20px; overflow: hidden; border: 5px solid white; }
 .text-box { flex: 1.2; }
-.step-tag { color: #999; font-size: 0.9rem; margin-bottom: 5px; }
-.text-box h3 { font-size: 1.8rem; margin: 0 0 15px; color: #333; }
 
-.accordion-tab {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 15px;
-    background: #f9f7f2;
-    border: 1px solid #eee;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    font-size: 0.9rem;
-    color: #888;
+/* -----------------------------------------------------------
+   📱 手機版 RWD 修正 (螢幕寬度小於 768px 時觸啟動)
+-------------------------------------------------------------- */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column; /* 讓內容改為垂直排列 */
+    }
+
+    .side-nav {
+        position: relative; /* 取消固定在左側 */
+        width: 100%; /* 寬度變滿版 */
+        height: auto; /* 高度隨內容增長 */
+        padding: 20px 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .sidebar-header {
+        margin-bottom: 10px;
+    }
+
+    .nav-links {
+        display: flex;
+        overflow-x: auto; /* 讓選單可以橫向滑動 */
+        padding: 0 10px;
+        white-space: nowrap;
+    }
+
+    .nav-links li {
+        padding: 5px;
+    }
+
+    .nav-links a {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    /* 內容區修正 */
+    .main-content {
+        margin-left: 0 !important; /* 取消左邊距 */
+        padding: 20px;
+    }
+
+    .article-card {
+        padding: 30px 15px; /* 縮小內邊距 */
+    }
+
+    .content-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .content-grid {
+        flex-direction: column; /* 圖片與文字改為上下排列 */
+        gap: 20px;
+    }
+
+    .image-box {
+        width: 100%;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
 }
-
-.text-box p {
-    line-height: 1.8;
-    color: #444;
-    font-size: 1.05rem;
-    text-align: justify;
-}
-
-strong { color: #4a148c; border-bottom: 1px solid #e1bee7; }
