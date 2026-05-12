@@ -4,7 +4,7 @@
     --bg-dark: #05060a;
     --glass-border: rgba(255, 255, 255, 0.1);
     
-    /* 五大能量主題色 */
+    /* 能量色系設定 */
     --color-1: #00d2ff; /* 冰晶藍 */
     --color-2: #00ff88; /* 療癒綠 */
     --color-3: #ffcc33; /* 太陽金 */
@@ -12,8 +12,16 @@
     --color-5: #a1887f; /* 守護棕 */
 }
 
-/* 基礎重置 */
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* --- 安全防護：禁止選取文字 --- */
+* { 
+    box-sizing: border-box; 
+    margin: 0; padding: 0; 
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
 
 body {
     font-family: 'Noto Sans TC', sans-serif;
@@ -31,7 +39,7 @@ body {
     pointer-events: none;
 }
 
-/* 導覽列 RWD */
+/* RWD 導覽列 */
 .navbar {
     background: rgba(5, 6, 10, 0.95);
     backdrop-filter: blur(15px);
@@ -57,17 +65,10 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-decoration: none;
-    letter-spacing: 1px;
 }
 
 .nav-links { display: flex; list-style: none; gap: 15px; }
-.nav-links a {
-    text-decoration: none;
-    color: #aaa;
-    font-size: 0.85rem;
-    transition: 0.3s;
-}
-.nav-links a:hover { color: #fff; }
+.nav-links a { text-decoration: none; color: #aaa; font-size: 0.85rem; transition: 0.3s; }
 
 @media (max-width: 992px) {
     .nav-links { display: none; }
@@ -75,31 +76,20 @@ body {
 }
 
 /* Hero 區塊 */
-#hero { text-align: center; padding: 80px 20px; }
+#hero { text-align: center; padding: 60px 20px; }
 #hero h1 {
     font-family: 'Cinzel', serif;
-    font-size: clamp(2.2rem, 8vw, 3.5rem);
+    font-size: clamp(2rem, 8vw, 3.5rem);
     background: var(--gold-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 10px;
 }
-#hero p { font-size: 0.9rem; color: #8892b0; letter-spacing: 2px; }
 
-/* 手風琴主容器 */
+/* 手風琴 RWD 設定 */
 #accordion-container { 
-    width: 95%;
+    width: 92%;
     max-width: 800px; 
     margin: 0 auto 100px; 
-}
-
-.section-title { 
-    text-align: center; 
-    color: #fff; 
-    margin-bottom: 40px; 
-    font-size: 1.6rem; 
-    font-family: 'Cinzel';
-    letter-spacing: 3px;
 }
 
 .accordion-item {
@@ -108,10 +98,10 @@ body {
     border-radius: 15px;
     padding: 2px;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: 0.3s;
 }
 
-/* 流光旋轉邊框特效 */
+/* 流光特效 */
 .accordion-item::before {
     content: '';
     position: absolute;
@@ -120,13 +110,10 @@ body {
     background: conic-gradient(transparent, var(--item-color), transparent 40%);
     animation: rotate 4s linear infinite;
     opacity: 0.2;
-    transition: 0.5s;
 }
 
-.accordion-item.active::before,
-.accordion-item:hover::before {
-    opacity: 1;
-    filter: brightness(1.3) blur(1px);
+.accordion-item.active::before, .accordion-item:hover::before {
+    opacity: 1; filter: brightness(1.2);
 }
 
 @keyframes rotate { 100% { transform: rotate(360deg); } }
@@ -140,7 +127,7 @@ body {
 
 .accordion-header {
     width: 100%;
-    padding: 22px 25px;
+    padding: 20px;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -151,71 +138,41 @@ body {
 
 .accordion-header h3 {
     color: #fff;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .accordion-header h3::before {
-    content: "";
-    width: 4px; height: 18px;
+    content: ""; width: 4px; height: 18px;
     background: var(--item-color);
-    box-shadow: 0 0 12px var(--item-color);
-    border-radius: 2px;
+    box-shadow: 0 0 10px var(--item-color);
 }
 
-.accordion-header .arrow {
-    color: var(--item-color);
-    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    font-size: 0.8rem;
-}
-
+.accordion-header .arrow { color: var(--item-color); transition: 0.4s; }
 .accordion-item.active .arrow { transform: rotate(180deg); }
 
-/* 內容展開動畫 */
 .accordion-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+    transition: max-height 0.6s ease-out;
 }
 
-.accordion-item.active .accordion-content {
-    max-height: 1000px;
-    transition: max-height 1s ease-in-out;
-}
+.accordion-item.active .accordion-content { max-height: 800px; }
 
 .accordion-inner-padding {
     padding: 0 25px 30px;
     color: #bdc3c7;
-    font-size: 1rem;
-    line-height: 1.8;
+    font-size: 0.95rem;
     text-align: justify;
 }
 
-.accordion-inner-padding b { 
-    color: #fff; 
-    text-shadow: 0 0 8px var(--item-color); 
-}
-
-/* 頁尾 */
-.main-footer { 
-    text-align: center; 
-    padding: 60px 20px; 
-    border-top: 1px solid var(--glass-border); 
-    color: #555; 
-    font-size: 0.85rem; 
-}
-
-/* 指派各項顏色 */
+/* 顏色指派 */
 .item-1 { --item-color: var(--color-1); }
 .item-2 { --item-color: var(--color-2); }
 .item-3 { --item-color: var(--color-3); }
 .item-4 { --item-color: var(--color-4); }
 .item-5 { --item-color: var(--color-5); }
 
-/* 手機版微調 */
-@media (max-width: 576px) {
-    .accordion-header h3 { font-size: 1.05rem; }
-    .accordion-inner-padding { font-size: 0.95rem; padding: 0 20px 25px; }
-}
+.main-footer { text-align: center; padding: 40px; border-top: 1px solid var(--glass-border); color: #444; }
