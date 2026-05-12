@@ -1,43 +1,121 @@
-<!-- 在 <body> 內的 header 後方插入 Hero Section -->
-<section class="hero-section">
-    <div class="hero-content">
-        <h1>喚醒內在的宇宙能量</h1>
-        <p>每一顆礦石，都承載了大地的脈動與億萬年的祝福。<br>讓 CrystalMagic 陪伴您，開啟靈魂深處的療癒之旅。</p>
-    </div>
-</section>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>能量飾品精選 | CrystalMagic 守護您的心靈能量</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="bracelet.css">
+</head>
+<body>
 
-<!-- 增加一個品牌理念區塊 -->
-<section style="text-align: center; padding: 50px 5%;">
-    <h2 style="color: var(--deep-purple); margin-bottom: 20px;">為什麼選擇我們的守護石？</h2>
-    <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
-        <div style="max-width: 250px;">
-            <i class="fas fa-gem" style="font-size: 2rem; color: var(--gold);"></i>
-            <h3>純淨選材</h3>
-            <p style="font-size: 0.9rem; color: #777;">嚴選世界各地高品質原礦，純天然無人工優化。</p>
-        </div>
-        <div style="max-width: 250px;">
-            <i class="fas fa-hand-sparkles" style="font-size: 2rem; color: var(--gold);"></i>
-            <h3>魔法加持</h3>
-            <p style="font-size: 0.9rem; color: #777;">出貨前經過月光淨化與正向音頻調頻。</p>
-        </div>
-        <div style="max-width: 250px;">
-            <i class="fas fa-leaf" style="font-size: 2rem; color: var(--gold);"></i>
-            <h3>環保包裝</h3>
-            <p style="font-size: 0.9rem; color: #777;">使用友善地球的材質，守護自然也守護您。</p>
-        </div>
-    </div>
-</section>
+<header class="main-header">
+    <a href="index.html" class="logo">🔮 CrystalMagic</a>
+    <nav class="nav-links">
+        <a href="index.html" class="nav-button login">回首頁</a>
+        <a href="quiz.html" class="nav-button register">能量測驗</a>
+    </nav>
+</header>
 
-<!-- 修改後的商品卡片範例 (增加標籤與價格質感) -->
-<article class="product-item" data-effect="wealth" data-color="yellow">
-    <div class="image-container">
-        <span class="badge">推薦</span>
-        <img src="picture/yellow01.jpg" alt="黃水晶">
+<!-- 浮動購物車 -->
+<a href="#" class="cart-float" id="cartButton">
+    <i class="fas fa-shopping-bag"></i>
+    <span class="cart-count" id="cartCount">0</span>
+</a>
+
+<main>
+    <!-- 品牌 Hero 區塊 -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <span class="subtitle">PREMIUM CRYSTAL SELECTION</span>
+            <h1>喚醒內在的宇宙能量</h1>
+            <p>每一顆礦石都承載了大地的脈動。探索專屬於您的守護能量，開啟靈魂深處的療癒之旅。</p>
+        </div>
+    </section>
+
+    <!-- 品牌優勢 -->
+    <section class="features-bar">
+        <div class="feature-item"><i class="fas fa-certificate"></i> <span>天然原礦</span></div>
+        <div class="feature-item"><i class="fas fa-moon"></i> <span>月光淨化</span></div>
+        <div class="feature-item"><i class="fas fa-shipping-fast"></i> <span>全球配送</span></div>
+    </section>
+
+    <!-- 篩選選單區 -->
+    <section class="filter-wrapper">
+        <div class="filter-section">
+            <div class="filter-group">
+                <label><i class="fas fa-magic"></i> 功效</label>
+                <select id="effect-filter">
+                    <option value="all">全部功效</option>
+                    <option value="love">人緣桃花</option>
+                    <option value="wealth">事業財運</option>
+                    <option value="wisdom">智慧學業</option>
+                    <option value="protection">避邪守護</option>
+                    <option value="health">身心療癒</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label><i class="fas fa-palette"></i> 色系</label>
+                <select id="color-filter">
+                    <option value="all">全部顏色</option>
+                    <option value="pink">粉色系</option>
+                    <option value="yellow">黃色系</option>
+                    <option value="orange">橘色系</option>
+                    <option value="purple">紫色系</option>
+                    <option value="white">白色系</option>
+                    <option value="blue">藍色系</option>
+                    <option value="green">綠色系</option>
+                    <option value="black">黑色系</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- 商品網格 -->
+    <section class="product-grid" id="productGrid">
+        <!-- 範例商品 1 (請依此格式補完 20 個) -->
+        <article class="product-item" data-effect="love" data-color="pink">
+            <div class="image-container">
+                <span class="badge">HOT</span>
+                <img src="picture/pink01.jpg" alt="粉晶">
+            </div>
+            <div class="product-details">
+                <span class="category">愛情・人緣</span>
+                <h4>戀愛之心：粉晶手鍊</h4>
+                <p>提升個人魅力，招來正桃花與好人緣。</p>
+                <div class="product-price">NT$ 1,680</div>
+                <button class="btn-add-cart" onclick="addToCart('粉晶手鍊')">加入購物車</button>
+            </div>
+        </article>
+
+        <!-- 範例商品 2 -->
+        <article class="product-item" data-effect="wealth" data-color="yellow">
+            <div class="image-container">
+                <span class="badge">LIMIT</span>
+                <img src="picture/yellow01.jpg" alt="黃水晶">
+            </div>
+            <div class="product-details">
+                <span class="category">財運・事業</span>
+                <h4>王者財富：黃水晶手鍊</h4>
+                <p>強勢招正財，增強事業野心與自信。</p>
+                <div class="product-price">NT$ 2,280</div>
+                <button class="btn-add-cart" onclick="addToCart('黃水晶手鍊')">加入購物車</button>
+            </div>
+        </article>
+        
+        <!-- 其餘商品依照此結構放置... -->
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-logo">🔮 CrystalMagic</div>
+        <p>探索大地瑰寶，尋找心靈守護。</p>
+        <div class="copyright">&copy; 2026 CrystalMagic. All Rights Reserved.</div>
     </div>
-    <div class="product-details">
-        <h4>王者財富：頂級黃水晶手鍊</h4>
-        <p>增強自信與事業野心，招來穩定的正財運勢。</p>
-        <div class="product-price">NT$ 2,980</div>
-        <button class="btn-add-cart" onclick="addToCart('頂級黃水晶手鍊')">加入購物車</button>
-    </div>
-</article>
+</footer>
+
+<script src="bracelet.js"></script>
+</body>
+</html>
