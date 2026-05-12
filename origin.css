@@ -1,178 +1,148 @@
+/* 全域設定 */
 :root {
-    --accent-gold: #bf953f;
-    --gold-gradient: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-    --bg-dark: #05060a;
-    --glass-border: rgba(255, 255, 255, 0.1);
-    
-    /* 能量色系設定 */
-    --color-1: #00d2ff; /* 冰晶藍 */
-    --color-2: #00ff88; /* 療癒綠 */
-    --color-3: #ffcc33; /* 太陽金 */
-    --color-4: #ff00cc; /* 靈性粉 */
-    --color-5: #a1887f; /* 守護棕 */
-}
-
-/* --- 安全防護：禁止選取文字 --- */
-* { 
-    box-sizing: border-box; 
-    margin: 0; padding: 0; 
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-touch-callout: none;
+    --deep-purple: #1a0a2e;
+    --sidebar-bg: #2d134d;
+    --accent-purple: #9d50bb;
+    --gold: #d4af37;
 }
 
 body {
     font-family: 'Noto Sans TC', sans-serif;
-    background-color: var(--bg-dark);
-    color: #d1d1d1;
-    overflow-x: hidden;
-    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f1ea;
+    display: flex;
+    min-height: 100vh;
+    color: #333;
 }
 
-#particle-canvas {
+/* 側邊欄設計 */
+.side-nav {
+    width: 280px;
+    background: linear-gradient(180deg, var(--deep-purple) 0%, var(--sidebar-bg) 100%);
+    color: white;
+    padding: 40px 0;
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: -1;
+    height: 100vh;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.3);
+    z-index: 100;
+}
+
+.sidebar-header {
+    text-align: center;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin: 0 20px 20px;
+}
+
+.logo-crystal { font-size: 2.5rem; margin-bottom: 10px; }
+.logo-text { font-size: 1.2rem; font-weight: bold; letter-spacing: 2px; }
+
+.nav-links { list-style: none; padding: 0; margin: 0; }
+.nav-links li { padding: 5px 20px; }
+.nav-links a {
+    display: flex;
+    align-items: center;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    transition: 0.3s;
+    font-size: 1.1rem;
+}
+
+.nav-links a span { margin-right: 15px; font-size: 1.2rem; }
+.nav-links li.active a, .nav-links a:hover {
+    background: rgba(255,255,255,0.15);
+    color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    backdrop-filter: blur(5px);
+}
+
+/* 主內容區 */
+.main-content {
+    margin-left: 280px;
+    flex-grow: 1;
+    padding: 40px 60px;
+    position: relative;
+    background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); /* 紙質紋理 */
+}
+
+.crystal-ribbon {
+    text-align: center;
+    letter-spacing: 15px;
+    opacity: 0.4;
+    margin-bottom: 20px;
+}
+
+.content-header { text-align: center; margin-bottom: 50px; }
+.content-header h1 { font-size: 3rem; color: #1a0a2e; margin-bottom: 10px; }
+.subtitle { font-size: 1.1rem; color: #666; letter-spacing: 1px; }
+
+/* 文章卡片設計 */
+.article-card {
+    background: white;
+    border-radius: 5px;
+    padding: 60px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    max-width: 900px;
+    margin: 0 auto;
+    border: 1px solid #e0dcd0;
+}
+
+/* 卡片四角邊框裝飾 */
+.article-card::before {
+    content: "";
+    position: absolute;
+    top: 15px; left: 15px; right: 15px; bottom: 15px;
+    border: 1.5px solid #dcd7c9;
     pointer-events: none;
 }
 
-/* RWD 導覽列 */
-.navbar {
-    background: rgba(5, 6, 10, 0.95);
-    backdrop-filter: blur(15px);
-    position: sticky;
-    top: 0; z-index: 1000;
-    border-bottom: 1px solid var(--glass-border);
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #4a148c;
+    margin-bottom: 40px;
+    font-weight: bold;
 }
 
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
+.content-grid {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.image-box {
+    flex: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border: 5px solid white;
+}
+
+.text-box { flex: 1.2; }
+.step-tag { color: #999; font-size: 0.9rem; margin-bottom: 5px; }
+.text-box h3 { font-size: 1.8rem; margin: 0 0 15px; color: #333; }
+
+.accordion-tab {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
+    padding: 10px 15px;
+    background: #f9f7f2;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #888;
 }
 
-.logo {
-    font-family: 'Cinzel', serif;
-    font-size: 1.4rem;
-    font-weight: 900;
-    background: var(--gold-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-decoration: none;
-}
-
-.nav-links { display: flex; list-style: none; gap: 15px; }
-.nav-links a { text-decoration: none; color: #aaa; font-size: 0.85rem; transition: 0.3s; }
-
-@media (max-width: 992px) {
-    .nav-links { display: none; }
-    .nav-container { justify-content: center; }
-}
-
-/* Hero 區塊 */
-#hero { text-align: center; padding: 60px 20px; }
-#hero h1 {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(2rem, 8vw, 3.5rem);
-    background: var(--gold-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* 手風琴 RWD 設定 */
-#accordion-container { 
-    width: 92%;
-    max-width: 800px; 
-    margin: 0 auto 100px; 
-}
-
-.accordion-item {
-    position: relative;
-    margin-bottom: 25px;
-    border-radius: 15px;
-    padding: 2px;
-    overflow: hidden;
-    transition: 0.3s;
-}
-
-/* 流光特效 */
-.accordion-item::before {
-    content: '';
-    position: absolute;
-    top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    background: conic-gradient(transparent, var(--item-color), transparent 40%);
-    animation: rotate 4s linear infinite;
-    opacity: 0.2;
-}
-
-.accordion-item.active::before, .accordion-item:hover::before {
-    opacity: 1; filter: brightness(1.2);
-}
-
-@keyframes rotate { 100% { transform: rotate(360deg); } }
-
-.accordion-main {
-    position: relative;
-    background: #0d1117;
-    border-radius: 13px;
-    z-index: 1;
-}
-
-.accordion-header {
-    width: 100%;
-    padding: 20px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.accordion-header h3 {
-    color: #fff;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.accordion-header h3::before {
-    content: ""; width: 4px; height: 18px;
-    background: var(--item-color);
-    box-shadow: 0 0 10px var(--item-color);
-}
-
-.accordion-header .arrow { color: var(--item-color); transition: 0.4s; }
-.accordion-item.active .arrow { transform: rotate(180deg); }
-
-.accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.6s ease-out;
-}
-
-.accordion-item.active .accordion-content { max-height: 800px; }
-
-.accordion-inner-padding {
-    padding: 0 25px 30px;
-    color: #bdc3c7;
-    font-size: 0.95rem;
+.text-box p {
+    line-height: 1.8;
+    color: #444;
+    font-size: 1.05rem;
     text-align: justify;
 }
 
-/* 顏色指派 */
-.item-1 { --item-color: var(--color-1); }
-.item-2 { --item-color: var(--color-2); }
-.item-3 { --item-color: var(--color-3); }
-.item-4 { --item-color: var(--color-4); }
-.item-5 { --item-color: var(--color-5); }
-
-.main-footer { text-align: center; padding: 40px; border-top: 1px solid var(--glass-border); color: #444; }
+strong { color: #4a148c; border-bottom: 1px solid #e1bee7; }
