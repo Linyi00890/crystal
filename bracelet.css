@@ -1,111 +1,69 @@
 :root {
     --primary: #4a4a4a;
-    --accent: #b59f8a; /* 暖香檳金 */
-    --bg-light: #fbf9f7;
-    --glass: rgba(255, 255, 255, 0.85);
-    --price: #d97d54;
-    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    --accent: #b59f8a;
+    --bg: #fdfaf7;
+    /* 水晶邊框色定義 */
+    --br-pink: linear-gradient(135deg, #ffd1dc, #ff9aa2);
+    --br-blue: linear-gradient(135deg, #a2d2ff, #bde0fe);
+    --br-yellow: linear-gradient(135deg, #fdfd96, #ffcc33);
+    --br-black: linear-gradient(135deg, #555, #000);
+    --br-purple: linear-gradient(135deg, #e0b0ff, #b28dff);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Noto Serif TC', serif; background-color: var(--bg-light); color: var(--primary); }
+body { font-family: 'Noto Serif TC', serif; background: var(--bg); color: var(--primary); margin:0; }
 
-/* 精緻頂部列 */
-.top-bar { background: #222; color: #fff; text-align: center; font-size: 11px; padding: 6px; letter-spacing: 2px; text-transform: uppercase; }
+/* 導航 */
+.glass-header { position: sticky; top: 0; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); z-index: 100; border-bottom: 1px solid #eee; padding: 15px 5%; }
+.header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+.brand-logo { font-family: 'Montserrat'; font-weight: 700; font-size: 1.5rem; text-decoration: none; color: #000; letter-spacing: 2px; }
 
-/* 毛玻璃 Header */
-.glass-header {
-    position: sticky; top: 0; z-index: 1000;
-    background: var(--glass);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    padding: 15px 5%;
+/* 篩選器美化 */
+.filter-area { padding: 30px 5%; }
+.filter-glass-card { 
+    background: white; padding: 20px 30px; border-radius: 50px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
 }
-.header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
-.brand-logo { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 700; color: #000; text-decoration: none; letter-spacing: 2px; }
-
-.header-stats { display: flex; gap: 20px; }
-.stat-item { position: relative; cursor: pointer; font-size: 18px; color: var(--primary); }
-.stat-item span {
-    position: absolute; -10px; right: -10px;
-    background: var(--accent); color: white; font-size: 10px;
-    width: 16px; height: 16px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
+.fancy-select {
+    padding: 10px 20px; border-radius: 20px; border: 1px solid #f0f0f0; 
+    background: #fafafa; outline: none; cursor: pointer; transition: 0.3s;
+    font-size: 0.9rem; color: #666;
 }
+.fancy-select:hover { border-color: var(--accent); background: #fff; }
 
-/* Hero 區塊 */
-.hero-section {
-    height: 450px; background: url('picture/banner01.jpg') center/cover;
-    display: flex; align-items: center; justify-content: center; position: relative;
-}
-.hero-overlay { text-align: center; color: white; background: rgba(0,0,0,0.2); padding: 40px; border-radius: 5px; }
-.hero-subtitle { font-family: 'Montserrat'; font-size: 12px; letter-spacing: 4px; }
-.hero-title { font-size: 42px; margin: 15px 0; font-weight: 700; }
-.hero-cta {
-    display: inline-block; margin-top: 20px; padding: 12px 35px;
-    background: #fff; color: #000; text-decoration: none;
-    font-weight: bold; border-radius: 50px; transition: var(--transition);
-}
-.hero-cta:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+/* 水晶邊框邏輯 */
+.product-card { background: #fff; border-radius: 20px; padding: 12px; transition: 0.4s; }
+.product-card:hover { transform: translateY(-10px); }
 
-/* 搜尋與篩選區 */
-.filter-section { padding: 40px 5%; margin-top: -40px; position: relative; z-index: 10; }
-.filter-card {
-    background: white; max-width: 900px; margin: 0 auto; padding: 25px;
-    border-radius: 15px; box-shadow: 0 15px 45px rgba(0,0,0,0.06);
-    display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between;
+/* 動態外框樣式 */
+.img-container {
+    width: 100%; height: 280px; border-radius: 15px; overflow: hidden;
+    padding: 5px; /* 為邊框留白 */
+    background: #eee; /* 預設背景 */
 }
-.search-input-group { position: relative; flex: 1; min-width: 250px; }
-.search-input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #ccc; }
-.search-input-group input {
-    width: 100%; padding: 12px 15px 12px 45px; border: 1px solid #eee;
-    border-radius: 30px; outline: none; background: #fafafa;
+/* 根據顏色動態生成的 class 將作用在此 */
+.border-pink { background: var(--br-pink); }
+.border-blue { background: var(--br-blue); }
+.border-yellow { background: var(--br-yellow); }
+.border-black { background: var(--br-black); }
+.border-purple { background: var(--br-purple); }
+
+.img-container img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+
+/* 彈窗內步進器 (Step Control) */
+.step-header { display: flex; justify-content: space-around; margin-bottom: 20px; font-weight: bold; color: #ccc; }
+.step-header .active { color: var(--accent); border-bottom: 2px solid var(--accent); }
+
+/* 表單樣式 */
+.checkout-form { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+.checkout-form input { padding: 12px; border-radius: 8px; border: 1px solid #eee; background: #fafafa; }
+
+/* 右下角 Toast */
+#toast-container { position: fixed; bottom: 30px; right: 30px; z-index: 9999; }
+.toast { background: #333; color: white; padding: 12px 25px; border-radius: 8px; margin-top: 10px; animation: slideUp 0.4s; }
+@keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+/* 按鈕風格 */
+.primary-btn { 
+    background: var(--accent); color: white; border: none; padding: 15px; 
+    border-radius: 10px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 15px;
 }
-
-.select-group { display: flex; gap: 15px; }
-.custom-select select {
-    padding: 12px 20px; border-radius: 30px; border: 1px solid #eee;
-    background: white; color: var(--primary); outline: none; cursor: pointer;
-}
-
-/* 商品格線 */
-.product-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 35px; padding: 40px 5%; max-width: 1400px; margin: 0 auto;
-}
-.product-card {
-    background: white; border-radius: 20px; overflow: hidden;
-    transition: var(--transition); border: 1px solid rgba(0,0,0,0.02);
-}
-.product-card:hover { transform: translateY(-12px); box-shadow: 0 25px 50px rgba(0,0,0,0.08); }
-
-.img-box { height: 320px; overflow: hidden; position: relative; }
-.img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s ease; }
-.product-card:hover .img-box img { transform: scale(1.1); }
-
-/* 商品資訊 */
-.info-box { padding: 20px; text-align: center; }
-.info-box h3 { font-size: 16px; font-weight: 500; margin-bottom: 10px; height: 40px; }
-.price-tag { color: var(--price); font-family: 'Montserrat'; font-weight: 700; font-size: 18px; }
-
-/* 底部操作 */
-.card-btns { display: flex; border-top: 1px solid #f9f9f9; }
-.btn-buy {
-    flex: 1; padding: 18px; border: none; background: white;
-    font-weight: bold; cursor: pointer; color: var(--primary); transition: 0.3s;
-}
-.btn-buy:hover { background: var(--primary); color: white; }
-
-/* Toast 訊息 */
-#toast-container { position: fixed; top: 100px; right: 20px; z-index: 9999; }
-.toast {
-    background: white; color: #333; padding: 15px 25px; border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 10px;
-    border-left: 4px solid var(--accent); animation: slideIn 0.4s ease;
-}
-@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-
-/* Footer */
-.footer { background: #fff; padding: 60px 5% 30px; text-align: center; border-top: 1px solid #eee; }
-.footer-logo { font-family: 'Montserrat'; letter-spacing: 3px; margin-bottom: 15px; }
-.footer-copyright { margin-top: 40px; font-size: 12px; color: #aaa; }
