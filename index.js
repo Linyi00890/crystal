@@ -2,7 +2,8 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
 
 document.onkeydown = function(e) {
-    if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) {
+    // 禁用 F12 與 開發者工具組合鍵
+    if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74))) {
         return false;
     }
 };
