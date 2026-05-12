@@ -3,22 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrystalLight | 輕珠寶能量美學</title>
-    <!-- 引入專業級字體與圖示 -->
+    <title>CrystalLight | 旗艦能量館</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="bracelet.css">
 </head>
-<body oncontextmenu="return false">
+<body>
 
 <div id="toast-container"></div>
 
-<!-- 頂部精緻通知列 -->
-<div class="top-bar">
-    <p>全館滿 NT$3000 享免運優惠 ・ 專屬精緻包裝 ・ 能量鑑定保證</p>
-</div>
-
-<!-- 毛玻璃導航欄 -->
 <header class="glass-header">
     <div class="header-container">
         <a href="#" class="brand-logo">CrystalLight</a>
@@ -28,7 +21,7 @@
                 <span id="wishCount">0</span>
             </div>
             <div class="stat-item" onclick="openCheckout()">
-                <i class="fa-solid fa-cart-shopping"></i>
+                <i class="fa-solid fa-bag-shopping"></i>
                 <span id="cartCount">0</span>
             </div>
         </div>
@@ -36,43 +29,34 @@
 </header>
 
 <main>
-    <!-- 高質感 Banner -->
-    <section class="hero-section">
-        <div class="hero-overlay">
-            <span class="hero-subtitle">NEW COLLECTION 2026</span>
-            <h1 class="hero-title">能量，在日常中綻放</h1>
-            <p class="hero-desc">精選天然礦石與現代工藝，為您的靈魂注入一抹寧靜光輝。</p>
-            <a href="#productGrid" class="hero-cta">探索系列</a>
-        </div>
+    <section class="hero-minimal">
+        <h1>專屬您的能量場</h1>
+        <p>每一顆水晶，都帶著大地的祝福</p>
     </section>
 
-    <!-- 質感控制面板 -->
-    <section class="filter-section">
-        <div class="filter-card">
-            <div class="search-input-group">
+    <!-- 進階美化篩選區 -->
+    <section class="filter-area">
+        <div class="filter-glass-card">
+            <div class="search-bar">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="search-input" placeholder="尋找心動的水晶..." oninput="renderProducts()">
+                <input type="text" id="search-input" placeholder="尋找水晶力量..." oninput="renderProducts()">
             </div>
-            <div class="select-group">
-                <div class="custom-select">
-                    <select id="effect-filter" onchange="renderProducts()">
-                        <option value="all">所有能量主題</option>
-                        <option value="love">桃花人緣</option>
-                        <option value="wealth">財富事業</option>
-                        <option value="wisdom">靈性智慧</option>
-                        <option value="protection">守護避邪</option>
-                    </select>
-                </div>
-                <div class="custom-select">
-                    <select id="color-filter" onchange="renderProducts()">
-                        <option value="all">色彩色系</option>
-                        <option value="pink">浪漫粉</option>
-                        <option value="yellow">活力黃</option>
-                        <option value="blue">靜謐藍</option>
-                        <option value="black">經典黑</option>
-                        <option value="purple">神秘紫</option>
-                    </select>
-                </div>
+            <div class="select-wrapper">
+                <select id="effect-filter" onchange="renderProducts()" class="fancy-select effect-sel">
+                    <option value="all">能量分類</option>
+                    <option value="love">❤ 桃花人緣</option>
+                    <option value="wealth">💰 財富事業</option>
+                    <option value="wisdom">🧠 靈性智慧</option>
+                    <option value="protection">🛡 守護避邪</option>
+                </select>
+                <select id="color-filter" onchange="renderProducts()" class="fancy-select color-sel">
+                    <option value="all">色彩色系</option>
+                    <option value="pink">浪漫粉</option>
+                    <option value="yellow">活力黃</option>
+                    <option value="blue">靜謐藍</option>
+                    <option value="black">經典黑</option>
+                    <option value="purple">神秘紫</option>
+                </select>
             </div>
         </div>
     </section>
@@ -80,25 +64,13 @@
     <div class="product-grid" id="productGrid"></div>
 </main>
 
-<!-- 模組化彈窗 (精美版) -->
+<!-- 全功能模組彈窗 -->
 <div id="commonModal" class="modal-overlay">
     <div class="modal-window">
         <button class="modal-close" onclick="closeModal()">&times;</button>
         <div id="modalContent"></div>
     </div>
 </div>
-
-<footer class="footer">
-    <div class="footer-content">
-        <h3 class="footer-logo">CrystalLight</h3>
-        <p>每一顆水晶，都是地球對你的低語。</p>
-        <div class="social-icons">
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-facebook"></i>
-        </div>
-    </div>
-    <div class="footer-copyright">&copy; 2026 CrystalLight Jewelry. All rights reserved.</div>
-</footer>
 
 <script src="bracelet.js"></script>
 </body>
