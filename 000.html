@@ -3,239 +3,286 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 命定水晶能量測驗 | CrystalMagic</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
-    
+    <title>水晶介紹：起源 - 水晶魔法 | CrystalMagic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-purple: #6a1b9a;
-            --accent-gold: #ffd700;
-            --bg-color: #f0f2f5;
+            --primary-purple: #9c27b0;
+            --gold: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
-        html { scroll-behavior: smooth; } /* 啟用平滑捲動 */
+        * {
+            box-sizing: border-box;
+            margin: 0; padding: 0;
+        }
 
         body {
             font-family: 'Noto Sans TC', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            margin: 0; padding: 0; line-height: 1.6;
-            user-select: none; -webkit-user-select: none;
+            background: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%);
+            color: #e0e0e0;
+            line-height: 1.8;
+            overflow-x: hidden;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
-        .quiz-container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
-
-        h1 { text-align: center; color: #4a148c; margin-bottom: 10px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
-        .subtitle { text-align: center; color: #7b1fa2; margin-bottom: 40px; font-style: italic; }
-
-        /* 題目區塊 */
-        .question-block { 
-            background: #fff; padding: 35px; margin-bottom: 30px; 
-            border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-            transition: transform 0.3s ease, border 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .question-block:hover { transform: translateY(-5px); }
-
-        /* 彩色側邊條 */
-        .color-0 { border-left: 8px solid #ff7675; } .color-1 { border-left: 8px solid #74b9ff; }
-        .color-2 { border-left: 8px solid #fab1a0; } .color-3 { border-left: 8px solid #55efc4; }
-        .color-4 { border-left: 8px solid #a29bfe; } .color-5 { border-left: 8px solid #ffe14d; }
-
-        .question-text { font-size: 1.3rem; font-weight: 700; margin-bottom: 20px; color: #2d3436; display: flex; align-items: center; }
-        .q-number { 
-            background: #4a148c; color: #fff; width: 28px; height: 28px; 
-            display: inline-flex; justify-content: center; align-items: center; 
-            border-radius: 50%; margin-right: 12px; font-size: 0.9rem;
+        /* 導覽列美化 */
+        .navbar {
+            background: rgba(15, 15, 25, 0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            width: 100%;
+            position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
         }
 
-        .options-list { display: flex; flex-direction: column; gap: 12px; }
-        
-        .options-list label { 
-            padding: 16px; border: 2px solid #f1f2f6; border-radius: 12px; 
-            cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center;
-            background: rgba(255, 255, 255, 0.8);
+        .nav-container {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 30px;
         }
-        
-        /* 選取後的樣式 */
-        .options-list label.selected {
-            background: var(--primary-purple);
-            color: #fff;
-            border-color: var(--primary-purple);
-            box-shadow: 0 4px 15px rgba(106, 27, 154, 0.2);
-        }
-        
-        .options-list label:hover:not(.selected) { background: #fff; border-color: var(--primary-purple); }
-        .options-list input { margin-right: 15px; transform: scale(1.3); accent-color: var(--primary-purple); }
 
-        .submit-btn { 
-            width: 100%; padding: 22px; background: linear-gradient(135deg, #6a1b9a, #4a148c);
-            color: #fff; border: none; border-radius: 50px; 
-            font-size: 1.5rem; font-weight: bold; cursor: pointer;
-            margin: 40px 0 100px; box-shadow: 0 6px 25px rgba(106, 27, 154, 0.4);
-            transition: all 0.3s ease;
+        .logo {
+            font-size: 1.5rem; font-weight: 900;
+            background: var(--gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
         }
-        .submit-btn:hover { transform: scale(1.02); filter: brightness(1.1); }
 
-        /* 結果頁面 */
-        #resultSection { 
-            text-align: center; background: #fff; padding: 60px 30px; 
-            border-radius: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); 
-            animation: slideUp 0.8s ease;
+        .nav-links { display: flex; list-style: none; gap: 20px; }
+        .nav-links a {
+            text-decoration: none; color: #bbb; font-size: 0.9rem;
+            transition: 0.3s;
         }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        .nav-links a:hover { color: #fff; text-shadow: 0 0 10px #fff; }
 
-        .crystal-img { 
-            width: 260px; height: 260px; object-fit: cover; 
-            border-radius: 50%; border: 10px solid #f3e5f5;
-            margin: 20px 0; box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        /* Hero 區塊 */
+        #hero {
+            text-align: center;
+            padding: 120px 20px;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png'), 
+                        linear-gradient(180deg, rgba(74,20,140,0.2) 0%, transparent 100%);
         }
-        #crystalName { color: var(--primary-purple); font-size: 2.8rem; margin: 10px 0; font-weight: 900; }
-        .crystal-tag { 
-            display: inline-block; padding: 6px 20px; background: linear-gradient(90deg, #e1bee7, #f3e5f5); 
-            color: #4a148c; border-radius: 30px; font-weight: bold; margin-bottom: 25px;
-        }
-        #crystalDesc { font-size: 1.2rem; color: #555; max-width: 600px; margin: 0 auto 40px; line-height: 1.8; }
 
-        .hidden { display: none !important; }
-
-        /* 懸浮按鈕 */
-        .floating-btn {
-            position: fixed; display: flex; align-items: center; padding: 12px 20px;
-            background-color: rgba(255, 255, 255, 0.95); color: #4a148c;
-            text-decoration: none; border-radius: 40px; font-weight: bold;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1); transition: all 0.3s ease;
-            z-index: 9999; border: 1px solid rgba(106, 27, 154, 0.1);
+        #hero h1 {
+            background: var(--gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900; margin-bottom: 10px;
+            filter: drop-shadow(0 0 15px rgba(212,175,55,0.3));
         }
-        .floating-btn:hover { transform: translateY(-5px); background-color: #fff; color: #8e24aa; }
-        .btn-left { left: 25px; bottom: 35px; }
-        .btn-mbti { right: 25px; bottom: 95px; }
-        .btn-draw { right: 25px; bottom: 35px; }
+
+        #hero p { color: #aaa; letter-spacing: 2px; }
+
+        /* 手風琴主題與容器 */
+        #accordion-container {
+            width: 90%; max-width: 800px;
+            margin: 0 auto 100px;
+        }
+
+        .section-title {
+            text-align: center; color: #fff; margin-bottom: 50px;
+            font-size: 1.8rem; letter-spacing: 5px;
+        }
+
+        .accordion-item {
+            background: var(--glass);
+            margin-bottom: 25px; border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            overflow: hidden; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .accordion-item:hover {
+            border-color: rgba(255,255,255,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .accordion-header {
+            width: 100%; padding: 25px 30px;
+            background: transparent; border: none;
+            cursor: pointer; display: flex;
+            justify-content: space-between; align-items: center;
+            color: #fff; text-align: left;
+        }
+
+        .accordion-header h3 { font-size: 1.2rem; display: flex; align-items: center; gap: 15px; }
+
+        .accordion-header span {
+            transition: 0.4s; color: #d4af37; font-size: 1.2rem;
+        }
+
+        .accordion-item.active { background: rgba(255,255,255,0.08); }
+        .accordion-item.active .accordion-header span { transform: rotate(180deg); }
+
+        .accordion-content {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .accordion-item.active .accordion-content { max-height: 1000px; }
+
+        .accordion-inner-padding {
+            padding: 0 35px 35px; color: #ccc; font-size: 1rem;
+        }
+
+        /* 內容豐富化元素 */
+        .energy-tag {
+            display: inline-block; padding: 2px 12px; border-radius: 10px;
+            font-size: 0.75rem; margin-bottom: 15px;
+            border: 1px solid rgba(212,175,55,0.5); color: #d4af37;
+        }
+
+        .meditation-quote {
+            margin-top: 25px; padding-left: 15px;
+            border-left: 2px solid #9c27b0;
+            font-style: italic; color: #aaa; font-size: 0.95rem;
+        }
+
+        /* 頁尾 */
+        .main-footer {
+            text-align: center; padding: 60px 0;
+            border-top: 1px solid var(--glass-border); color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* 行動端簡化導覽 */
+            #hero { padding: 80px 20px; }
+        }
     </style>
 </head>
 <body>
 
-<a href="index.html" class="btn-left floating-btn">🏠 返回首頁</a>
-<a href="mbti.html" class="btn-mbti floating-btn">🧠 MBTI 水晶</a>
-<a href="card.html" class="btn-draw floating-btn">🃏 每日抽卡</a>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">🔮 CrystalMagic</a>
+            <ul class="nav-links">
+                <li><a href="type.html">種類</a></li>
+                <li><a href="effect.html">功效</a></li>
+                <li><a href="pages.html">淨化</a></li>
+                <li><a href="exclusive.html">專屬</a></li>
+                <li><a href="contact.html">諮詢</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<main class="quiz-container">
-    <div id="quizContent">
-        <h1>🔮 深度能量水晶測驗</h1>
-        <p class="subtitle">色彩指引心靈，發現與你靈魂共振的命定礦石</p>
-        
-        <form id="quizForm">
-            <div id="questionsContainer"></div>
-            <button type="submit" class="submit-btn">✨ 揭曉我的命定水晶 ✨</button>
-        </form>
-    </div>
+    <main>
+        <section id="hero">
+            <h1>水晶介紹：起源</h1>
+            <p>EXPLORING THE COSMIC GEOMETRY</p>
+        </section>
 
-    <section id="resultSection" class="hidden">
-        <p style="letter-spacing: 2px; color: #888;">測驗完成！與您共鳴的能量夥伴是：</p>
-        <img id="crystalImage" src="" alt="水晶圖片" class="crystal-img">
-        <br>
-        <div class="crystal-tag" id="crystalType">能量分類</div>
-        <h1 id="crystalName"></h1>
-        <p id="crystalDesc"></p>
-        <button onclick="location.reload()" style="padding: 15px 40px; border-radius: 30px; cursor: pointer; border: 2px solid #eee; background: #fff; font-weight: bold; color: #666;">重新檢測能量</button>
-    </section>
-</main>
+        <div id="accordion-container">
+            <h2 class="section-title">✨ 溯源：從地心到靈魂 ✨</h2>
 
-<script>
-    const crystalDatabase = [
-        { id: "amethyst", name: "紫水晶", type: "靈性智慧", desc: "紫色光譜能開發智慧、平穩情緒，適合正在尋求內心平靜與突破考驗的你。", attr: "spirit", img: "https://images.unsplash.com/photo-1567883111025-063a43627448?w=400" },
-        { id: "citrine", name: "黃水晶", type: "自信財富", desc: "燦爛如陽，能增強自信心與創造力，吸引事業成功與豐盛的財富運勢。", attr: "wealth", img: "https://images.unsplash.com/photo-1615111784767-4d7a407d39f4?w=400" },
-        { id: "rose_quartz", name: "粉水晶", type: "人緣桃花", desc: "散發溫柔的粉色頻率，能療癒心輪、增加親和力，吸引美好的姻緣與人際連結。", attr: "love", img: "https://images.unsplash.com/photo-1614032155370-137b02b9f874?w=400" },
-        { id: "obsidian", name: "黑曜石", type: "極強辟邪", desc: "強大的吸納性，能排除負能量並提供保護，像無形的盾牌守護你的磁場環境。", attr: "protect", img: "https://images.unsplash.com/photo-1605142859862-978be7eba909?w=400" },
-        { id: "aquamarine", name: "海藍寶", type: "勇氣溝通", desc: "如海洋般清透，有助於平復情緒波動，增強表達能力與自我認同感。", attr: "health", img: "https://images.unsplash.com/photo-1599707334298-291efdec822c?w=400" },
-        { id: "rutilated_quartz", name: "鈦晶", type: "事業招財", desc: "內含強大金絲能量，象徵果斷與財富，助你在事業決策上擁有精準直覺。", attr: "power", img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400" },
-        { id: "clear_quartz", name: "白水晶", type: "淨化磁場", desc: "水晶之王，能平衡、淨化並放大周圍能量，讓你的思緒回歸純粹、專注目標。", attr: "spirit", img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400" }
-    ];
-
-    const questions = [
-        { q: "選擇一張你最想踏入的場景？", options: [{ text: "迷霧森林的深夜", attr: "spirit" }, { text: "充滿陽光的果園", attr: "power" }, { text: "平靜無波的海面", attr: "health" }] },
-        { q: "當你感到壓力大時，你通常會？", options: [{ text: "獨自冥想或睡覺", attr: "spirit" }, { text: "找親友傾訴或擁抱", attr: "love" }, { text: "瘋狂購物或吃大餐", attr: "wealth" }] },
-        { q: "你最希望目前的生活發生什麼改變？", options: [{ text: "財富大幅度增長", attr: "wealth" }, { text: "找到對的人理解我", attr: "love" }, { text: "遠離勾心鬥角的小人", attr: "protect" }] },
-        { q: "你喜歡哪種香味？", options: [{ text: "沉穩的檀香或乳香", attr: "spirit" }, { text: "甜美的玫瑰或茉莉", attr: "love" }, { text: "清爽的薄荷或柑橘", attr: "power" }] },
-        { q: "你的工作風格更傾向於？", options: [{ text: "追求效率與金錢回報", attr: "wealth" }, { text: "與人和諧相處並合作", attr: "love" }, { text: "保護自己不被受傷", attr: "protect" }] },
-        { q: "晚上睡不著時，腦袋裡通常在想？", options: [{ text: "思考人生的意義", attr: "spirit" }, { text: "未完成的工作任務", attr: "power" }, { text: "過去或未來的感情", attr: "love" }] },
-        { q: "你認為「成功」的定義是？", options: [{ text: "擁有巨大的財富", attr: "wealth" }, { text: "身體健康內心平安", attr: "health" }, { text: "受到眾人的保護與尊重", attr: "protect" }] },
-        { q: "哪種天氣讓你覺得能量最充沛？", options: [{ text: "大雨過後的清晨", attr: "health" }, { text: "烈日當頭的午後", attr: "power" }, { text: "繁星點點的晴夜", attr: "spirit" }] },
-        { q: "面對新的挑戰，你的第一反應是？", options: [{ text: "謹慎評估，防範風險", attr: "protect" }, { text: "直覺應對，隨機應變", attr: "spirit" }, { text: "衝了再說，把握機會", attr: "power" }] },
-        { q: "你現在最想修復的能量是？", options: [{ text: "受損的心靈與自信", attr: "love" }, { text: "疲憊的肉體與精神", attr: "health" }, { text: "乾涸的錢包與事業", attr: "wealth" }] }
-    ];
-
-    // 生成題目
-    const container = document.getElementById('questionsContainer');
-    questions.forEach((item, index) => {
-        const colorClass = `color-${index % 6}`;
-        const block = document.createElement('div');
-        block.className = `question-block ${colorClass}`;
-        block.id = `q-block-${index}`;
-        block.innerHTML = `
-            <div class="question-text"><span class="q-number">${index + 1}</span>${item.q}</div>
-            <div class="options-list">
-                ${item.options.map((opt) => `
-                    <label>
-                        <input type="radio" name="q${index}" value="${opt.attr}" required onclick="handleSelect(${index})">
-                        ${opt.text}
-                    </label>
-                `).join('')}
+            <div class="accordion-item active">
+                <button class="accordion-header">
+                    <h3>🌋 1. 地心孕育：淬鍊</h3>
+                    <span>▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner-padding">
+                        <span class="energy-tag">能量：深層穩定</span>
+                        <p>水晶的物質起源於地殼深處。當富含二氧化矽的岩漿冷卻，或是地下熱液滲入岩石縫隙，在<b>極端的高溫與穩定的壓力</b>下，矽原子與氧原子開始精準地排列。這是一個漫長的等待，往往需要數百萬年甚至上億年，才能在黑暗中緩慢長成晶瑩剔透的晶體結構。</p>
+                        <div class="meditation-quote">「我感受百萬年的穩定力量進入我的生命。」</div>
+                    </div>
+                </div>
             </div>
-        `;
-        container.appendChild(block);
-    });
 
-    // 處理選取與自動跳轉
-    function handleSelect(currentIndex) {
-        // 1. 更新視覺樣式
-        const labels = document.querySelectorAll(`#q-block-${currentIndex} label`);
-        labels.forEach(l => l.classList.remove('selected'));
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <h3>🏛️ 2. 文明初見：崇敬</h3>
+                    <span>▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner-padding">
+                        <span class="energy-tag">能量：古老智慧</span>
+                        <p>人類對水晶的運用可追溯至石器時代。<b>古埃及人</b>將青金石與紅玉髓鑲嵌在法老的飾品中以祈求保護；<b>瑪雅文明</b>視水晶為大地的眼睛。對遠古祖先而言，這些在土裡發現的「不化的冰塊」是神靈賜予的禮物。</p>
+                        <div class="meditation-quote">「連結古老的集體智慧，看見真實的自我。」</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <h3>📜 3. 神話起源：眼淚</h3>
+                    <span>▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner-padding">
+                        <span class="energy-tag">能量：靈感啟發</span>
+                        <p>在希臘神話中，「水晶」(Krystallos) 意為冰。相傳紫水晶是由酒神的悔恨演變而來。而在<b>亞特蘭提斯的傳說</b>中，巨大的水晶柱被認為是文明的能源中心。這些故事賦予了水晶跨越物理層面、連結潛意識的歷史。</p>
+                        <div class="meditation-quote">「讓神話般的能量，洗滌心靈的塵埃。」</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <h3>⚡ 4. 頻率之源：振動</h3>
+                    <span>▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner-padding">
+                        <span class="energy-tag">能量：科學共振</span>
+                        <p>從科學視角看，其穩定的<b>晶格結構</b>使其具備壓電效應。它吸收了地球磁場長達萬年的振動，並將這股穩定的原始能量儲存其中，成為我們調節身心頻率的精密工具。</p>
+                        <div class="meditation-quote">「調整我的頻率，與宇宙的豐盛共鳴。」</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <h3>🧘 5. 靈魂回歸：夥伴</h3>
+                    <span>▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner-padding">
+                        <span class="energy-tag">能量：全然覺知</span>
+                        <p>當現代人對水泥叢林感到疲憊時，這些源自地心深處、保有原始純粹頻率的礦石，幫助我們重新連結地球的根基。水晶完成了從物質奇蹟到身心夥伴的轉化之旅。</p>
+                        <div class="meditation-quote">「回歸自然，我就是光的一部分。」</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 CrystalMagic 水晶魔法 版權所有</p>
+    </footer>
+
+    <script>
+        // 手風琴與捲動邏輯
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const currentItem = button.parentElement;
+                const isActive = currentItem.classList.contains('active');
+                
+                // 關閉其他
+                document.querySelectorAll('.accordion-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+
+                // 切換當前
+                if (!isActive) {
+                    currentItem.classList.add('active');
+                    // 平滑捲動至中心
+                    setTimeout(() => {
+                        currentItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 300);
+                }
+            });
+        });
+
+        // 魔法保護
+        document.addEventListener('contextmenu', e => e.preventDefault());
         
-        const checkedInput = document.querySelector(`input[name="q${currentIndex}"]:checked`);
-        if (checkedInput) checkedInput.parentElement.classList.add('selected');
-
-        // 2. 自動捲動到下一題
-        const nextIndex = currentIndex + 1;
-        const nextBlock = document.getElementById(`q-block-${nextIndex}`);
-        const submitBtn = document.querySelector('.submit-btn');
-
-        setTimeout(() => {
-            if (nextBlock) {
-                nextBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            } else {
-                submitBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        }, 400); // 給一點時間讓使用者看見顏色變化
-    }
-
-    // 提交表單
-    document.getElementById('quizForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const formData = new FormData(this);
-        const scores = { love: 0, wealth: 0, protect: 0, spirit: 0, health: 0, power: 0 };
-        for (let value of formData.values()) { scores[value]++; }
-
-        let topAttr = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-        const candidates = crystalDatabase.filter(c => c.attr === topAttr);
-        const result = candidates[Math.floor(Math.random() * candidates.length)];
-
-        document.getElementById('quizContent').classList.add('hidden');
-        const resSec = document.getElementById('resultSection');
-        resSec.classList.remove('hidden');
-        
-        document.getElementById('crystalName').innerText = result.name;
-        document.getElementById('crystalDesc').innerText = result.desc;
-        document.getElementById('crystalType').innerText = result.type;
-        document.getElementById('crystalImage').src = result.img;
-
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // 禁止右鍵
-    document.addEventListener('contextmenu', e => e.preventDefault());
-</script>
-
+        document.onkeydown = e => {
+            if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73)) return false;
+        };
+    </script>
 </body>
 </html>
