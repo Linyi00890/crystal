@@ -3,194 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crystal Atlas | 專業水晶圖鑑</title>
+    <title>Crystal Soul | 專業水晶能量圖鑑</title>
+    <!-- 引入 Google Fonts 提升質感 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;600&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #8e94f3; /* 薰衣草紫 */
-            --secondary: #60a5fa; /* 天空藍 */
-            --bg: #fdfbff;
-            --card-bg: rgba(255, 255, 255, 0.8);
-            --text: #2d3436;
+            --accent: #a29bfe;
+            --accent-glow: rgba(162, 155, 254, 0.3);
+            --bg: #0f111a; /* 深邃午夜藍，能襯托水晶光澤 */
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-gold: #d4af37;
+            --text-light: #e0e0e0;
         }
+
+        * { box-sizing: border-box; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
 
         body {
             background-color: var(--bg);
-            color: var(--text);
-            font-family: 'PingFang TC', 'Noto Sans TC', sans-serif;
+            color: var(--text-light);
+            font-family: 'Montserrat', 'Noto Serif TC', serif;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* 背景裝飾 */
-        body::before {
+        /* 背景流光效果 */
+        body::after {
             content: '';
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 10% 20%, rgba(142, 148, 243, 0.1) 0%, transparent 40%);
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(162,155,254,0.05) 0%, transparent 50%);
             z-index: -1;
+            pointer-events: none;
         }
 
         header {
+            padding: 80px 20px 40px;
             text-align: center;
-            padding: 60px 20px;
         }
 
         header h1 {
-            font-size: 2.5rem;
-            letter-spacing: 4px;
+            font-size: 3rem;
             font-weight: 300;
-            margin-bottom: 10px;
-            color: #4b4b4b;
+            letter-spacing: 8px;
+            margin: 0;
+            background: linear-gradient(to right, #fff, var(--accent), var(--text-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
         }
 
-        /* 搜尋與過濾 */
-        .controls {
-            max-width: 600px;
-            margin: 0 auto 50px;
+        header p {
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #888;
+            margin-top: 15px;
+        }
+
+        /* 專業過濾器設計 */
+        .filter-section {
+            max-width: 800px;
+            margin: 0 auto 60px;
             padding: 0 20px;
+        }
+
+        .search-wrapper {
+            position: relative;
+            margin-bottom: 20px;
         }
 
         #searchBox {
             width: 100%;
-            padding: 15px 25px;
-            border-radius: 50px;
-            border: 1px solid #e0e0e0;
-            background: var(--card-bg);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
-            outline: none;
-            font-size: 1rem;
-            transition: 0.3s;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 18px 30px;
+            border-radius: 100px;
+            color: white;
+            font-size: 1.1rem;
+            backdrop-filter: blur(10px);
         }
 
         #searchBox:focus {
-            border-color: var(--primary);
-            box-shadow: 0 10px 25px rgba(142, 148, 243, 0.15);
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+            background: rgba(255, 255, 255, 0.07);
         }
 
-        /* 網格系統 */
+        /* 水晶網格 */
         .crystal-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1300px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 30px 100px;
+            padding: 0 40px 100px;
         }
 
-        /* 卡牌設計 */
+        /* 精美卡牌 */
         .card {
             background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 24px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2px; /* 方正設計更顯專業與經典 */
+            padding: 40px 30px;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.05), transparent);
+            transform: translateX(-100%);
+            transition: 0.6s;
+        }
+
+        .card:hover::before { transform: translateX(100%); }
 
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(142, 148, 243, 0.2);
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
-        .card-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            display: block;
+        .crystal-symbol {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px var(--accent-glow));
         }
 
         .card h3 {
-            margin: 15px 0 10px;
-            font-size: 1.25rem;
-            color: #333;
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.5rem;
+            margin: 10px 0;
+            color: var(--text-gold);
+            letter-spacing: 2px;
+        }
+
+        .tag-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
         .tag {
-            display: inline-block;
-            background: #f0f0f0;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            color: #666;
-            margin: 4px;
+            font-size: 0.7rem;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 2px 12px;
+            border-radius: 50px;
+            text-transform: uppercase;
         }
 
-        .description {
-            margin-top: 15px;
+        .desc {
             font-size: 0.9rem;
-            color: #777;
-            text-align: left;
+            color: #bbb;
+            text-align: center;
+            line-height: 1.8;
+            font-weight: 300;
         }
 
-        /* 卷軸美化 */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+        /* 捲軸設計 */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); }
 
     </style>
 </head>
 <body>
 
 <header>
-    <h1>CRYSTAL ATLAS</h1>
-    <p>—— 點選或搜尋，開啟你的能量共鳴 ——</p>
+    <h1>Crystal Soul</h1>
+    <p>—— 萬物皆有靈．探索大地能量的奧秘 ——</p>
 </header>
 
-<div class="controls">
-    <input type="text" id="searchBox" placeholder="輸入名稱、功效或顏色搜尋...">
+<div class="filter-section">
+    <div class="search-wrapper">
+        <input type="text" id="searchBox" placeholder="輸入能量需求、色彩或名稱（如：平靜、偏財）...">
+    </div>
 </div>
 
-<div class="crystal-grid" id="crystalGrid">
-    <!-- 卡牌由 JavaScript 生成 -->
+<div class="crystal-grid" id="mainGrid">
+    <!-- JS 將在此生成卡牌 -->
 </div>
 
 <script>
-    // 這裡預填了部分資料，你可以按照這個格式輕鬆增加到 35+ 種
-    const crystalData = [
-        { name: "紫水晶 Amethyst", icon: "🔮", tags: ["智慧", "直覺", "平靜"], desc: "開發靈性與智慧，適合冥想與提升睡眠品質。" },
-        { name: "粉晶 Rose Quartz", icon: "🌸", tags: ["人緣", "愛情", "治癒"], desc: "招來好桃花與人緣，修復內心創傷，散發溫和氣息。" },
-        { name: "白水晶 Clear Quartz", icon: "💎", tags: ["淨化", "放大", "聚焦"], desc: "水晶之王，能淨化空間負能量並放大其他水晶功效。" },
-        { name: "黑曜石 Obsidian", icon: "🌑", tags: ["避邪", "吸收", "保護"], desc: "強大的負能量排除能力，是最好的守護石與護身符。" },
-        { name: "黃水晶 Citrine", icon: "☀️", tags: ["財運", "自信", "喜悅"], desc: "象徵財富與成功，主偏財運，並能增強個人自信心。" },
-        { name: "拉長石 Labradorite", icon: "✨", tags: ["創造力", "靈覺", "保護"], desc: "沉穩的藍綠閃光，幫助洞察事物的真相並激發潛能。" },
-        { name: "海藍寶 Aquamarine", icon: "🌊", tags: ["溝通", "勇氣", "平靜"], desc: "保護航海平安，加強表達能力與說服力。" },
-        { name: "青金石 Lapis Lazuli", icon: "🌌", tags: ["專注", "理智", "洞察"], desc: "對應眉心輪，幫助思緒清晰，提升決斷力。" },
-        { name: "金髮晶 Rutilated Quartz", icon: "🔱", tags: ["正財", "權威", "氣場"], desc: "強大的招財能量，適合創業與職場領導者提升氣場。" },
-        { name: "草莓晶 Strawberry Quartz", icon: "🍓", tags: ["愛情", "熱情", "魅力"], desc: "增進人際關係，讓思緒更清晰，讓心靈重獲平靜。" }
-        // 你可以在這裡繼續複製貼上，直到 35 種以上
+    // 專業資料結構：建議補齊 35 種
+    const crystals = [
+        { name: "紫水晶", eng: "Amethyst", icon: "✨", tags: ["智慧", "安眠"], desc: "對應眉心輪，轉化負能量為愛與智慧。適合冥想、緩解情緒壓力。" },
+        { name: "粉晶", eng: "Rose Quartz", icon: "💎", tags: ["愛情", "治癒"], desc: "溫柔的療癒之石。開啟心輪，吸引良緣並促進自我包容與寬恕。" },
+        { name: "拉長石", eng: "Labradorite", icon: "🌌", tags: ["靈感", "防護"], desc: "光譜石中的幻影。激發潛能、保護能量場，減少靈性干擾。" },
+        { name: "鈦晶", eng: "Rutilated Quartz", icon: "🔱", tags: ["財富", "氣場"], desc: "水晶之王。具備極強的招財能量與魄力，適合職場領導者配戴。" },
+        { name: "月光石", eng: "Moonstone", icon: "🌙", tags: ["情感", "直覺"], desc: "戀人之石。緩解女性週期不適，增進直覺力，平撫情緒波動。" },
+        { name: "黑碧璽", eng: "Schorl", icon: "⬛", tags: ["避邪", "接地"], desc: "強大的保護石。吸收輻射與負能量，幫助身心與大地連結。" },
+        // ... 此處可持續擴展至 35+ 種
     ];
 
-    const grid = document.getElementById('crystalGrid');
-    const searchBox = document.getElementById('searchBox');
+    const grid = document.getElementById('mainGrid');
+    const search = document.getElementById('searchBox');
 
-    function renderCards(data) {
-        grid.innerHTML = data.map(crystal => `
+    function render(items) {
+        grid.innerHTML = items.map(c => `
             <div class="card">
-                <span class="card-icon">${crystal.icon}</span>
-                <h3>${crystal.name}</h3>
-                <div>${crystal.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
-                <p class="description">${crystal.desc}</p>
+                <div class="crystal-symbol">${c.icon}</div>
+                <h3>${c.name}</h3>
+                <div style="font-size:0.8rem; color:#666; margin-bottom:15px;">${c.eng}</div>
+                <div class="tag-container">
+                    ${c.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+                </div>
+                <p class="desc">${c.desc}</p>
             </div>
         `).join('');
     }
 
-    // 初始化渲染
-    renderCards(crystalData);
-
-    // 搜尋功能
-    searchBox.addEventListener('input', (e) => {
-        const keyword = e.target.value.toLowerCase();
-        const filteredData = crystalData.filter(c => 
-            c.name.toLowerCase().includes(keyword) || 
-            c.tags.some(t => t.includes(keyword)) ||
-            c.desc.includes(keyword)
+    search.addEventListener('input', (e) => {
+        const val = e.target.value.toLowerCase();
+        const filtered = crystals.filter(c => 
+            c.name.includes(val) || c.tags.some(t => t.includes(val)) || c.eng.toLowerCase().includes(val)
         );
-        renderCards(filteredData);
+        render(filtered);
     });
+
+    render(crystals);
 </script>
 
 </body>
