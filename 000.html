@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> 水晶介紹：起源 | CrystalMagic 2026 Elite</title>
+    <title>水晶介紹：起源 - 水晶魔法 | CrystalMagic 2026 RWD</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -12,17 +12,13 @@
             --bg-dark: #05060a;
             --glass-border: rgba(255, 255, 255, 0.1);
             
-            /* 各章節主題色定義 */
-            --color-1: #5c6bc0; /* 靛藍 */
-            --color-2: #26a69a; /* 翡翠 */
-            --color-3: #ffa726; /* 琥珀 */
-            --color-4: #ec407a; /* 靈魂紫 */
-            --color-5: #8d6e63; /* 大地棕 */
+            /* 更新後的五大能量色彩 (更亮、更具水晶感) */
+            --color-1: #00d2ff; /* 冰晶藍 */
+            --color-2: #00ff88; /* 療癒綠 */
+            --color-3: #ffcc33; /* 太陽金 */
+            --color-4: #ff00cc; /* 靈性粉 */
+            --color-5: #a1887f; /* 守護棕 */
         }
-
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 10px; }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -31,10 +27,10 @@
             background-color: var(--bg-dark);
             color: #d1d1d1;
             overflow-x: hidden;
-            -webkit-user-select: none;
-            user-select: none;
+            line-height: 1.6;
         }
 
+        /* 粒子背景 */
         #particle-canvas {
             position: fixed;
             top: 0; left: 0;
@@ -43,95 +39,116 @@
             pointer-events: none;
         }
 
+        /* --- 響應式導覽列 --- */
         .navbar {
-            background: rgba(5, 6, 10, 0.85);
-            backdrop-filter: blur(20px);
+            background: rgba(5, 6, 10, 0.9);
+            backdrop-filter: blur(15px);
             position: sticky;
             top: 0; z-index: 1000;
             border-bottom: 1px solid var(--glass-border);
         }
 
         .nav-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 40px;
+            padding: 15px 20px;
         }
 
         .logo {
             font-family: 'Cinzel', serif;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 900;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-decoration: none;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
 
-        .nav-links { display: flex; list-style: none; gap: 20px; }
+        .nav-links { display: flex; list-style: none; gap: 15px; }
         .nav-links a {
             text-decoration: none;
             color: #aaa;
-            font-size: 0.9rem;
-            transition: 0.4s;
+            font-size: 0.85rem;
+            transition: 0.3s;
         }
-        .nav-links a:hover { color: #fff; }
 
-        #hero { text-align: center; padding: 120px 20px; }
+        /* --- RWD 導覽列隱藏 (手機端優化) --- */
+        @media (max-width: 992px) {
+            .nav-links { display: none; } /* 手機端建議使用選單按鈕，此處先簡化隱藏以保持美觀 */
+            .nav-container { justify-content: center; }
+        }
+
+        /* --- Hero 區塊 --- */
+        #hero { text-align: center; padding: 80px 20px; }
         #hero h1 {
             font-family: 'Cinzel', serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-size: clamp(2rem, 8vw, 3.5rem);
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
-        #hero p { font-size: 1.1rem; color: #8892b0; letter-spacing: 4px; }
+        #hero p { font-size: 0.9rem; color: #8892b0; letter-spacing: 2px; }
 
-        #accordion-container { max-width: 900px; margin: 0 auto 100px; padding: 0 20px; }
-        .section-title { text-align: center; color: #fff; margin-bottom: 50px; font-size: 1.8rem; font-family: 'Cinzel'; }
+        /* --- 手風琴 RWD 容器 --- */
+        #accordion-container { 
+            width: 95%;
+            max-width: 800px; 
+            margin: 0 auto 100px; 
+        }
 
-        /* 手風琴核心樣式 */
+        .section-title { 
+            text-align: center; 
+            color: #fff; 
+            margin-bottom: 40px; 
+            font-size: 1.5rem; 
+            font-family: 'Cinzel';
+            letter-spacing: 3px;
+        }
+
         .accordion-item {
             position: relative;
-            margin-bottom: 30px;
-            border-radius: 20px;
-            padding: 2px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            padding: 2px; /* 邊框厚度 */
             overflow: hidden;
-            transition: 0.5s ease;
+            transition: 0.4s;
         }
 
-        /* 動態流光 - 顏色隨章節變換 */
+        /* 流光外框效果 */
         .accordion-item::before {
             content: '';
             position: absolute;
             top: -50%; left: -50%;
             width: 200%; height: 200%;
-            background: conic-gradient(transparent, var(--item-color), transparent 30%);
-            animation: rotate 6s linear infinite;
-            opacity: 0;
+            background: conic-gradient(transparent, var(--item-color), transparent 40%);
+            animation: rotate 4s linear infinite;
+            opacity: 0.3; /* 平時保持微光 */
             transition: 0.5s;
         }
 
-        .accordion-item:hover::before, 
-        .accordion-item.active::before { opacity: 1; }
+        .accordion-item.active::before,
+        .accordion-item:hover::before {
+            opacity: 1;
+            filter: brightness(1.2) blur(2px);
+        }
 
         @keyframes rotate { 100% { transform: rotate(360deg); } }
 
-        /* 內容容器 */
         .accordion-main {
             position: relative;
             background: #0d0f14;
-            border-radius: 18px;
+            border-radius: 13px;
             z-index: 1;
         }
 
         .accordion-header {
             width: 100%;
-            padding: 30px;
+            padding: 20px 25px;
             background: transparent;
             border: none;
             cursor: pointer;
@@ -143,18 +160,19 @@
 
         .accordion-header h3 {
             color: #fff;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
+            font-weight: 500;
         }
 
-        /* 標題前的顏色小方塊 */
         .accordion-header h3::before {
             content: "";
-            width: 4px; height: 20px;
+            width: 3px; height: 18px;
             background: var(--item-color);
             border-radius: 2px;
+            box-shadow: 0 0 10px var(--item-color);
         }
 
         .accordion-header span { color: var(--item-color); transition: 0.4s; }
@@ -163,27 +181,44 @@
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: max-height 0.6s ease-out;
         }
 
-        .accordion-item.active .accordion-content { max-height: 1000px; }
+        .accordion-item.active .accordion-content { max-height: 1200px; }
 
         .accordion-inner-padding {
-            padding: 0 40px 40px;
+            padding: 0 25px 30px;
             color: #bdc3c7;
-            line-height: 2;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            text-align: justify;
         }
 
-        .accordion-inner-padding b { color: var(--item-color); }
+        .accordion-inner-padding b { color: #fff; text-shadow: 0 0 5px var(--item-color); }
 
-        .main-footer { text-align: center; padding: 80px 0; border-top: 1px solid var(--glass-border); color: #666; font-size: 0.9rem; }
+        /* --- 頁尾 RWD --- */
+        .main-footer { 
+            text-align: center; 
+            padding: 60px 20px; 
+            border-top: 1px solid var(--glass-border); 
+            color: #666; 
+            font-size: 0.8rem; 
+        }
 
-        /* 指定每個項目的主題色 */
+        /* 顏色類別 */
         .item-1 { --item-color: var(--color-1); }
         .item-2 { --item-color: var(--color-2); }
         .item-3 { --item-color: var(--color-3); }
         .item-4 { --item-color: var(--color-4); }
         .item-5 { --item-color: var(--color-5); }
+
+        /* --- 手機版細節微調 --- */
+        @media (max-width: 576px) {
+            .accordion-header { padding: 15px 20px; }
+            .accordion-header h3 { font-size: 1rem; }
+            .accordion-inner-padding { padding: 0 20px 25px; font-size: 0.9rem; }
+            #hero { padding: 60px 15px; }
+        }
     </style>
 </head>
 <body>
@@ -210,16 +245,16 @@
     <main>
         <section id="hero">
             <h1>水晶介紹：起源</h1>
-            <p>跨越億萬年的時空旅程，探索大自然最純粹的幾何語言。</p>
+            <p>探索大自然最純粹的幾何語言</p>
         </section>
 
         <div id="accordion-container">
-            <h2 class="section-title">✨ 溯源：從地心到靈魂 ✨</h2>
+            <h2 class="section-title">✨ 靈魂溯源 ✨</h2>
 
             <div class="accordion-item item-1 active">
                 <div class="accordion-main">
                     <button class="accordion-header">
-                        <h3>1. 🌋 地心孕育：高溫高壓的淬鍊</h3>
+                        <h3>1. 🌋 地心孕育</h3>
                         <span>▼</span>
                     </button>
                     <div class="accordion-content">
@@ -233,12 +268,12 @@
             <div class="accordion-item item-2">
                 <div class="accordion-main">
                     <button class="accordion-header">
-                        <h3>2. 🏛️ 文明初見：遠古祖先的崇敬</h3>
+                        <h3>2. 🏛️ 文明初見</h3>
                         <span>▼</span>
                     </button>
                     <div class="accordion-content">
                         <div class="accordion-inner-padding">
-                            <p>人類對水晶的運用可追溯至石器時代。<b>古埃及人</b>將青金石與紅玉髓鑲嵌在法老的飾品中以祈求保護；<b>瑪雅文明</b>視水晶為大地的眼睛，能洞察未來。對遠古祖先而言，這些在土裡發現的「不化的冰塊」是神靈賜予的禮物，是人類最早接觸到的神聖幾何物件。</p>
+                            <p>人類對水晶的運用可追溯至石器時代。<b>古埃及人</b>將青金石與紅玉髓鑲嵌在法老的飾品中以祈求保護；<b>瑪雅文明</b>視水晶為大地的眼睛，能洞察未來。對遠古祖先而言，這些在土裡發現的「不化的冰塊」是神靈賜予的禮物。</p>
                         </div>
                     </div>
                 </div>
@@ -247,12 +282,12 @@
             <div class="accordion-item item-3">
                 <div class="accordion-main">
                     <button class="accordion-header">
-                        <h3>3. 📜 神話起源：諸神與大地的眼淚</h3>
+                        <h3>3. 📜 神話起源</h3>
                         <span>▼</span>
                     </button>
                     <div class="accordion-content">
                         <div class="accordion-inner-padding">
-                            <p>在希臘神話中，「水晶」(Krystallos) 意為冰。相傳紫水晶是由酒神戴歐尼修斯的悔恨與女神阿提米絲的守護演變而來。而在<b>亞特蘭提斯的傳說</b>中，巨大的水晶柱被認為是文明的能源中心。這些故事雖然魔幻，卻賦予了水晶跨越物理層面、連結集體潛意識的靈性歷史。</p>
+                            <p>在希臘神話中，「水晶」意為冰。相傳紫水晶是由酒神戴歐尼修斯的悔恨與女神阿提米絲的守護演變而來。而在<b>亞特蘭提斯的傳說</b>中，巨大的水晶柱被認為是文明的能源中心。賦予了水晶跨越物理層面的靈性歷史。</p>
                         </div>
                     </div>
                 </div>
@@ -261,12 +296,12 @@
             <div class="accordion-item item-4">
                 <div class="accordion-main">
                     <button class="accordion-header">
-                        <h3>4. ⚡ 頻率之源：宇宙振動的儲存器</h3>
+                        <h3>4. ⚡ 頻率之源</h3>
                         <span>▼</span>
                     </button>
                     <div class="accordion-content">
                         <div class="accordion-inner-padding">
-                            <p>從科學視角看，水晶起源於「秩序」。其穩定的<b>晶格結構</b>使其具備壓電效應，能將機械能轉化為電信號。這種特性讓水晶成為天然的頻率放大器。它吸收了地球磁場長達萬年的振動，並將這股穩定的原始能量儲存其中，成為我們調節身心頻率的精密工具。</p>
+                            <p>從科學視角看，水晶起源於「秩序」。其穩定的<b>晶格結構</b>使其具備壓電效應。它吸收了地球磁場長達萬年的振動，並將這股穩定的原始能量儲存其中，成為我們調節身心頻率的精密工具。</p>
                         </div>
                     </div>
                 </div>
@@ -275,68 +310,47 @@
             <div class="accordion-item item-5">
                 <div class="accordion-main">
                     <button class="accordion-header">
-                        <h3>5. 🧘 靈魂回歸：從地質標本到生命夥伴</h3>
+                        <h3>5. 🧘 靈魂回歸</h3>
                         <span>▼</span>
                     </button>
                     <div class="accordion-content">
                         <div class="accordion-inner-padding">
-                            <p>在當代社會，水晶的起源意義演變成了<b>「回歸自然」</b>的象徵。當現代人對水泥叢林感到疲憊時，這些源自地心深處、保有原始純粹頻率的礦石，幫助我們重新連結地球的根基。從博物館的陳列架走進人們的冥想空間，水晶完成了從物質奇蹟到身心夥伴的轉化之旅。</p>
+                            <p>在當代社會，水晶的起源意義演變成了<b>「回歸自然」</b>的象徵。當現代人對水泥叢林感到疲憊時，這些源自地心深處、保有原始純粹頻率的礦石，幫助我們重新連結地球的根基。完成從物質奇蹟到身心夥伴的轉化之旅。</p>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </main>
 
     <footer class="main-footer">
-        <p>&copy; 2026 CrystalMagic 水晶魔法 版權所有</p>
-        <p style="margin-top: 10px; opacity: 0.5;">🔮 魔法能量守護中：本站圖文受智慧財產保護，翻拷必究。</p>
+        <p>&copy; 2026 CrystalMagic 版權所有</p>
     </footer>
 
     <script>
-        // 1. 粒子背景
+        // 粒子背景
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
-        function initCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 1.2;
-                this.speedX = Math.random() * 0.4 - 0.2;
-                this.speedY = Math.random() * 0.4 - 0.2;
-                this.opacity = Math.random() * 0.5 + 0.1;
-            }
-            update() {
-                this.x += this.speedX; this.y += this.speedY;
-                if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
-                if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
-            }
-            draw() {
-                ctx.fillStyle = `rgba(191, 149, 63, ${this.opacity})`;
-                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
-            }
+        function init() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        class P {
+            constructor() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.s = Math.random()*1.5; this.vx = Math.random()*0.2-0.1; this.vy = Math.random()*0.2-0.1; }
+            draw() { ctx.fillStyle = "rgba(191,149,63,0.5)"; ctx.beginPath(); ctx.arc(this.x,this.y,this.s,0,Math.PI*2); ctx.fill(); }
+            update() { this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>canvas.width)this.vx*=-1; if(this.y<0||this.y>canvas.height)this.vy*=-1; }
         }
-        function createParticles() { particles = []; for (let i = 0; i < 100; i++) particles.push(new Particle()); }
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => { p.update(); p.draw(); });
-            requestAnimationFrame(animate);
-        }
-        window.addEventListener('resize', () => { initCanvas(); createParticles(); });
-        initCanvas(); createParticles(); animate();
+        function setup() { for(let i=0;i<80;i++) particles.push(new P()); }
+        function loop() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(loop); }
+        window.addEventListener('resize', init);
+        init(); setup(); loop();
 
-        // 2. 互動邏輯
-        document.querySelectorAll('.accordion-header').forEach(button => {
-            button.addEventListener('click', () => {
-                const item = button.closest('.accordion-item');
-                const isActive = item.classList.contains('active');
+        // 手風琴邏輯
+        document.querySelectorAll('.accordion-header').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement.parentElement;
+                const active = item.classList.contains('active');
                 document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
-                if (!isActive) {
-                    item.classList.add('active');
-                    setTimeout(() => { item.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 400);
-                }
+                if(!active) item.classList.add('active');
             });
         });
     </script>
