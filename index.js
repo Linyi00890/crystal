@@ -1,5 +1,8 @@
 // 🔮 CrystalMagic 魔法能量守護
-document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+    alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
+}, false);
 
 document.onkeydown = function(e) {
     // 禁用 F12 與 開發者工具組合鍵
