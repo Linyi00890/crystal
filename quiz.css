@@ -1,148 +1,102 @@
-/* 全域設定 */
 :root {
-    --deep-purple: #1a0a2e;
-    --sidebar-bg: #2d134d;
-    --accent-purple: #9d50bb;
-    --gold: #d4af37;
+    --primary-purple: #6a1b9a;
+    --accent-gold: #ffd700;
+    --bg-color: #f0f2f5;
 }
+
+html { scroll-behavior: smooth; }
 
 body {
     font-family: 'Noto Sans TC', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f1ea;
-    display: flex;
-    min-height: 100vh;
-    color: #333;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    margin: 0; padding: 0; line-height: 1.6;
+    user-select: none; -webkit-user-select: none;
 }
 
-/* 側邊欄設計 */
-.side-nav {
-    width: 280px;
-    background: linear-gradient(180deg, var(--deep-purple) 0%, var(--sidebar-bg) 100%);
-    color: white;
-    padding: 40px 0;
-    position: fixed;
-    height: 100vh;
-    box-shadow: 4px 0 15px rgba(0,0,0,0.3);
-    z-index: 100;
-}
+.quiz-container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
 
-.sidebar-header {
-    text-align: center;
-    padding-bottom: 30px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    margin: 0 20px 20px;
-}
+h1 { text-align: center; color: #4a148c; margin-bottom: 10px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+.subtitle { text-align: center; color: #7b1fa2; margin-bottom: 40px; font-style: italic; }
 
-.logo-crystal { font-size: 2.5rem; margin-bottom: 10px; }
-.logo-text { font-size: 1.2rem; font-weight: bold; letter-spacing: 2px; }
-
-.nav-links { list-style: none; padding: 0; margin: 0; }
-.nav-links li { padding: 5px 20px; }
-.nav-links a {
-    display: flex;
-    align-items: center;
-    color: rgba(255,255,255,0.7);
-    text-decoration: none;
-    padding: 12px 20px;
-    border-radius: 12px;
-    transition: 0.3s;
-    font-size: 1.1rem;
-}
-
-.nav-links a span { margin-right: 15px; font-size: 1.2rem; }
-.nav-links li.active a, .nav-links a:hover {
-    background: rgba(255,255,255,0.15);
-    color: white;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    backdrop-filter: blur(5px);
-}
-
-/* 主內容區 */
-.main-content {
-    margin-left: 280px;
-    flex-grow: 1;
-    padding: 40px 60px;
+/* 題目區塊 */
+.question-block { 
+    background: #fff; padding: 35px; margin-bottom: 30px; 
+    border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    transition: transform 0.3s ease;
     position: relative;
-    background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); /* 紙質紋理 */
-}
-
-.crystal-ribbon {
-    text-align: center;
-    letter-spacing: 15px;
-    opacity: 0.4;
-    margin-bottom: 20px;
-}
-
-.content-header { text-align: center; margin-bottom: 50px; }
-.content-header h1 { font-size: 3rem; color: #1a0a2e; margin-bottom: 10px; }
-.subtitle { font-size: 1.1rem; color: #666; letter-spacing: 1px; }
-
-/* 文章卡片設計 */
-.article-card {
-    background: white;
-    border-radius: 5px;
-    padding: 60px;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    max-width: 900px;
-    margin: 0 auto;
-    border: 1px solid #e0dcd0;
-}
-
-/* 卡片四角邊框裝飾 */
-.article-card::before {
-    content: "";
-    position: absolute;
-    top: 15px; left: 15px; right: 15px; bottom: 15px;
-    border: 1.5px solid #dcd7c9;
-    pointer-events: none;
-}
-
-.section-title {
-    text-align: center;
-    font-size: 2rem;
-    color: #4a148c;
-    margin-bottom: 40px;
-    font-weight: bold;
-}
-
-.content-grid {
-    display: flex;
-    gap: 40px;
-    align-items: flex-start;
-}
-
-.image-box {
-    flex: 1;
-    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    border: 5px solid white;
 }
 
-.text-box { flex: 1.2; }
-.step-tag { color: #999; font-size: 0.9rem; margin-bottom: 5px; }
-.text-box h3 { font-size: 1.8rem; margin: 0 0 15px; color: #333; }
+.question-block:hover { transform: translateY(-5px); }
 
-.accordion-tab {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 15px;
-    background: #f9f7f2;
-    border: 1px solid #eee;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    font-size: 0.9rem;
-    color: #888;
+/* 彩色側邊條 */
+.color-0 { border-left: 8px solid #ff7675; } .color-1 { border-left: 8px solid #74b9ff; }
+.color-2 { border-left: 8px solid #fab1a0; } .color-3 { border-left: 8px solid #55efc4; }
+.color-4 { border-left: 8px solid #a29bfe; } .color-5 { border-left: 8px solid #ffe14d; }
+
+.question-text { font-size: 1.3rem; font-weight: 700; margin-bottom: 20px; color: #2d3436; display: flex; align-items: center; }
+.q-number { 
+    background: #4a148c; color: #fff; width: 28px; height: 28px; 
+    display: inline-flex; justify-content: center; align-items: center; 
+    border-radius: 50%; margin-right: 12px; font-size: 0.9rem;
 }
 
-.text-box p {
-    line-height: 1.8;
-    color: #444;
-    font-size: 1.05rem;
-    text-align: justify;
+.options-list { display: flex; flex-direction: column; gap: 12px; }
+
+.options-list label { 
+    padding: 16px; border: 2px solid #f1f2f6; border-radius: 12px; 
+    cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center;
+    background: rgba(255, 255, 255, 0.8);
 }
 
-strong { color: #4a148c; border-bottom: 1px solid #e1bee7; }
+.options-list label.selected {
+    background: var(--primary-purple);
+    color: #fff;
+    border-color: var(--primary-purple);
+    box-shadow: 0 4px 15px rgba(106, 27, 154, 0.2);
+}
+
+.options-list input { margin-right: 15px; transform: scale(1.3); accent-color: var(--primary-purple); }
+
+.submit-btn { 
+    width: 100%; padding: 22px; background: linear-gradient(135deg, #6a1b9a, #4a148c);
+    color: #fff; border: none; border-radius: 50px; 
+    font-size: 1.5rem; font-weight: bold; cursor: pointer;
+    margin: 40px 0 100px; box-shadow: 0 6px 25px rgba(106, 27, 154, 0.4);
+}
+
+/* 結果頁面 */
+#resultSection { 
+    text-align: center; background: #fff; padding: 60px 30px; 
+    border-radius: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); 
+    animation: slideUp 0.8s ease;
+}
+
+@keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+
+.crystal-img { 
+    width: 260px; height: 260px; object-fit: cover; 
+    border-radius: 50%; border: 10px solid #f3e5f5;
+    margin: 20px 0; box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+#crystalName { color: var(--primary-purple); font-size: 2.8rem; margin: 10px 0; font-weight: 900; }
+.crystal-tag { 
+    display: inline-block; padding: 6px 20px; background: linear-gradient(90deg, #e1bee7, #f3e5f5); 
+    color: #4a148c; border-radius: 30px; font-weight: bold; margin-bottom: 25px;
+}
+
+.reload-btn { padding: 15px 40px; border-radius: 30px; cursor: pointer; border: 2px solid #eee; background: #fff; font-weight: bold; color: #666; }
+
+.hidden { display: none !important; }
+
+/* 懸浮按鈕 */
+.floating-btn {
+    position: fixed; display: flex; align-items: center; padding: 12px 20px;
+    background-color: rgba(255, 255, 255, 0.95); color: #4a148c;
+    text-decoration: none; border-radius: 40px; font-weight: bold;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1); z-index: 9999;
+}
+.btn-left { left: 25px; bottom: 35px; }
+.btn-mbti { right: 25px; bottom: 95px; }
+.btn-draw { right: 25px; bottom: 35px; }
