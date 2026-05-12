@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="bracelet.css">
-    <!-- 高級防護：禁止選取與圖片拖拽樣式 -->
+    <!-- 高級防護：禁止選取與圖片拖拽 -->
     <style>
         body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
         img { -webkit-user-drag: none; pointer-events: none; }
@@ -16,10 +16,12 @@
 </head>
 <body oncontextmenu="return false" onselectstart="return false">
 
+<!-- 頂部促銷列 -->
 <div class="urgent-sale-bar">
     <p>🔥 限時閃購：全館滿額 NT$2,000 享 88 折，剩餘時間：<span id="countdown">08:00:00</span></p>
 </div>
 
+<!-- 導航欄 -->
 <header class="main-header">
     <a href="index.html" class="logo">🔮 CrystalMagic</a>
     <nav class="nav-links">
@@ -27,19 +29,20 @@
     </nav>
 </header>
 
-<!-- 右下角雙懸浮按鈕區 -->
+<!-- 右下角雙懸浮按鈕：收藏夾與購物車 -->
 <div class="float-action-group">
-    <a href="javascript:void(0)" class="float-btn wish-float" id="wishFloatBtn" onclick="openWishlist()">
+    <a href="javascript:void(0)" class="float-btn wish-float" onclick="openWishlist()">
         <i class="fas fa-heart"></i>
         <span class="count-badge" id="wishCount">0</span>
     </a>
-    <a href="javascript:void(0)" class="float-btn cart-float" id="cartFloatBtn" onclick="openCheckout()">
+    <a href="javascript:void(0)" class="float-btn cart-float" onclick="openCheckout()">
         <i class="fas fa-shopping-bag"></i>
         <span class="count-badge" id="cartCount">0</span>
     </a>
 </div>
 
 <main>
+    <!-- 英雄區 -->
     <section class="hero-banner">
         <div class="hero-overlay"></div>
         <div class="hero-content">
@@ -66,19 +69,22 @@
         </div>
     </section>
 
+    <!-- 商品網格 -->
     <section class="product-grid" id="productGrid"></section>
 </main>
 
-<!-- 共通 Modal (用於 預覽、收藏清單、結帳) -->
+<!-- 核心彈窗容器 (收藏、購物車、預覽共用) -->
 <div id="commonModal" class="modal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeModal()">&times;</span>
-        <div id="modalBodyContent"></div>
+        <div id="modalBodyContent">
+            <!-- 這裡的內容會由 JS 動態生成 -->
+        </div>
     </div>
 </div>
 
 <footer class="footer-bottom">
-    &copy; 2026 CrystalMagic Crystal Store. 版權所有，翻印必究。
+    &copy; 2026 CrystalMagic Crystal Store. 版權所有。
 </footer>
 
 <script src="bracelet.js"></script>
