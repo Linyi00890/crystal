@@ -1,0 +1,102 @@
+:root {
+    --primary-purple: #6a1b9a;
+    --accent-gold: #ffd700;
+    --bg-color: #f0f2f5;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    margin: 0; padding: 0; line-height: 1.6;
+    user-select: none; -webkit-user-select: none;
+}
+
+.quiz-container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+
+h1 { text-align: center; color: #4a148c; margin-bottom: 10px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+.subtitle { text-align: center; color: #7b1fa2; margin-bottom: 40px; font-style: italic; }
+
+/* 題目區塊 */
+.question-block { 
+    background: #fff; padding: 35px; margin-bottom: 30px; 
+    border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.question-block:hover { transform: translateY(-5px); }
+
+/* 彩色側邊條 */
+.color-0 { border-left: 8px solid #ff7675; } .color-1 { border-left: 8px solid #74b9ff; }
+.color-2 { border-left: 8px solid #fab1a0; } .color-3 { border-left: 8px solid #55efc4; }
+.color-4 { border-left: 8px solid #a29bfe; } .color-5 { border-left: 8px solid #ffe14d; }
+
+.question-text { font-size: 1.3rem; font-weight: 700; margin-bottom: 20px; color: #2d3436; display: flex; align-items: center; }
+.q-number { 
+    background: #4a148c; color: #fff; width: 28px; height: 28px; 
+    display: inline-flex; justify-content: center; align-items: center; 
+    border-radius: 50%; margin-right: 12px; font-size: 0.9rem;
+}
+
+.options-list { display: flex; flex-direction: column; gap: 12px; }
+
+.options-list label { 
+    padding: 16px; border: 2px solid #f1f2f6; border-radius: 12px; 
+    cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.options-list label.selected {
+    background: var(--primary-purple);
+    color: #fff;
+    border-color: var(--primary-purple);
+    box-shadow: 0 4px 15px rgba(106, 27, 154, 0.2);
+}
+
+.options-list input { margin-right: 15px; transform: scale(1.3); accent-color: var(--primary-purple); }
+
+.submit-btn { 
+    width: 100%; padding: 22px; background: linear-gradient(135deg, #6a1b9a, #4a148c);
+    color: #fff; border: none; border-radius: 50px; 
+    font-size: 1.5rem; font-weight: bold; cursor: pointer;
+    margin: 40px 0 100px; box-shadow: 0 6px 25px rgba(106, 27, 154, 0.4);
+}
+
+/* 結果頁面 */
+#resultSection { 
+    text-align: center; background: #fff; padding: 60px 30px; 
+    border-radius: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); 
+    animation: slideUp 0.8s ease;
+}
+
+@keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+
+.crystal-img { 
+    width: 260px; height: 260px; object-fit: cover; 
+    border-radius: 50%; border: 10px solid #f3e5f5;
+    margin: 20px 0; box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+#crystalName { color: var(--primary-purple); font-size: 2.8rem; margin: 10px 0; font-weight: 900; }
+.crystal-tag { 
+    display: inline-block; padding: 6px 20px; background: linear-gradient(90deg, #e1bee7, #f3e5f5); 
+    color: #4a148c; border-radius: 30px; font-weight: bold; margin-bottom: 25px;
+}
+
+.reload-btn { padding: 15px 40px; border-radius: 30px; cursor: pointer; border: 2px solid #eee; background: #fff; font-weight: bold; color: #666; }
+
+.hidden { display: none !important; }
+
+/* 懸浮按鈕 */
+.floating-btn {
+    position: fixed; display: flex; align-items: center; padding: 12px 20px;
+    background-color: rgba(255, 255, 255, 0.95); color: #4a148c;
+    text-decoration: none; border-radius: 40px; font-weight: bold;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1); z-index: 9999;
+}
+.btn-left { left: 25px; bottom: 35px; }
+.btn-mbti { right: 25px; bottom: 95px; }
+.btn-draw { right: 25px; bottom: 35px; }
