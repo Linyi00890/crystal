@@ -3,211 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crystal Atlas | 3D 能量圖鑑</title>
+    <title>Crystal Soul Aura | 頂級能量圖鑑</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+TC:wght@300;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-color: #0f111a;
+            --bg-dark: #05060a;
+            --nav-bg: rgba(10, 11, 16, 0.8);
             --gold: #c5a47e;
-            --text-light: #e0e0e0;
-            --card-width: 280px;
-            --card-height: 400px;
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-light);
+            background-color: var(--bg-dark);
+            color: #fff;
             font-family: 'Montserrat', 'Noto Serif TC', serif;
             margin: 0;
-            padding: 50px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            overflow-x: hidden;
         }
 
-        header { text-align: center; margin-bottom: 60px; }
-        header h1 { font-family: 'Cinzel', serif; font-size: 3rem; color: var(--gold); letter-spacing: 8px; margin: 0; }
-        header p { letter-spacing: 4px; color: #888; font-size: 0.9rem; margin-top: 10px; }
+        /* 粒子背景 */
+        #particle-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
 
-        /* 網格佈局 */
+        /* 響應式導覽列 */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            letter-spacing: 3px;
+        }
+
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { color: #fff; text-decoration: none; font-size: 0.8rem; letter-spacing: 1px; opacity: 0.7; }
+        .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+        /* 主要內容排版 */
+        header { padding: 120px 20px 40px; text-align: center; }
+        header h1 { font-family: 'Cinzel', serif; font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: 10px; margin: 0; color: var(--gold); }
+
+        .search-section { max-width: 500px; margin: 0 auto 60px; padding: 0 20px; }
+        #searchBox {
+            width: 100%; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+            padding: 15px; border-radius: 30px; color: #fff; text-align: center; outline: none;
+        }
+
+        /* 水晶網格與流光卡牌 */
         .crystal-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(var(--card-width), 1fr));
-            gap: 40px;
-            max-width: 1300px;
-            width: 100%;
-            perspective: 1000px; /* 3D 視角 */
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px; max-width: 1400px; margin: 0 auto; padding: 0 40px 100px;
         }
 
-        /* 翻牌容器 */
-        .card-container {
-            width: var(--card-width);
-            height: var(--card-height);
-            cursor: pointer;
-            margin: 0 auto;
-        }
-
-        .card-inner {
+        .card-wrapper {
             position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform-style: preserve-3d;
-        }
-
-        /* 翻轉狀態 */
-        .card-container.is-flipped .card-inner {
-            transform: rotateY(180deg);
-        }
-
-        /* 正面與背面的共有樣式 */
-        .card-front, .card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            border: 1px solid rgba(197, 164, 126, 0.3);
-            border-radius: 4px;
+            padding: 2px; /* 為了流光外框 */
+            border-radius: 15px;
             overflow: hidden;
-            background: #1a1c2c;
+            background: rgba(255,255,255,0.05);
         }
 
-        /* 正面樣式 */
-        .card-front {
+        /* 流光動畫外框 */
+        .card-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(transparent, var(--c-color), transparent 30%);
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
+
+        .card {
+            background: var(--bg-dark);
+            border-radius: 13px;
+            padding: 40px 25px;
+            position: relative;
+            z-index: 1;
+            height: 100%;
             display: flex;
             flex-direction: column;
-        }
-
-        .crystal-img {
-            width: 100%;
-            height: 80%;
-            background-size: cover;
-            background-position: center;
-            /* 這裡使用漸層作為圖片佔位符，您可以替換成真實 URL */
-            background-image: linear-gradient(45deg, #2c3e50, #000);
-        }
-
-        .crystal-name-tag {
-            height: 20%;
-            display: flex;
             align-items: center;
-            justify-content: center;
-            background: rgba(0,0,0,0.5);
-            font-family: 'Noto Serif TC', serif;
-            font-size: 1.4rem;
-            color: var(--gold);
-            letter-spacing: 2px;
+            text-align: center;
         }
 
-        /* 背面樣式 */
-        .card-back {
-            transform: rotateY(180deg);
-            padding: 30px 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background: linear-gradient(135deg, #1a1c2c 0%, #0a0b10 100%);
+        .crystal-icon { font-size: 3rem; margin-bottom: 20px; filter: drop-shadow(0 0 10px var(--c-color)); }
+        .card h3 { color: var(--c-color); font-family: 'Noto Serif TC', serif; margin: 10px 0; letter-spacing: 2px; }
+        .tag { font-size: 0.7rem; padding: 3px 12px; border-radius: 50px; border: 1px solid var(--c-color); color: var(--c-color); margin: 5px; display: inline-block; }
+        .desc { font-size: 0.85rem; color: #aaa; line-height: 1.6; margin-top: 20px; }
+
+        /* 響應式調整 */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .crystal-grid { padding: 0 20px; gap: 20px; }
         }
-
-        .back-title { color: var(--gold); font-size: 1.3rem; margin-bottom: 10px; font-weight: 600; }
-        
-        .chakra-badge {
-            display: inline-block;
-            background: rgba(197, 164, 126, 0.15);
-            color: var(--gold);
-            padding: 2px 10px;
-            font-size: 0.8rem;
-            border-radius: 20px;
-            margin-bottom: 15px;
-            border: 1px solid var(--gold);
-        }
-
-        .tags-row { margin-bottom: 15px; }
-        .tag { color: #fff; font-size: 0.85rem; margin: 0 5px; opacity: 0.9; }
-
-        .desc-text {
-            font-size: 0.9rem;
-            color: #bbb;
-            line-height: 1.7;
-            border-top: 1px solid rgba(197, 164, 126, 0.2);
-            padding-top: 15px;
-            text-align: justify;
-        }
-
-        /* 懸停發光效果 */
-        .card-container:hover .card-inner {
-            box-shadow: 0 0 30px rgba(197, 164, 126, 0.2);
-        }
-
     </style>
 </head>
-<body>
+<body oncontextmenu="return false" onselectstart="return false">
+
+<canvas id="particle-canvas"></canvas>
+
+<nav>
+    <div class="logo">CRYSTAL AURA</div>
+    <ul class="nav-links">
+        <li><a href="#">首頁</a></li>
+        <li><a href="#">淨化教學</a></li>
+        <li><a href="#">脈輪對照</a></li>
+        <li><a href="#">關於我們</a></li>
+    </ul>
+</nav>
 
 <header>
-    <h1>CRYSTAL MUSE</h1>
-    <p>—— 點擊卡牌・探索內在能量 ——</p>
+    <h1>The Soul Atlas</h1>
+    <p>35+ 種能量石全紀錄</p>
 </header>
 
-<div class="crystal-grid" id="crystalGrid">
-    <!-- 卡牌由 JavaScript 生成 -->
+<div class="search-section">
+    <input type="text" id="searchBox" placeholder="搜尋水晶、顏色或功效...">
 </div>
 
+<div class="crystal-grid" id="mainGrid"></div>
+
 <script>
+    // 35+ 種水晶資料庫
     const crystals = [
-        {
-            name: "紫水晶",
-            img: "https://images.unsplash.com/photo-1567606401083-97c36a466986?auto=format&fit=crop&q=80&w=400", // 範例圖
-            chakra: "眉心輪",
-            tags: ["直覺", "平靜"],
-            desc: "幫助思緒清晰並提升睡眠品質，是智慧與守護的象徵。適合靜心冥想與壓力大的現代人。"
-        },
-        {
-            name: "粉晶",
-            img: "https://images.unsplash.com/photo-1615484477778-ca3b77940c25?auto=format&fit=crop&q=80&w=400",
-            chakra: "心輪",
-            tags: ["人緣", "治癒"],
-            desc: "舒緩情緒煩躁，讓內心回到平和狀態，並能招來好桃花與提升生意緣。"
-        },
-        {
-            name: "黑曜石",
-            img: "https://images.unsplash.com/photo-1506272517965-ec6133efee7a?auto=format&fit=crop&q=80&w=400",
-            chakra: "海底輪",
-            tags: ["避邪", "接地"],
-            desc: "極強的吸納性能量，排除負向干擾，是守護平安與穩定心神的首選。"
-        }
-        // ... 您可以在此繼續添加至 35+ 個
+        { name: "紫水晶", eng: "Amethyst", icon: "🔮", color: "#a29bfe", tags: ["智慧", "睡眠"], desc: "平穩情緒，開發智慧，對應眉心輪。" },
+        { name: "粉晶", eng: "Rose Quartz", icon: "🌸", color: "#fab1a0", tags: ["愛情", "人緣"], desc: "舒緩心輪，帶來好桃花與自我療癒。" },
+        { name: "白水晶", eng: "Clear Quartz", icon: "💎", color: "#ffffff", tags: ["淨化", "全能"], desc: "水晶之王，放大能量，清除負磁場。" },
+        { name: "黑曜石", eng: "Obsidian", icon: "🌑", color: "#353b48", tags: ["避邪", "吸收"], desc: "強力排除負能量，守護個人氣場。" },
+        { name: "黃水晶", eng: "Citrine", color: "#ffeaa7", icon: "☀️", tags: ["財富", "自信"], desc: "主偏財，增強自信與消化系統能量。" },
+        { name: "拉長石", eng: "Labradorite", color: "#81ecec", icon: "✨", tags: ["靈感", "守護"], desc: "激發潛能，保護靈魂光環，閃耀幻彩。" },
+        { name: "海藍寶", eng: "Aquamarine", color: "#74b9ff", icon: "💧", tags: ["溝通", "勇氣"], desc: "加強表達能力，保佑旅行平安。" },
+        { name: "月光石", eng: "Moonstone", color: "#dfe6e9", icon: "🌙", tags: ["直覺", "柔和"], desc: "溫潤如月，舒緩脾氣，增進內在直覺。" },
+        { name: "鈦晶", eng: "Rutilated", color: "#fdcb6e", icon: "🔱", tags: ["財運", "氣場"], desc: "能量極強，招正財偏財，提升領導力。" },
+        { name: "青金石", eng: "Lapis", color: "#0984e3", icon: "🌌", tags: ["冷靜", "冥想"], desc: "思緒清晰，開啟第三眼，幫助深度思考。" },
+        { name: "捷克隕石", eng: "Moldavite", color: "#55efc4", icon: "☄️", tags: ["頻率", "覺醒"], desc: "宇宙之石，加速靈性成長與轉化。" },
+        { name: "舒俱徠", eng: "Sugilite", color: "#6c5ce7", icon: "💜", tags: ["防護", "療癒"], desc: "因應新時代的強效石，排除深層壓力。" },
+        { name: "螢石", eng: "Fluorite", color: "#2ed573", icon: "🧬", tags: ["專注", "條理"], desc: "思緒之石，協助整理紛亂的想法。" },
+        { name: "草莓晶", eng: "Strawberry", color: "#ff7675", icon: "🍓", tags: ["人際", "喜悅"], desc: "增進愛情運勢，讓心靈充滿愉悅感。" },
+        { name: "金運石", eng: "Hypersthene", color: "#2d3436", icon: "🛡️", tags: ["招財", "保平安"], desc: "強力吸財，擋小人與負面能量。" },
+        { name: "天河石", eng: "Amazonite", color: "#00cec9", icon: "🌊", tags: ["希望", "幸運"], desc: "信心之石，擺脫焦慮，帶來好運。" },
+        { name: "虎眼石", eng: "Tiger Eye", color: "#e67e22", icon: "🐯", tags: ["行動", "正財"], desc: "增強決斷力與勇氣，積極達成目標。" },
+        { name: "磷灰石", eng: "Apatite", color: "#0fbcf9", icon: "🧩", tags: ["和平", "表達"], desc: "緩解悲傷，增強對自我的認同。" },
+        { name: "孔雀石", eng: "Malachite", color: "#05c46b", icon: "🍃", tags: ["蛻變", "抗壓"], desc: "吸收負磁場，守護旅行，轉化心境。" },
+        { name: "紅瑪瑙", eng: "Carnelian", color: "#eb4d4b", icon: "🔴", tags: ["生命力", "活力"], desc: "提升自信與熱情，對應生殖輪。" },
+        { name: "葡萄石", eng: "Prehnite", color: "#badc58", icon: "🍇", tags: ["平靜", "理智"], desc: "指路之石，幫助思維清明，緩解不安。" },
+        { name: "閃靈鑽", eng: "Herkimer", color: "#ffffff", icon: "⚡", tags: ["淨化", "高頻"], desc: "極致透亮的能量鑽，淨化經絡與空間。" },
+        { name: "石榴石", eng: "Garnet", color: "#6d214f", icon: "🍷", tags: ["血氣", "再生"], desc: "恢復體力，提升魅力，適合長期疲勞者。" },
+        { name: "透石膏", eng: "Selenite", color: "#f5f6fa", icon: "🕯️", tags: ["除障", "充電"], desc: "免消磁石，為其他水晶清理負能量。" },
+        { name: "黑碧璽", eng: "Tourmaline", color: "#1e272e", icon: "🕳️", tags: ["排毒", "接地"], desc: "強大的保護作用，減少電子產品輻射。" },
+        { name: "藍紋瑪瑙", eng: "Lace Agate", color: "#dff9fb", icon: "☁️", tags: ["寧靜", "寬容"], desc: "溫柔的淡藍條紋，安撫激動情緒。" },
+        { name: "金太陽石", eng: "Sunstone", color: "#f0932b", icon: "🦁", tags: ["陽光", "權威"], desc: "如陽光般充滿正面能量，驅散負面思維。" },
+        { name: "綠幽靈", eng: "Green Phantom", color: "#22a6b3", icon: "🌲", tags: ["事業", "財富"], desc: "象徵正財，幫助工作順遂與業績提升。" },
+        { name: "紅兔毛", eng: "Rabbit Hair", color: "#ff7979", icon: "🐰", tags: ["氣色", "安神"], desc: "溫暖的絲狀結構，調理女性機能與美顏。" },
+        { name: "鋰雲母", eng: "Lepidolite", color: "#9c88ff", icon: "🧘", tags: ["釋壓", "轉化"], desc: "含鋰元素，最有效的天然抗焦慮寶石。" },
+        { name: "金運石", eng: "Hypersthene", color: "#2d3436", icon: "⚔️", tags: ["避邪", "招財"], desc: "極黑中帶有金屬光澤，擋煞效果極強。" },
+        { name: "紫鋰輝", eng: "Kunzite", color: "#ef5777", icon: "💕", tags: ["大愛", "柔軟"], desc: "粉紫交織，開啟大愛之心，讓人變得溫柔。" },
+        { name: "彼得石", eng: "Pietersite", color: "#4834d4", icon: "🌪️", tags: ["風暴", "領袖"], desc: "如暴風般的紋路，消除恐懼，迎接挑戰。" },
+        { name: "硨磲", eng: "Tridacna", color: "#f5f6fa", icon: "🐚", tags: ["祥瑞", "清淨"], desc: "佛教七寶之首，鎖住心神，避邪消災。" },
+        { name: "龍血石", eng: "Dragon Blood", color: "#2f3640", icon: "🐲", tags: ["體力", "勇氣"], desc: "充滿大地生命力，協助找回原始的力量。" }
     ];
 
-    const grid = document.getElementById('crystalGrid');
+    const grid = document.getElementById('mainGrid');
+    const search = document.getElementById('searchBox');
 
-    function renderCards() {
-        grid.innerHTML = crystals.map(c => `
-            <div class="card-container" onclick="this.classList.toggle('is-flipped')">
-                <div class="card-inner">
-                    <!-- 正面 -->
-                    <div class="card-front">
-                        <div class="crystal-img" style="background-image: url('${c.img}')"></div>
-                        <div class="crystal-name-tag">${c.name}</div>
+    function render(data) {
+        grid.innerHTML = data.map(c => `
+            <div class="card-wrapper" style="--c-color: ${c.color}">
+                <div class="card">
+                    <div class="crystal-icon">${c.icon}</div>
+                    <h3>${c.name}</h3>
+                    <div style="font-size:0.7rem; color: ${c.color}; opacity: 0.8;">${c.eng}</div>
+                    <div style="margin-top:15px;">
+                        ${c.tags.map(t => `<span class="tag">${t}</span>`).join('')}
                     </div>
-                    <!-- 背面 -->
-                    <div class="card-back">
-                        <div class="back-title">${c.name}</div>
-                        <div><span class="chakra-badge">對應：${c.chakra}</span></div>
-                        <div class="tags-row">
-                            ${c.tags.map(t => `<span class="tag">#${t}</span>`).join('')}
-                        </div>
-                        <p class="desc-text">${c.desc}</p>
-                    </div>
+                    <p class="desc">${c.desc}</p>
                 </div>
             </div>
         `).join('');
     }
 
-    renderCards();
+    search.addEventListener('input', (e) => {
+        const v = e.target.value.toLowerCase();
+        render(crystals.filter(c => c.name.includes(v) || c.tags.some(t => t.includes(v))));
+    });
+
+    render(crystals);
+
+    // 粒子背景腳本
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function initCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2;
+            this.speedX = Math.random() * 0.5 - 0.25;
+            this.speedY = Math.random() * 0.5 - 0.25;
+            this.opacity = Math.random();
+        }
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.x > canvas.width) this.x = 0;
+            if (this.y > canvas.height) this.y = 0;
+        }
+        draw() {
+            ctx.fillStyle = `rgba(197, 164, 126, ${this.opacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    for (let i = 0; i < 100; i++) particles.push(new Particle());
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(animate);
+    }
+    initCanvas(); animate();
+    window.addEventListener('resize', initCanvas);
+
+    // 高級守護腳本：禁用 F12 與 開發者工具
+    document.onkeydown = function(e) {
+        if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) || (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) {
+            return false;
+        }
+    };
 </script>
 
 </body>
