@@ -1,4 +1,4 @@
-// 水晶資料庫 - 請在這裡修改圖片路徑 (img 欄位)
+// 水晶資料庫
 const crystalDatabase = [
     // --- 靈性智慧 (spirit) ---
     { id: "amethyst", name: "紫水晶", type: "靈性智慧", desc: "開發智慧、平穩情緒，守護正緣並提升直覺力。", attr: "spirit", img: "picture/purple01.jpg" },
@@ -80,13 +80,11 @@ questions.forEach((item, index) => {
 
 // 處理選取與「自動跳轉」
 window.handleSelect = function(currentIndex) {
-    // 視覺反饋
     const labels = document.querySelectorAll(`#q-block-${currentIndex} label`);
     labels.forEach(l => l.classList.remove('selected'));
     const checkedInput = document.querySelector(`input[name="q${currentIndex}"]:checked`);
     if (checkedInput) checkedInput.parentElement.classList.add('selected');
 
-    // 自動捲動到下一題
     const nextIndex = currentIndex + 1;
     const nextBlock = document.getElementById(`q-block-${nextIndex}`);
     const submitBtn = document.querySelector('.submit-btn');
@@ -111,46 +109,29 @@ document.getElementById('quizForm').addEventListener('submit', function(e) {
     const candidates = crystalDatabase.filter(c => c.attr === topAttr);
     const result = candidates[Math.floor(Math.random() * candidates.length)];
 
-    // 顯示結果頁面
     document.getElementById('quizContent').classList.add('hidden');
     document.getElementById('resultSection').classList.remove('hidden');
     
     document.getElementById('crystalName').innerText = result.name;
     document.getElementById('crystalDesc').innerText = result.desc;
     document.getElementById('crystalType').innerText = result.type;
-    document.getElementById('crystalImage').src = result.img; // 載入自定義圖片
+    document.getElementById('crystalImage').src = result.img;
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 // --- 魔法守護腳本 ---
-    
-    // 1. 禁用右鍵選單並跳出提醒
-    document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-        alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
-    }, false);
+document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+    alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
+}, false);
 
-    // 2. 禁用快捷鍵 (F12, Ctrl+U, Ctrl+Shift+I 等)
-    document.onkeydown = function (e) {
-        // 禁用 F12
-        if (e.keyCode === 123) {
-            return false;
-        }
-        // 禁用 Ctrl+Shift+I (開發者工具)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
-            return false;
-        }
-        // 禁用 Ctrl+Shift+J (開發者工具)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
-            return false;
-        }
-        // 禁用 Ctrl+U (檢視原始碼)
-        if (e.ctrlKey && e.keyCode === 85) {
-            return false;
-        }
-        // 禁用 Ctrl+S (存檔)
-        if (e.ctrlKey && e.keyCode === 83) {
-            return false;
-        }
-    };
+document.onkeydown = function (e) {
+    if (e.keyCode === 123 || 
+        (e.ctrlKey && e.shiftKey && e.keyCode === 73) || 
+        (e.ctrlKey && e.shiftKey && e.keyCode === 74) || 
+        (e.ctrlKey && e.keyCode === 85) || 
+        (e.ctrlKey && e.keyCode === 83)) {
+        return false;
+    }
+};
