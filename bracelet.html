@@ -3,6 +3,331 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bracelet | 精緻水晶飾品</title>
+    <style>
+        :root {
+            --primary-gold: #d4af37;
+            --rose-gold: #e5b3a3; /* 適合水晶的柔和色調 */
+            --soft-purple: #f3e5f5;
+            --dark-gray: #4a4a4a;
+            --white: #ffffff;
+            --accent-red: #ff5a5f;
+            --crystal-border: rgba(229, 179, 163, 0.4);
+        }
+
+        body {
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fffafb; /* 淡淡的粉底色 */
+            color: var(--dark-gray);
+            user-select: none;
+        }
+
+        /* 1. 頂部公告 */
+        .announcement-bar {
+            background: linear-gradient(90deg, #d4af37, #e5b3a3);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        header {
+            background: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(229, 179, 163, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        h1 {
+            font-weight: 300;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            color: var(--primary-gold);
+        }
+
+        /* 2. 美化下拉選單 */
+        .filter-container select {
+            padding: 10px 20px;
+            border: 1px solid var(--rose-gold);
+            border-radius: 25px;
+            margin: 5px;
+            background: white;
+            color: var(--dark-gray);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-container select:hover {
+            background: var(--soft-purple);
+        }
+
+        /* 顏色選單特定顏色 */
+        option[value="pink"] { color: #ffb6c1; }
+        option[value="purple"] { color: #9370db; }
+        option[value="yellow"] { color: #ffd700; }
+        option[value="black"] { color: #000000; }
+
+        /* 3. 商品網格與外框修改 */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 35px;
+            padding: 50px 8%;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            /* 修改後的水晶風格邊框 */
+            border: 1.5px solid var(--crystal-border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-gold);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(45deg, #fdfbfb 0%, #ebedee 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--rose-gold);
+            font-style: italic;
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(212, 175, 55, 0.9);
+            color: white;
+            padding: 4px 12px;
+            font-size: 11px;
+            border-radius: 3px;
+            z-index: 10;
+        }
+
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: var(--primary-gold);
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stock-label {
+            font-size: 12px;
+            background: #fff5f5;
+            color: var(--accent-red);
+            padding: 2px 8px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        /* 按鈕組 */
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-add {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid var(--primary-gold);
+            background: white;
+            color: var(--primary-gold);
+            cursor: pointer;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .btn-add:hover {
+            background: var(--primary-gold);
+            color: white;
+        }
+
+        /* 4. 右下角懸浮按鈕與計數器 */
+        .floating-menu {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .float-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: white;
+            border: 1px solid var(--rose-gold);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            cursor: pointer;
+            position: relative;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1);
+            background: var(--soft-purple);
+        }
+
+        .counter-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--accent-red);
+            color: white;
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: none; /* 有數據時顯示 */
+            align-items: center;
+            justify-content: center;
+        }
+
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+    <div class="announcement-bar">
+        💎 天然能量水晶專賣 | 全館消費滿 NT$1,200 免運費 💎
+    </div>
+
+    <header>
+        <h1>BRACELET</h1>
+        <div class="filter-container">
+            <select id="effect-filter">
+                <option value="">按功效篩選</option>
+                <option value="1">招正財 / 偏財</option>
+                <option value="2">守護愛情 / 桃花</option>
+                <option value="3">辟邪保平安</option>
+                <option value="4">提升智慧 / 學業</option>
+            </select>
+            <select id="color-filter">
+                <option value="">按水晶顏色</option>
+                <option value="pink">浪漫粉色系</option>
+                <option value="purple">神祕紫色系</option>
+                <option value="yellow">富貴黃色系</option>
+                <option value="black">沈穩黑色系</option>
+            </select>
+        </div>
+    </header>
+
+    <main class="product-grid" id="product-container"></main>
+
+    <div class="floating-menu">
+        <button class="float-btn" id="wishlist-btn">
+            ❤️ <span class="counter-badge" id="wishlist-count">0</span>
+        </button>
+        <button class="float-btn" id="cart-btn">
+            🛒 <span class="counter-badge" id="cart-count">0</span>
+        </button>
+    </div>
+
+    <script>
+        // 商品清單 (35種)
+        const crystals = [
+            "粉晶", "紫水晶", "黃水晶", "白水晶", "黑曜石", "鈦晶", "金髮晶", "草莓晶", "海藍寶", "月光石",
+            "拉長石", "葡萄石", "綠幽靈", "天河石", "金運石", "黑尖晶", "藍磷灰", "太陽石", "螢石", "青金石",
+            "櫻花瑪瑙", "彼得石", "紅紋石", "摩根石", "紫黃晶", "舒俱萊", "紅瑪瑙", "銀曜石", "茶晶", "虎眼石",
+            "綠松石", "白松石", "紫龍晶", "彩虹眼曜石", "粉澳寶"
+        ];
+
+        let cartCount = 0;
+        let wishlistCount = 0;
+
+        // 生成商品
+        const container = document.getElementById('product-container');
+        crystals.forEach((name, index) => {
+            const price = Math.floor(Math.random() * (1980 - 450 + 1)) + 450;
+            const stock = Math.floor(Math.random() * 10) + 1;
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <div class="badge">BEST SELLER</div>
+                <div class="product-image">Crystal Image ${index + 1}</div>
+                <div class="product-info">
+                    <div class="product-name">天然 ${name} 手鍊</div>
+                    <div class="price">NT$ ${price}</div>
+                    <div class="stock-label">僅剩 ${stock} 件 - 售完不補</div>
+                    <div class="btn-group">
+                        <button class="btn-add" onclick="updateCount('wishlist')">收藏</button>
+                        <button class="btn-add" onclick="updateCount('cart')">加入購物車</button>
+                    </div>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+
+        // 核心功能：更新購物車與收藏數量
+        function updateCount(type) {
+            if (type === 'cart') {
+                cartCount++;
+                const badge = document.getElementById('cart-count');
+                badge.innerText = cartCount;
+                badge.style.display = 'flex';
+                showToast("已加入購物車");
+            } else {
+                wishlistCount++;
+                const badge = document.getElementById('wishlist-count');
+                badge.innerText = wishlistCount;
+                badge.style.display = 'flex';
+                showToast("已加入收藏清單");
+            }
+        }
+
+        // 簡單的通知提示
+        function showToast(msg) {
+            console.log(msg); // 實際開發可加入浮動小窗
+        }
+
+        // 高級防護
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.onkeydown = e => {
+            if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) return false;
+        };
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bracelet | 精品水晶飾品</title>
     <style>
         /* 全域樣式 */
