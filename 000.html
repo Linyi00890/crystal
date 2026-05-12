@@ -3,36 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>水晶起源：溯源計畫 | CrystalMagic 2026</title>
+    <title>水晶介紹：起源 - 水晶魔法 | CrystalMagic</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-purple: #9c27b0;
             --accent-gold: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --bg-dark: #090a0f;
             --glass-white: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.1);
-            --bg-dark: #090a0f;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
-            font-family: 'Noto Sans TC', sans-serif;
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
             background: radial-gradient(circle at center, #1b2735 0%, var(--bg-dark) 100%);
             color: #e0e0e0;
             line-height: 1.8;
+            width: 100%;
             overflow-x: hidden;
             -webkit-user-select: none;
             user-select: none;
             min-height: 100vh;
         }
 
-        /* 導覽列美化 */
+        /* 導覽列 */
         .navbar {
-            background: rgba(9, 10, 15, 0.8);
+            background-color: rgba(9, 10, 15, 0.85);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             width: 100%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -40,16 +46,17 @@
         }
 
         .nav-container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 30px;
+            padding: 15px 40px;
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 900;
             background: var(--accent-gold);
             -webkit-background-clip: text;
@@ -61,18 +68,22 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 20px;
+            gap: 25px;
+            margin: 0;
         }
 
         .nav-links a {
             text-decoration: none;
             color: #aaa;
-            font-size: 0.9rem;
-            transition: 0.3s;
             font-weight: 500;
+            transition: 0.3s ease;
+            font-size: 0.95rem;
         }
 
-        .nav-links a:hover { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        .nav-links a:hover {
+            color: #fff;
+            text-shadow: 0 0 8px rgba(255,255,255,0.4);
+        }
 
         /* Hero 區塊 */
         #hero {
@@ -80,7 +91,6 @@
             padding: 120px 20px;
             background: url('https://www.transparenttextures.com/patterns/stardust.png');
             border-radius: 0 0 80px 80px;
-            position: relative;
         }
 
         #hero h1 {
@@ -93,29 +103,32 @@
             filter: drop-shadow(0 0 15px rgba(212,175,55,0.3));
         }
 
-        #hero p { font-size: 1.1rem; color: #8892b0; letter-spacing: 3px; }
-
-        /* 手風琴區塊 */
-        #accordion-container {
-            max-width: 900px;
-            margin: 80px auto;
-            padding: 0 20px;
+        #hero p {
+            color: #8892b0;
+            font-size: 1.1rem;
+            letter-spacing: 3px;
         }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            font-size: 1.8rem;
-            color: #fff;
-            letter-spacing: 5px;
-        }
-
-        /* 主題顏色定義 */
+        /* 手風琴主題色 */
         .theme-1 { --t-color: #7986cb; }
         .theme-2 { --t-color: #4db6ac; }
         .theme-3 { --t-color: #ffb74d; }
         .theme-4 { --t-color: #f06292; }
         .theme-5 { --t-color: #a1887f; }
+
+        #accordion-container {
+            width: 90%;
+            max-width: 900px;
+            margin: 80px auto;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 50px;
+            font-size: 1.8rem;
+            letter-spacing: 5px;
+        }
 
         .accordion-item {
             background: var(--glass-white);
@@ -128,8 +141,8 @@
 
         .accordion-item:hover {
             border-color: var(--t-color);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .accordion-header {
@@ -137,16 +150,17 @@
             padding: 30px;
             background: transparent;
             border: none;
+            text-align: left;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            text-align: left;
         }
 
         .accordion-header h3 {
-            color: #fff;
+            margin: 0;
             font-size: 1.2rem;
+            color: #fff;
             display: flex;
             align-items: center;
             gap: 15px;
@@ -154,19 +168,21 @@
 
         .accordion-header h3::before {
             content: "";
-            width: 4px; height: 20px;
+            width: 4px;
+            height: 20px;
             background: var(--t-color);
-            display: inline-block;
             border-radius: 2px;
         }
 
         .accordion-header span {
+            transition: transform 0.4s ease;
             color: var(--t-color);
             font-size: 1.2rem;
-            transition: 0.3s;
         }
 
-        .accordion-item.active .accordion-header span { transform: rotate(180deg); }
+        .accordion-item.active .accordion-header span {
+            transform: rotate(180deg);
+        }
 
         .accordion-content {
             max-height: 0;
@@ -175,15 +191,18 @@
             background: rgba(0,0,0,0.2);
         }
 
-        .accordion-item.active .accordion-content { max-height: 1000px; }
+        .accordion-item.active .accordion-content {
+            max-height: 1000px;
+        }
 
         .accordion-inner-padding {
-            padding: 30px 40px;
+            padding: 30px 45px;
             color: #bdc3c7;
+            line-height: 2;
             user-select: text;
         }
 
-        /* 豐富化元素 */
+        /* 標籤與金句樣式 */
         .meta-tag {
             display: inline-flex;
             gap: 10px;
@@ -196,7 +215,6 @@
             border: 1px solid var(--t-color);
             color: var(--t-color);
         }
-
         blockquote {
             margin-top: 25px;
             padding-left: 20px;
@@ -206,18 +224,19 @@
             opacity: 0.8;
         }
 
-        /* Footer */
         .main-footer {
             text-align: center;
             padding: 80px 0;
-            opacity: 0.5;
-            font-size: 0.8rem;
+            background: transparent;
+            color: #666;
+            font-size: 0.85rem;
             letter-spacing: 2px;
         }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* 行動端簡化 */
-            .accordion-header { padding: 20px; }
+            .nav-container { flex-direction: column; gap: 15px; }
+            .nav-links { display: none; } /* 行動端收起選單以維持視覺 */
+            .accordion-inner-padding { padding: 25px; }
         }
     </style>
 </head>
@@ -225,15 +244,17 @@
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">CRYSTAL MAGIC</a>
+            <a href="index.html" class="logo">CRYSTAL MAGIC</a>
             <ul class="nav-links">
-                <li><a href="#">起源</a></li>
-                <li><a href="#">種類</a></li>
-                <li><a href="#">功效</a></li>
-                <li><a href="#">淨化</a></li>
-                <li><a href="#">挑選</a></li>
-                <li><a href="#">常見問題</a></li>
-                <li><a href="#">客服</a></li>
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="type.html">水晶種類</a></li>
+                <li><a href="effect.html">功效解讀</a></li>
+                <li><a href="pages.html">淨化保養</a></li>
+                <li><a href="pick.html">挑選指南</a></li> 
+                <li><a href="exclusive.html">專屬商品</a></li>
+                <li><a href="question.html">常見問題</a></li>
+                <li><a href="share.html">粉絲回饋</a></li>
+                <li><a href="contact.html">客服諮詢</a></li>
             </ul>
         </div>
     </nav>
@@ -241,7 +262,7 @@
     <main>
         <section id="hero">
             <h1>水晶介紹：起源</h1>
-            <p>A Journey Through Deep Time & Soul</p>
+            <p>跨越億萬年的時空旅程，探索大自然最純粹的幾何語言。</p>
         </section>
 
         <div id="accordion-container">
@@ -255,11 +276,11 @@
                 <div class="accordion-content">
                     <div class="accordion-inner-padding">
                         <div class="meta-tag">
-                            <span class="tag">能量強度：極高</span>
-                            <span class="tag">形成環境：地幔/地殼深處</span>
+                            <span class="tag">能量：深層沉澱</span>
+                            <span class="tag">時間：數百萬年</span>
                         </div>
-                        <p>水晶的物質起源於地殼深處。當富含二氧化矽的岩漿冷卻，或是地下熱液滲入岩石縫隙，在<b>極端的高溫與穩定的壓力</b>下，矽原子與氧原子開始精準地排列。這是一個漫長的等待，往往需要數百萬年甚至上億年，才能在黑暗中緩慢長成晶瑩剔透的晶體結構。</p>
-                        <blockquote>「每一顆水晶都是大地在千萬年沉寂中寫下的詩。」</blockquote>
+                        <p>水晶的物質起源於地殼深處。當富含二氧化矽的岩漿冷卻，或是地下熱液滲入岩石縫隙，在<b>極端的高溫與穩定的壓力</b>下，矽原子與氧原子開始精準地排列。這是一個漫長的等待，才能在黑暗中緩慢長成晶瑩剔透的晶體結構。</p>
+                        <blockquote>「每一顆水晶，都是大地在千萬年寂靜中寫下的詩。」</blockquote>
                     </div>
                 </div>
             </div>
@@ -272,11 +293,9 @@
                 <div class="accordion-content">
                     <div class="accordion-inner-padding">
                         <div class="meta-tag">
-                            <span class="tag">歷史跨度：5000年以上</span>
-                            <span class="tag">對應文明：埃及、瑪雅</span>
+                            <span class="tag">文明：古埃及/瑪雅</span>
                         </div>
-                        <p>人類對水晶的運用可追溯至石器時代。<b>古埃及人</b>將青金石與紅玉髓鑲嵌在法老的飾品中以祈求保護；<b>瑪雅文明</b>視水晶為大地的眼睛，能洞察未來。對遠古祖先而言，這些在土裡發現的「不化的冰塊」是神靈賜予的禮物。</p>
-                        <blockquote>「這是不化的冰，亦是神靈凝視世間的瞳孔。」</blockquote>
+                        <p>人類對水晶的運用可追溯至石器時代。<b>古埃及人</b>將青金石與紅玉髓鑲嵌在飾品中祈求保護；<b>瑪雅文明</b>視水晶為大地的眼睛。對遠古祖先而言，這些在土裡發現的「不化的冰塊」是神靈賜予的禮物，是人類最早接觸到的神聖幾何物件。</p>
                     </div>
                 </div>
             </div>
@@ -289,9 +308,9 @@
                 <div class="accordion-content">
                     <div class="accordion-inner-padding">
                         <div class="meta-tag">
-                            <span class="tag">能量類別：神聖指引</span>
+                            <span class="tag">精神：亞特蘭提斯傳說</span>
                         </div>
-                        <p>在希臘神話中，「水晶」(Krystallos) 意為冰。相傳紫水晶是由酒神戴歐尼修斯的悔恨與女神阿提米絲的守護演變而來。而在亞特蘭提斯的傳說中，巨大的水晶柱被認為是文明的能源中心。這些故事賦予了水晶跨越物理層面、連結集體潛意識的靈性歷史。</p>
+                        <p>在希臘神話中，「水晶」(Krystallos) 意為冰。相傳紫水晶是由酒神的悔恨演變而來。而在<b>亞特蘭提斯的傳說</b>中，巨大的水晶柱被認為是文明的能源中心。這些故事賦予了水晶跨越物理層面、連結集體潛意識的靈性歷史。</p>
                     </div>
                 </div>
             </div>
@@ -304,10 +323,10 @@
                 <div class="accordion-content">
                     <div class="accordion-inner-padding">
                         <div class="meta-tag">
-                            <span class="tag">科學原理：壓電效應</span>
-                            <span class="tag">作用：頻率放大</span>
+                            <span class="tag">科學：壓電效應</span>
+                            <span class="tag">屬性：穩定頻率</span>
                         </div>
-                        <p>從科學視角看，水晶起源於「秩序」。其穩定的<b>晶格結構</b>使其具備壓電效應，能將機械能轉化為電信號。這種特性讓水晶成為天然的頻率放大器。它吸收了地球磁場長達萬年的振動，並將這股穩定的原始能量儲存其中。</p>
+                        <p>從科學視角看，水晶起源於「秩序」。其穩定的<b>晶格結構</b>使其具備壓電效應，能將機械能轉化為電信號。這種特性讓水晶成為天然的頻率放大器。它吸收了地球磁場長達萬年的振動，成為我們調節身心頻率的精密工具。</p>
                         <blockquote>「萬物皆有振動，而水晶是宇宙中最穩定的節拍器。」</blockquote>
                     </div>
                 </div>
@@ -321,9 +340,9 @@
                 <div class="accordion-content">
                     <div class="accordion-inner-padding">
                         <div class="meta-tag">
-                            <span class="tag">現代意義：回歸自然</span>
+                            <span class="tag">現代：身心靈連結</span>
                         </div>
-                        <p>在當代社會，水晶的起源意義演變成了「回歸自然」的象徵。當現代人對水泥叢林感到疲憊時，這些源自地心深處、保有原始純粹頻率的礦石，幫助我們重新連結地球的根基。水晶完成了從物質奇蹟到身心夥伴的轉化之旅。</p>
+                        <p>在當代社會，水晶的起源意義演變成了<b>「回歸自然」</b>的象徵。當現代人對水泥叢林感到疲憊時，這些源自地心深處、保有原始純粹頻率的礦石，幫助我們重新連結地球的根基。從博物館走進冥想空間，水晶完成了從物質奇蹟到生命夥伴的轉化。</p>
                     </div>
                 </div>
             </div>
@@ -331,26 +350,24 @@
     </main>
 
     <footer class="main-footer">
-        <p>&copy; 2026 CRYSTAL MAGIC AUTHENTICATED</p>
-        <p style="margin-top:10px; opacity:0.6;">宇宙能量守護中 🛡️ 翻拷必究</p>
+        <p>&copy; 2026 CrystalMagic 水晶魔法 版權所有</p>
+        <p style="margin-top: 10px; opacity: 0.6;">🔮 能量守護中 翻拷必究</p>
     </footer>
 
     <script>
-        // 手風琴邏輯：點擊切換與自動捲動
+        // 手風琴互動邏輯 + 平滑捲動
         document.querySelectorAll('.accordion-header').forEach(button => {
             button.addEventListener('click', () => {
                 const currentItem = button.parentElement;
                 const isActive = currentItem.classList.contains('active');
                 
-                // 關閉其他
                 document.querySelectorAll('.accordion-item').forEach(item => {
                     item.classList.remove('active');
                 });
 
-                // 開啟當前
                 if (!isActive) {
                     currentItem.classList.add('active');
-                    // 平滑滾動到視窗中心
+                    // 延遲捲動以確保動畫流暢
                     setTimeout(() => {
                         currentItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }, 300);
@@ -358,15 +375,17 @@
             });
         });
 
-        // 魔法守護：禁止右鍵 (更溫和的提示方式)
-        document.addEventListener('contextmenu', e => {
+        // 魔法守護腳本 (溫和控制台提示取代警報彈窗)
+        document.addEventListener('contextmenu', function (e) {
             e.preventDefault();
-            console.log("🔮 能量磁場保護中，無法開啟選單。");
-        });
+            console.log("🔮 魔法能量守護中：本站圖文受智慧財產保護。");
+        }, false);
 
-        // 禁止開發者工具與存檔
-        document.onkeydown = e => {
-            if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 83)) {
+        document.onkeydown = function (e) {
+            if (e.keyCode === 123 || 
+                (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || 
+                (e.ctrlKey && e.keyCode === 85) || 
+                (e.ctrlKey && e.keyCode === 83)) {
                 return false;
             }
         };
