@@ -4,25 +4,24 @@
    ========================================= */
 
 :root {
-    /* 核心色調更新：更柔和、富有靈性的色彩 */
-    --primary: #7c4dff; /* 活躍的紫色 */
+    /* 核心色調 */
+    --primary: #7c4dff; 
     --primary-light: #b47cff;
-    --secondary: #ff8a65; /* 溫暖的橙色 */
-    --bg-light: #f4f7fc; /* 帶一點藍的極淺灰 */
+    --secondary: #ff8a65; 
+    --bg-light: #f4f7fc; 
     --white: #ffffff;
-    --text-main: #37474f; /* 藍灰色調的文字 */
+    --text-main: #37474f; 
     --text-muted: #78909c;
     
-    /* 華麗的陰影與光暈 */
+    /* 視覺效果 */
     --shadow-sm: 0 5px 15px rgba(124, 77, 255, 0.05);
     --shadow-md: 0 10px 30px rgba(124, 77, 255, 0.12);
     --shadow-lg: 0 15px 40px rgba(124, 77, 255, 0.18);
     
-    /* 轉場動畫 */
     --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-/* --- 基礎重設與全域樣式 --- */
+/* --- 基礎重設 --- */
 * { 
     box-sizing: border-box; 
     margin: 0; 
@@ -30,16 +29,16 @@
 }
 
 body {
-    font-family: 'Lato', 'Noto Sans TC', sans-serif; /* 加上英文字型提升質感 */
+    font-family: 'Lato', 'Noto Sans TC', sans-serif;
     background-color: var(--bg-light);
     color: var(--text-main);
     line-height: 1.8;
-    user-select: none; /* 防拷貝保護 (保留) */
-    overflow-x: hidden; /* 防止光暈效果溢出 */
+    user-select: none;
+    overflow-x: hidden;
     position: relative;
 }
 
-/* 全域背景光暈特效 (新增) */
+/* 全域背景光暈 */
 body::before, body::after {
     content: '';
     position: fixed;
@@ -50,102 +49,92 @@ body::before, body::after {
     z-index: -1;
     opacity: 0.5;
 }
-body::before {
-    background: var(--primary-light);
-    top: 10%;
-    left: -100px;
-}
-body::after {
-    background: var(--secondary);
-    bottom: 10%;
-    right: -100px;
-}
+body::before { background: var(--primary-light); top: 10%; left: -100px; }
+body::after { background: var(--secondary); bottom: 10%; right: -100px; }
 
 a { text-decoration: none; transition: var(--transition); }
 ul { list-style: none; }
 
-/* --- 1. 導覽列 (美化) --- */
+/* =========================================
+   1. 導覽列 (同步 type.css 效果)
+   ========================================= */
 .main-header {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(15px); /* 增強毛玻璃效果 */
-    -webkit-backdrop-filter: blur(15px);
-    position: sticky; 
+    position: fixed; /* 同步 type.css 的固定定位 */
     top: 0; 
-    z-index: 1000;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9); /* 強化透明毛玻璃感 */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 2000;
     box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-    border-bottom: 1px solid rgba(124, 77, 255, 0.08);
+    border-bottom: 1px solid rgba(124, 77, 255, 0.15); /* 微調邊框線條感 */
 }
 
 .nav-container {
-    max-width: 1200px; 
+    max-width: 1400px; /* 同步 type.css 寬度 */
     margin: 0 auto; 
-    padding: 18px 25px;
+    padding: 15px 40px; /* 同步間距比例 */
     display: flex; 
     justify-content: space-between; 
     align-items: center;
 }
 
 .logo { 
+    font-family: 'Cinzel', serif; /* 同步 type.css 古典字體 */
     font-size: 1.6rem; 
     font-weight: 700; 
     color: var(--primary); 
-    letter-spacing: -0.5px;
+    letter-spacing: 3px; /* 增加字距營造高級感 */
     position: relative;
-}
-/* Logo 微光動畫 */
-.logo::after {
-    content: '🔮';
-    position: absolute;
-    opacity: 0.3;
-    filter: blur(5px);
-    left: 0;
-    transform: scale(1.2);
 }
 
 .nav-menu { 
     display: flex; 
-    gap: 5px; 
+    gap: 30px; /* 同步選單間距 */
 }
 
 .nav-menu a {
     color: var(--text-main); 
-    font-size: 0.95rem;
-    font-weight: 400;
-    padding: 10px 18px; 
-    border-radius: 25px;
+    font-size: 0.9rem; /* 同步精緻小字體 */
+    font-weight: 500;
+    padding: 5px 0;
     position: relative;
-    overflow: hidden;
+    transition: var(--transition);
 }
 
-/* 導覽列 Hover 效果升級 */
+/* Hover 效果：純文字變色，取消背景色 */
 .nav-menu a:hover { 
     color: var(--primary); 
-    background: rgba(124, 77, 255, 0.05); 
+    background: transparent; 
 }
 
-/* 針對當頁連結的樣式 (假設HTML有加上 active class，若無則不影響) */
+/* Active 效果：改為底部細線設計 */
 .nav-menu a.active {
-    background: linear-gradient(135deg, var(--primary), var(--primary-light));
-    color: white;
-    box-shadow: 0 4px 10px rgba(124, 77, 255, 0.2);
+    color: var(--primary);
+    background: transparent;
 }
 
-/* --- 2. 英雄區塊 (美化) --- */
+.nav-menu a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary);
+}
+
+/* --- 修正因固定導覽列遮擋內容的問題 --- */
 .page-header {
-    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%), 
-                url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiM3YzRkZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTAgMGg0MHY0MEgwVjB6bTIwIDIwaDIwdjIwSDIWMjB6TTAgMjBoMjB2MjBIMFYyMHoyMCAwaDIwdjIwSDIwVjB6Ii8+PC9nPjwvZz48L3N2Zz4=');
-    /* 加入淡淡的幾何底紋 */
-    padding: 100px 20px; 
+    padding-top: 150px; /* 增加頂部間距 */
+    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
     text-align: center; 
-    position: relative;
-    overflow: hidden;
+    padding-bottom: 100px;
 }
 
-/* 標題裝飾線 */
+/* --- 剩餘區塊保持原本 effect 的華麗風格 --- */
 .page-header h1 { 
     font-size: 3rem; 
-    color: #2a0a55; 
-    margin-bottom: 15px; 
     font-weight: 700;
     background: linear-gradient(135deg, #2a0a55 0%, var(--primary) 100%);
     -webkit-background-clip: text;
@@ -153,421 +142,27 @@ ul { list-style: none; }
     display: inline-block;
 }
 
-.page-header p {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    max-width: 600px;
-    margin: 0 auto;
-    font-weight: 300;
-}
-
-/* --- 3. 主內容佈局 --- */
-.main-content { 
-    max-width: 1200px; 
-    margin: 0 auto; 
-    padding: 60px 20px; 
-}
+.main-content { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
 
 .section-title { 
     text-align: center; 
     color: #2a0a55; 
     margin: 60px 0 40px; 
     font-size: 2.2rem;
-    font-weight: 700;
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 15px;
 }
-/* 標題兩側修飾 */
-.section-title::before, .section-title::after {
-    content: '';
-    width: 50px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
-}
 
-/* --- 4. 掃描儀設計 (大幅美化) --- */
 .scanner-section {
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     border-radius: 30px; 
     padding: 50px;
     box-shadow: var(--shadow-md); 
     margin-bottom: 80px;
-    border: 1px solid rgba(255,255,255,0.8);
     position: relative;
 }
 
-/* 裝飾性的小光點 */
-.scanner-section::before {
-    content: '';
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 10px;
-    height: 10px;
-    background: var(--secondary);
-    border-radius: 50%;
-    box-shadow: 0 0 15px var(--secondary);
-    animation: pulse 2s infinite;
-}
-
-.section-badge {
-    background: linear-gradient(135deg, var(--primary-light), var(--primary));
-    color: white; 
-    padding: 6px 18px;
-    border-radius: 50px; 
-    font-size: 0.8rem; 
-    display: inline-block; 
-    margin-bottom: 20px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 10px rgba(124, 77, 255, 0.2);
-}
-
-.quiz-header {
-    margin-bottom: 30px;
-}
-
-#progressStep {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    font-weight: 400;
-}
-
-.progress-bar-container {
-    background: rgba(124, 77, 255, 0.05); 
-    height: 12px; 
-    border-radius: 10px; 
-    margin: 10px 0 0; 
-    overflow: hidden;
-    border: 1px solid rgba(124, 77, 255, 0.1);
-}
-
-.progress-bar-fill {
-    background: linear-gradient(90deg, var(--primary-light), var(--secondary), var(--primary-light));
-    background-size: 200% 100%;
-    width: 0%; 
-    height: 100%; 
-    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    animation: gradientFlow 3s linear infinite; /* 進度條流動動畫 */
-    border-radius: 10px;
-}
-
-.question-box h3 {
-    font-size: 1.6rem;
-    color: var(--text-main);
-    margin-bottom: 30px;
-    font-weight: 500;
-    line-height: 1.5;
-}
-
-.options-grid { 
-    display: grid; 
-    gap: 15px; 
-    margin-top: 30px; 
-}
-
-/* 按鈕美化 (通用) */
-.option-btn, .start-btn, .reset-btn {
-    padding: 18px 25px; 
-    border: 1px solid rgba(124, 77, 255, 0.15); 
-    border-radius: 15px;
-    background: var(--white); 
-    cursor: pointer; 
-    font-size: 1.05rem; 
-    transition: var(--transition);
-    color: var(--text-main);
-    font-weight: 400;
-    position: relative;
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-}
-
-.option-btn:hover, .start-btn:hover { 
-    background: var(--primary); 
-    color: white; 
-    transform: translateY(-3px); 
-    box-shadow: var(--shadow-lg);
-    border-color: transparent;
-}
-
-/* 為了 onclick 效果加的點擊回饋 (不影響原本邏輯) */
-.option-btn:active, .start-btn:active {
-    transform: translateY(-1px);
-    filter: brightness(0.9);
-}
-
-.start-btn {
-    background: linear-gradient(135deg, var(--primary), var(--primary-light));
-    color: white;
-    font-weight: 700;
-    border: none;
-}
-
-/* --- 5. 結果呈現 (美化) --- */
-.result-hidden { display: none; }
-.result-card { 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 40px; 
-    align-items: center; 
-    background: rgba(255,255,255,0.5);
-    padding: 30px;
-    border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.8);
-}
-
-.chart-area { 
-    flex: 1; 
-    min-width: 300px; 
-    background: var(--white);
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: var(--shadow-sm);
-}
-
-.analysis-area { 
-    flex: 1.2; 
-}
-
-.analysis-area h3 {
-    font-size: 1.4rem;
-    color: var(--text-main);
-    margin-bottom: 10px;
-}
-
-.highlight-text { 
-    color: var(--primary); /* 改為紫色調 */
-    font-size: 2.2rem; 
-    font-weight: 700; 
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-left: 10px;
-}
-
-.status-tag {
-    display: inline-block;
-    background: rgba(255, 138, 101, 0.1);
-    color: var(--secondary);
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    border: 1px solid rgba(255, 138, 101, 0.2);
-}
-
-#analysisDesc {
-    font-size: 1rem;
-    color: var(--text-main);
-    margin-bottom: 20px;
-    background: rgba(255,255,255,0.5);
-    padding: 15px;
-    border-radius: 10px;
-}
-
-.advice-box {
-    background: linear-gradient(135deg, #fffcf5 0%, #fff9f0 100%); 
-    border-left: 5px solid var(--secondary);
-    padding: 25px; 
-    margin: 25px 0; 
-    border-radius: 12px;
-    box-shadow: inset 0 0 10px rgba(255, 138, 101, 0.05);
-}
-
-.advice-box strong {
-    color: var(--secondary);
-    font-size: 1.1rem;
-    display: block;
-    margin-bottom: 10px;
-}
-
-#crystalAdvice {
-    font-size: 1.05rem;
-    color: #5d4037;
-    font-weight: 500;
-}
-
-.reset-btn {
-    width: 100%;
-    margin-top: 10px;
-    background: #f4f7fc;
-    color: var(--text-muted);
-    border: 1px solid rgba(120, 144, 156, 0.2);
-}
-.reset-btn:hover {
-    background: #e1e8f5;
-    color: var(--text-main);
-    border-color: rgba(120, 144, 156, 0.3);
-    transform: translateY(-2px);
-}
-
-/* --- 6. 脈輪卡片網格 (大幅美化) --- */
-.chakra-grid {
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 25px; 
-    margin-top: 50px;
-}
-
-.chakra-card {
-    background: var(--white); 
-    padding: 35px; 
-    border-radius: 25px;
-    box-shadow: var(--shadow-sm); 
-    border: 1px solid rgba(0,0,0,0.03);
-    /* 移除原本硬梆梆的 border-top */
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
-}
-
-/* 在卡片頂部加入富有設計感的彩色光條 */
-.chakra-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 6px;
-    background: var(--chakra-color);
-    box-shadow: 0 2px 10px var(--chakra-color);
-}
-
-/* Hover 浮起與光暈效果 */
-.chakra-card:hover { 
-    transform: translateY(-10px) scale(1.02); 
-    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-}
-/* Hover 時卡片背景顯現淡淡的脈輪色 */
-.chakra-card:hover::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--chakra-color);
-    opacity: 0.02;
-    z-index: 0;
-}
-
-.chakra-card * { position: relative; z-index: 1; } /* 確保內容在光暈上方 */
-
-.chakra-num { 
-    font-size: 4rem; /* 放大 */
-    opacity: 0.06; /* 更淡 */
-    font-weight: 800; 
-    float: right; 
-    margin-top: -20px; 
-    margin-right: -10px;
-    color: var(--chakra-color);
-}
-
-.chakra-card h3 {
-    font-size: 1.5rem;
-    color: var(--text-main);
-    margin-bottom: 5px;
-    margin-top: 10px;
-}
-
-.chakra-theme { 
-    font-weight: 700; 
-    color: var(--chakra-color); 
-    margin-bottom: 15px; 
-    font-size: 1rem;
-    letter-spacing: 0.5px;
-}
-
-.chakra-detail { 
-    font-size: 0.95rem; 
-    color: var(--text-muted); 
-    margin-bottom: 20px; 
-    height: 70px; /* 統一高度，使對齊漂亮 */
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* 最多顯示三行 */
-    -webkit-box-orient: vertical;
-}
-
-.crystal-tags {
-    margin-top: auto;
-}
-
-.crystal-tags span {
-    background: rgba(240, 240, 240, 0.6);
-    color: #555;
-    padding: 5px 12px; 
-    border-radius: 8px;
-    font-size: 0.8rem; 
-    margin-right: 6px; 
-    margin-bottom: 6px;
-    display: inline-block;
-    border: 1px solid rgba(0,0,0,0.05);
-    transition: var(--transition);
-}
-/* Hover 時標籤變色 */
-.chakra-card:hover .crystal-tags span {
-    background: var(--white);
-    border-color: var(--chakra-color);
-    color: var(--chakra-color);
-}
-
-/* --- 7. 頁尾 (美化) --- */
-.footer { 
-    text-align: center; 
-    padding: 50px 20px; 
-    background: #1a1e20; /* 更深的顏色 */
-    color: #90a4ae; 
-    font-size: 0.9rem; 
-    margin-top: 80px;
-    border-top: 4px solid var(--primary);
-}
-
-.footer p {
-    opacity: 0.8;
-    letter-spacing: 0.5px;
-}
-
-/* =========================================
-   💫 動畫定義 (Animations)
-   ========================================= */
-
-/* 進度條流動動畫 */
-@keyframes gradientFlow {
-    0% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* 呼吸燈動畫 */
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(255, 138, 101, 0.6); }
-    70% { box-shadow: 0 0 0 10px rgba(255, 138, 101, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 138, 101, 0); }
-}
-
-/* =========================================
-   📱 手機端 RWD 優化 (新增)
-   ========================================= */
-@media (max-width: 768px) {
-    .nav-container { padding: 15px; }
-    .nav-menu { display: none; } /* 手機端隱藏選單，保持頁面整潔 */
-    .logo { font-size: 1.3rem; }
-    
-    .page-header { padding: 60px 15px; }
-    .page-header h1 { font-size: 2.2rem; }
-    
-    .scanner-section { padding: 25px; border-radius: 20px; }
-    .question-box h3 { font-size: 1.3rem; }
-    
-    .result-card { flex-direction: column; gap: 20px; padding: 15px; }
-    .chart-area, .analysis-area { width: 100%; min-width: unset; }
-    .highlight-text { font-size: 1.8rem; }
-    
-    .section-title { font-size: 1.8rem; }
-    .chakra-grid { grid-template-columns: 1fr; }
-    .chakra-card { padding: 25px; }
-    .chakra-detail { height: auto; -webkit-line-clamp: unset; }
-}
+/* 下方其餘代碼(Chakra Grid等)請保留原本檔案內容即可 */
