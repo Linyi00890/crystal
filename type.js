@@ -85,11 +85,12 @@ function render(data) {
     }).join('');
 }
 
-function toggleDropdown(el) {
-    const menu = el.nextElementSibling;
-    const isOpen = menu.classList.contains('show');
-    document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
-    if (!isOpen) menu.classList.add('show');
+function toggleDropdown(id) {
+    const target = document.getElementById(id);
+    const isOpen = target.classList.contains('show');
+    // 先關閉所有選單
+    document.querySelectorAll('.dropdown-content').forEach(d => d.classList.remove('show'));
+    if (!isOpen) target.classList.add('show');
 }
 
 function filterCrystals(value, type) {
@@ -103,20 +104,32 @@ function filterCrystals(value, type) {
     });
 }
 
+// 點擊外部收起下拉選單
 window.addEventListener('click', (event) => {
-    if (!event.target.matches('.dropdown-label')) {
-        document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
+    if (!event.target.closest('.dropdown')) {
+        document.querySelectorAll('.dropdown-content').forEach(d => d.classList.remove('show'));
     }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
     const mobileToggle = document.getElementById('mobile-toggle');
     const navMenu = document.getElementById('nav-menu');
-    if(mobileToggle) { mobileToggle.onclick = () => navMenu.classList.toggle('active'); }
+    if(mobileToggle) { 
+        mobileToggle.onclick = (e) => {
+            e.stopPropagation();
+            navMenu.classList.toggle('active');
+        };
+    }
+    
+    // 點擊導覽連結後自動關閉選單
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.onclick = () => navMenu.classList.remove('active');
+    });
+
     render(crystals);
 });
 
-// 魔法守護
+// 魔法守護（防止右鍵）
 document.addEventListener('contextmenu', (e) => { e.preventDefault(); alert("🔮 魔法能量守護中：本站圖文受智慧財產保護。"); });
 document.onkeydown = function (e) {
     if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83))) { return false; }
