@@ -1,10 +1,10 @@
 const crystals = [
     // 白色系
     { id: "white01", name: "白水晶", tag: "水晶之王", effect: "peace", color: "white", desc: "淨化能量、放大焦距、平衡身心。", img: "picture/white02.webp" },
-    { id: "selenite", name: "透石膏", tag: "療癒之光", effect: "peace", color: "white", desc: "淨化空間、安定心神、清除負能量。", img: "picture/selenite01.jfif" },
-    { id: "moonstone-white", name: "白月光石", tag: "戀人之石", effect: "love", color: "white", desc: "守護愛情、調節情緒、增添溫柔氣質。", img: "picture/moonstone03.jpg" },
-    { id: "howlite", name: "白紋石", tag: "安定之石", effect: "peace", color: "white", desc: "緩解壓力、幫助入眠、消除焦躁情緒。", img: "picture/howlite01.webp" },
-    { id: "white-agate", name: "白瑪瑙", tag: "和諧之石", effect: "health", color: "white", desc: "提升正能量、加強協調、避邪保平安。", img: "picture/agate01.webp" },
+    { id: "white02", name: "透石膏", tag: "療癒之光", effect: "peace", color: "white", desc: "淨化空間、安定心神、清除負能量。", img: "picture/selenite01.jfif" },
+    { id: "white03", name: "白月光石", tag: "戀人之石", effect: "love", color: "white", desc: "守護愛情、調節情緒、增添溫柔氣質。", img: "picture/moonstone03.jpg" },
+    { id: "white04", name: "白紋石", tag: "安定之石", effect: "peace", color: "white", desc: "緩解壓力、幫助入眠、消除焦躁情緒。", img: "picture/howlite01.webp" },
+    { id: "white05", name: "白瑪瑙", tag: "和諧之石", effect: "health", color: "white", desc: "提升正能量、加強協調、避邪保平安。", img: "picture/agate01.webp" },
     // 粉紅系
     { id: "rose-quartz", name: "粉晶", tag: "招人緣", effect: "love", color: "pink", desc: "增進感情、舒緩情緒、吸引良緣。", img: "picture/rose02.jpg" },
     { id: "rhodochrosite", name: "紅紋石", tag: "愛神之石", effect: "love", color: "pink", desc: "喚醒愛意、緩解憂慮、修補心靈創傷。", img: "picture/rhodochrosite02.jpg" },
@@ -77,7 +77,7 @@ function render(data) {
                 <div class="flip-back">
                     <p class="back-title">能量奧祕</p>
                     <p class="back-desc">${c.desc}</p>
-                    <a href="quartz/${c.id}.html" class="detail-btn">查看淨化方式</a>
+                    <a href="quartz/${c.id}.html" class="detail-btn">查看詳情</a>
                 </div>
             </div>
         </div>
