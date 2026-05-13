@@ -9,51 +9,89 @@
     
     <style>
         :root {
+            /* 專業底色 */
             --bg-deep: #05080a;
             --gold: #d4af37;
-            --transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             
-            /* 功效顏色定義 (用於卡片邊框與標籤) */
-            --color-spirit: #a29bfe;     /* 靈性: 紫 */
-            --color-wealth: #f1c40f;     /* 財富: 金 */
-            --color-protection: #57606f; /* 守護: 灰黑 */
-            --color-peace: #7ed6df;      /* 平靜: 淺藍 */
-            --color-love: #ff7979;       /* 感情: 粉紅 */
-            --color-health: #26de81;     /* 健康: 綠 */
+            /* 功效顏色定義 */
+            --color-spirit: #a29bfe;     /* 靈性 */
+            --color-wealth: #f1c40f;     /* 財富 */
+            --color-protection: #57606f; /* 守護 */
+            --color-peace: #7ed6df;      /* 平靜 */
+            --color-love: #ff7979;       /* 感情 */
+            --color-health: #26de81;     /* 健康 */
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body { 
             background: var(--bg-deep);
             background-image: radial-gradient(circle at 50% 50%, #0a1118 0%, #05080a 100%);
             color: #e0e0e0; 
             font-family: 'Montserrat', 'Noto Serif TC', serif; 
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         /* --- 導覽列 --- */
         .main-header { 
             position: fixed; top: 0; width: 100%; 
-            background: rgba(5, 8, 10, 0.85); 
+            background: rgba(5, 8, 10, 0.9); 
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(212, 175, 55, 0.2); 
             z-index: 2000; 
         }
-        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; }
-        .logo { font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--gold); text-decoration: none; letter-spacing: 3px; }
-        .nav-links { display: flex; list-style: none; gap: 20px; }
-        .nav-links a { color: #bbb; text-decoration: none; font-size: 0.9rem; }
-
-        /* 手機版漢堡選單 */
-        .menu-toggle { display: none; flex-direction: column; cursor: pointer; }
-        .bar { width: 25px; height: 2px; background-color: var(--gold); margin: 3px 0; }
-
-        /* --- 篩選區 --- */
-        .filter-section { padding-top: 120px; text-align: center; }
-        .btn-all, .dropdown-label { 
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.3);
-            color: var(--gold); padding: 10px 20px; cursor: pointer; border-radius: 4px;
+        .nav-container { 
+            max-width: 1400px; margin: 0 auto; 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 15px 40px; 
         }
+        .logo { 
+            font-family: 'Cinzel', serif; font-size: 1.6rem; 
+            color: var(--gold); text-decoration: none; 
+            letter-spacing: 3px; 
+        }
+
+        .nav-links { display: flex; list-style: none; gap: 30px; }
+        .nav-links a { color: #bbb; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--gold); }
+
+        /* 漢堡選單 (手機用) */
+        .menu-toggle { display: none; flex-direction: column; cursor: pointer; }
+        .bar { width: 25px; height: 2px; background-color: var(--gold); margin: 3px 0; transition: 0.3s; }
+
+        /* --- 篩選區與下拉選單 --- */
+        .filter-section { padding-top: 120px; text-align: center; }
+        .filter-container { display: flex; justify-content: center; gap: 15px; align-items: center; flex-wrap: wrap; }
+        
+        .btn-all { 
+            background: rgba(212, 175, 55, 0.1); border: 1px solid var(--gold);
+            color: var(--gold); padding: 10px 25px; cursor: pointer; border-radius: 4px;
+            font-family: 'Noto Serif TC'; transition: 0.3s;
+        }
+        .btn-all:hover { background: var(--gold); color: #000; }
+
+        /* 可收合下拉選單設計 */
+        .dropdown { position: relative; }
+        .dropdown-btn { 
+            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.4);
+            color: #ddd; padding: 10px 20px; cursor: pointer; border-radius: 4px;
+            display: flex; align-items: center; gap: 10px; min-width: 160px; justify-content: space-between;
+        }
+        .dropdown-content { 
+            position: absolute; top: 110%; left: 0; background: #0f161d; 
+            border: 1px solid var(--gold); list-style: none; min-width: 100%; 
+            border-radius: 4px; display: none; /* 預設隱藏 */
+            z-index: 1500; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .dropdown-content.show { display: block; } /* 切換顯示 */
+        
+        .dropdown-content li { 
+            padding: 12px 20px; color: #ccc; cursor: pointer; text-align: left;
+            transition: 0.2s; font-size: 0.9rem;
+        }
+        .dropdown-content li:hover { background: var(--gold); color: #000; }
 
         /* --- 水晶網格 --- */
         .crystal-grid { 
@@ -61,63 +99,61 @@
             gap: 40px; max-width: 1300px; margin: 50px auto; padding: 0 30px 100px; 
         }
 
-        /* --- 卡片核心設計 --- */
+        /* --- 卡片設計 --- */
         .card-container { perspective: 1000px; height: 480px; }
         .crystal-card { 
             position: relative; width: 100%; height: 100%; 
             transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1); 
             transform-style: preserve-3d;
-            cursor: pointer;
         }
         .card-container:hover .crystal-card { transform: rotateY(180deg); }
 
         .flip-front, .flip-back { 
             position: absolute; width: 100%; height: 100%; 
             backface-visibility: hidden; border-radius: 15px; overflow: hidden;
-            border: 2px solid var(--card-color); /* 自動根據數據變色 */
+            border: 1.5px solid var(--card-color);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 15px var(--card-glow);
         }
 
-        /* 正面：圖片與名稱 */
-        .flip-front { 
-            background: #070b0f; 
-            display: flex; flex-direction: column; 
-        }
-        .crystal-img { width: 100%; height: 100%; object-fit: cover; position: absolute; z-index: 1; }
+        /* 正面 */
+        .flip-front { background: #070b0f; }
+        .crystal-img { width: 100%; height: 100%; object-fit: cover; position: absolute; }
         .front-overlay {
-            position: absolute; bottom: 0; width: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
-            padding: 30px 20px; z-index: 2;
-            display: flex; flex-direction: column; gap: 8px;
+            position: absolute; bottom: 0; width: 100%; height: 50%;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, transparent 100%);
+            padding: 30px 20px; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px;
         }
         .tag { 
             background: var(--card-color); color: #000;
             padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; width: fit-content;
         }
-        .crystal-name { font-family: 'Cinzel'; font-size: 1.4rem; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .crystal-name { font-family: 'Cinzel'; font-size: 1.3rem; color: #fff; }
 
-        /* 背面：效果描述 */
+        /* 背面 */
         .flip-back { 
-            background: linear-gradient(145deg, #121a21 0%, #05080a 100%); 
+            background: linear-gradient(145deg, #0f161d 0%, #05080a 100%); 
             transform: rotateY(180deg); 
             display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            padding: 40px; text-align: center;
+            padding: 35px; text-align: center;
         }
-        .back-title { color: var(--card-color); font-size: 1.2rem; margin-bottom: 15px; font-weight: 600; letter-spacing: 1px; }
+        .back-title { color: var(--card-color); font-size: 1.1rem; margin-bottom: 20px; font-weight: 600; border-bottom: 1px solid var(--card-color); padding-bottom: 5px; }
         .back-desc { font-size: 0.95rem; color: #ccc; line-height: 1.8; margin-bottom: 30px; font-family: 'Noto Serif TC'; }
         
         .detail-btn { 
             text-decoration: none; color: #000; background: var(--card-color); 
-            padding: 10px 25px; border-radius: 30px; font-size: 0.85rem; font-weight: 600;
-            transition: 0.3s;
+            padding: 10px 25px; border-radius: 30px; font-size: 0.85rem; font-weight: 600; transition: 0.3s;
         }
-        .detail-btn:hover { filter: brightness(1.2); transform: translateY(-3px); }
 
-        /* 手機版適配 */
+        /* 響應式手機版 */
         @media (max-width: 900px) {
             .menu-toggle { display: flex; }
-            .nav-links { position: fixed; top: 0; right: -100%; width: 70%; height: 100vh; background: #070b0f; flex-direction: column; justify-content: center; align-items: center; transition: 0.5s; }
+            .nav-links { 
+                position: fixed; top: 0; right: -100%; width: 75%; height: 100vh; 
+                background: #070b0f; flex-direction: column; justify-content: center; align-items: center; 
+                transition: 0.5s; z-index: 1999;
+            }
             .nav-links.active { right: 0; }
+            .filter-section { padding-top: 100px; }
         }
     </style>
 </head>
@@ -126,39 +162,50 @@
 <header class="main-header">
     <div class="nav-container">
         <a href="#" class="logo">🔮 CrystalMagic</a>
-        <div class="menu-toggle" id="mobile-menu">
+        <div class="menu-toggle" id="mobile-toggle">
             <span class="bar"></span><span class="bar"></span><span class="bar"></span>
         </div>
-        <ul class="nav-links">
+        <ul class="nav-links" id="nav-menu">
             <li><a href="#">水晶起源</a></li>
             <li><a href="#">功效解讀</a></li>
             <li><a href="#">淨化保養</a></li>
-            <li><a href="#">聯絡我們</a></li>
+            <li><a href="#">專屬商品</a></li>
+            <li><a href="#">客服諮詢</a></li>
         </ul>
     </div>
 </header>
 
 <section class="filter-section">
     <div class="filter-container">
-        <button class="btn-all" onclick="filterCrystals('all')">顯示全部水晶</button>
+        <button class="btn-all" onclick="filterCrystals('all')">全部水晶</button>
+        
+        <!-- 可收合下拉選單 -->
+        <div class="dropdown">
+            <div class="dropdown-btn" onclick="toggleDropdown()">✨ 按功效篩選 <span>▼</span></div>
+            <ul class="dropdown-content" id="effectDropdown">
+                <li onclick="filterCrystals('spirit')">🧘 靈性智慧</li>
+                <li onclick="filterCrystals('wealth')">💰 財富事業</li>
+                <li onclick="filterCrystals('protection')">🛡️ 守護避邪</li>
+                <li onclick="filterCrystals('peace')">🌊 溝通平靜</li>
+                <li onclick="filterCrystals('love')">💖 感情人緣</li>
+                <li onclick="filterCrystals('health')">🌿 健康療癒</li>
+            </ul>
+        </div>
     </div>
 </section>
 
 <main class="crystal-grid" id="crystalGrid"></main>
 
 <script>
-    // 水晶資料庫
     const crystals = [
         { id: "white-quartz", name: "白水晶 (Clear Quartz)", tag: "水晶之王", effect: "peace", desc: "淨化全身負能量，放大其他水晶效應，平衡身心靈。", img: "white.jpg" },
-        { id: "amethyst", name: "紫水晶 (Amethyst)", tag: "智慧之石", effect: "spirit", desc: "開發智慧、加強記憶力、平穩情緒，穩定人際關係。", img: "purple.jpg" },
-        { id: "citrine", name: "黃水晶 (Citrine)", tag: "財富之石", effect: "wealth", desc: "主偏財運，常帶來意外之財，增強自信與動力。", img: "yellow.jpg" },
-        { id: "obsidian", name: "黑曜石 (Obsidian)", tag: "避邪之首", effect: "protection", desc: "極強的吸納性能量，排除負能量、去除霉運、守護平安。", img: "black.jpg" },
-        { id: "rose-quartz", name: "粉晶 (Rose Quartz)", tag: "姻緣之石", effect: "love", desc: "招攬人脈、增進生意緣、改善人際關係、守護愛情。", img: "pink.jpg" },
-        { id: "green-phantom", name: "綠幽靈 (Green Phantom)", tag: "事業之王", effect: "wealth", desc: "招正財、助事業發展、吸引貴人相助、增進工作動力。", img: "green.jpg" }
-        // ... 可在此繼續添加至 35+ 種
+        { id: "amethyst", name: "紫水晶 (Amethyst)", tag: "智慧之石", effect: "spirit", desc: "開發智慧、加強記憶力、平穩情緒，適合學生與上班族。", img: "purple.jpg" },
+        { id: "rose-quartz", name: "粉晶 (Rose Quartz)", tag: "姻緣之石", effect: "love", desc: "改善人際關係、招攬人脈、守護愛情，增加自我魅力。", img: "pink.jpg" },
+        { id: "citrine", name: "黃水晶 (Citrine)", tag: "財富之石", effect: "wealth", desc: "凝聚意外之財，增強自信與領導力，對應太陽神經叢。", img: "yellow.jpg" },
+        { id: "obsidian", name: "黑曜石 (Obsidian)", tag: "避邪之首", effect: "protection", desc: "排除負能量、防小人、去除霉運，是強大的能量護身符。", img: "black.jpg" },
+        { id: "green-phantom", name: "綠幽靈 (Green Phantom)", tag: "事業之王", effect: "wealth", desc: "招正財、助事業發展、吸引貴人相助，增進工作動力。", img: "green.jpg" }
     ];
 
-    // 顏色映射表
     const colorTheme = {
         spirit: { color: "#a29bfe", glow: "rgba(162, 155, 254, 0.3)" },
         wealth: { color: "#f1c40f", glow: "rgba(241, 196, 15, 0.3)" },
@@ -170,25 +217,23 @@
 
     const grid = document.getElementById('crystalGrid');
 
-    function render() {
-        grid.innerHTML = crystals.map(c => {
+    function render(data) {
+        grid.innerHTML = data.map(c => {
             const theme = colorTheme[c.effect];
             return `
-            <div class="card-container" style="--card-color: ${theme.color}; --card-glow: ${theme.glow}">
+            <div class="card-container" data-effect="${c.effect}" style="--card-color: ${theme.color}; --card-glow: ${theme.glow}">
                 <div class="crystal-card">
-                    <!-- 正面：名稱與大標題 -->
                     <div class="flip-front">
-                        <img src="picture/${c.img}" class="crystal-img" onerror="this.src='https://via.placeholder.com/300x480/111/fff?text=${c.name}'">
+                        <img src="picture/${c.img}" class="crystal-img" onerror="this.src='https://via.placeholder.com/300x480/111/c5a47e?text=${c.name}'">
                         <div class="front-overlay">
                             <span class="tag">${c.tag}</span>
                             <h3 class="crystal-name">${c.name}</h3>
                         </div>
                     </div>
-                    <!-- 背面：詳細效果描述 -->
                     <div class="flip-back">
-                        <p class="back-title">✨ 核心能量效果</p>
+                        <p class="back-title">能量奧祕</p>
                         <p class="back-desc">${c.desc}</p>
-                        <a href="details/${c.id}.html" class="detail-btn">探索能量細節</a>
+                        <a href="details/${c.id}.html" class="detail-btn">查看淨化方式</a>
                     </div>
                 </div>
             </div>
@@ -196,12 +241,41 @@
         }).join('');
     }
 
-    // 手機選單控制
-    const menu = document.getElementById('mobile-menu');
-    const navLinks = document.querySelector('.nav-links');
-    menu.onclick = () => navLinks.classList.toggle('active');
+    // 下拉選單切換
+    function toggleDropdown() {
+        document.getElementById('effectDropdown').classList.toggle('show');
+    }
 
-    render();
+    // 點擊外面收起下拉選單
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropdown-btn')) {
+            const dropdowns = document.getElementsByClassName("dropdown-content");
+            for (let i = 0; i < dropdowns.length; i++) {
+                if (dropdowns[i].classList.contains('show')) {
+                    dropdowns[i].classList.remove('show');
+                }
+            }
+        }
+    }
+
+    // 篩選功能
+    function filterCrystals(effect) {
+        const cards = document.querySelectorAll('.card-container');
+        cards.forEach(card => {
+            if (effect === 'all' || card.getAttribute('data-effect') === effect) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    // 手機版菜單
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    mobileToggle.onclick = () => navMenu.classList.toggle('active');
+
+    render(crystals);
 </script>
 
 </body>
