@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>透石膏 Selenite | 靈魂的清道夫 - CrystalMagic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #b2ebf2; /* 調整為更柔和的透石膏月光色 */
+            --secondary-color: #455a64;
+            --text-main: #2c3e50;
+            --text-light: #90a4ae;
+            --bg-body: #f8fafb;
+            --glass-bg: rgba(255, 255, 255, 0.9);
+            --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
+            --crystal-white: #ffffff;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-body);
+            margin: 0;
+            color: var(--text-main);
+            line-height: 1.8;
+            scroll-behavior: smooth;
+        }
+
+        /* 導覽列 */
+        .main-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 10%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .logo {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            text-decoration: none;
+            letter-spacing: 3px;
+            transition: 0.3s;
+        }
+
+        .logo:hover { opacity: 0.7; }
+
+        /* 頂部標題區 */
+        .detail-header {
+            text-align: center;
+            padding: 120px 20px;
+            background: linear-gradient(180deg, #ffffff 0%, var(--bg-body) 100%);
+        }
+        
+        .detail-header h1 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: clamp(2.5rem, 8vw, 4.2rem);
+            margin-bottom: 20px;
+            letter-spacing: 8px;
+            background: linear-gradient(to right, #455a64, #b2ebf2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            font-weight: 300;
+            letter-spacing: 2px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .stat-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .stat-pill {
+            background: white;
+            padding: 8px 25px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(178,235,242,0.3);
+        }
+
+        /* 內容區塊結構 */
+        .content-container {
+            max-width: 1000px;
+            margin: -40px auto 100px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .content-section {
+            background: white;
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 40px;
+        }
+
+        .content-section h2 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.8rem;
+            margin-bottom: 35px;
+            color: var(--text-main);
+            border-left: 5px solid var(--primary-color);
+            padding-left: 20px;
+        }
+
+        /* 雙欄展示 */
+        .media-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+            align-items: center;
+        }
+
+        .media-img {
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .media-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .media-box:hover .media-img img {
+            transform: scale(1.08);
+        }
+
+        .media-text h3 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-top: 0;
+        }
+
+        /* 能量網格與卡片 */
+        .combo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .combo-card {
+            position: relative;
+            padding: 30px;
+            border-radius: 20px;
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            color: white;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .combo-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, var(--flow-color), transparent 30%);
+            animation: rotate 4s linear infinite;
+            z-index: -2;
+        }
+
+        .combo-card::after {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            z-index: -1;
+            transition: 0.3s;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* 組合卡片顏色定義 */
+        .card-blacktourmaline {
+            --card-bg: #263238; 
+            --flow-color: #ffffff;
+        }
+        .card-lapislazuli {
+            --card-bg: #1a237e; 
+            --flow-color: #9fa8da;
+        }
+        .card-moonstone {
+            --card-bg: #cfd8dc; 
+            --flow-color: #ffffff;
+        }
+
+        .combo-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .combo-card:hover::after {
+            filter: brightness(1.2);
+        }
+
+        .combo-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            padding: 2px 12px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: inline-block;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* 返回按鈕 */
+        .fixed-back-btn {
+            position: fixed;
+            bottom: 40px;
+            left: 40px;
+            background: var(--secondary-color);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(69,90,100,0.3);
+            transition: 0.4s;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .fixed-back-btn:hover {
+            transform: translateX(5px);
+            background: #263238;
+        }
+
+        .main-footer {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            background: #fff;
+            border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 768px) {
+            .media-box { grid-template-columns: 1fr; }
+            .media-img { height: 200px; }
+            .detail-header h1 { font-size: 2.5rem; }
+            .content-section { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<a href="../type.html" class="fixed-back-btn">
+    <span>←</span> 返回列表
+</a>
+
+<header class="main-header">
+    <a href="../index.html" class="logo">CRYSTAL MAGIC</a>
+</header>
+
+<main>
+    <section class="detail-header">
+        <p style="letter-spacing: 5px; color: var(--secondary-color); font-weight: 700; margin-bottom: 10px; font-size: 0.8rem;">THE SPIRITUAL CLEANSER</p>
+        <h1>透石膏 Selenite</h1>
+        <p class="subtitle">「來自月光的療癒之石，快速淨化氣場與心靈的負擔」</p>
+        
+        <div class="stat-container">
+            <div class="stat-pill">✦ 對應：頂輪、靈魂之星</div>
+            <div class="stat-pill">✦ 五行：水</div>
+            <div class="stat-pill">✦ 化學式：CaSO₄·2H₂O</div>
+            <div class="stat-pill">✦ 硬度：2.0 (極軟)</div>
+        </div>
+    </section>
+
+    <div class="content-container">
+        <section class="content-section">
+            <h2>能量特質與靈魂淨化</h2>
+            <p>透石膏以希臘月亮女神<b>塞勒涅 (Selene)</b> 命名，其絲綢般的纖維結構能傳導極高頻率的純淨能量。它最著名的功能在於其「自動淨化」特質，能迅速切斷負面能量的連結，並將沉重的壓力轉化為平靜。對於經常感到精神疲憊或處於負能量環境的人來說，是不可或缺的清理工具。</p>
+        </section>
+
+        <section class="content-section">
+            <h2>常見形態與用途</h2>
+            <div class="media-box">
+                <div class="media-img">
+                    <img src="../picture/selenite03.jpeg" alt="透石膏能量棒">
+                </div>
+                <div class="media-text">
+                    <h3>透石膏能量棒 Wand</h3>
+                    <p>最經典的療癒工具。可用於掃描人體氣場（Aura），將附著在身體周圍的負能量塊「梳理」開來。也非常適合在睡前放置於枕邊，安撫過度活躍的大腦。</p>
+                </div>
+            </div>
+
+            <div class="media-box">
+                <div class="media-img">
+                    <img src="../picture/selenite02.jpeg" alt="透石膏淨化板">
+                </div>
+                <div class="media-text">
+                    <h3>淨化充電板 Charging Plate</h3>
+                    <p>將其他水晶飾品放置於透石膏板上，只需 15-30 分鐘即可完成基本的能量清理與充電。它是除了晶簇之外，最受歡迎的自然淨化底座。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>能量聯動組合</h2>
+            <div class="combo-grid">
+                <div class="combo-card card-blacktourmaline">
+                    <span class="tag">終極防護</span>
+                    <img src="../picture/tourmaline03.jpeg" alt="黑碧璽" class="combo-img">
+                    <h3>＋ 黑碧璽</h3>
+                    <p>透石膏負責提升頻率，黑碧璽負責紮根與排除病氣。這是最經典的「清理＋防禦」組合。</p>
+                </div>
+                <div class="combo-card card-lapislazuli">
+                    <span class="tag">靈性擴展</span>
+                    <img src="../picture/lapis02.jpg" alt="青金石" class="combo-img">
+                    <h3>＋ 青金石</h3>
+                    <p>加強眉心輪的洞察力。透石膏清除思緒雜訊，讓青金石帶領你進入更深層的冥想狀態。</p>
+                </div>
+                <div class="combo-card card-moonstone">
+                    <span class="tag">柔美月光</span>
+                    <img src="../picture/moonstone03.webp" alt="月光石" class="combo-img">
+                    <h3>＋ 月光石</h3>
+                    <p>同屬月亮能量。透石膏穩定情緒，月光石開啟直覺，非常適合需要調解荷爾蒙或情感壓力的女性。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>專業保養與絕對禁忌</h2>
+            <ul style="padding-left: 20px; color: var(--text-main);">
+                <li style="margin-bottom: 15px;"><b>嚴禁碰水：</b>透石膏屬於易溶於水的礦物。長期浸泡會導致晶體溶解失去光澤，甚至斷裂，請務必保持乾燥。</li>
+                <li style="margin-bottom: 15px;"><b>硬度極低：</b>莫氏硬度僅為 2，用指甲就能刮傷。存放時請避免與硬質礦物（如白水晶、紫水晶）碰撞。</li>
+                <li style="margin-bottom: 15px;"><b>清潔方式：</b>建議使用柔軟乾布擦拭，或是利用鼠尾草煙燻、聽缽音頻等乾式淨化法。</li>
+            </ul>
+        </section>
+    </div>
+</main>
+
+<footer class="main-footer">
+    <p>&copy; 2026 CrystalMagic Alchemy. 致力於推廣水晶能量科學與美學。</p>
+</footer>
+
+<script>
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+        alert("🔮 能量守護中：透石膏正為您的心靈進行清理。");
+    }, false);
+</script>
+
+</body>
+</html>
