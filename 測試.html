@@ -1,359 +1,281 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>水晶魔法 CrystalMagic | 專業水晶淨化與能量保養指南</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
-    
+    <title>💎 尊榮客製化諮詢預約</title>
+    <!-- 引入 Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-dark: #1b3d2f;    /* 森林深綠 */
-            --primary-gold: #b58e4f;    /* 典雅金 */
-            --secondary-purple: #6a5acd; /* 療癒紫 */
-            --soft-bg: #f8faf9;        /* 晨霧白 */
-            --white: #ffffff;
-            --text-main: #2c3e50;
-            --shadow-vibe: 0 10px 30px rgba(27, 61, 47, 0.08);
-            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --primary-color: #1a5f7a;
+            --accent-color: #c7a44a;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --glass-bg: rgba(255, 255, 255, 0.8);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
             font-family: 'Noto Sans TC', sans-serif;
-            background-color: var(--soft-bg);
-            color: var(--text-main);
-            line-height: 1.8;
-            -webkit-user-select: none;
-            user-select: none;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4 { font-family: 'Noto Serif TC', serif; }
-
-        /* --- 高級導覽列 --- */
-        .main-header {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            width: 100%;
-            position: fixed;
-            top: 0;
-            z-index: 2000;
-            border-bottom: 1px solid rgba(181, 142, 79, 0.2);
-        }
-
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 30px;
+            background: var(--bg-gradient);
+            min-height: 100vh;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 85px;
-        }
-
-        .logo {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-shrink: 0;
-        }
-
-        /* 導覽容器：手機版橫向滑動 */
-        .nav-scroll-wrapper {
-            display: flex;
-            align-items: center;
-            overflow-x: auto;
-            margin-left: 20px;
-        }
-
-        .nav-scroll-wrapper::-webkit-scrollbar { display: none; }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 8px;
-        }
-
-        .nav-menu a {
-            text-decoration: none;
-            color: var(--primary-dark);
-            font-weight: 500;
-            font-size: 0.95rem;
-            padding: 8px 16px;
-            border-radius: 50px;
-            transition: var(--transition);
-            white-space: nowrap;
-        }
-
-        .nav-menu a:hover {
-            color: var(--primary-gold);
-            background: rgba(181, 142, 79, 0.08);
-        }
-
-        /* --- 沉浸式 Banner --- */
-        main { margin-top: 85px; }
-
-        .hero-banner {
-            position: relative;
-            height: 70vh;
-            min-height: 450px;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            text-align: center;
-            /* 換回您原本喜歡的背景圖 */
-            background: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), 
-                        url('https://images.unsplash.com/photo-1551269901-5c5e14c25df7?auto=format&fit=crop&q=80&w=2000') center/cover no-repeat;
-            color: var(--primary-dark);
-            overflow: hidden;
+            align-items: center;
+            padding: 20px;
+            color: #333;
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            padding: 0 20px;
+        .container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            width: 100%;
             max-width: 900px;
-            animation: fadeInUp 1.2s ease;
-        }
-
-        .hero-banner h1 { 
-            font-size: clamp(2.2rem, 5vw, 3.5rem); 
-            margin-bottom: 25px; 
-            letter-spacing: 3px;
-        }
-
-        .hero-banner p { 
-            font-size: 1.2rem; 
-            max-width: 700px; 
-            margin: 0 auto;
-            color: #455a64;
-        }
-
-        /* --- 內容章節 --- */
-        .section-padding { padding: 100px 0; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
-
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-header h2 { font-size: 2.3rem; color: var(--primary-dark); margin-bottom: 15px; }
-        .section-header .divider { 
-            width: 60px; height: 3px; 
-            background: var(--primary-gold); 
-            margin: 0 auto; 
-        }
-
-        /* --- 儀式卡片 --- */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: var(--white);
-            padding: 45px 35px;
-            border-radius: 25px;
-            box-shadow: var(--shadow-vibe);
-            transition: var(--transition);
-            border: 1px solid rgba(0,0,0,0.03);
-        }
-
-        .feature-card:hover { transform: translateY(-10px); }
-
-        .icon-box { font-size: 2.8rem; margin-bottom: 20px; }
-        .feature-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--primary-dark); }
-        .feature-card ul { list-style: none; color: #607d8b; font-size: 0.95rem; }
-        .feature-card li { margin-bottom: 10px; padding-left: 25px; position: relative; }
-        .feature-card li::before { content: '◈'; position: absolute; left: 0; color: var(--primary-gold); }
-
-        /* --- 表格 --- */
-        .info-table-wrap {
-            background: var(--white);
-            padding: 30px;
             border-radius: 20px;
-            box-shadow: var(--shadow-vibe);
-            margin-top: 40px;
-            overflow-x: auto;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
         }
 
-        table { width: 100%; border-collapse: collapse; min-width: 650px; }
-        th { background: #f9f6f2; color: var(--primary-dark); text-align: left; padding: 18px; }
-        td { padding: 18px; border-bottom: 1px solid #edf2f4; font-size: 0.95rem; }
-
-        /* --- 魔法師的小提醒 (回歸優化版) --- */
-        .pro-tip {
-            background: #fffbe6;
-            border-left: 6px solid var(--primary-gold);
-            padding: 40px;
-            border-radius: 15px;
-            margin-top: 60px;
-            box-shadow: 0 5px 15px rgba(181, 142, 79, 0.1);
-        }
-
-        .pro-tip h4 { color: #827717; font-size: 1.3rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-        .pro-tip p { font-size: 1.05rem; color: #5d6d7e; line-height: 1.8; }
-
-        /* --- 手機端 RWD --- */
-        @media (max-width: 768px) {
-            .header-container { height: 75px; padding: 0 15px; }
-            .logo { font-size: 1.3rem; }
-
-            .nav-scroll-wrapper {
-                flex: 1;
-                mask-image: linear-gradient(to right, black 85%, transparent 100%);
-            }
-
-            .nav-menu a { padding: 6px 12px; font-size: 0.85rem; background: rgba(0,0,0,0.03); }
-
-            main { margin-top: 75px; }
-            .hero-banner { height: 55vh; }
-            .section-padding { padding: 60px 0; }
-            .pro-tip { padding: 25px; }
-        }
-
-        @keyframes fadeInUp {
+        @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 左側邊欄：資訊介紹 */
+        .info-panel {
+            background: var(--primary-color);
+            color: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-panel h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .info-panel p {
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-list li::before {
+            content: '✦';
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        /* 右側邊欄：預約表單 */
+        .form-panel {
+            padding: 40px;
+            background: white;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(26, 95, 122, 0.1);
+        }
+
+        .grid-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .submit-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: #13465a;
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* 成功提示框 */
+        #success-msg {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #2d5a27;
+            background: #e8f5e9;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        /* 手機版適配 */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .info-panel {
+                padding: 30px;
+                text-align: center;
+            }
+            .feature-list {
+                display: none; /* 手機版簡化內容 */
+            }
         }
     </style>
 </head>
 <body>
 
-<header class="main-header">
-    <div class="header-container">
-        <a href="index.html" class="logo">✨ CrystalMagic</a>
-        <div class="nav-scroll-wrapper">
-            <ul class="nav-menu">
-                <li><a href="origin.html">水晶起源</a></li>
-                <li><a href="type.html">水晶種類</a></li>
-                <li><a href="pages.html">淨化保養</a></li>
-                <li><a href="pick.html">挑選指南</a></li> 
-                <li><a href="exclusive.html">專屬商品</a></li>
-                <li><a href="question.html">常見問題</a></li>
-                <li><a href="share.html">粉絲回饋</a></li>
-                <li><a href="contact.html">客服諮詢</a></li>
+<div class="container">
+    <!-- 左側：品牌資訊 -->
+    <div class="info-panel">
+        <h1>Bespoke Consulting</h1>
+        <p>每一顆原石都值得被精心雕琢。開啟您的專屬對話，讓我們為您量身打造未來的藍圖。</p>
+        <ul class="feature-list">
+            <li>一對一深度需求分析</li>
+            <li>資深顧問專業建議</li>
+            <li>全程隱私保護協議</li>
+            <li>客製化解決方案報告</li>
+        </ul>
+    </div>
+
+    <!-- 右側：預約表單 -->
+    <div class="form-panel">
+        <h2>預約您的諮詢時段</h2>
+        <form id="bookingForm">
+            <div class="form-group">
+                <label for="name">您的姓名</label>
+                <input type="text" id="name" placeholder="例如：王小明" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">電子郵件</label>
+                <input type="email" id="email" placeholder="service@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="service">諮詢項目</label>
+                <select id="service" required>
+                    <option value="" disabled selected>請選擇諮詢類別</option>
+                    <option value="business">商業戰略諮詢</option>
+                    <option value="branding">品牌設計規劃</option>
+                    <option value="tech">技術轉型指導</option>
+                    <option value="other">其他客製化需求</option>
+                </select>
+            </div>
+
+            <div class="grid-row">
+                <div class="form-group">
+                    <label for="date">預約日期</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">時段選擇</label>
+                    <select id="time" required>
+                        <option value="morning">上午 09:00 - 12:00</option>
+                        <option value="afternoon">下午 14:00 - 17:00</option>
+                        <option value="evening">晚間 19:00 - 21:00</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="message">簡述您的需求（選填）</label>
+                <textarea id="message" rows="3" placeholder="讓我們能更精確地準備資料..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">確認預約 💎</button>
+        </form>
+
+        <div id="success-msg">
+            ✨ 預約申請已送出！我們將於 24 小時內聯絡您。
         </div>
     </div>
-</header>
-
-<main>
-    <section class="hero-banner">
-        <div class="hero-content">
-            <h1>讓水晶重獲新生</h1>
-            <p>水晶是有靈性的礦石，它們在守護你的過程中會吸收周圍的負能量。定期淨化與適當的保養，是延續水晶能量壽命的關鍵。</p>
-        </div>
-    </section>
-
-    <section class="section-padding">
-        <div class="container">
-            <div class="section-header">
-                <h2>三大深度淨化儀式</h2>
-                <div class="divider"></div>
-            </div>
-
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="icon-box">🥣</div>
-                    <h3>晶簇碎石充電法</h3>
-                    <p>最安全且適合所有水晶的方法。透過大型晶體的穩定震頻，重新校準小水晶的能量。</p>
-                    <ul>
-                        <li><strong>頻率：</strong> 每次佩戴後或每週一次</li>
-                        <li><strong>時間：</strong> 至少放置 6 小時以上</li>
-                        <li><strong>優點：</strong> 100% 物理安全，不傷礦損</li>
-                    </ul>
-                </div>
-
-                <div class="feature-card">
-                    <div class="icon-box">🌙</div>
-                    <h3>月光能量引導</h3>
-                    <p>利用月亮柔和的射線進行深層淨化，特別適合處理關於情緒、靈感與直覺類的水晶。</p>
-                    <ul>
-                        <li><strong>最佳時機：</strong> 農曆十四至十六（滿月）</li>
-                        <li><strong>適合種類：</strong> 粉晶、月光石、拉長石</li>
-                        <li><strong>備註：</strong> 戶外或窗台有月光處即可</li>
-                    </ul>
-                </div>
-
-                <div class="feature-card">
-                    <div class="icon-box">🌿</div>
-                    <h3>神聖煙燻儀式</h3>
-                    <p>利用鼠尾草或秘魯聖木的煙霧，快速「切斷」沈重能量與水晶的連結。</p>
-                    <ul>
-                        <li><strong>工具：</strong> 鼠尾草、鮑魚殼、火源</li>
-                        <li><strong>手法：</strong> 讓煙霧繚繞水晶 3-5 圈</li>
-                        <li><strong>功效：</strong> 適合出入負向環境後使用</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-padding" style="background: #f1f8e9;">
-        <div class="container">
-            <div class="section-header">
-                <h2>科學與保養：避坑指南</h2>
-                <p>並非所有水晶都能耐水或耐光。下表為您整理常見的物理限制：</p>
-            </div>
-
-            <div class="info-table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>限制類別</th>
-                            <th>代表水晶</th>
-                            <th>保養禁忌</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>怕陽光 (會褪色)</strong></td>
-                            <td>紫水晶、粉晶、黃水晶、螢石</td>
-                            <td>長期曝曬會導致色心不穩而變白。</td>
-                        </tr>
-                        <tr>
-                            <td><strong>怕水 (會溶解)</strong></td>
-                            <td>透石膏、藍銅礦、黃鐵礦、天青石</td>
-                            <td>部分礦石摩氏硬度低且易溶，嚴禁水洗。</td>
-                        </tr>
-                        <tr>
-                            <td><strong>怕化學品 (霧化)</strong></td>
-                            <td>珍珠、琥珀、孔雀石</td>
-                            <td>噴霧、香水會侵蝕其有機成分。</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="pro-tip">
-                <h4>💡 魔法師的小提醒：</h4>
-                <p>當您發現水晶顏色突然變得暗沈、觸摸時感覺黏膩或沉重、或者在使用過程中線材無故斷裂，這通常是水晶在提醒您：「我累了，請幫我淨化。」</p>
-            </div>
-        </div>
-    </section>
-</main>
-
-<footer style="background: var(--primary-dark); color: #bdc3c7; padding: 60px 0 30px; text-align: center;">
-    <div class="container">
-        <h2 style="color: var(--white); margin-bottom: 15px;">🔮 CrystalMagic</h2>
-        <p style="margin-bottom: 20px; font-size: 0.9rem;">提供專業的水晶能量知識與高品質精選礦石</p>
-        <p style="font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
-            &copy; 2026 CrystalMagic. 推廣人與自然的和諧共振。
-        </p>
-    </div>
-</footer>
+</div>
 
 <script>
-    // 守護機制
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    document.addEventListener('keydown', e => {
-        if(e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'i')) e.preventDefault();
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // 防止頁面重新載入
+        
+        const submitBtn = document.querySelector('.submit-btn');
+        const successMsg = document.getElementById('success-msg');
+        
+        // 模擬發送過程
+        submitBtn.innerText = '處理中...';
+        submitBtn.style.opacity = '0.7';
+        submitBtn.disabled = true;
+
+        setTimeout(() => {
+            // 隱藏表單，顯示成功訊息
+            document.getElementById('bookingForm').style.display = 'none';
+            successMsg.style.display = 'block';
+            
+            // 這裡可以加入 API 發送邏輯 (fetch/axios)
+            console.log("預約資料已記錄");
+        }, 1500);
     });
+
+    // 限制日期選擇不能選擇今天以前
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('date').setAttribute('min', today);
 </script>
 
 </body>
