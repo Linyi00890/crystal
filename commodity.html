@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrystalMagic | 專屬能量飾品與療癒工具</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* =========================================
+           神祕魔法風格核心樣式 (色彩區分版)
+           ========================================= */
+        :root {
+            --bg-dark: #0a0e1a;
+            --accent-gold: #c5a059;
+            --text-light: #e0e0e0;
+            --transition: 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            
+            /* 分類卡片專屬色 - 確保與深藍封底有明顯對比 */
+            --card-1-bg: rgba(45, 30, 60, 0.85);  /* 深紫 - 飾品 */
+            --card-1-border: #9a8bb1;
+            
+            --card-2-bg: rgba(25, 45, 40, 0.85);  /* 深青/綠 - 原礦 */
+            --card-2-border: #7db3a3;
+            
+            --card-3-bg: rgba(55, 40, 30, 0.85);  /* 深琥珀/褐 - 工具 */
+            --card-3-border: #b18d75;
+            
+            /* 客製化 Banner 專屬色 */
+            --banner-bg: rgba(30, 45, 75, 0.9);   /* 深靛藍 */
+            --banner-border: #7ea2d6;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 50% 20%, #1e2a44 0%, transparent 50%),
+                linear-gradient(rgba(10, 14, 26, 0.95), rgba(10, 14, 26, 0.95)),
+                url('https://www.transparenttextures.com/patterns/stardust.png');
+            color: var(--text-light);
+            font-family: 'Noto Sans TC', sans-serif;
+            line-height: 1.8;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 導覽列 */
+        .main-header {
+            background: rgba(10, 14, 26, 0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0; 
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(to right, #fff, var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-menu { display: flex; list-style: none; gap: 1.2rem; }
+        .nav-menu a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .nav-menu a:hover { color: var(--accent-gold); }
+
+        /* 頁面標頭 */
+        .page-header {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .page-header h1 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 3.2rem;
+            letter-spacing: 3px;
+            background: linear-gradient(to bottom, #fff, var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        /* 商品卡片基礎樣式 */
+        .category-card {
+            border-radius: 8px;
+            padding: 30px;
+            position: relative;
+            transition: var(--transition);
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            overflow: hidden;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .category-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+
+        /* 分別設定每張卡片的顏色 */
+        .card-jewelry { 
+            background: var(--card-1-bg); 
+            border-color: var(--card-1-border);
+        }
+        .card-mineral { 
+            background: var(--card-2-bg); 
+            border-color: var(--card-2-border);
+        }
+        .card-tools { 
+            background: var(--card-3-bg); 
+            border-color: var(--card-3-border);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .category-info h3 {
+            font-family: 'Noto Serif TC', serif;
+            color: #fff;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        /* 標籤設計 - 顏色根據母卡片變動 */
+        .meta-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            padding: 2px 12px;
+            font-size: 0.75rem;
+            margin: 0 5px 10px;
+            border-radius: 20px;
+        }
+
+        .category-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .detail-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            padding-bottom: 5px;
+            border-bottom: 1px solid var(--accent-gold);
+            transition: 0.3s;
+        }
+
+        .detail-link:hover { color: var(--accent-gold); }
+
+        /* 裝飾角落 - 根據卡片顏色透明度調整 */
+        .corner {
+            position: absolute; width: 35px; height: 35px;
+            border: 2px solid rgba(255,255,255,0.4);
+            pointer-events: none;
+        }
+        .top-left { top: 15px; left: 15px; border-right: none; border-bottom: none; }
+        .top-right { top: 15px; right: 15px; border-left: none; border-bottom: none; }
+        .bottom-left { bottom: 15px; left: 15px; border-right: none; border-top: none; }
+        .bottom-right { bottom: 15px; right: 15px; border-left: none; border-top: none; }
+
+        /* 量身打造 Banner - 獨立顏色區分 */
+        .custom-banner {
+            background: var(--banner-bg);
+            border: 2px solid var(--banner-border);
+            padding: 70px 40px;
+            text-align: center;
+            border-radius: 15px;
+            margin: 50px 0 100px;
+            box-shadow: 0 15px 50px rgba(30, 45, 75, 0.6);
+        }
+
+        .custom-banner h2 {
+            font-family: 'Noto Serif TC', serif;
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .btn-custom {
+            display: inline-block;
+            background: linear-gradient(135deg, #fff, var(--banner-border));
+            color: var(--bg-dark);
+            padding: 18px 60px;
+            text-decoration: none;
+            font-weight: 900;
+            border-radius: 50px;
+            margin-top: 25px;
+            transition: 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .btn-custom:hover {
+            transform: scale(1.08) translateY(-3px);
+            box-shadow: 0 10px 30px rgba(126, 162, 214, 0.5);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 80px 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 2.2rem; }
+            .category-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <a href="index.html" class="logo">🔮 CrystalMagic</a>
+    <nav>
+        <ul class="nav-menu">
+            <li><a href="origin.html">水晶起源</a></li>
+            <li><a href="type.html">水晶種類</a></li>
+            <li><a href="effect.html">功效解讀</a></li>
+            <li><a href="pages.html">淨化保養</a></li>
+            <li><a href="pick.html">挑選指南</a></li> 
+            <li><a href="question.html">常見問題</a></li>
+            <li><a href="share.html">粉絲回饋</a></li>
+            <li><a href="contact.html">客服諮詢</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="page-header">
+        <h1>🎁 專屬您的能量飾品與療癒工具</h1>
+        <p>挑選最契合您靈魂頻率的水晶，開啟您的能量覺醒之旅。</p>
+    </section>
+
+    <div class="container">
+        <div class="category-grid">
+            <!-- 顏色 1: 深紫 (飾品) -->
+            <article class="category-card card-jewelry">
+                <div class="corner top-left"></div><div class="corner top-right"></div>
+                <div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+                <img src="picture/crystal10.png" alt="能量手鍊">
+                <div class="category-info">
+                    <h3>✨ 能量手鍊與飾品</h3>
+                    <div class="meta-container">
+                        <span class="meta-tag">佩戴型</span>
+                        <span class="meta-tag">平衡氣場</span>
+                    </div>
+                    <p class="category-description">精選天然水晶，根據脈輪需求搭配，隨身佩戴，讓好運與平靜隨行。</p>
+                    <a href="bracelet.html" class="detail-link">探索所有飾品 ➔</a>
+                </div>
+            </article>
+
+            <!-- 顏色 2: 深綠 (原礦) -->
+            <article class="category-card card-mineral">
+                <div class="corner top-left"></div><div class="corner top-right"></div>
+                <div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+                <img src="picture/crystal11.png" alt="水晶原礦">
+                <div class="category-info">
+                    <h3>🏠 高品質原礦與擺件</h3>
+                    <div class="meta-container">
+                        <span class="meta-tag">空間型</span>
+                        <span class="meta-tag">風水/淨化</span>
+                    </div>
+                    <p class="category-description">保留大地原始頻率，適合居家風水佈局或專業冥想使用。</p>
+                    <a href="natural.html" class="detail-link">探索原礦系列 ➔</a>
+                </div>
+            </article>
+
+            <!-- 顏色 3: 深褐 (工具) -->
+            <article class="category-card card-tools">
+                <div class="corner top-left"></div><div class="corner top-right"></div>
+                <div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+                <img src="picture/crystal12.png" alt="工具與課程">
+                <div class="category-info">
+                    <h3>📚 淨化工具與課程</h3>
+                    <div class="meta-container">
+                        <span class="meta-tag">能量保養</span>
+                    </div>
+                    <p class="category-description">提供聖木、頌缽等器材，教您如何發揮水晶最大潛力。</p>
+                    <a href="course.html" class="detail-link">探索工具與課程 ➔</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- 顏色 4: 深靛藍 (量身打造) -->
+        <section class="custom-banner">
+            <h2>✨ 為您量身打造：獨一無二的客製化手鍊</h2>
+            <p>根據您的生日、命盤和當前能量需求，由專家設計專屬組合。</p>
+            <a href="custom.html" class="btn-custom">立即預約諮詢</a>
+        </section>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2026 CrystalMagic 版權所有 | 每一顆水晶都承載著大地的祝福。</p>
+</footer>
+
+<script>
+    
+// --- 魔法守護腳本 ---
+    
+    // 1. 禁用右鍵選單並跳出提醒
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+        alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
+    }, false);
+
+    // 2. 禁用快捷鍵 (F12, Ctrl+U, Ctrl+Shift+I 等)
+    document.onkeydown = function (e) {
+        // 禁用 F12
+        if (e.keyCode === 123) {
+            return false;
+        }
+        // 禁用 Ctrl+Shift+I (開發者工具)
+        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+            return false;
+        }
+        // 禁用 Ctrl+Shift+J (開發者工具)
+        if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
+            return false;
+        }
+        // 禁用 Ctrl+U (檢視原始碼)
+        if (e.ctrlKey && e.keyCode === 85) {
+            return false;
+        }
+        // 禁用 Ctrl+S (存檔)
+        if (e.ctrlKey && e.keyCode === 83) {
+            return false;
+        }
+    };
+</script>
+
+</body>
+</html>
