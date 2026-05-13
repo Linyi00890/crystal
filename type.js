@@ -77,7 +77,7 @@ function render(data) {
                 <div class="flip-back">
                     <p class="back-title">能量奧祕</p>
                     <p class="back-desc">${c.desc}</p>
-                    <a href="details/${c.id}.html" class="detail-btn">查看詳細內容</a>
+                    <a href="quartz/${c.id}.html" class="detail-btn">查看詳細內容</a>
                 </div>
             </div>
         </div>
