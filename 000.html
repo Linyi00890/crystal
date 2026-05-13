@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crystal Soul | 翻牌式能量圖鑑</title>
+    <title>Crystal Soul Aura | 能量視覺圖鑑</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+TC:wght@300;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     
@@ -11,20 +11,22 @@
         :root {
             --bg-dark: #05060a;
             --gold: #c5a47e;
-            --glass: rgba(255, 255, 255, 0.03);
+            --text-bright: #ffffff;
+            --text-dark: #1a1a1a;
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             background-color: var(--bg-dark);
-            color: #fff;
+            color: var(--text-bright);
             font-family: 'Montserrat', 'Noto Serif TC', serif;
             margin: 0;
             overflow-x: hidden;
+            user-select: none;
         }
 
-        /* 粒子畫布 */
+        /* 粒子背景 */
         #particle-canvas {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1; pointer-events: none;
@@ -33,142 +35,124 @@
         /* 導覽列 */
         nav {
             position: fixed; top: 0; width: 100%;
-            background: rgba(10, 11, 16, 0.9);
-            backdrop-filter: blur(20px);
+            background: rgba(5, 6, 10, 0.9);
+            backdrop-filter: blur(15px);
             z-index: 1000;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 5%;
-            border-bottom: 1px solid rgba(197, 164, 126, 0.2);
+            display: flex; justify-content: center; align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid var(--gold);
         }
 
-        .logo { font-family: 'Cinzel', serif; color: var(--gold); letter-spacing: 3px; font-size: 1.2rem; }
+        .logo { font-family: 'Cinzel', serif; color: var(--gold); letter-spacing: 5px; font-size: 1.5rem; }
 
-        /* 篩選控制器區域 */
-        .filter-area {
+        /* 控制區：下拉選單美化 */
+        .controls {
             padding: 120px 20px 40px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            max-width: 1000px;
-            margin: 0 auto;
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
+            max-width: 1100px; margin: 0 auto;
         }
 
-        select, input {
-            background: var(--glass);
+        .custom-select, .custom-input {
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--gold);
-            color: #fff;
-            padding: 12px 25px;
-            border-radius: 5px;
+            color: var(--gold);
+            padding: 12px 20px;
+            border-radius: 2px; /* 方正設計更專業 */
             outline: none;
-            cursor: pointer;
             font-family: 'Noto Serif TC', serif;
+            transition: 0.3s;
         }
 
-        select option { background: #111; color: #fff; }
+        .custom-select:hover, .custom-input:focus {
+            background: rgba(197, 164, 126, 0.1);
+            box-shadow: 0 0 10px rgba(197, 164, 126, 0.3);
+        }
+
+        .custom-select option { background: #0a0b10; color: #fff; }
 
         /* 水晶網格 */
         .crystal-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 40px;
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 40px 100px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px; max-width: 1400px; margin: 0 auto; padding: 0 40px 100px;
         }
 
-        /* 翻牌效果容器 */
+        /* 3D 翻牌容器 */
         .flip-card {
-            background-color: transparent;
-            height: 380px;
-            perspective: 1000px; /* 3D 透視 */
+            height: 420px;
+            perspective: 1000px;
             cursor: pointer;
         }
 
         .flip-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative; width: 100%; height: 100%;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             transform-style: preserve-3d;
         }
 
-        .flip-card:hover .flip-card-inner {
-            transform: rotateY(180deg);
-        }
+        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
 
-        /* 卡牌正面與背面通用樣式 */
+        /* 卡牌正面樣式 */
         .flip-card-front, .flip-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            border-radius: 15px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 30px;
-            border: 1px solid var(--c-color);
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            position: absolute; width: 100%; height: 100%;
+            -webkit-backface-visibility: hidden; backface-visibility: hidden;
+            border-radius: 4px; border: 1px solid var(--c-color);
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; padding: 30px;
         }
 
-        /* 正面：流光氛圍 */
         .flip-card-front {
-            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(20,20,20,0.9));
-            z-index: 2;
+            background: linear-gradient(135deg, rgba(0,0,0,0.9), var(--c-alpha));
+            box-shadow: inset 0 0 30px var(--c-alpha);
         }
 
-        .flip-card-front::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 15px;
-            box-shadow: inset 0 0 20px var(--c-color);
-            opacity: 0.3;
-        }
-
-        /* 背面：資訊展示 */
+        /* 卡牌背面樣式 */
         .flip-card-back {
-            background: var(--c-color);
-            color: #000;
+            background-color: var(--c-color);
             transform: rotateY(180deg);
+            /* 自動判斷文字顏色：若是深色背景用白字，反之用黑字 */
+            color: var(--t-color); 
         }
 
-        .crystal-icon { font-size: 4rem; margin-bottom: 20px; filter: drop-shadow(0 0 10px var(--c-color)); }
-        .crystal-name { font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--c-color); margin-bottom: 5px; }
-        .back-title { font-size: 1.5rem; font-weight: bold; margin-bottom: 15px; }
-        .back-desc { font-size: 0.95rem; line-height: 1.6; }
-        .tag { border: 1px solid var(--c-color); padding: 2px 10px; border-radius: 20px; font-size: 0.7rem; margin: 5px; }
-
-        @media (max-width: 768px) {
-            .crystal-grid { padding: 0 20px; gap: 20px; }
+        .crystal-icon { 
+            font-size: 4.5rem; margin-bottom: 20px; 
+            filter: drop-shadow(0 0 15px var(--c-color));
         }
+
+        .crystal-name { 
+            font-family: 'Cinzel', serif; font-size: 1.8rem; 
+            color: var(--c-color); text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .back-title { font-family: 'Noto Serif TC', serif; font-size: 1.6rem; margin-bottom: 15px; border-bottom: 1px solid currentColor; padding-bottom: 5px; }
+        .back-desc { font-size: 0.95rem; line-height: 1.8; text-align: center; }
+
+        /* 標籤選色 */
+        .tag {
+            font-size: 0.7rem; padding: 4px 12px; border-radius: 20px;
+            border: 1px solid currentColor; margin: 5px;
+        }
+
+        @media (max-width: 768px) { .crystal-grid { padding: 0 20px; } }
     </style>
 </head>
-<body oncontextmenu="return false" onselectstart="return false">
+<body oncontextmenu="return false">
 
 <canvas id="particle-canvas"></canvas>
 
-<nav>
-    <div class="logo">CRYSTAL MUSEUM</div>
-</nav>
+<nav><div class="logo">CRYSTAL MUSEUM</div></nav>
 
-<div class="filter-area">
-    <input type="text" id="searchInput" placeholder="關鍵字搜尋...">
-    
-    <select id="effectFilter">
-        <option value="all">所有功效</option>
-        <option value="財富">財富運勢</option>
-        <option value="愛情">愛情人緣</option>
-        <option value="守護">守護避邪</option>
-        <option value="智慧">智慧溝通</option>
-        <option value="療癒">身心療癒</option>
+<div class="controls">
+    <input type="text" id="searchInput" class="custom-input" placeholder="搜尋能量、名稱...">
+    <select id="effectFilter" class="custom-select">
+        <option value="all">所有功效類別</option>
+        <option value="財富">財富與事業</option>
+        <option value="愛情">愛情與人緣</option>
+        <option value="守護">守護與避邪</option>
+        <option value="智慧">智慧與溝通</option>
+        <option value="療癒">療癒與情緒</option>
     </select>
-
-    <select id="colorFilter">
+    <select id="colorFilter" class="custom-select">
         <option value="all">所有顏色系</option>
         <option value="紫色">紫色系</option>
         <option value="粉色">粉色系</option>
@@ -176,118 +160,123 @@
         <option value="金色">金色系</option>
         <option value="黑色">黑色系</option>
         <option value="綠色">綠色系</option>
+        <option value="白色">白色系</option>
     </select>
 </div>
 
-<div class="crystal-grid" id="crystalGrid"></div>
+<div class="crystal-grid" id="mainGrid"></div>
 
 <script>
-    // 35+ 水晶數據庫 (含顏色分類與功效分類)
+    // 35+ 種完整水晶資料
     const crystals = [
-        { name: "紫水晶", color: "#a29bfe", group: "紫色", effect: "智慧", icon: "🔮", desc: "開發智慧、平穩情緒，適合需要高度專注的創意工作者。" },
-        { name: "粉晶", color: "#fab1a0", group: "粉色", effect: "愛情", icon: "🌸", desc: "開啟心輪，吸引好姻緣並修復內心情緒創傷。" },
-        { name: "黑曜石", color: "#2d3436", group: "黑色", effect: "守護", icon: "🌑", desc: "極強的吸納性能量，排除負能量、病氣，是最佳護身符。" },
-        { name: "黃水晶", color: "#ffeaa7", group: "金色", effect: "財富", icon: "☀️", desc: "主偏財運，充滿喜悅能量，能增強個人自信與勇氣。" },
-        { name: "拉長石", color: "#81ecec", group: "藍色", effect: "守護", icon: "✨", desc: "沉穩的能量能保護靈魂氣場，激發潛意識中的創意直覺。" },
-        { name: "海藍寶", color: "#74b9ff", group: "藍色", effect: "智慧", icon: "💧", desc: "對應喉輪，能保佑旅途平安並提升溝通與表達能力。" },
-        { name: "月光石", color: "#dfe6e9", group: "白色", effect: "愛情", icon: "🌙", desc: "溫潤如月，能舒緩急躁脾氣，吸引浪漫愛情並調理女性氣息。" },
-        { name: "鈦晶", color: "#fdcb6e", group: "金色", effect: "財富", icon: "🔱", desc: "水晶之王，能量極強，招正財偏財，提升職場領導氣場。" },
-        { name: "捷克隕石", color: "#55efc4", group: "綠色", effect: "智慧", icon: "☄️", desc: "高頻率能量，能加速靈性覺醒與命運轉化，清理業力。" },
-        { name: "舒俱徠", color: "#6c5ce7", group: "紫色", effect: "療癒", icon: "💜", tags: ["防護"], desc: "新時代療癒石，能排除負面思考，修復深層心理壓力。" },
-        { name: "螢石", color: "#2ed573", group: "綠色", effect: "智慧", icon: "🧬", desc: "思緒之石，能排除腦中雜念，使混亂的邏輯變得條理分明。" },
-        { name: "草莓晶", color: "#ff7675", group: "粉色", effect: "愛情", icon: "🍓", desc: "增進愛情運勢，讓思考更清晰，心靈重新獲得平和與愉悅。" },
-        { name: "金運石", color: "#2d3436", group: "黑色", effect: "財富", icon: "🛡️", desc: "極具招財潛力的黑晶石，能避開職場小人並守住財庫。" },
-        { name: "天河石", color: "#00cec9", group: "藍色", effect: "智慧", icon: "🌊", desc: "信心之石，幫助人在困境中重拾勇氣，擺脫焦慮與沮喪。" },
-        { name: "虎眼石", color: "#e67e22", group: "金色", effect: "財富", icon: "🐯", desc: "具備老虎般威嚴，能激發勇氣並帶來積極的行動力。" },
-        { name: "磷灰石", color: "#0fbcf9", group: "藍色", effect: "療癒", icon: "🧩", desc: "能夠協助平息情緒，增強與人溝通的自信心與自我認同。" },
-        { name: "孔雀石", color: "#05c46b", group: "綠色", effect: "守護", icon: "🍃", desc: "吸收負磁場的高手，能守護旅途安全並輔助心靈蛻變。" },
-        { name: "紅瑪瑙", color: "#eb4d4b", group: "紅色", effect: "療癒", icon: "🔴", desc: "象徵強大生命力，改善體虛、增強自信與執行力。" },
-        { name: "葡萄石", color: "#badc58", group: "綠色", effect: "智慧", icon: "🍇", desc: "希望之石，能讓思考變得敏捷，緩解現代人沉重的心理壓力。" },
-        { name: "閃靈鑽", color: "#ffffff", group: "白色", effect: "守護", icon: "⚡", desc: "極致淨化之石，可放在其他水晶旁進行能量充電與除障。" },
-        { name: "石榴石", color: "#6d214f", group: "紅色", effect: "療癒", icon: "🍷", desc: "對應海底輪，能促進再生與血液循環，提升女性魅力與活力。" },
-        { name: "透石膏", color: "#f5f6fa", group: "白色", effect: "守護", icon: "🕯️", desc: "能量極其清澈，具有淨化心靈、安撫焦慮與清理空間的作用。" },
-        { name: "黑碧璽", color: "#1e272e", group: "黑色", effect: "守護", icon: "🕳️", desc: "強力接地氣，保護不受電子輻射影響，是最強的除障石。" },
-        { name: "藍紋瑪瑙", color: "#dff9fb", group: "藍色", effect: "智慧", icon: "☁️", desc: "充滿寧靜能量，能舒緩喉部不適，增進彼此間的寬容與理解。" },
-        { name: "金太陽石", color: "#f0932b", group: "金色", effect: "財富", icon: "🦁", desc: "如同暖陽，賦予勇氣與正能量，驅散所有陰暗負面的想法。" },
-        { name: "綠幽靈", color: "#22a6b3", group: "綠色", effect: "財富", icon: "🌲", desc: "著名的事業水晶，幫助正財增長，讓職場晉升更順利。" },
-        { name: "紅兔毛", color: "#ff7979", group: "紅色", effect: "療癒", icon: "🐰", desc: "溫柔的細絲結構，能調理身心氣色，讓人顯得溫潤親切。" },
-        { name: "鋰雲母", color: "#9c88ff", group: "紫色", effect: "療癒", icon: "🧘", desc: "含鋰寶石，能大幅緩解現代人的抑鬱、焦慮與失眠問題。" },
-        { name: "彼得石", color: "#4834d4", group: "藍色", effect: "智慧", icon: "🌪️", desc: "暴風雨之石，能消除恐懼、開發直覺，讓心靈更有膽識。" },
-        { name: "硨磲", color: "#f5f6fa", group: "白色", effect: "守護", icon: "🐚", desc: "佛教七寶，象徵純潔清淨，能穩定心神、驅魔辟邪。" },
-        { name: "天鐵", color: "#ced6e0", group: "黑色", effect: "守護", icon: "⚔️", desc: "來自外太空的隕鐵，能量極致剛強，是擋煞避邪的最高等級。" },
-        { name: "紫鋰輝", color: "#ef5777", group: "粉色", effect: "療癒", icon: "💕", desc: "平撫受傷的心，讓人重拾愛與慈悲的能量，消除敵對心。" },
-        { name: "青金石", color: "#0984e3", group: "藍色", effect: "智慧", icon: "🌌", desc: "引領我們探索內在真理，對應眉心輪，增強專注與洞察力。" },
-        { name: "龍血石", color: "#2f3640", group: "綠色", effect: "療癒", icon: "🐲", desc: "綠與紅的生命交織，帶來強大的體力支撐與面對挑戰的勇氣。" },
-        { name: "金運石", color: "#111", group: "黑色", effect: "財富", icon: "💎", desc: "低調的黑色金屬光，主招偏財與防小人，保護能量不流失。" }
+        { name: "紫水晶", eng: "Amethyst", color: "#a29bfe", group: "紫色", effect: "智慧", icon: "🔮", desc: "開啟智慧、平穩情緒，協助冥想並提升直覺力與專注度。" },
+        { name: "粉晶", eng: "Rose Quartz", color: "#fab1a0", group: "粉色", effect: "愛情", icon: "🌸", desc: "心靈的療癒者。吸引異性緣，增進人際關係，帶來和平與愛。" },
+        { name: "黑曜石", eng: "Obsidian", color: "#2d3436", group: "黑色", effect: "守護", icon: "🌑", desc: "能量剛猛。吸收負能量與避邪，是強大的心理護身符。" },
+        { name: "黃水晶", eng: "Citrine", color: "#ffeaa7", group: "金色", effect: "財富", icon: "☀️", desc: "象徵財富與成功。提升偏財運，增強自信心與創造力。" },
+        { name: "拉長石", eng: "Labradorite", color: "#81ecec", group: "藍色", effect: "智慧", icon: "✨", desc: "具有幻彩光芒。能看穿假象，激發潛在才能並守護靈魂。" },
+        { name: "鈦晶", eng: "Rutilated", color: "#fdcb6e", group: "金色", effect: "財富", icon: "🔱", desc: "水晶之王。能量極致強大，招正財偏財，增加領袖氣場。" },
+        { name: "捷克隕石", eng: "Moldavite", color: "#55efc4", group: "綠色", effect: "智慧", icon: "☄️", desc: "來自宇宙的強大震動。加速靈性轉化與命運的全面覺醒。" },
+        { name: "海藍寶", eng: "Aquamarine", color: "#74b9ff", group: "藍色", effect: "智慧", icon: "💧", desc: "海洋的守護石。加強表達溝通能力，保佑旅行平安。" },
+        { name: "月光石", eng: "Moonstone", color: "#dfe6e9", group: "白色", effect: "愛情", icon: "🌙", desc: "充滿柔性力量。舒緩壓力，吸引靈魂伴侶，調理生理節律。" },
+        { name: "金運石", eng: "Hypersthene", color: "#1e272e", group: "黑色", effect: "財富", icon: "💎", desc: "吸財擋煞。低調且剛強，能幫助守住財庫並阻隔負磁場。" },
+        { name: "舒俱徠", eng: "Sugilite", color: "#6c5ce7", group: "紫色", effect: "療癒", icon: "💜", desc: "抗癌與療癒聖品。消除深層恐懼，轉化負面思想為平靜能量。" },
+        { name: "螢石", eng: "Fluorite", color: "#2ed573", group: "綠色", effect: "智慧", icon: "🧬", desc: "智慧之石。清理思緒，提升學習效率與邏輯判斷能力。" },
+        { name: "草莓晶", eng: "Strawberry", color: "#ff7675", group: "粉色", effect: "愛情", icon: "🍓", desc: "對應心輪。增進人際和諧，招來美滿愛情並帶來愉快心情。" },
+        { name: "虎眼石", eng: "Tiger Eye", color: "#e67e22", group: "金色", effect: "財富", icon: "🐯", desc: "增強決斷力與勇氣。幫助達成目標，在職場上充滿行動力。" },
+        { name: "天河石", eng: "Amazonite", color: "#00cec9", group: "藍色", effect: "智慧", icon: "🌊", desc: "信心與希望之石。能緩解不安焦慮，在決策時帶來冷靜。" },
+        { name: "孔雀石", eng: "Malachite", color: "#05c46b", group: "綠色", effect: "守護", icon: "🍃", desc: "吸收負能量的高手。保護旅行安全，並辅助清理情緒毒素。" },
+        { name: "石榴石", eng: "Garnet", color: "#6d214f", group: "紅色", effect: "療癒", icon: "🍷", desc: "促進再生。提升生命力與魅力，調理血氣，適合長期疲勞者。" },
+        { name: "透石膏", eng: "Selenite", color: "#f5f6fa", group: "白色", effect: "守護", icon: "🕯️", desc: "極致純淨。能淨化氣場，安撫混亂的思緒，清理能量通道。" },
+        { name: "藍紋瑪瑙", eng: "Lace Agate", color: "#dff9fb", group: "藍色", effect: "智慧", icon: "☁️", desc: "平穩溝通之石。釋放喉輪壓力，讓人說話充滿智慧與寬容。" },
+        { name: "綠幽靈", eng: "Phantom", color: "#1289A7", group: "綠色", effect: "財富", icon: "🌲", desc: "正財之光。代表事業蒸蒸日上，招引貴人相助與工作順利。" },
+        { name: "金太陽石", eng: "Sunstone", color: "#f0932b", group: "金色", effect: "財富", icon: "🦁", desc: "驅散黑暗。充滿陽光的正面能量，增進領導能力與勇氣。" },
+        { name: "紫鋰輝", eng: "Kunzite", color: "#ef5777", group: "粉色", effect: "療癒", icon: "💕", desc: "愛的共振。讓人放鬆心情，消除憂鬱，感受宇宙的大愛。" },
+        { name: "彼得石", eng: "Pietersite", color: "#4834d4", group: "藍色", effect: "智慧", icon: "🌪️", desc: "勇士之石。開啟第三眼，看清真相，消除對未知的恐懼。" },
+        { name: "硨磲", eng: "Tridacna", color: "#ffffff", group: "白色", effect: "守護", icon: "🐚", desc: "清淨之首。鎖住心神，驅邪避災，讓人身心潔淨無憂。" },
+        { name: "磷灰石", eng: "Apatite", color: "#45aaf2", group: "藍色", effect: "療癒", icon: "🧩", desc: "協助溝通。緩解憤怒與疲勞，增加與大眾共處的勇氣。" },
+        { name: "青金石", eng: "Lapis", color: "#0652DD", group: "藍色", effect: "智慧", icon: "🌌", desc: "靈魂之光。加強洞察力，消除疲勞，揭開內在的真理。" },
+        { name: "龍血石", eng: "DragonBlood", color: "#2f3640", group: "綠色", effect: "療癒", icon: "🐲", desc: "強大的生命力。提升體力，幫助找回戰勝困難的勇氣。" },
+        { name: "天鐵", eng: "Muonionalusta", color: "#b2bec3", group: "黑色", effect: "守護", icon: "⚔️", desc: "宇宙隕石。能量頻率極高，擋除外界一切邪氣與干擾。" },
+        { name: "紅瑪瑙", eng: "Carnelian", color: "#ea2027", group: "紅色", effect: "療癒", icon: "🔴", desc: "充滿自信與熱情。提升創造力，改善懶散，充滿行動能。" },
+        { name: "葡萄石", eng: "Prehnite", color: "#A3CB38", group: "綠色", effect: "智慧", icon: "🍇", desc: "希望與平靜之石。讓思考有條理，舒緩現代人緊張的壓力。" },
+        { name: "藍寶石", eng: "Sapphire", color: "#3867d6", group: "藍色", effect: "智慧", icon: "💠", desc: "平定情緒。開闊心靈，加強直覺與靈性的溝通能力。" },
+        { name: "金發晶", eng: "Rutilated", color: "#ffc241", group: "金色", effect: "財富", icon: "✨", desc: "強大的金屬光芒。主招正財，加強判斷力，讓決策精準。" },
+        { name: "黑碧璽", eng: "Tourmaline", color: "#111111", group: "黑色", effect: "守護", icon: "🕳️", desc: "淨化磁場最強。幫助身體排毒，接地氣，保護身心穩固。" },
+        { name: "鋰雲母", eng: "Lepidolite", color: "#82589F", group: "紫色", effect: "療癒", icon: "🧘", desc: "安穩情緒之王。釋放深層壓抑，緩解焦慮與情緒失控。" },
+        { name: "白幽靈", eng: "WhiteGhost", color: "#f1f2f6", group: "白色", effect: "守護", icon: "🌬️", desc: "洗滌心靈。淨化潛意識中的負面記憶，讓靈性更加透徹。" }
     ];
 
-    const grid = document.getElementById('crystalGrid');
-    
+    const grid = document.getElementById('mainGrid');
+
+    // 輔助函數：計算亮度決定文字顏色
+    function getTextColor(hex) {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        return brightness > 155 ? '#1a1a1a' : '#ffffff';
+    }
+
     function render(data) {
-        grid.innerHTML = data.map(c => `
-            <div class="flip-card" style="--c-color: ${c.color}">
+        grid.innerHTML = data.map(c => {
+            const textColor = getTextColor(c.color);
+            return `
+            <div class="flip-card" style="--c-color: ${c.color}; --c-alpha: ${c.color}33; --t-color: ${textColor}">
                 <div class="flip-card-inner">
-                    <!-- 正面 -->
                     <div class="flip-card-front">
                         <div class="crystal-icon">${c.icon}</div>
                         <div class="crystal-name">${c.name}</div>
-                        <span class="tag">${c.effect}系</span>
+                        <div class="tag" style="color: ${c.color}">${c.effect}系</div>
                     </div>
-                    <!-- 背面 -->
                     <div class="flip-card-back">
                         <div class="back-title">${c.name}</div>
+                        <div style="font-size: 0.75rem; margin-top: -10px; margin-bottom: 20px; opacity: 0.8;">${c.eng}</div>
                         <p class="back-desc">${c.desc}</p>
-                        <div style="font-weight:bold; margin-top:10px;">主要能量：${c.effect}</div>
+                        <div style="margin-top: 20px; font-weight: 600;">核心能量：${c.effect}</div>
                     </div>
                 </div>
-            </div>
-        `).join('');
+            </div>`;
+        }).join('');
     }
 
-    // 多重篩選邏輯
-    function filterCrystals() {
-        const searchText = document.getElementById('searchInput').value.toLowerCase();
-        const effectVal = document.getElementById('effectFilter').value;
-        const colorVal = document.getElementById('colorFilter').value;
+    function filterData() {
+        const search = document.getElementById('searchInput').value.toLowerCase();
+        const effect = document.getElementById('effectFilter').value;
+        const color = document.getElementById('colorFilter').value;
 
         const filtered = crystals.filter(c => {
-            const matchSearch = c.name.includes(searchText) || c.desc.includes(searchText);
-            const matchEffect = effectVal === 'all' || c.effect === effectVal;
-            const matchColor = colorVal === 'all' || c.group === colorVal;
-            return matchSearch && matchEffect && matchColor;
+            const mSearch = c.name.includes(search) || c.desc.includes(search);
+            const mEffect = effect === 'all' || c.effect === effect;
+            const mColor = color === 'all' || c.group === color;
+            return mSearch && mEffect && mColor;
         });
         render(filtered);
     }
 
-    document.querySelectorAll('input, select').forEach(el => {
-        el.addEventListener('change', filterCrystals);
-        el.addEventListener('input', filterCrystals);
+    document.querySelectorAll('.custom-select, .custom-input').forEach(el => {
+        el.addEventListener('input', filterData);
+        el.addEventListener('change', filterData);
     });
 
-    // 初始渲染
     render(crystals);
 
-    // 粒子系統 (同上個版本)
+    // 粒子背景 (Canvas)
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
     function initCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
     class Particle {
-        constructor() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.size = Math.random()*2; this.speedX = Math.random()*0.5-0.25; this.speedY = Math.random()*0.5-0.25; this.opacity = Math.random(); }
+        constructor() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.size = Math.random()*2; this.speedX = Math.random()*0.4-0.2; this.speedY = Math.random()*0.4-0.2; this.opacity = Math.random(); }
         update() { this.x += this.speedX; this.y += this.speedY; if (this.x > canvas.width) this.x = 0; if (this.y > canvas.height) this.y = 0; }
         draw() { ctx.fillStyle = `rgba(197, 164, 126, ${this.opacity})`; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fill(); }
     }
-    for(let i=0; i<80; i++) particles.push(new Particle());
+    for(let i=0; i<60; i++) particles.push(new Particle());
     function animate() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{ p.update(); p.draw(); }); requestAnimationFrame(animate); }
     initCanvas(); animate();
     window.addEventListener('resize', initCanvas);
 
-    // 高級守護腳本
-    document.onkeydown = function(e) {
-        if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) || (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) {
-            return false;
-        }
-    };
+    // 守護腳本
+    document.onkeydown = e => { if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && [73, 74].includes(e.keyCode)) || (e.ctrlKey && e.keyCode == 85)) return false; };
 </script>
 
 </body>
