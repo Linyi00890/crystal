@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA CRYSTAL | 能量飾品專區</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap');
+        body { font-family: 'Noto Serif TC', serif; background-color: #fcfaf8; }
+        .hidden { display: none; }
+        .product-card { transition: all 0.3s ease; border: 1px solid #f3f2f0; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(0,0,0,0.05); border-color: #e5e7eb; }
+        .promo-banner { background: #1c1917; color: white; overflow: hidden; white-space: nowrap; padding: 10px 0; font-size: 12px; letter-spacing: 2px; }
+        .promo-content { display: inline-block; animation: marquee 30s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+    </style>
+</head>
+<body class="pb-24">
+
+    <!-- 限時特惠跑馬燈 -->
+    <div class="promo-banner">
+        <div class="promo-content">
+            ✦ 全館滿 $3,000 免運費 ✦ 新會員首購現折 $100 ✦ 天然水晶鑑定服務預約中 ✦ 限量新品：捷克隕石系列正式上架 ✦ 
+            ✦ 全館滿 $3,000 免運費 ✦ 新會員首購現折 $100 ✦ 天然水晶鑑定服務預約中 ✦ 限量新品：捷克隕石系列正式上架 ✦ 
+        </div>
+    </div>
+
+    <!-- 頂部導航 -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50 px-6 py-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-stone-800 tracking-widest">AURA CRYSTAL</h1>
+        <div class="flex items-center gap-4">
+            <select id="langSelect" onchange="switchLanguage(this.value)" class="text-sm border-none bg-transparent focus:ring-0 text-stone-600 cursor-pointer">
+                <option value="zh">繁體中文</option>
+                <option value="en">English</option>
+            </select>
+            <button onclick="toggleModal('userModal')" class="w-8 h-8 bg-stone-200 rounded-full flex items-center justify-center cursor-pointer hover:bg-stone-300 transition-colors">
+                <i class="fa-regular fa-user text-stone-600"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 商品列表區域 -->
+    <main class="max-w-7xl mx-auto p-6">
+        <h2 class="text-center text-stone-700 text-xl mt-4 mb-10 tracking-widest">能量手鍊與精品飾品</h2>
+        <div id="productGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"></div>
+    </main>
+
+    <!-- 功能按鈕 -->
+    <div class="fixed bottom-6 left-6 z-50">
+        <button onclick="history.back()" class="flex items-center justify-center w-12 h-12 bg-white shadow-lg rounded-full text-stone-600 border border-stone-100"><i class="fa-solid fa-arrow-left"></i></button>
+    </div>
+
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 items-end">
+        <div class="flex gap-3">
+            <a href="natural.html" class="px-4 py-2 bg-stone-700 text-white text-xs rounded-full shadow-lg">原礦擺件</a>
+            <a href="course.html" class="px-4 py-2 bg-stone-700 text-white text-xs rounded-full shadow-lg">淨化課程</a>
+        </div>
+        <div class="flex gap-3">
+            <button onclick="toggleModal('wishlistModal')" class="relative w-14 h-14 bg-white shadow-lg rounded-full border border-stone-100">
+                <i class="fa-regular fa-heart text-xl text-stone-600"></i>
+                <span id="wishCount" class="absolute -top-1 -right-1 bg-red-400 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center">0</span>
+            </button>
+            <button onclick="toggleModal('cartModal')" class="relative w-14 h-14 bg-stone-900 shadow-lg rounded-full text-white">
+                <i class="fa-solid fa-bag-shopping text-xl"></i>
+                <span id="cartCount" class="absolute -top-1 -right-1 bg-amber-500 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center">0</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- 購物車 Modal (含垃圾桶) -->
+    <div id="cartModal" class="hidden fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm flex justify-end">
+        <div class="w-full max-w-md bg-white h-full p-8 flex flex-col">
+            <div class="flex justify-between mb-8 border-b pb-4">
+                <h3 class="text-2xl font-bold">購物車</h3>
+                <button onclick="toggleModal('cartModal')"><i class="fa-solid fa-xmark text-2xl"></i></button>
+            </div>
+            <div id="cartItems" class="flex-1 space-y-4 overflow-y-auto"></div>
+            <div class="mt-8 border-t pt-4">
+                <div class="flex justify-between text-xl font-bold"><span>總計</span><span>NT$ <span id="cartTotalPrice">0</span></span></div>
+                <button onclick="goToCheckout()" class="w-full bg-stone-900 text-white py-4 mt-6 rounded font-bold tracking-widest">前往結帳</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 收藏 Modal (含垃圾桶與商品資訊) -->
+    <div id="wishlistModal" class="hidden fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm flex justify-end">
+        <div class="w-full max-w-md bg-white h-full p-8 flex flex-col">
+            <div class="flex justify-between mb-8 border-b pb-4">
+                <h3 class="text-2xl font-bold">我的收藏</h3>
+                <button onclick="toggleModal('wishlistModal')"><i class="fa-solid fa-xmark text-2xl"></i></button>
+            </div>
+            <div id="wishItems" class="flex-1 space-y-4 overflow-y-auto"></div>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            { name: "薰衣草紫水晶", eff: "穩定情緒", price: 1280, stock: 5, img: "lavender.jpg" },
+            { name: "馬島粉水晶", eff: "招好桃花", price: 980, stock: 12, img: "rose_q.jpg" },
+            { name: "金髮鈦晶手鍊", eff: "正偏財強", price: 3600, stock: 2, img: "titan.jpg" },
+            { name: "烏拉圭紫水晶", eff: "開啟智慧", price: 1580, stock: 8, img: "uruguay.jpg" },
+            { name: "黑金運石飾品", eff: "辟邪擋煞", price: 2580, stock: 3, img: "blackgold.jpg" },
+            { name: "冰種海藍寶石", eff: "增強溝通", price: 1880, stock: 7, img: "aqua.jpg" },
+            { name: "頂級藍月光石", eff: "守護愛情", price: 2200, stock: 4, img: "moon.jpg" },
+            { name: "星空拉長石鍊", eff: "激發創意", price: 1350, stock: 10, img: "labra.jpg" },
+            { name: "天河石希望款", eff: "信心希望", price: 1100, stock: 6, img: "amazon.jpg" },
+            { name: "草莓晶姻緣手", eff: "增進人緣", price: 880, stock: 15, img: "straw.jpg" },
+            { name: "金虎眼自信鍊", eff: "充滿自信", price: 780, stock: 20, img: "tiger.jpg" },
+            { name: "青金石思考款", eff: "冷靜思考", price: 1450, stock: 4, img: "lapis.jpg" },
+            { name: "石榴石氣血鍊", eff: "調理氣血", price: 950, stock: 11, img: "garnet.jpg" },
+            { name: "白水晶淨化手", eff: "淨化磁場", price: 680, stock: 30, img: "white_q.jpg" },
+            { name: "南紅瑪瑙飾品", eff: "鴻運當頭", price: 1200, stock: 5, img: "agate.jpg" },
+            { name: "綠幽靈事業款", eff: "事業招財", price: 3200, stock: 2, img: "green.jpg" },
+            { name: "葡萄石希望珠", eff: "希望之光", price: 1180, stock: 9, img: "preh.jpg" },
+            { name: "金太陽正向鍊", eff: "正向能量", price: 1980, stock: 3, img: "sun.jpg" },
+            { name: "藍晶石平穩款", eff: "平穩情緒", price: 1600, stock: 6, img: "kyan.jpg" },
+            { name: "螢石專注手鍊", eff: "專注學業", price: 750, stock: 18, img: "fluor.jpg" },
+            { name: "捷克隕石孤品", eff: "強大磁場", price: 5800, stock: 1, img: "mold.jpg" },
+            { name: "堇青石減壓款", eff: "減緩壓力", price: 1400, stock: 7, img: "iolite.jpg" },
+            { name: "磷灰石動力款", eff: "激發動力", price: 1050, stock: 12, img: "apat.jpg" },
+            { name: "天然淡水珍珠", eff: "優雅高貴", price: 1350, stock: 8, img: "pearl.jpg" },
+            { name: "孔雀石平安扣", eff: "平安護身", price: 1280, stock: 4, img: "mala.jpg" },
+            { name: "橄欖石美滿款", eff: "幸福美滿", price: 1650, stock: 5, img: "peri.jpg" },
+            { name: "極品舒俱徠石", eff: "強化免疫", price: 7500, stock: 1, img: "sugu.jpg" },
+            { name: "糖果多彩碧璽", eff: "旺夫招財", price: 6800, stock: 2, img: "tourm.jpg" },
+            { name: "白硨磲消災手", eff: "消災解厄", price: 850, stock: 15, img: "tri.jpg" },
+            { name: "倫敦藍托帕石", eff: "健康快樂", price: 2800, stock: 3, img: "topaz.jpg" },
+            { name: "摩根石溫柔款", eff: "柔和溫暖", price: 1750, stock: 6, img: "morgan.jpg" }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+        function render() {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = products.map(p => `
+                <div class="product-card bg-white rounded-xl overflow-hidden flex flex-col">
+                    <div class="relative overflow-hidden h-64 bg-gray-100">
+                        <img src="picture/${p.img}" class="w-full h-full object-cover">
+                        <button onclick='addToWish(${JSON.stringify(p)})' class="absolute top-3 right-3 w-8 h-8 bg-white/80 rounded-full flex items-center justify-center text-stone-400 hover:text-red-500 shadow-sm"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                    <div class="p-5 text-center flex-1 flex flex-col">
+                        <div class="mb-2"><span class="text-[10px] border border-amber-500 text-amber-600 px-2 py-0.5 rounded-full font-bold">${p.eff}</span></div>
+                        <h3 class="font-bold text-stone-800 mb-1">${p.name}</h3>
+                        <div class="mt-auto">
+                            <p class="text-[10px] text-red-500 font-bold mb-1">剩餘數量：${p.stock} 件</p>
+                            <p class="text-lg font-bold text-stone-900 mb-3">NT$ ${p.price}</p>
+                            <button onclick='addToCart(${JSON.stringify(p)})' class="w-full bg-stone-800 text-white py-2 rounded-lg text-sm hover:bg-stone-700 transition-colors">加入購物車</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            updateUI();
+        }
+
+        function addToCart(product) {
+            cart.push(product);
+            saveData();
+            updateUI();
+        }
+
+        function addToWish(product) {
+            if (!wishlist.find(item => item.name === product.name)) {
+                wishlist.push(product);
+                saveData();
+                updateUI();
+            }
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            saveData();
+            updateUI();
+        }
+
+        function removeFromWish(index) {
+            wishlist.splice(index, 1);
+            saveData();
+            updateUI();
+        }
+
+        function saveData() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        }
+
+        function updateUI() {
+            document.getElementById('cartCount').innerText = cart.length;
+            document.getElementById('wishCount').innerText = wishlist.length;
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('cartTotalPrice').innerText = total.toLocaleString();
+
+            const cartList = document.getElementById('cartItems');
+            cartList.innerHTML = cart.map((item, index) => `
+                <div class="flex items-center gap-4 border-b pb-3">
+                    <img src="picture/${item.img}" class="w-12 h-12 object-cover rounded">
+                    <div class="flex-1 text-sm font-bold">${item.name} <p class="text-xs text-stone-400">NT$ ${item.price}</p></div>
+                    <button onclick="removeFromCart(${index})" class="text-stone-300 hover:text-red-500"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            `).join('');
+
+            const wishList = document.getElementById('wishItems');
+            wishList.innerHTML = wishlist.map((item, index) => `
+                <div class="flex items-center gap-4 border-b pb-3">
+                    <img src="picture/${item.img}" class="w-12 h-12 object-cover rounded">
+                    <div class="flex-1 text-sm font-bold">${item.name} <p class="text-amber-600 text-[10px]">${item.eff}</p></div>
+                    <button onclick="removeFromWish(${index})" class="text-stone-300 hover:text-red-500"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            `).join('');
+        }
+
+        function goToCheckout() {
+            if (cart.length === 0) { alert('購物車是空的喔！'); return; }
+            location.href = 'checkout.html';
+        }
+
+        function toggleModal(id) { document.getElementById(id).classList.toggle('hidden'); }
+        window.onload = render;
+
+
+      
+// --- 魔法守護腳本 ---
+    
+    // 1. 禁用右鍵選單並跳出提醒
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+        alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
+    }, false);
+
+    // 2. 禁用快捷鍵 (F12, Ctrl+U, Ctrl+Shift+I 等)
+    document.onkeydown = function (e) {
+        // 禁用 F12
+        if (e.keyCode === 123) {
+            return false;
+        }
+        // 禁用 Ctrl+Shift+I (開發者工具)
+        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+            return false;
+        }
+        // 禁用 Ctrl+Shift+J (開發者工具)
+        if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
+            return false;
+        }
+        // 禁用 Ctrl+U (檢視原始碼)
+        if (e.ctrlKey && e.keyCode === 85) {
+            return false;
+        }
+        // 禁用 Ctrl+S (存檔)
+        if (e.ctrlKey && e.keyCode === 83) {
+            return false;
+        }
+    };
+    </script>
+</body>
+</html>
