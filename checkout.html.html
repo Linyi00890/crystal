@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA CRYSTAL | 結帳確認</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap');
+        body { font-family: 'Noto Serif TC', serif; background-color: #fcfaf8; }
+    </style>
+</head>
+<body class="bg-stone-50 min-h-screen pb-12">
+
+    <!-- 簡易導航 -->
+    <nav class="bg-white shadow-sm p-6 mb-8">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <button onclick="history.back()" class="text-stone-500 hover:text-stone-800">
+                <i class="fa-solid fa-chevron-left mr-2"></i>返回購物
+            </button>
+            <h1 class="text-xl font-bold tracking-widest text-stone-800">CHECKOUT</h1>
+            <div class="w-10"></div> <!-- 保持平衡 -->
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- 左側：收件資料與付款 -->
+        <div class="space-y-6">
+            <section class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100">
+                <h2 class="text-lg font-bold mb-6 flex items-center text-stone-700">
+                    <i class="fa-solid fa-truck-fast mr-3"></i>收件人資訊
+                </h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs text-stone-400 mb-1">姓名</label>
+                        <input type="text" id="name" placeholder="請輸入收件人真實姓名" class="w-full border-stone-200 rounded-lg p-3 text-sm focus:ring-stone-500 focus:border-stone-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-stone-400 mb-1">電話</label>
+                        <input type="tel" id="phone" placeholder="0912-345-678" class="w-full border-stone-200 rounded-lg p-3 text-sm focus:ring-stone-500 focus:border-stone-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-stone-400 mb-1">收件地址</label>
+                        <input type="text" id="address" placeholder="請輸入完整地址" class="w-full border-stone-200 rounded-lg p-3 text-sm focus:ring-stone-500 focus:border-stone-500">
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100">
+                <h2 class="text-lg font-bold mb-6 flex items-center text-stone-700">
+                    <i class="fa-solid fa-credit-card mr-3"></i>付款方式
+                </h2>
+                <div class="grid grid-cols-1 gap-3">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-stone-50 transition-colors border-stone-200">
+                        <input type="radio" name="payment" value="credit_card" checked class="text-stone-800 focus:ring-stone-800">
+                        <span class="ml-3 text-sm text-stone-600 font-medium">線上刷卡</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-stone-50 transition-colors border-stone-200">
+                        <input type="radio" name="payment" value="transfer" class="text-stone-800 focus:ring-stone-800">
+                        <span class="ml-3 text-sm text-stone-600 font-medium">銀行轉帳</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-stone-50 transition-colors border-stone-200">
+                        <input type="radio" name="payment" value="cod" class="text-stone-800 focus:ring-stone-800">
+                        <span class="ml-3 text-sm text-stone-600 font-medium">貨到付款</span>
+                    </label>
+                </div>
+            </section>
+        </div>
+
+        <!-- 右側：訂單總計 -->
+        <div class="lg:sticky lg:top-24 h-fit">
+            <section class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100">
+                <h2 class="text-lg font-bold mb-6 text-stone-700">訂單摘要</h2>
+                
+                <!-- 商品清單 -->
+                <div id="checkoutItems" class="space-y-4 mb-6 max-h-[300px] overflow-y-auto pr-2">
+                    <!-- 由 JavaScript 自動填充 -->
+                </div>
+
+                <div class="border-t pt-4 space-y-3">
+                    <div class="flex justify-between text-sm text-stone-500">
+                        <span>小計</span>
+                        <span>NT$ <span id="subtotal">0</span></span>
+                    </div>
+                    <div class="flex justify-between text-sm text-stone-500">
+                        <span>運費</span>
+                        <span>NT$ <span id="shipping">0</span></span>
+                    </div>
+                    <div class="flex justify-between text-xl font-bold text-stone-900 pt-2">
+                        <span>總計</span>
+                        <span>NT$ <span id="total">0</span></span>
+                    </div>
+                </div>
+
+                <button onclick="submitOrder()" class="w-full bg-stone-900 text-white py-4 mt-8 rounded-xl font-bold tracking-widest hover:bg-stone-800 transition-all shadow-lg">
+                    確認下單
+                </button>
+            </section>
+        </div>
+
+    </main>
+
+    <script>
+        // 1. 從本地存儲獲取購物車資料
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function renderCheckout() {
+            const listContainer = document.getElementById('checkoutItems');
+            const subtotalEl = document.getElementById('subtotal');
+            const shippingEl = document.getElementById('shipping');
+            const totalEl = document.getElementById('total');
+
+            if (cart.length === 0) {
+                listContainer.innerHTML = '<p class="text-center text-stone-400 py-10">購物車沒有商品</p>';
+                return;
+            }
+
+            // 計算金額
+            let subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+            let shipping = subtotal >= 3000 ? 0 : 100; // 滿3000免運，否則100
+            let total = subtotal + shipping;
+
+            // 渲染商品
+            listContainer.innerHTML = cart.map((item, index) => `
+                <div class="flex items-center gap-4">
+                    <img src="picture/${item.img}" class="w-16 h-16 object-cover rounded-lg">
+                    <div class="flex-1">
+                        <p class="text-sm font-bold text-stone-800">${item.name}</p>
+                        <p class="text-xs text-stone-400">${item.eff}</p>
+                    </div>
+                    <div class="text-sm font-medium text-stone-700">NT$ ${item.price.toLocaleString()}</div>
+                </div>
+            `).join('');
+
+            // 更新價格顯示
+            subtotalEl.innerText = subtotal.toLocaleString();
+            shippingEl.innerText = shipping === 0 ? "免運" : shipping;
+            totalEl.innerText = total.toLocaleString();
+        }
+
+        // 2. 提交訂單
+        function submitOrder() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const payment = document.querySelector('input[name="payment"]:checked').value;
+
+            if (!name || !phone || !address) {
+                alert('請完整填寫收件資訊！');
+                return;
+            }
+
+            // 模擬下單流程
+            alert(`感謝訂購！\n訂單已成立\n收件人：${name}\n付款方式：${payment}`);
+            
+            // 下單成功後清空購物車
+            localStorage.removeItem('cart');
+            location.href = 'index.html'; // 返回首頁
+        }
+
+        window.onload = renderCheckout;
+    </script>
+</body>
+</html>
