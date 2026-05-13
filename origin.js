@@ -26,9 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 2. 魔法守護：禁止右鍵與開發者快捷鍵
-    document.addEventListener('contextmenu', e => {
+    document.addEventListener('contextmenu', function (e) {
         e.preventDefault();
-    });
+        alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
+    }, false);
 
     document.addEventListener('keydown', e => {
         // 禁止 F12, Ctrl+Shift+I, Ctrl+U
