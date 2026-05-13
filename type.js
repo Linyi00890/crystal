@@ -77,7 +77,7 @@ function render(data) {
                 <div class="flip-back">
                     <p class="back-title">能量奧祕</p>
                     <p class="back-desc">${c.desc}</p>
-                    <a href="quartz/${c.id}.html" class="detail-btn">查看詳細內容</a>
+                    <a href="quartz/${c.id}.html" class="detail-btn">查看淨化方式</a>
                 </div>
             </div>
         </div>
@@ -85,12 +85,14 @@ function render(data) {
     }).join('');
 }
 
+// 修正：下拉選單傳入 ID 並控制顯示
 function toggleDropdown(id) {
-    const target = document.getElementById(id);
-    const isOpen = target.classList.contains('show');
-    // 先關閉所有選單
-    document.querySelectorAll('.dropdown-content').forEach(d => d.classList.remove('show'));
-    if (!isOpen) target.classList.add('show');
+    const menu = document.getElementById(id);
+    const allMenus = document.querySelectorAll('.dropdown-content');
+    const isOpen = menu.classList.contains('show');
+    
+    allMenus.forEach(m => m.classList.remove('show'));
+    if (!isOpen) menu.classList.add('show');
 }
 
 function filterCrystals(value, type) {
@@ -104,10 +106,10 @@ function filterCrystals(value, type) {
     });
 }
 
-// 點擊外部收起下拉選單
+// 點擊空白處關閉選單
 window.addEventListener('click', (event) => {
     if (!event.target.closest('.dropdown')) {
-        document.querySelectorAll('.dropdown-content').forEach(d => d.classList.remove('show'));
+        document.querySelectorAll('.dropdown-content').forEach(m => m.classList.remove('show'));
     }
 });
 
@@ -115,22 +117,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileToggle = document.getElementById('mobile-toggle');
     const navMenu = document.getElementById('nav-menu');
     if(mobileToggle) { 
-        mobileToggle.onclick = (e) => {
-            e.stopPropagation();
-            navMenu.classList.toggle('active');
-        };
+        mobileToggle.onclick = () => navMenu.classList.toggle('active'); 
     }
-    
-    // 點擊導覽連結後自動關閉選單
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.onclick = () => navMenu.classList.remove('active');
-    });
-
     render(crystals);
 });
 
-// 魔法守護（防止右鍵）
-document.addEventListener('contextmenu', (e) => { e.preventDefault(); alert("🔮 魔法能量守護中：本站圖文受智慧財產保護。"); });
-document.onkeydown = function (e) {
-    if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83))) { return false; }
-};
+// --- 魔法守護腳本 ---
+    
+    // 1. 禁用右鍵選單並跳出提醒
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+        alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
+    }, false);
+
+    // 2. 禁用快捷鍵 (F12, Ctrl+U, Ctrl+Shift+I 等)
+    document.onkeydown = function (e) {
+        // 禁用 F12
+        if (e.keyCode === 123) {
+            return false;
+        }
+        // 禁用 Ctrl+Shift+I (開發者工具)
+        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+            return false;
+        }
+        // 禁用 Ctrl+Shift+J (開發者工具)
+        if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
+            return false;
+        }
+        // 禁用 Ctrl+U (檢視原始碼)
+        if (e.ctrlKey && e.keyCode === 85) {
+            return false;
+        }
+        // 禁用 Ctrl+S (存檔)
+        if (e.ctrlKey && e.keyCode === 83) {
+            return false;
+        }
+    };
