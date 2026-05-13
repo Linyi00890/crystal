@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>白水晶 Clear Quartz | 萬用的癒癒之光 - CrystalMagic</title>
-    <!-- 引入 Google Fonts 提升質感 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -13,12 +12,10 @@
             --text-main: #2c3e50;
             --text-light: #7f8c8d;
             --bg-body: #f4f7f9;
-            --glass-bg: rgba(255, 255, 255, 0.8);
-            --crystal-gradient: linear-gradient(135deg, #ffffff 0%, #eef2f3 100%);
+            --glass-bg: rgba(255, 255, 255, 0.9);
             --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        /* 全局設定 */
         body {
             font-family: 'Noto Sans TC', sans-serif;
             background-color: var(--bg-body);
@@ -28,19 +25,19 @@
             scroll-behavior: smooth;
         }
 
-        /* 導覽列優化：增加毛玻璃效果 */
+        /* 導覽列：僅保留 LOGO */
         .main-header {
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* 居中 LOGO 增加儀式感 */
             align-items: center;
-            padding: 15px 10%;
+            padding: 20px 10%;
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.03);
             position: sticky;
             top: 0;
             z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.03);
         }
 
         .logo {
@@ -49,52 +46,19 @@
             font-weight: 700;
             color: var(--secondary-color);
             text-decoration: none;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 40px;
-            margin: 0;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 500;
-            transition: 0.3s;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background: var(--primary-color);
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* 頂部標題區：強化呼吸感 */
+        /* 頂部標題區 */
         .detail-header {
             text-align: center;
-            padding: 160px 20px;
-            background: 
-                radial-gradient(circle at 50% 50%, rgba(255,255,255,1) 0%, rgba(238,242,243,0.5) 100%),
-                url('https://www.transparenttextures.com/patterns/white-diamond.png');
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 140px 20px;
+            background: radial-gradient(circle at 50% 50%, #ffffff 0%, #eef2f3 100%);
         }
         
         .detail-header h1 {
             font-family: 'Noto Serif TC', serif;
-            font-size: 4.5rem;
+            font-size: 4.2rem;
             margin-bottom: 20px;
             letter-spacing: 8px;
             background: linear-gradient(to right, #2c3e50, #00acc1);
@@ -103,7 +67,7 @@
         }
 
         .subtitle {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--text-light);
             font-weight: 300;
             letter-spacing: 2px;
@@ -112,25 +76,25 @@
         .stat-container {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 20px;
             margin-top: 40px;
         }
 
         .stat-pill {
             background: white;
-            padding: 12px 30px;
+            padding: 10px 25px;
             border-radius: 100px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--secondary-color);
             font-weight: 600;
             box-shadow: var(--shadow-soft);
             border: 1px solid rgba(0,172,193,0.1);
         }
 
-        /* 內容容器 */
+        /* 內容區塊 */
         .content-container {
-            max-width: 1100px;
-            margin: -60px auto 100px;
+            max-width: 1000px;
+            margin: -50px auto 100px;
             position: relative;
             z-index: 10;
         }
@@ -138,48 +102,31 @@
         .content-section {
             background: white;
             padding: 60px;
-            border-radius: 40px;
+            border-radius: 35px;
             box-shadow: var(--shadow-soft);
-            margin-bottom: 60px;
-            border: 1px solid rgba(255,255,255,0.8);
+            margin-bottom: 50px;
         }
 
         .content-section h2 {
             font-family: 'Noto Serif TC', serif;
+            font-size: 2rem;
+            margin-bottom: 40px;
             color: var(--text-main);
-            display: flex;
-            align-items: center;
-            font-size: 2.2rem;
-            margin-bottom: 50px;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 20px;
         }
 
-        .content-section h2::before {
-            content: '';
-            width: 40px;
-            height: 2px;
-            background: var(--primary-color);
-            margin-right: 20px;
-        }
-
-        /* 圖文盒優化 */
         .media-box {
             display: flex;
-            align-items: stretch;
-            gap: 50px;
-            margin-bottom: 50px;
-            border-radius: 30px;
-            overflow: hidden;
-            background: #fff;
-        }
-
-        .media-box:nth-child(even) {
-            flex-direction: row-reverse;
+            gap: 40px;
+            margin-bottom: 40px;
+            align-items: center;
         }
 
         .media-img {
-            flex: 1;
-            min-height: 350px;
-            border-radius: 25px;
+            flex: 0 0 400px;
+            height: 280px;
+            border-radius: 20px;
             overflow: hidden;
         }
 
@@ -187,238 +134,136 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+            transition: 0.5s;
         }
 
         .media-box:hover .media-img img {
-            transform: scale(1.08);
+            transform: scale(1.05);
         }
 
-        .media-text {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .media-text h3 {
-            font-family: 'Noto Serif TC', serif;
-            color: var(--secondary-color);
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-
-        /* 組合卡片優化 */
         .combo-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
         }
 
         .combo-card {
             background: #2c3e50;
-            color: #fff;
-            padding: 35px;
-            border-radius: 25px;
-            transition: 0.4s;
-            border-top: 4px solid var(--primary-color);
-        }
-
-        .combo-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-
-        .tag {
-            background: var(--primary-color);
-            padding: 4px 15px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-
-        /* FAQ 現代化風格 */
-        .faq-item {
-            background: #f9fbfc;
-            border-radius: 20px;
+            color: white;
             padding: 30px;
-            margin-bottom: 20px;
+            border-radius: 20px;
             transition: 0.3s;
         }
 
-        .faq-item:hover {
-            background: #fff;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        .combo-card:hover { transform: translateY(-5px); }
+
+        .tag {
+            background: var(--primary-color);
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+            display: inline-block;
         }
 
-        .faq-q {
-            font-weight: 700;
-            color: var(--secondary-color);
-            font-size: 1.2rem;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-        }
-
-        .faq-q::before {
-            content: 'Q';
-            margin-right: 15px;
-            font-style: italic;
-            opacity: 0.5;
-        }
-
-        /* 浮動按鈕 */
+        /* 返回按鈕：修正為跳至父層 type.html */
         .fixed-back-btn {
             position: fixed;
             bottom: 40px;
             left: 40px;
             background: var(--secondary-color);
             color: white;
-            padding: 16px 32px;
+            padding: 15px 30px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
-            box-shadow: 0 10px 25px rgba(0,131,143,0.3);
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 20px rgba(0,131,143,0.3);
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .fixed-back-btn:hover {
-            transform: scale(1.1) rotate(-3deg);
+            transform: scale(1.05);
+            background: #006064;
         }
 
         .main-footer {
-            background: #fff;
-            padding: 80px 20px;
             text-align: center;
-            border-top: 1px solid #eee;
+            padding: 60px;
             color: var(--text-light);
-        }
-
-        /* 響應式優化 */
-        @media (max-width: 1200px) {
-            .content-container { width: 90%; }
-            .media-box { flex-direction: column !important; gap: 30px; }
-            .detail-header h1 { font-size: 3rem; }
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
-<a href="javascript:history.back()" class="fixed-back-btn">←探索更多晶石</a>
+<!-- 修正 3: 左下角返回按鈕至資料夾外 type.html -->
+<a href="../type.html" class="fixed-back-btn"><span>←</span> 返回</a>
 
 <header class="main-header">
-    <a href="index.html" class="logo">CRYSTAL MAGIC</a>
-    <nav>
-        <ul class="nav-links">
-            <li><a href="index.html">首頁</a></li>
-            <li><a href="origin.html">水晶起源</a></li>
-            <li><a href="type.html" style="color: var(--primary-color);">水晶種類</a></li>
-            <li><a href="care.html">淨化保養</a></li>
-        </ul>
-    </nav>
+    <!-- 修正 1 & 2: LOGO 連結至根目錄，且移除其他導覽連結 -->
+    <a href="../index.html" class="logo">CRYSTAL MAGIC</a>
 </header>
 
 <main>
     <section class="detail-header">
-        <p style="text-transform: uppercase; letter-spacing: 5px; color: var(--primary-color); margin-bottom: 10px;">The King of Crystals</p>
+        <p style="letter-spacing: 4px; color: var(--primary-color); margin-bottom: 10px;">PURITY & AMPLIFICATION</p>
         <h1>白水晶 Clear Quartz</h1>
         <p class="subtitle">「萬物共振的源頭，照亮心靈的神聖之光」</p>
         
         <div class="stat-container">
-            <div class="stat-pill">✦ 全脈輪對應 (頂輪)</div>
-            <div class="stat-pill">✦ 五行屬性：金</div>
-            <div class="stat-pill">✦ 莫氏硬度：7.0</div>
+            <div class="stat-pill">✦ 全脈輪對應</div>
+            <div class="stat-pill">✦ 五行：金</div>
+            <div class="stat-pill">✦ 硬度：7.0</div>
         </div>
     </section>
 
     <div class="content-container">
-        <!-- 礦物學區塊 -->
         <section class="content-section">
             <h2>晶體形態與自然特質</h2>
-            <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 50px;">
-                白水晶是地球上分佈最廣的礦物之一，其結構完美對稱，在能量層面被視為最穩定的震盪源。
-            </p>
-
             <div class="media-box">
                 <div class="media-img">
                     <img src="https://images.unsplash.com/photo-1551009175-15bdf9dcb580?auto=format&fit=crop&w=800&q=80" alt="全淨白水晶">
                 </div>
                 <div class="media-text">
                     <h3>激光柱形態 Laser Wand</h3>
-                    <p>頂端呈現完美的錐形，能量極度聚焦。專業能量療癒師常用於「手術式」的負能切斷，或在建立空間能量結界時作為指向導引。</p>
-                </div>
-            </div>
-
-            <div class="media-box">
-                <div class="media-img">
-                    <img src="https://images.unsplash.com/photo-1614704373403-249c74625694?auto=format&fit=crop&w=800&q=80" alt="白晶簇">
-                </div>
-                <div class="media-text">
-                    <h3>生命之母：晶簇 Cluster</h3>
-                    <p>白晶簇是多向性能量的源泉。它向四面八方發射光頻，能自動轉化家宅中的壓抑磁場，更是其他水晶飾品最佳的歸宿與充電座。</p>
+                    <p>頂端呈現完美的錐形，能量極度聚焦。適合用於冥想時的意念導引，幫助思緒精準聚焦於目標之上。</p>
                 </div>
             </div>
         </section>
 
-        <!-- 功效區塊 -->
-        <section class="content-section">
-            <h2>神聖療癒功效</h2>
-            
-            <div class="media-box">
-                <div class="media-img">
-                    <img src="https://images.unsplash.com/photo-1506755855567-92ff770e8d30?auto=format&fit=crop&w=800&q=80" alt="能量淨化">
-                </div>
-                <div class="media-text">
-                    <h3>意識淨化與頻率校準</h3>
-                    <p>當我們被繁雜的日常資訊干擾時，白水晶能像「三稜鏡」般將混亂的光過濾，還原內心的澄明。它能擴大正面意圖，讓您在混亂中迅速找回主軸。</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 能量疊加：使用卡片網格 -->
         <section class="content-section">
             <h2>能量共振組合推薦</h2>
             <div class="combo-grid">
                 <div class="combo-card">
-                    <span class="tag">避邪守護</span>
+                    <span class="tag">避邪</span>
                     <h3>＋ 黑曜石</h3>
-                    <p>極限排濁組合。白水晶注入高頻光能，黑曜石吸收負能，建立密不透風的守護氣場。</p>
+                    <p>強效排濁，建立純淨的能量防護場。</p>
                 </div>
                 <div class="combo-card">
-                    <span class="tag">智慧覺醒</span>
+                    <span class="tag">專注</span>
                     <h3>＋ 紫水晶</h3>
-                    <p>開發頂輪的高階組合。白水晶提升思考頻寬，紫水晶穩定內在直覺，最適合創業家與決策者。</p>
+                    <p>強化直覺與邏輯，提升決策時的清晰度。</p>
                 </div>
                 <div class="combo-card">
-                    <span class="tag">情感修復</span>
+                    <span class="tag">療癒</span>
                     <h3>＋ 粉晶</h3>
-                    <p>將愛溫潤擴散。白水晶淨化過去的傷痛遺留，讓粉晶的柔軟能量能更深層地進入心輪。</p>
+                    <p>洗滌心靈傷痛，讓愛與和諧重新流動。</p>
                 </div>
             </div>
         </section>
 
-        <!-- FAQ -->
-        <section class="content-section">
-            <h2>探索白水晶的奧秘 FAQ</h2>
-            <div class="faq-item">
-                <div class="faq-q">白水晶需要頻繁淨化嗎？</div>
-                <p>雖然白水晶具備自動轉化能量的特質，但作為「萬用過濾器」，它承載的負電荷較多。建議每兩週使用流水、月光或晶簇進行一次深層消磁。</p>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">為什麼我的白水晶變渾濁了？</div>
-                <p>這在能量學中被視為「負擔過重」的表現。水晶內部雲霧變多可能是吸收了環境或佩戴者的病氣，此時應延長淨化時間。若持續不恢復，則說明該水晶已完成階段性使命。</p>
-            </div>
-        </section>
+        <div style="text-align: center;">
+            <a href="../type.html" style="color: var(--text-light); text-decoration: none; border-bottom: 1px solid #ddd;">返回水晶列表</a>
+        </div>
     </div>
 </main>
 
 <footer class="main-footer">
-    <p>&copy; 2026 CrystalMagic Alchemy. All Rights Reserved.</p>
-    <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.6;">願光與你同在，與大地能量連結。</p>
+    <p>&copy; 2026 CrystalMagic Alchemy.</p>
 </footer>
 
 </body>
