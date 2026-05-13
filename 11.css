@@ -1,0 +1,328 @@
+/* =========================================
+   1. 變數設定與高級感配色
+   ========================================= */
+:root {
+    /* 核心色彩：導入寶石與極光色調 */
+    --primary-cyan: #00acc1;
+    --dark-cyan: #00838f;
+    --luxury-purple: #4a148c; 
+    --soft-blue: #e1f5fe;
+    --accent-orange: #ff7043;
+    --accent-hover: #f4511e;
+    --gold-accent: #d4af37;
+    
+    /* 動態漸層背景 */
+    --bg-gradient: linear-gradient(135deg, #f8fdfe 0%, #f3e5f5 50%, #fffde7 100%);
+    
+    --max-width: 1400px;
+    --font-main: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    
+    /* 升級陰影：層次感與彩色光暈 */
+    --shadow-sm: 0 4px 12px rgba(0,0,0,0.05);
+    --shadow-md: 0 15px 35px rgba(0, 131, 143, 0.1);
+    --shadow-lg: 0 25px 60px rgba(74, 20, 140, 0.15);
+    --transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    background: var(--bg-gradient); /* 全局漸層背景 */
+    color: #333;
+    line-height: 1.8;
+    width: 100%;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================
+   2. 導覽列 (毛玻璃效果 Glassmorphism)
+   ========================================= */
+.main-header {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: var(--shadow-sm);
+    width: 100%;
+    min-height: 80px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 40px;
+    width: 100%;
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--dark-cyan);
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: var(--transition);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: var(--transition);
+    padding: 8px 12px;
+    border-radius: 20px; /* 更加圓潤 */
+    white-space: nowrap;
+    font-size: 0.95rem;
+}
+
+.nav-menu a:hover, 
+.nav-menu a.active {
+    color: var(--primary-cyan);
+    background-color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+/* =========================================
+   3. 頁面標頭 (流動漸層 Hero)
+   ========================================= */
+.page-header {
+    text-align: center;
+    padding: 120px 20px;
+    background: linear-gradient(-45deg, #e0f7fa, #f3e5f5, #e1f5fe, #fff9c4);
+    background-size: 400% 400%;
+    animation: gradientFlow 15s ease infinite;
+    border-bottom: 1px solid rgba(0, 172, 193, 0.2);
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.page-header h1 {
+    font-size: 3.5rem;
+    background: linear-gradient(to right, #004d40, #4a148c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   4. 分類網格 (精緻卡片設計)
+   ========================================= */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+    gap: 40px;
+    margin: 80px 0;
+}
+
+.category-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* 卡片頂部裝飾線 */
+.category-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(to right, var(--primary-cyan), var(--luxury-purple));
+    z-index: 2;
+}
+
+.category-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+}
+
+.category-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.category-card:hover img {
+    transform: scale(1.1);
+}
+
+.category-info {
+    padding: 35px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.category-info h3 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.meta-container {
+    margin-bottom: 15px;
+}
+
+.meta-tag {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    margin-right: 8px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    border: 1px solid currentColor;
+}
+
+.product-type { color: #0288d1; border-color: #b3e5fc; background: #f0faff; }
+.feature { color: #7b1fa2; border-color: #e1bee7; background: #faf5fb; }
+.focus { color: #ef6c00; border-color: #ffe0b2; background: #fffaf5; }
+
+.category-description {
+    margin-bottom: 25px;
+    color: #777;
+    font-size: 1rem;
+}
+
+.detail-link {
+    color: var(--primary-cyan);
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    transition: var(--transition);
+    margin-top: auto;
+}
+
+.detail-link:hover {
+    color: var(--luxury-purple);
+    transform: translateX(10px);
+}
+
+/* =========================================
+   5. 客製化區塊 (發光 Banner)
+   ========================================= */
+.custom-banner {
+    text-align: center;
+    background: white;
+    padding: 80px 40px;
+    border-radius: 50px;
+    margin: 100px 0;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.custom-banner::after {
+    content: "✨";
+    position: absolute;
+    top: 20px; right: 40px;
+    font-size: 2rem;
+    opacity: 0.3;
+}
+
+.custom-banner h2 {
+    font-size: 2.5rem;
+    color: #4e342e;
+    margin-bottom: 20px;
+}
+
+.btn-custom {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent-orange), #d84315);
+    color: white;
+    padding: 18px 60px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 30px;
+    transition: var(--transition);
+    box-shadow: 0 10px 20px rgba(244, 81, 30, 0.3);
+    border: none;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+.btn-custom:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(244, 81, 30, 0.4);
+}
+
+/* =========================================
+   6. 頁尾
+   ========================================= */
+.footer {
+    text-align: center;
+    padding: 60px 0;
+    background: transparent;
+    color: #999;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+/* =========================================
+   7. 響應式優化
+   ========================================= */
+@media (max-width: 992px) {
+    .nav-menu { justify-content: center; margin-top: 20px; }
+    .page-header h1 { font-size: 2.8rem; }
+}
+
+@media (max-width: 480px) {
+    .page-header h1 { font-size: 2.2rem; }
+    .container { padding: 0 20px; }
+}
