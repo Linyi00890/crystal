@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1200">
     <title>白水晶 (Clear Quartz) 全方位能量指南 - 水晶魔法 | CrystalMagic</title>
-    
     <style>
         /* 全局基礎設定 */
         body {
             font-family: 'Noto Sans TC', sans-serif;
-            background-color: #f5f5f5;
+            background-color: #f8f9fa;
             margin: 0 auto;
             color: #333;
             line-height: 1.8;
@@ -23,13 +22,14 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 50px;
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
             z-index: 1000;
             width: 1200px;
             box-sizing: border-box;
+            backdrop-filter: blur(5px);
         }
 
         .logo {
@@ -51,22 +51,23 @@
             transition: 0.3s;
         }
 
-        /* 頂部標題區 - 白水晶改為明亮的銀白色系 */
+        /* 頂部標題區 */
         .detail-header {
             text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(135deg, #e0e0e0 0%, #ffffff 100%);
+            padding: 120px 20px;
+            background: linear-gradient(135deg, #e0e0e0 0%, #ffffff 50%, #e0e0e0 100%);
             color: #333;
             width: 1200px;
             box-sizing: border-box;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #eee;
         }
         
         .detail-header h1 {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             margin-bottom: 15px;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
             color: #1a1a1a;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8);
         }
 
         .stat-container {
@@ -77,173 +78,163 @@
         }
 
         .stat-pill {
-            background: rgba(0, 0, 0, 0.05);
+            background: white;
             padding: 10px 25px;
             border-radius: 50px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            color: #444;
+            border: 1px solid #ddd;
+            color: #555;
             font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
         }
 
         /* 內容容器 */
         .content-container {
             width: 1000px;
-            margin: 50px auto;
-            position: relative;
+            margin: 60px auto;
         }
 
         .content-section {
             background-color: white;
-            padding: 45px;
-            border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            margin-bottom: 40px;
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
+            margin-bottom: 50px;
         }
 
         .content-section h2 {
             color: #212121;
-            border-left: 6px solid #00acc1;
+            border-left: 8px solid #00acc1;
             padding-left: 20px;
-            margin-bottom: 30px;
-            font-size: 1.8rem;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            letter-spacing: 1px;
         }
 
-        /* 品種展示區 */
-        .variety-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin: 20px 0;
+        /* 圖左文右 通用樣式 */
+        .media-box {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            background: #fafafa;
+            border-radius: 20px;
+            padding: 25px;
+            transition: 0.3s ease;
         }
 
-        .variety-card {
-            text-align: center;
-            padding: 20px;
-            background: #fdfdfd;
-            border: 1px solid #eee;
+        .media-box:hover {
+            transform: translateY(-5px);
+            background: #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .media-img {
+            flex: 0 0 350px;
+            height: 240px;
             border-radius: 15px;
+            overflow: hidden;
         }
 
-        .variety-card h3 {
-            font-size: 1.1rem;
-            color: #00acc1;
-            margin-bottom: 10px;
+        .media-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s;
         }
 
-        /* 核心功效 */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
+        .media-box:hover .media-img img {
+            transform: scale(1.1);
         }
 
-        .feature-item {
-            padding: 30px;
-            background-color: #fafafa;
-            border-radius: 15px;
-            border-left: 4px solid #00acc1;
+        .media-text {
+            flex: 1;
         }
 
-        .feature-item strong {
-            display: block;
-            font-size: 1.2rem;
-            margin-bottom: 12px;
-            color: #000;
+        .media-text h3 {
+            margin-top: 0;
+            color: #00838f;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
         }
 
         /* 能量組合區 */
         .combo-box {
             background: #37474f;
             color: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            margin-top: 20px;
+            padding: 40px;
+            border-radius: 25px;
         }
 
         .combo-item {
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #546e7a;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-
-        .combo-item:last-child { border: none; }
 
         .tag {
             background: #00acc1;
-            padding: 2px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
             margin-right: 10px;
         }
 
         /* FAQ 區塊 */
         .faq-item {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 20px;
         }
 
         .faq-q {
             font-weight: bold;
             color: #00838f;
+            font-size: 1.1rem;
             display: block;
+            margin-bottom: 10px;
         }
 
         .faq-a {
             color: #666;
-            padding-left: 20px;
+            padding-left: 25px;
+            border-left: 3px solid #e0f7fa;
         }
 
         /* 按鈕樣式 */
-        .back-btn {
-            display: inline-block;
-            background: #212121;
-            color: white;
-            padding: 15px 45px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .back-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        }
-
-        /* 固定於左下角的返回按鈕 */
         .fixed-back-btn {
             position: fixed;
             bottom: 30px;
             left: 30px;
             z-index: 2000;
-            background: rgba(0, 172, 193, 0.9);
+            background: #00acc1;
             color: white;
-            padding: 12px 25px;
-            border-radius: 10px;
+            padding: 14px 28px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 20px rgba(0,172,193,0.3);
             transition: 0.3s;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .fixed-back-btn:hover {
             background: #00838f;
-            transform: scale(1.05);
+            transform: scale(1.05) translateY(-2px);
         }
 
         .main-footer {
             text-align: center;
-            padding: 60px 0;
+            padding: 80px 0;
             background: #fff;
             width: 1200px;
+            border-top: 1px solid #eee;
         }
     </style>
 </head>
 <body>
 
-<!-- 固定左下角按鈕 -->
 <a href="type.html" class="fixed-back-btn">🔙 返回列表</a>
 
 <header class="main-header">
@@ -261,7 +252,7 @@
 <main>
     <section class="detail-header">
         <h1>白水晶 Clear Quartz</h1>
-        <p>「光明的守護者，水晶之王，萬用的能量放大器」</p>
+        <p style="font-size: 1.2rem; color: #666;">「光明的守護者，水晶之王，萬用的能量放大器」</p>
         <div class="stat-container">
             <div class="stat-pill">脈輪：全脈輪 (對應頂輪)</div>
             <div class="stat-pill">五行：金</div>
@@ -270,74 +261,88 @@
     </section>
 
     <div class="content-container">
+        <!-- 區塊一：圖左文右 - 品種展示 -->
         <section class="content-section">
-            <h2>🔬 礦物學基礎：純淨的結構</h2>
-            <p>白水晶是地球上分佈最廣的礦物之一，化學成分為二氧化矽（SiO2）。它擁有完美的六角柱晶體結構，其透明無暇的外觀象徵著平衡與圓滿。作為<strong>「萬用水晶」</strong>，白水晶具備壓電效應，能穩定電磁波並平衡周圍磁場，是所有能量療癒的起點。</p>
-            
-            <h3>常見品種與形態</h3>
-            <div class="variety-grid">
-                <div class="variety-card"><h3>全淨透明</h3><p>能量最透徹穩定</p></div>
-                <div class="variety-card"><h3>白晶簇</h3><p>多向發散，淨化利器</p></div>
-                <div class="variety-card"><h3>激光柱</h3><p>能量集中，精準導向</p></div>
-                <div class="variety-card"><h3>奶白水晶</h3><p>質地溫潤，舒緩壓力</p></div>
+            <h2>🔬 礦物學基礎與品種</h2>
+            <p style="margin-bottom: 40px;">白水晶（SiO2）是能量療癒中最基礎也最廣泛的寶石。以下是其最常見的自然形態：</p>
+
+            <div class="media-box">
+                <div class="media-img">
+                    <img src="https://images.unsplash.com/photo-1551009175-15bdf9dcb580?auto=format&fit=crop&w=600&q=80" alt="全淨白水晶">
+                </div>
+                <div class="media-text">
+                    <h3>全淨透明晶柱</h3>
+                    <p>擁有最純粹的能量導向，適合用於冥想時握持，或放在工作桌前幫助思緒清晰。它能精準地放大您的意念與願望。</p>
+                </div>
+            </div>
+
+            <div class="media-box">
+                <div class="media-img">
+                    <img src="https://images.unsplash.com/photo-1614704373403-249c74625694?auto=format&fit=crop&w=600&q=80" alt="白晶簇">
+                </div>
+                <div class="media-text">
+                    <h3>天然白晶簇</h3>
+                    <p>由多個晶柱共生，向四周發散能量。是最佳的空間淨化工具，能自動轉化室內的負面磁場，也是手鍊最棒的充電站。</p>
+                </div>
             </div>
         </section>
 
+        <!-- 區塊二：圖左文右 - 核心功效 -->
         <section class="content-section">
             <h2>🛡️ 核心能量功效</h2>
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <strong>淨化負面磁場</strong>
-                    白水晶能吸收並阻斷負能量，清理個人與空間中的雜氣，將混亂的能量場梳理得井然有序。
+            
+            <div class="media-box">
+                <div class="media-img">
+                    <img src="https://images.unsplash.com/photo-1506755855567-92ff770e8d30?auto=format&fit=crop&w=600&q=80" alt="冥想與能量">
                 </div>
-                <div class="feature-item">
-                    <strong>提升專注力</strong>
-                    對應頂輪，能幫助思緒清晰、增強記憶力，非常適合辦公室職員、考生或需要高度專注的創意工作者。
+                <div class="media-text">
+                    <h3>深度淨化與阻斷負能</h3>
+                    <p>白水晶能清理個人氣場中的雜質，將混亂的思考梳理整齊。當您感到心煩意亂時，白水晶能像過濾器一樣，帶走負面情緒。</p>
                 </div>
-                <div class="feature-item">
-                    <strong>能量放大效果</strong>
-                    白水晶如同能量的「擴音器」，它能與其他水晶共鳴，顯著增強其他寶石的特質與功效。
+            </div>
+
+            <div class="media-box">
+                <div class="media-img">
+                    <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80" alt="專注工作">
                 </div>
-                <div class="feature-item">
-                    <strong>情緒穩定與平和</strong>
-                    幫助排解壓力，讓浮躁的心安定下來。在冥想時握著白水晶，能更容易進入深層的放鬆狀態。
+                <div class="media-text">
+                    <h3>倍增專注力與記憶</h3>
+                    <p>對應頂輪，幫助大腦保持冷靜與靈活。對於需要長時間備考的學生或創意工作者，白水晶是不可或缺的「智慧之石」。</p>
                 </div>
             </div>
         </section>
 
+        <!-- 組合與組合 -->
         <section class="content-section">
-            <h2>🔗 能量疊加：推薦組合</h2>
+            <h2>🔗 能量疊加推薦</h2>
             <div class="combo-box">
                 <div class="combo-item">
-                    <span class="tag">全方位守護</span> <strong>白水晶 + 黑曜石</strong>：白水晶排濁、黑曜石吸附，是清理病氣與防小人的最強拍檔。
+                    <span class="tag">最強避邪</span> <strong>白水晶 + 黑曜石</strong>：白水晶排濁、黑曜石吸附，是清理病氣與防小人的最佳拍檔。
                 </div>
                 <div class="combo-item">
-                    <span class="tag">智慧靈感</span> <strong>白水晶 + 紫水晶</strong>：開啟大腦潛能，在冷靜判斷中帶有直覺與創意。
+                    <span class="tag">開發潛能</span> <strong>白水晶 + 紫水晶</strong>：強化直覺與邏輯，讓您在決策時充滿洞察力。
                 </div>
                 <div class="combo-item">
-                    <span class="tag">愛情療癒</span> <strong>白水晶 + 粉晶</strong>：淨化心碎與過往傷痛，讓純粹的愛流動，提升人緣與魅力。
+                    <span class="tag">療癒心輪</span> <strong>白水晶 + 粉晶</strong>：洗滌心靈傷痛，讓純粹的愛重新流動，提升人緣與親和力。
                 </div>
             </div>
         </section>
 
+        <!-- Q&A -->
         <section class="content-section">
             <h2>❓ 常見問題 Q&A</h2>
             <div class="faq-item">
-                <span class="faq-q">Q：白水晶應該戴哪隻手？</span>
-                <p class="faq-a">A：通常建議戴在「左手」。遵循左進右出的原則，白水晶的純淨能量能由左手進入身體，幫助穩定磁場。</p>
+                <span class="faq-q">Q：為什麼白水晶被稱為「水晶之王」？</span>
+                <p class="faq-a">A：因為它具有所有色彩的頻率，能平衡全脈輪，且能與任何水晶搭配而不產生衝突，甚至能放大其他水晶的效果。</p>
             </div>
             <div class="faq-item">
-                <span class="faq-q">Q：白水晶需要常淨化嗎？</span>
-                <p class="faq-a">A：是的。因為白水晶容易吸收外界的雜氣，建議每週進行一次消磁（如日光浴或使用晶簇）以保持其透明的頻率。</p>
-            </div>
-            <div class="faq-item">
-                <span class="faq-q">Q：為什麼我的白水晶變渾濁了？</span>
-                <p class="faq-a">A：這可能是水晶吸附過多負面能量的徵兆，或者是長時間接觸汗水導致。建議深層淨化後觀察，若仍渾濁則代表它為您承擔了能量衝擊。</p>
+                <span class="faq-q">Q：睡覺時可以佩戴白水晶嗎？</span>
+                <p class="faq-a">A：因人而異。由於白水晶具有提升精神、活化能量的效果，體質敏感的人佩戴可能會導致過於清醒而失眠。建議睡覺時先將其放在床頭櫃消磁。</p>
             </div>
         </section>
 
         <div style="text-align: center; margin-top: 50px;">
-            <a href="javascript:history.back()" class="fixed-back-btn">🔙 返回列表</a>
+            <a href="javascript:history.back()" style="color: #666; text-decoration: underline;">返回水晶種類列表</a>
         </div>
     </div>
 </main>
