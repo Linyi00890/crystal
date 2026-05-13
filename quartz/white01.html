@@ -162,46 +162,81 @@
         .combo-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 25px;
         }
 
+        /* 卡片顏色流動外框設計 */
         .combo-card {
-            background: #2c3e50;
-            color: white;
+            position: relative;
             padding: 30px;
             border-radius: 20px;
             transition: 0.4s;
-            border-bottom: 5px solid transparent;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            color: white;
+            overflow: hidden; /* 確保流動光線不溢出 */
+            z-index: 1;
+        }
+
+        /* 流動邊框偽元素 */
+        .combo-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, var(--flow-color), transparent 30%);
+            animation: rotate 4s linear infinite;
+            z-index: -2;
+        }
+
+        /* 卡片底色覆蓋層 */
+        .combo-card::after {
+            content: '';
+            position: absolute;
+            inset: 4px; /* 控制邊框寬度 */
+            background: var(--card-bg);
+            border-radius: 16px;
+            z-index: -1;
+            transition: 0.3s;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* 具體三款卡片顏色定義 */
+        .card-obsidian {
+            --card-bg: #1a1a1a; /* 黑曜石深色 */
+            --flow-color: #ffffff;
+        }
+        .card-amethyst {
+            --card-bg: #4b3077; /* 紫水晶色 */
+            --flow-color: #d1b3ff;
+        }
+        .card-rose {
+            --card-bg: #e5a1a1; /* 粉晶色 */
+            --flow-color: #fff0f0;
         }
 
         .combo-card:hover {
             transform: translateY(-10px);
-            background: #34495e;
         }
 
-        /* --- 連動組合區分樣式 --- */
-        /* 黑曜石卡片 */
-        .combo-card.obsidian:hover { border-bottom-color: #555; }
-        .combo-card.obsidian .tag { background: #555; }
-        
-        /* 紫水晶卡片 */
-        .combo-card.amethyst:hover { border-bottom-color: #9b59b6; }
-        .combo-card.amethyst .tag { background: #9b59b6; }
+        .combo-card:hover::after {
+            filter: brightness(1.2);
+        }
 
-        /* 粉晶卡片 */
-        .combo-card.rose:hover { border-bottom-color: #f48fb1; }
-        .combo-card.rose .tag { background: #f48fb1; }
-        /* ----------------------- */
-
+        /* 卡片內的圓形水晶圖 */
         .combo-img {
             width: 70px;
             height: 70px;
             border-radius: 50%;
             margin-bottom: 15px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             object-fit: cover;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -209,11 +244,12 @@
 
         .combo-card:hover .combo-img {
             transform: rotate(15deg) scale(1.1);
-            border-color: inherit; /* 繼承邊框顏色 */
+            border-color: white;
         }
 
         .tag {
-            background: var(--primary-color);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
             padding: 2px 12px;
             border-radius: 4px;
             font-size: 0.7rem;
@@ -221,6 +257,7 @@
             margin-bottom: 15px;
             display: inline-block;
             letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.3);
         }
 
         /* 返回按鈕：左下角浮動 */
@@ -323,19 +360,19 @@
         <section class="content-section">
             <h2>能量聯動組合</h2>
             <div class="combo-grid">
-                <div class="combo-card obsidian">
+                <div class="combo-card card-obsidian">
                     <span class="tag">排毒防護</span>
                     <img src="../picture/obsidian03.jpg" alt="黑曜石" class="combo-img">
                     <h3>＋ 黑曜石</h3>
                     <p>白水晶擴大正能量，黑曜石吸附負能量。最適合在複雜的工作環境中建立隱形的防護盾。</p>
                 </div>
-                <div class="combo-card amethyst">
+                <div class="combo-card card-amethyst">
                     <span class="tag">覺察洞見</span>
                     <img src="../picture/amethyst02.jpg" alt="紫水晶" class="combo-img">
                     <h3>＋ 紫水晶</h3>
                     <p>針對腦部能量的深度開發。幫助您在決策時保持極度清醒，不被情緒所干擾。</p>
                 </div>
-                <div class="combo-card rose">
+                <div class="combo-card card-rose">
                     <span class="tag">心靈和諧</span>
                     <img src="../picture/rose03.webp" alt="粉晶" class="combo-img">
                     <h3>＋ 粉晶</h3>
