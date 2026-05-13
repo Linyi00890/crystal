@@ -1,5 +1,5 @@
 const crystals = [
-    // 白色系
+    // 白色系 (注意：img 屬性已包含路徑，render 函數內不再重複添加 'picture/')
     { id: "white-quartz", name: "白水晶", tag: "水晶之王", effect: "peace", color: "white", desc: "淨化能量、放大焦距、平衡身心。", img: "picture/white02.webp" },
     { id: "selenite", name: "透石膏", tag: "療癒之光", effect: "peace", color: "white", desc: "淨化空間、安定心神、清除負能量。", img: "picture/selenite01.jfif" },
     { id: "moonstone-white", name: "白月光石", tag: "戀人之石", effect: "love", color: "white", desc: "守護愛情、調節情緒、增添溫柔氣質。", img: "picture/moonstone03.jpg" },
@@ -48,7 +48,7 @@ const crystals = [
     { id: "onyx", name: "黑瑪瑙", tag: "長壽之石", effect: "protection", color: "black", desc: "建立自信、消除恐懼、防止能量流失。", img: "picture/onyx01.jpeg" },
     { id: "shungite", name: "次石墨", tag: "生命之石", effect: "health", color: "black", desc: "超級抗氧化、中和負能量、淨化磁場。", img: "picture/shungite02.webp" },
 
-    // 其他/混合系
+    // 其他
     { id: "super-seven", name: "超七水晶", tag: "全方位能", effect: "spirit", color: "purple", desc: "包含七種礦物、全面提升脈輪能量。", img: "picture/super02.jpg" },
     { id: "labradorite", name: "拉長石", tag: "靈魂伴侶", effect: "spirit", color: "blue", desc: "尋找潛能、守護愛情、清理負向磁場。", img: "picture/labradorite02.jfif" },
     { id: "garnet", name: "石榴石", tag: "氣血之石", effect: "health", color: "pink", desc: "增強體力、恢復元氣、美容養顏。", img: "picture/garnet02.jpg" },
@@ -66,17 +66,17 @@ const colorTheme = {
     health: { color: "#26de81", glow: "rgba(38, 222, 129, 0.3)" }
 };
 
-// 渲染
+// 渲染卡片函數
 function render(data) {
     const grid = document.getElementById('crystalGrid');
     if (!grid) return;
     grid.innerHTML = data.map(c => {
-        const theme = colorTheme[c.effect];
+        const theme = colorTheme[c.effect] || { color: "#ddd", glow: "rgba(255,255,255,0.1)" };
         return `
         <div class="card-container" data-effect="${c.effect}" data-color="${c.color}" style="--card-color: ${theme.color}; --card-glow: ${theme.glow}">
             <div class="crystal-card">
                 <div class="flip-front">
-                    <img src="picture/${c.img}" class="crystal-img" onerror="this.src='https://via.placeholder.com/300x480/111/c5a47e?text=${c.name}'">
+                    <img src="${c.img}" class="crystal-img" onerror="this.src='https://via.placeholder.com/300x480/111/c5a47e?text=${c.name}'">
                     <div class="front-overlay">
                         <span class="tag">${c.tag}</span>
                         <h3 class="crystal-name">${c.name}</h3>
@@ -93,7 +93,7 @@ function render(data) {
     }).join('');
 }
 
-// 下拉選單
+// 下拉選單開關
 function toggleDropdown(el) {
     const menu = el.nextElementSibling;
     const isOpen = menu.classList.contains('show');
@@ -101,7 +101,7 @@ function toggleDropdown(el) {
     if (!isOpen) menu.classList.add('show');
 }
 
-// 篩選
+// 篩選邏輯
 function filterCrystals(value, type) {
     const cards = document.querySelectorAll('.card-container');
     cards.forEach(card => {
@@ -113,14 +113,14 @@ function filterCrystals(value, type) {
     });
 }
 
-// 收起選單點擊外部
-window.onclick = function(event) {
+// 點擊外部關閉選單
+window.addEventListener('click', (event) => {
     if (!event.target.matches('.dropdown-label')) {
         document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
     }
-}
+});
 
-// 手機版選單
+// 初始化
 document.addEventListener('DOMContentLoaded', () => {
     const mobileToggle = document.getElementById('mobile-toggle');
     const navMenu = document.getElementById('nav-menu');
@@ -129,41 +129,20 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileToggle.onclick = () => navMenu.classList.toggle('active');
     }
 
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.onclick = () => navMenu.classList.remove('active');
-    });
-
     render(crystals);
 });
 
 // --- 魔法守護腳本 ---
-    
-    // 1. 禁用右鍵選單並跳出提醒
-    document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-        alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
-    }, false);
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    alert("🔮 魔法能量守護中：本站圖文受智慧財產保護。");
+});
 
-    // 2. 禁用快捷鍵 (F12, Ctrl+U, Ctrl+Shift+I 等)
-    document.onkeydown = function (e) {
-        // 禁用 F12
-        if (e.keyCode === 123) {
-            return false;
-        }
-        // 禁用 Ctrl+Shift+I (開發者工具)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
-            return false;
-        }
-        // 禁用 Ctrl+Shift+J (開發者工具)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
-            return false;
-        }
-        // 禁用 Ctrl+U (檢視原始碼)
-        if (e.ctrlKey && e.keyCode === 85) {
-            return false;
-        }
-        // 禁用 Ctrl+S (存檔)
-        if (e.ctrlKey && e.keyCode === 83) {
-            return false;
-        }
-    };
+document.onkeydown = function (e) {
+    // 禁用 F12, Ctrl+Shift+I/J, Ctrl+U, Ctrl+S
+    if (e.keyCode === 123 || 
+       (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || 
+       (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83))) {
+        return false;
+    }
+};
