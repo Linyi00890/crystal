@@ -1,6 +1,6 @@
 const crystals = [
     // 白色系
-    { id: "quartz/white01.html", name: "白水晶", tag: "水晶之王", effect: "peace", color: "white", desc: "淨化能量、放大焦距、平衡身心。", img: "picture/white02.webp" },
+    { id: "quartz/white01", name: "白水晶", tag: "水晶之王", effect: "peace", color: "white", desc: "淨化能量、放大焦距、平衡身心。", img: "picture/white02.webp" },
     { id: "quartz/selenite", name: "透石膏", tag: "療癒之光", effect: "peace", color: "white", desc: "淨化空間、安定心神、清除負能量。", img: "picture/selenite01.jfif" },
     { id: "quartz/moonstone-white", name: "白月光石", tag: "戀人之石", effect: "love", color: "white", desc: "守護愛情、調節情緒、增添溫柔氣質。", img: "picture/moonstone03.jpg" },
     { id: "quartz/howlite", name: "白紋石", tag: "安定之石", effect: "peace", color: "white", desc: "緩解壓力、幫助入眠、消除焦躁情緒。", img: "picture/howlite01.webp" },
