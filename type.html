@@ -13,9 +13,7 @@
     <div class="nav-container">
         <a href="#" class="logo">🔮 CrystalMagic</a>
         <div class="menu-toggle" id="mobile-toggle">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
         </div>
         <ul class="nav-links" id="nav-menu">
             <li><a href="origin.html">水晶起源</a></li>
@@ -34,7 +32,6 @@
     <div class="filter-container">
         <button class="btn-all" onclick="filterCrystals('all', 'all')">全部水晶</button>
         
-        <!-- 功效篩選 -->
         <div class="dropdown">
             <div class="dropdown-label" onclick="toggleDropdown(this)">✨ 按主要功效 ▼</div>
             <ul class="dropdown-menu">
@@ -47,7 +44,6 @@
             </ul>
         </div>
 
-        <!-- 顏色篩選 -->
         <div class="dropdown">
             <div class="dropdown-label" onclick="toggleDropdown(this)">🎨 按色系 ▼</div>
             <ul class="dropdown-menu">
@@ -66,6 +62,5 @@
 <main class="crystal-grid" id="crystalGrid"></main>
 
 <script src="type.js"></script>
-
 </body>
 </html>
