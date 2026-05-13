@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURA CRYSTAL | 能量飾品專區</title>
+    <title>CrystalMagic | 能量飾品專區</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -43,18 +43,28 @@
         </div>
     </div>
 
-    <nav class="bg-white shadow-sm sticky top-0 z-50 px-6 py-4 flex justify-between items-center">
-        <h1 class="text-2xl font-bold text-stone-800 tracking-widest">AURA CRYSTAL</h1>
-        <div class="flex items-center gap-4">
-            <select id="langSelect" class="text-sm border-none bg-transparent focus:ring-0 text-stone-600 cursor-pointer">
+    <header class="main-header">
+    <div class="nav-container">
+        <a href="index.html" class="logo">🔮 CrystalMagic</a>
+        
+        <div class="header-right">
+            <select id="langSelect" class="lang-select">
                 <option value="zh">繁體中文</option>
                 <option value="en">English</option>
             </select>
-            <button onclick="toggleModal('userModal')" class="w-8 h-8 bg-stone-200 rounded-full flex items-center justify-center">
-                <i class="fa-regular fa-user text-stone-600"></i>
+            
+            <button onclick="toggleModal('userModal')" class="user-btn">
+                <i class="fa-regular fa-user"></i>
             </button>
+
+            <div class="menu-toggle" id="mobile-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </div>
-    </nav>
+    </div>
+    </header>
 
     <main class="max-w-7xl mx-auto p-6">
         <h2 class="text-center text-stone-700 text-xl mt-4 mb-6 tracking-widest">能量手鍊與精品飾品</h2>
