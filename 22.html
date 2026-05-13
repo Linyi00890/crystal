@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>預約客製化諮詢 - 水晶魔法 | CrystalMagic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="custom.css">
+</head>
+<body>
+
+<header class="main-header">
+    <div class="nav-container">
+        <a href="index.html" class="logo">🔮 CrystalMagic</a>
+        <nav class="auth-buttons">
+            <a href="index.html" class="nav-button login">回首頁</a>
+            <a href="effect.html" class="nav-button register">能量測驗</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="page-header">
+        <div class="hero-content">
+            <h1>💎 靈魂共鳴：預約客製化諮詢</h1>
+            <p>每一顆水晶都有其獨特的頻率，讓我們為您尋找那份專屬的大地守護。</p>
+            <div class="divider"></div>
+        </div>
+    </section>
+
+    <div class="custom-container">
+        <aside class="info-sidebar">
+            <div class="sticky-box">
+                <h3>諮詢流程</h3>
+                <ul class="step-list">
+                    <li><span class="step-num">1</span> 填寫需求表單</li>
+                    <li><span class="step-num">2</span> 設計師初步溝通</li>
+                    <li><span class="step-num">3</span> 晶石與配件確認</li>
+                    <li><span class="step-num">4</span> 能量校準與製作</li>
+                    <li><span class="step-num">5</span> 淨化加持後寄出</li>
+                </ul>
+                <div class="guarantee-box">
+                    <h4>我們的承諾</h4>
+                    <p>✓ 100% 天然原礦身份證</p>
+                    <p>✓ 一年內免費換線保固</p>
+                    <p>✓ 贈送專屬能量說明手冊</p>
+                </div>
+            </div>
+        </aside>
+
+        <section class="custom-form-section">
+            <div class="form-card">
+                <h2>客製化需求表單</h2>
+                <p class="form-subtitle">請填寫以下資訊，設計師將於 48 小時內感應您的頻率並與您聯繫。</p>
+                
+                <form id="customRequirementForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">您的姓名 *</label>
+                            <input type="text" id="name" name="name" placeholder="請輸入姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">電子郵件 *</label>
+                            <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="goal">主要客製化目標 *</label>
+                        <input type="text" id="goal" name="goal" placeholder="例如：招正財、提升人緣、情緒穩定" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="budget">預算範圍 (臺幣)</label>
+                            <select id="budget" name="budget">
+                                <option value="1000-3000">NT$ 1,000 - 3,000 (精緻入門)</option>
+                                <option value="3000-6000" selected>NT$ 3,000 - 6,000 (熱門推薦)</option>
+                                <option value="6000-10000">NT$ 6,000 - 10,000 (高階訂製)</option>
+                                <option value="10000+">NT$ 10,000 以上 (靈魂典藏)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="wrist">手圍尺寸 (cm)</label>
+                            <input type="number" step="0.1" id="wrist" name="wrist" placeholder="例如：15.5">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="details">詳細設計要求與描述 *</label>
+                        <textarea id="details" name="details" placeholder="請告訴我們您的偏好顏色、不喜歡的石種，或近期心境描述..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-custom-submit">提交需求 · 開啟能量連結</button>
+                </form>
+            </div>
+        </section>
+    </div>
+</main>
+
+<a href="commodity.html" class="back-floating-btn" title="返回商品頁">
+    <span class="icon">⇠</span>
+    <span class="text">返回商品頁</span>
+</a>
+
+<footer class="footer">
+    <p>&copy; 2026 CrystalMagic | 以自然之力，溫柔守護您的每一刻</p>
+</footer>
+
+<script src="custom.js"></script>
+</body>
+</html>
