@@ -1,0 +1,24 @@
+/* ...保留之前的所有 CSS... */
+
+/* 確保新的下拉選單類別運作 */
+.dropdown-label { 
+    background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.4);
+    color: #ddd; padding: 10px 20px; cursor: pointer; border-radius: 4px;
+    display: flex; align-items: center; gap: 10px; min-width: 180px; justify-content: space-between;
+}
+
+.dropdown-menu { 
+    position: absolute; top: 110%; left: 0; background: #0f161d; 
+    border: 1px solid var(--gold); list-style: none; min-width: 100%; 
+    border-radius: 4px; display: none;
+    z-index: 1500; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+.dropdown-menu.show { display: block; }
+
+.dropdown-menu li a { 
+    display: block; padding: 12px 20px; color: #ccc; cursor: pointer; text-decoration: none;
+    transition: 0.2s; font-size: 0.9rem;
+}
+
+.dropdown-menu li a:hover { background: var(--gold); color: #000; }
