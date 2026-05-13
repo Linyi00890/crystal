@@ -289,7 +289,7 @@
             <h2>常見形態與用途</h2>
             <div class="media-box">
                 <div class="media-img">
-                    <img src="https://images.unsplash.com/photo-1551009175-15bdf9dcb580?auto=format&fit=crop&w=800&q=80" alt="全淨白水晶柱">
+                    <img src="picture/white04.jpeg" alt="全淨白水晶柱">
                 </div>
                 <div class="media-text">
                     <h3>單尖晶柱 Single Terminated</h3>
@@ -299,7 +299,7 @@
 
             <div class="media-box">
                 <div class="media-img">
-                    <img src="https://images.unsplash.com/photo-1614704373403-249c74625694?auto=format&fit=crop&w=800&q=80" alt="白晶簇">
+                    <img src="picture/white03.jpg" alt="白晶簇">
                 </div>
                 <div class="media-text">
                     <h3>天然晶簇 Cluster</h3>
@@ -313,19 +313,19 @@
             <div class="combo-grid">
                 <div class="combo-card">
                     <span class="tag">排毒防護</span>
-                    <img src="https://images.unsplash.com/photo-1627311145214-72256743907c?auto=format&fit=crop&w=300&q=80" alt="黑曜石" class="combo-img">
+                    <img src="picture/obsidian03.jpg" alt="黑曜石" class="combo-img">
                     <h3>＋ 黑曜石</h3>
                     <p>白水晶擴大正能量，黑曜石吸附負能量。最適合在複雜的工作環境中建立隱形的防護盾。</p>
                 </div>
                 <div class="combo-card">
                     <span class="tag">覺察洞見</span>
-                    <img src="https://images.unsplash.com/photo-1523467115858-693467657989?auto=format&fit=crop&w=300&q=80" alt="紫水晶" class="combo-img">
+                    <img src="picture/amethyst02.jpg" alt="紫水晶" class="combo-img">
                     <h3>＋ 紫水晶</h3>
                     <p>針對腦部能量的深度開發。幫助您在決策時保持極度清醒，不被情緒所干擾。</p>
                 </div>
                 <div class="combo-card">
                     <span class="tag">心靈和諧</span>
-                    <img src="https://images.unsplash.com/photo-1605721291507-6af3320f7881?auto=format&fit=crop&w=300&q=80" alt="粉晶" class="combo-img">
+                    <img src="picture/rose03.webp" alt="粉晶" class="combo-img">
                     <h3>＋ 粉晶</h3>
                     <p>淨化心輪中的創傷雜質，讓粉晶的慈悲力量更純粹地發揮，提升貴人運與人際親和感。</p>
                 </div>
@@ -351,22 +351,23 @@
     </div>
 </footer>
 
-    <script>
+<script>
     // 禁用右鍵選單並跳出提醒
     document.addEventListener('contextmenu', function (e) {
         e.preventDefault();
         alert("🔮 魔法能量守護中：本站圖文受智慧財產保護。");
     }, false);
 
-    // 禁用開發者工具快捷鍵
+    // 禁用開發者工具快捷鍵 (優化後的簡潔版本)
     document.onkeydown = function (e) {
+        // F12
         if (e.keyCode === 123) return false;
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) return false;
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 74) return false;
-        if (e.ctrlKey && e.keyCode === 85) return false;
-        if (e.ctrlKey && e.keyCode === 83) return false;
+        // Ctrl+Shift+I (Inspect), Ctrl+Shift+J (Console), Ctrl+U (View Source), Ctrl+S (Save)
+        if (e.ctrlKey && (e.shiftKey && (e.keyCode === 73 || e.keyCode === 74) || e.keyCode === 85 || e.keyCode === 83)) {
+            return false;
+        }
     };
-    </script>
+</script>
 
 </body>
 </html>
