@@ -15,7 +15,6 @@ body {
     overflow-x: hidden;
 }
 
-/* 導覽列 */
 .main-header { 
     position: fixed; top: 0; width: 100%; 
     background: rgba(5, 8, 10, 0.9); 
@@ -34,9 +33,9 @@ body {
 
 .nav-links { display: flex; list-style: none; gap: 30px; }
 .nav-links a { color: #bbb; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
-.nav-links a:hover { color: var(--gold); }
+.nav-links li a:hover { color: var(--gold); }
 
-/* 篩選區 */
+/* --- 篩選區塊 --- */
 .filter-section { padding-top: 120px; text-align: center; }
 .filter-container { display: flex; justify-content: center; gap: 15px; align-items: center; flex-wrap: wrap; }
 
@@ -45,23 +44,54 @@ body {
     color: var(--gold); padding: 10px 25px; cursor: pointer; border-radius: 4px;
     font-family: 'Noto Serif TC'; transition: 0.3s;
 }
-.btn-all:hover { background: var(--gold); color: #000; }
 
+/* --- 修改的部分：下拉選單樣式 --- */
 .dropdown { position: relative; }
+
 .dropdown-btn { 
-    background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.4);
-    color: #ddd; padding: 10px 20px; cursor: pointer; border-radius: 4px;
-    display: flex; align-items: center; gap: 10px; min-width: 160px; justify-content: space-between;
+    background: rgba(255, 255, 255, 0.05); 
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: #ddd; 
+    padding: 10px 20px; 
+    cursor: pointer; 
+    border-radius: 4px;
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    min-width: 160px; 
+    justify-content: space-between;
 }
 
 .dropdown-content { 
-    position: absolute; top: 110%; left: 0; background: #0f161d; 
-    border: 1px solid var(--gold); list-style: none; min-width: 100%; 
-    border-radius: 4px; display: none; z-index: 1500;
+    position: absolute; 
+    top: 110%; 
+    left: 0; 
+    background: #0f161d; 
+    border: 1px solid var(--gold); 
+    list-style: none; 
+    min-width: 100%; 
+    border-radius: 4px; 
+    display: none; 
+    z-index: 1500;
 }
-.dropdown-content.show { display: block; }
-.dropdown-content li { padding: 12px 20px; color: #ccc; cursor: pointer; text-align: left; transition: 0.2s; font-size: 0.9rem; }
-.dropdown-content li:hover { background: var(--gold); color: #000; }
+
+.dropdown-content.show { 
+    display: block; 
+}
+
+.dropdown-content li { 
+    padding: 12px 20px; 
+    color: #ccc; 
+    cursor: pointer; 
+    text-align: left; 
+    transition: 0.2s; 
+    font-size: 0.9rem; 
+}
+
+.dropdown-content li:hover { 
+    background: var(--gold); 
+    color: #000; 
+}
 
 /* 水晶網格 */
 .crystal-grid { 
