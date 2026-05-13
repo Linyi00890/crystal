@@ -22,7 +22,7 @@ const crystals = [
     { id: "charoite", name: "紫龍晶", tag: "靈感之石", effect: "spirit", color: "purple", desc: "提升洞察力、消除恐懼、整合人格。", img: "picture/charoite01.jfif" },
     { id: "kunzite", name: "紫鋰輝石", tag: "情感平衡", effect: "love", color: "purple", desc: "平撫心碎、釋放壓力、加強溝通能量。", img: "picture/kunzite02.jfif" },
     { id: "grape-agate", name: "葡萄紫玉隨", tag: "鎮定安神", effect: "health", color: "purple", desc: "加強修養、美容養顏、增強抵抗力。", img: "picture/agate01.jpg" },
-    { id: "lepidolite", name: "紫鋰雲母", tag: "變革之石", effect: "peace", color: "purple", desc: "促進改變、平衡焦慮、穩定情緒波動。", img: "picture/lepidolite.webp" },
+    { id: "lepidolite", name: "紫鋰雲母", tag: "變革之石", effect: "peace", color: "purple", desc: "促進改變、平衡焦慮、穩定情緒波動。", img: "picture/lepidolite01.webp" },
     // 綠色系
     { id: "green-phantom", name: "綠幽靈", tag: "正財之王", effect: "wealth", color: "green", desc: "幫助事業發展、增進財運、吸引貴人。", img: "picture/green02.jpg" },
     { id: "malachite", name: "孔雀石", tag: "守護之石", effect: "protection", color: "green", desc: "吸收負能量、保平安、幫助情感療癒。", img: "picture/malachite02.jpg" },
@@ -34,7 +34,7 @@ const crystals = [
     { id: "lapislazuli", name: "青金石", tag: "冥想之石", effect: "spirit", color: "blue", desc: "開啟第三眼、增加洞察、冷靜思考。", img: "picture/lapis01.webp" },
     { id: "larimar", name: "拉利瑪", tag: "海豚之石", effect: "peace", color: "blue", desc: "療癒心靈、緩解憂鬱、對應喉輪溝通。", img: "picture/larimar01.jfif" },
     { id: "blue-lace-agate", name: "藍紋瑪瑙", tag: "冷靜之石", effect: "peace", color: "blue", desc: "平復焦慮、柔化言語、緩解心壓。", img: "picture/lace01.webp" },
-    { id: "kyanite", name: "藍晶石", tag: "覺醒之石", effect: "spirit", color: "blue", desc: "破除迷茫、提升感應力、不必淨化。", img: "picture/kyanite01.jpg" },
+    { id: "kyanite", name: "藍晶石", tag: "覺醒之石", effect: "spirit", color: "blue", desc: "破除迷茫、提升感應力、不必淨化。", img: "picture/kyanite01.jfif" },
     // 黑色系
     { id: "obsidian", name: "黑曜石", tag: "極度避邪", effect: "protection", color: "black", desc: "強力排除負能量、防小人、辟邪擋煞。", img: "picture/obsidian02.jpg" },
     { id: "black-tourmaline", name: "黑碧璽", tag: "守護屏障", effect: "protection", color: "black", desc: "阻隔輻射與負面氣場、強化生命力。", img: "picture/tourmaline02.jfif" },
@@ -46,7 +46,7 @@ const crystals = [
     { id: "labradorite", name: "拉長石", tag: "靈魂伴侶", effect: "spirit", color: "blue", desc: "尋找潛能、守護愛情、清理負向磁場。", img: "picture/labradorite02.jfif" },
     { id: "garnet", name: "石榴石", tag: "氣血之石", effect: "health", color: "pink", desc: "增強體力、恢復元氣、美容養顏。", img: "picture/garnet02.jpg" },
     { id: "sunstone", name: "太陽石", tag: "陽光之石", effect: "wealth", color: "yellow", desc: "驅散陰霾、增加正能量與權威感。", img: "picture/sunstone02.jpg" },
-    { id: "tanzanite", name: "丹泉石", tag: "靈氣之源", effect: "spirit", color: "blue", desc: "提升靈通力、引導智慧、達成目標。", img: "picture/tanzanite01.jfif" },
+    { id: "tanzanite", name: "丹泉石", tag: "靈氣之源", effect: "spirit", color: "blue", desc: "提升靈通力、引導智慧、達成目標。", img: "picture/tanzanite.jfif" },
     { id: "fluorite", name: "螢石", tag: "天才之石", effect: "spirit", color: "green", desc: "清理思緒、提升邏輯、排除雜念。", img: "picture/fluorite02.jfif" }
 ];
 
