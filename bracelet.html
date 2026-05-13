@@ -15,39 +15,82 @@
         .promo-banner { background: #1c1917; color: white; overflow: hidden; white-space: nowrap; padding: 10px 0; font-size: 12px; letter-spacing: 2px; }
         .promo-content { display: inline-block; animation: marquee 30s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        /* --- 下拉選單黑金樣式 --- */
+        .filter-section { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
+        .dropdown-container { position: relative; display: inline-block; }
+        .dropdown-btn, .btn-all { 
+            background-color: #1a1a1a; color: #d4af37; border: 1px solid #3d3d3d; 
+            padding: 10px 24px; cursor: pointer; font-size: 14px; display: flex; 
+            align-items: center; gap: 8px; transition: all 0.3s; border-radius: 4px;
+        }
+        .dropdown-btn:hover, .btn-all:hover { border-color: #d4af37; background-color: #262626; }
+        .dropdown-content { 
+            display: none; position: absolute; background-color: #1a1a1a; min-width: 160px; 
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.5); z-index: 100; border: 1px solid #3d3d3d; 
+            margin-top: 5px; list-style: none; padding: 0; left: 0;
+        }
+        .dropdown-content li { color: #e5e5e5; padding: 12px 16px; cursor: pointer; transition: background 0.2s; font-size: 14px; }
+        .dropdown-content li:hover { background-color: #333; color: #d4af37; }
+        .show { display: block; }
     </style>
 </head>
 <body class="pb-24">
 
-    <!-- 限時特惠跑馬燈 -->
     <div class="promo-banner">
         <div class="promo-content">
-            ✦ 全館滿 $3,000 免運費 ✦ 新會員首購現折 $100 ✦ 天然水晶鑑定服務預約中 ✦ 限量新品：捷克隕石系列正式上架 ✦ 
             ✦ 全館滿 $3,000 免運費 ✦ 新會員首購現折 $100 ✦ 天然水晶鑑定服務預約中 ✦ 限量新品：捷克隕石系列正式上架 ✦ 
         </div>
     </div>
 
-    <!-- 頂部導航 -->
     <nav class="bg-white shadow-sm sticky top-0 z-50 px-6 py-4 flex justify-between items-center">
         <h1 class="text-2xl font-bold text-stone-800 tracking-widest">AURA CRYSTAL</h1>
         <div class="flex items-center gap-4">
-            <select id="langSelect" onchange="switchLanguage(this.value)" class="text-sm border-none bg-transparent focus:ring-0 text-stone-600 cursor-pointer">
+            <select id="langSelect" class="text-sm border-none bg-transparent focus:ring-0 text-stone-600 cursor-pointer">
                 <option value="zh">繁體中文</option>
                 <option value="en">English</option>
             </select>
-            <button onclick="toggleModal('userModal')" class="w-8 h-8 bg-stone-200 rounded-full flex items-center justify-center cursor-pointer hover:bg-stone-300 transition-colors">
+            <button onclick="toggleModal('userModal')" class="w-8 h-8 bg-stone-200 rounded-full flex items-center justify-center">
                 <i class="fa-regular fa-user text-stone-600"></i>
             </button>
         </div>
     </nav>
 
-    <!-- 商品列表區域 -->
     <main class="max-w-7xl mx-auto p-6">
-        <h2 class="text-center text-stone-700 text-xl mt-4 mb-10 tracking-widest">能量手鍊與精品飾品</h2>
+        <h2 class="text-center text-stone-700 text-xl mt-4 mb-6 tracking-widest">能量手鍊與精品飾品</h2>
+
+        <div class="filter-section">
+            <button class="btn-all" onclick="filterCrystals('all', 'all')">全部水晶</button>
+
+            <div class="dropdown-container">
+                <div class="dropdown-btn" onclick="toggleDropdown('effectDropdown')">✨ 按功效 <span>▼</span></div>
+                <ul class="dropdown-content" id="effectDropdown">
+                    <li onclick="filterCrystals('智慧', 'eff')">🧘 靈性智慧</li>
+                    <li onclick="filterCrystals('財', 'eff')">💰 財富事業</li>
+                    <li onclick="filterCrystals('避邪', 'eff')">🛡️ 守護避邪</li>
+                    <li onclick="filterCrystals('溝通', 'eff')">🌊 溝通平靜</li>
+                    <li onclick="filterCrystals('桃花', 'eff')">💖 感情人緣</li>
+                    <li onclick="filterCrystals('健康', 'eff')">🌿 健康療癒</li>
+                </ul>
+            </div>
+
+            <div class="dropdown-container">
+                <div class="dropdown-btn" onclick="toggleDropdown('colorDropdown')">🎨 按顏色 <span>▼</span></div>
+                <ul class="dropdown-content" id="colorDropdown">
+                    <li onclick="filterCrystals('白', 'name')">🤍 白色系</li>
+                    <li onclick="filterCrystals('粉', 'name')">💗 粉色系</li>
+                    <li onclick="filterCrystals('黃', 'name')">💛 黃色系</li>
+                    <li onclick="filterCrystals('紫', 'name')">💜 紫色系</li>
+                    <li onclick="filterCrystals('綠', 'name')">💚 綠色系</li>
+                    <li onclick="filterCrystals('藍', 'name')">💙 藍色系</li>
+                    <li onclick="filterCrystals('黑', 'name')">🖤 黑色系</li>
+                </ul>
+            </div>
+        </div>
+
         <div id="productGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"></div>
     </main>
 
-    <!-- 功能按鈕 -->
     <div class="fixed bottom-6 left-6 z-50">
         <button onclick="history.back()" class="flex items-center justify-center w-12 h-12 bg-white shadow-lg rounded-full text-stone-600 border border-stone-100"><i class="fa-solid fa-arrow-left"></i></button>
     </div>
@@ -69,7 +112,6 @@
         </div>
     </div>
 
-    <!-- 購物車 Modal (含垃圾桶) -->
     <div id="cartModal" class="hidden fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm flex justify-end">
         <div class="w-full max-w-md bg-white h-full p-8 flex flex-col">
             <div class="flex justify-between mb-8 border-b pb-4">
@@ -84,7 +126,6 @@
         </div>
     </div>
 
-    <!-- 收藏 Modal (含垃圾桶與商品資訊) -->
     <div id="wishlistModal" class="hidden fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm flex justify-end">
         <div class="w-full max-w-md bg-white h-full p-8 flex flex-col">
             <div class="flex justify-between mb-8 border-b pb-4">
@@ -96,6 +137,7 @@
     </div>
 
     <script>
+        // 資料庫路徑已更新
         const products = [
             { name: "薰衣草紫水晶", eff: "穩定情緒", price: 1280, stock: 5, img: "picture/lavender01.jpg" },
             { name: "星光粉水晶", eff: "招好桃花", price: 980, stock: 12, img: "picture/rose05.jpg" },
@@ -133,12 +175,17 @@
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
-        function render() {
+        // 核心渲染函數
+        function render(data = products) {
             const grid = document.getElementById('productGrid');
-            grid.innerHTML = products.map(p => `
+            if (data.length === 0) {
+                grid.innerHTML = `<p class="col-span-full text-center py-10 text-stone-400 font-bold">🔮 能量調頻中，暫無匹配商品...</p>`;
+                return;
+            }
+            grid.innerHTML = data.map(p => `
                 <div class="product-card bg-white rounded-xl overflow-hidden flex flex-col">
                     <div class="relative overflow-hidden h-64 bg-gray-100">
-                        <img src="picture/${p.img}" class="w-full h-full object-cover">
+                        <img src="picture/${p.img}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400x400?text=Image+Missing'">
                         <button onclick='addToWish(${JSON.stringify(p)})' class="absolute top-3 right-3 w-8 h-8 bg-white/80 rounded-full flex items-center justify-center text-stone-400 hover:text-red-500 shadow-sm"><i class="fa-regular fa-heart"></i></button>
                     </div>
                     <div class="p-5 text-center flex-1 flex flex-col">
@@ -155,103 +202,60 @@
             updateUI();
         }
 
-        function addToCart(product) {
-            cart.push(product);
-            saveData();
-            updateUI();
+        // --- 篩選與下拉邏輯 ---
+        function toggleDropdown(id) {
+            document.querySelectorAll('.dropdown-content').forEach(c => { if(c.id !== id) c.classList.remove('show'); });
+            document.getElementById(id).classList.toggle('show');
         }
 
-        function addToWish(product) {
-            if (!wishlist.find(item => item.name === product.name)) {
-                wishlist.push(product);
-                saveData();
-                updateUI();
+        function filterCrystals(keyword, type) {
+            if (keyword === 'all') { render(products); return; }
+            const filtered = products.filter(p => p[type].includes(keyword));
+            render(filtered);
+        }
+
+        window.onclick = (e) => {
+            if (!e.target.matches('.dropdown-btn')) {
+                document.querySelectorAll('.dropdown-content').forEach(c => c.classList.remove('show'));
             }
-        }
+        };
 
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            saveData();
-            updateUI();
-        }
-
-        function removeFromWish(index) {
-            wishlist.splice(index, 1);
-            saveData();
-            updateUI();
-        }
-
-        function saveData() {
-            localStorage.setItem('cart', JSON.stringify(cart));
-            localStorage.setItem('wishlist', JSON.stringify(wishlist));
-        }
-
+        // --- 購物功能 ---
+        function addToCart(product) { cart.push(product); saveData(); updateUI(); }
+        function addToWish(product) { if (!wishlist.find(i => i.name === product.name)) { wishlist.push(product); saveData(); updateUI(); } }
+        function removeFromCart(i) { cart.splice(i, 1); saveData(); updateUI(); }
+        function removeFromWish(i) { wishlist.splice(i, 1); saveData(); updateUI(); }
+        function saveData() { localStorage.setItem('cart', JSON.stringify(cart)); localStorage.setItem('wishlist', JSON.stringify(wishlist)); }
+        
         function updateUI() {
             document.getElementById('cartCount').innerText = cart.length;
             document.getElementById('wishCount').innerText = wishlist.length;
-            const total = cart.reduce((sum, item) => sum + item.price, 0);
-            document.getElementById('cartTotalPrice').innerText = total.toLocaleString();
-
-            const cartList = document.getElementById('cartItems');
-            cartList.innerHTML = cart.map((item, index) => `
+            document.getElementById('cartTotalPrice').innerText = cart.reduce((s, i) => s + i.price, 0).toLocaleString();
+            
+            document.getElementById('cartItems').innerHTML = cart.map((item, i) => `
                 <div class="flex items-center gap-4 border-b pb-3">
-                    <img src="picture/${item.img}" class="w-12 h-12 object-cover rounded">
-                    <div class="flex-1 text-sm font-bold">${item.name} <p class="text-xs text-stone-400">NT$ ${item.price}</p></div>
-                    <button onclick="removeFromCart(${index})" class="text-stone-300 hover:text-red-500"><i class="fa-solid fa-trash-can"></i></button>
+                    <img src="picture/${item.img}" class="w-12 h-12 object-cover rounded" onerror="this.src='https://via.placeholder.com/50x50'">
+                    <div class="flex-1 text-sm font-bold">${item.name}<p class="text-xs text-stone-400">NT$ ${item.price}</p></div>
+                    <button onclick="removeFromCart(${i})" class="text-stone-300 hover:text-red-500"><i class="fa-solid fa-trash-can"></i></button>
                 </div>
             `).join('');
 
-            const wishList = document.getElementById('wishItems');
-            wishList.innerHTML = wishlist.map((item, index) => `
+            document.getElementById('wishItems').innerHTML = wishlist.map((item, i) => `
                 <div class="flex items-center gap-4 border-b pb-3">
-                    <img src="picture/${item.img}" class="w-12 h-12 object-cover rounded">
-                    <div class="flex-1 text-sm font-bold">${item.name} <p class="text-amber-600 text-[10px]">${item.eff}</p></div>
-                    <button onclick="removeFromWish(${index})" class="text-stone-300 hover:text-red-500"><i class="fa-solid fa-trash-can"></i></button>
+                    <img src="picture/${item.img}" class="w-12 h-12 object-cover rounded" onerror="this.src='https://via.placeholder.com/50x50'">
+                    <div class="flex-1 text-sm font-bold">${item.name}<p class="text-amber-600 text-[10px]">${item.eff}</p></div>
+                    <button onclick="removeFromWish(${i})" class="text-stone-300 hover:text-red-500"><i class="fa-solid fa-trash-can"></i></button>
                 </div>
             `).join('');
-        }
-
-        function goToCheckout() {
-            if (cart.length === 0) { alert('購物車是空的喔！'); return; }
-            location.href = 'checkout.html';
         }
 
         function toggleModal(id) { document.getElementById(id).classList.toggle('hidden'); }
-        window.onload = render;
+        function goToCheckout() { if (cart.length === 0) return alert('購物車是空的喔！'); location.href = 'checkout.html'; }
 
+        // --- 魔法守護腳本 ---
+        document.addEventListener('contextmenu', e => { e.preventDefault(); alert("🔮 魔法能量守護中：本站圖文受智慧財產保護。"); });
 
-      
-// --- 魔法守護腳本 ---
-    
-    // 1. 禁用右鍵選單並跳出提醒
-    document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-        alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
-    }, false);
-
-    // 2. 禁用快捷鍵 (F12, Ctrl+U, Ctrl+Shift+I 等)
-    document.onkeydown = function (e) {
-        // 禁用 F12
-        if (e.keyCode === 123) {
-            return false;
-        }
-        // 禁用 Ctrl+Shift+I (開發者工具)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
-            return false;
-        }
-        // 禁用 Ctrl+Shift+J (開發者工具)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
-            return false;
-        }
-        // 禁用 Ctrl+U (檢視原始碼)
-        if (e.ctrlKey && e.keyCode === 85) {
-            return false;
-        }
-        // 禁用 Ctrl+S (存檔)
-        if (e.ctrlKey && e.keyCode === 83) {
-            return false;
-        }
-    };
+        window.onload = () => render();
     </script>
 </body>
 </html>
