@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CrystalMagic | 專業能量圖鑑</title>
-    <!-- 引入字體 -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+TC:wght@300;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <!-- 連結 CSS 檔案 -->
     <link rel="stylesheet" href="type.css">
 </head>
 <body>
@@ -18,10 +16,13 @@
             <span class="bar"></span><span class="bar"></span><span class="bar"></span>
         </div>
         <ul class="nav-links" id="nav-menu">
-            <li><a href="origin.html">水晶起源</a></li>
+             <li><a href="origin.html">水晶起源</a></li>
             <li><a href="effect.html">功效解讀</a></li>
             <li><a href="pages.html">淨化保養</a></li>
+            <li><a href="pick.html">挑選指南</a></li> 
             <li><a href="exclusive.html">專屬商品</a></li>
+            <li><a href="question.html">常見問題</a></li>
+            <li><a href="share.html">粉絲回饋</a></li>
             <li><a href="contact.html">客服諮詢</a></li>
         </ul>
     </div>
@@ -31,7 +32,6 @@
     <div class="filter-container">
         <button class="btn-all" onclick="filterCrystals('all', 'effect')">全部水晶</button>
         
-        <!-- 功效篩選 -->
         <div class="dropdown">
             <div class="dropdown-btn" onclick="toggleDropdown('effectDropdown')">✨ 按功效 <span>▼</span></div>
             <ul class="dropdown-content" id="effectDropdown">
@@ -44,7 +44,6 @@
             </ul>
         </div>
 
-        <!-- 顏色篩選 -->
         <div class="dropdown">
             <div class="dropdown-btn" onclick="toggleDropdown('colorDropdown')">🎨 按顏色 <span>▼</span></div>
             <ul class="dropdown-content" id="colorDropdown">
@@ -62,7 +61,6 @@
 
 <main class="crystal-grid" id="crystalGrid"></main>
 
-<!-- 連結 JS 檔案 -->
 <script src="type.js"></script>
 </body>
 </html>
