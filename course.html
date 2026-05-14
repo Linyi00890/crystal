@@ -230,6 +230,10 @@
             // 每秒同步一次，確保在其他分頁加入商品時這裡也會更新數字
             setInterval(updateUI, 1000); 
         };
+
+        document.addEventListener('contextmenu', e => { e.preventDefault(); alert("🔮 魔法能量守護中：本站圖文受智慧財產保護。"); });
+
+        window.onload = () => render();
     </script>
 </body>
 </html>
