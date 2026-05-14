@@ -9,14 +9,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const userData = JSON.parse(localStorage.getItem(userEmail));
         
         if (authGroup && userData) {
+            // 動態替換右上角按鈕為個人資訊選單
             authGroup.style.position = 'relative';
             authGroup.innerHTML = `
                 <div class="user-menu" style="cursor: pointer; display: flex; align-items: center; gap: 10px;">
                     <span style="color: var(--primary-purple); font-weight: bold;">✨ 歡迎，${userData.username}</span>
                     <div id="user-dropdown" style="display: none; position: absolute; top: 40px; right: 0; background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid #eee; min-width: 160px; z-index: 10001; overflow: hidden;">
-                        <a href="profile.html?mode=view" style="display: block; padding: 12px 20px; text-decoration: none; color: #333; font-size: 0.9rem;">👤 個人資料確認</a>
-                        <a href="profile.html?mode=edit" style="display: block; padding: 12px 20px; text-decoration: none; color: #333; font-size: 0.9rem; border-top: 1px solid #f5f5f5;">⚙️ 資料修改</a>
-                        <a href="#" id="logout-btn" style="display: block; padding: 12px 20px; text-decoration: none; color: #d32f2f; font-size: 0.9rem; border-top: 1px solid #f5f5f5; font-weight: bold;">🌙 斷開能量連結</a>
+                        <a href="profile.html?mode=view" style="display: block; padding: 12px 20px; text-decoration: none; color: #333; font-size: 0.9rem; transition: background 0.3s;">👤 個人資料確認</a>
+                        <a href="profile.html?mode=edit" style="display: block; padding: 12px 20px; text-decoration: none; color: #333; font-size: 0.9rem; border-top: 1px solid #f5f5f5; transition: background 0.3s;">⚙️ 資料修改</a>
+                        <a href="#" id="logout-btn" style="display: block; padding: 12px 20px; text-decoration: none; color: #d32f2f; font-size: 0.9rem; border-top: 1px solid #f5f5f5; font-weight: bold; transition: background 0.3s;">🌙 斷開能量連結</a>
                     </div>
                 </div>
             `;
@@ -24,13 +25,25 @@ document.addEventListener('DOMContentLoaded', function() {
             const userMenu = document.querySelector('.user-menu');
             const dropdown = document.getElementById('user-dropdown');
 
+            // 點擊使用者名稱開啟/關閉選單
             userMenu.addEventListener('click', (e) => {
                 e.stopPropagation();
                 dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
             });
 
-            document.addEventListener('click', () => dropdown.style.display = 'none');
+            // 點擊頁面其他地方關閉選單
+            document.addEventListener('click', () => {
+                if (dropdown) dropdown.style.display = 'none';
+            });
 
+            // 選單滑過效果 (增加互動感)
+            const dropdownLinks = dropdown.querySelectorAll('a');
+            dropdownLinks.forEach(link => {
+                link.addEventListener('mouseover', () => link.style.background = '#f3e5f5');
+                link.addEventListener('mouseout', () => link.style.background = 'transparent');
+            });
+
+            // 登出邏輯
             document.getElementById('logout-btn').addEventListener('click', (e) => {
                 e.preventDefault();
                 localStorage.removeItem('isLoggedIn');
@@ -52,7 +65,16 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // --- 3. 全域安全守護 ---
-document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('contextmenu', e => {
+    e.preventDefault();
+    alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
+});
+
 document.onkeydown = e => {
-    if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73)) return false;
+    // 禁用 F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+    if (e.keyCode === 123 || 
+        (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) ||
+        (e.ctrlKey && e.keyCode === 85)) {
+        return false;
+    }
 };
