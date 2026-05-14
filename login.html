@@ -2,39 +2,51 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>會員登入 | CrystalMagic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員登入 | CrystalMagic 水晶魔法</title>
     <style>
-        body { font-family: sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #f3e5f5; }
-        .card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; width: 350px; }
-        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-        button { width: 100%; padding: 12px; background: #6a1b9a; color: white; border: none; border-radius: 8px; cursor: pointer; }
+        :root { --primary-purple: #6a1b9a; --dark-purple: #4a148c; --accent-orange: #ff8a65; --glass-white: rgba(255, 255, 255, 0.9); }
+        body { margin: 0; padding: 0; min-height: 100vh; font-family: sans-serif; background: linear-gradient(-45deg, #f3e5f5, #e1f5fe, #fff3e0, #fce4ec); background-size: 400% 400%; animation: gradientBG 15s ease infinite; display: flex; align-items: center; justify-content: center; user-select: none; }
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .back-home { position: fixed; bottom: 30px; left: 30px; text-decoration: none; color: var(--primary-purple); font-weight: bold; padding: 12px 24px; background: var(--glass-white); border-radius: 50px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .auth-card { background: var(--glass-white); padding: 50px 40px; border-radius: 28px; width: 100%; max-width: 400px; text-align: center; }
+        .form-group { margin-bottom: 25px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.85rem; }
+        .form-group input { width: 100%; padding: 14px; border: 1.5px solid #eee; border-radius: 14px; box-sizing: border-box; }
+        .login-btn { width: 100%; background: linear-gradient(135deg, #7b1fa2, #4a148c); color: white; padding: 16px; border: none; border-radius: 14px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>登入</h1>
+    <a href="index.html" class="back-home">🏠 返回首頁</a>
+    <div class="auth-card">
+        <h1>歡迎回來</h1>
         <form id="loginForm">
-            <input type="email" id="email" placeholder="電子郵件" required>
-            <input type="password" id="pw" placeholder="密碼" required>
-            <button type="submit">開啟連結</button>
+            <div class="form-group"><label>電子郵件</label><input type="email" required></div>
+            <div class="form-group"><label>密碼</label><input type="password" required></div>
+            <button type="submit" class="login-btn">開啟連結</button>
         </form>
+        <p style="margin-top:20px; font-size:0.9rem;">還不是會員？<a href="register.html" style="color:var(--accent-orange); text-decoration:none; font-weight:bold;">探索新能量</a></p>
     </div>
     <script>
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('pw').value;
-            const userData = JSON.parse(localStorage.getItem(email));
+            const inputs = this.querySelectorAll('input');
+            const email = inputs[0].value.trim();
+            const password = inputs[1].value;
 
-            if (userData && userData.password === password) {
-                localStorage.setItem('isLoggedIn', 'true');
-                localStorage.setItem('loggedInUserEmail', email);
-                alert('✨ 登入成功！');
-                window.location.href = 'index.html';
-            } else {
-                alert('🔮 資料不匹配，請檢查帳密。');
-            }
+            const savedData = localStorage.getItem(email);
+            if (!savedData) { alert("🔮 魔法提醒：查無帳號資訊，請先進行註冊召喚。"); return; }
+
+            const user = JSON.parse(savedData);
+            if (user.password !== password) { alert("🔮 魔法提醒：能量連結失敗 (密碼不正確)。"); return; }
+
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('loggedInUserEmail', email);
+
+            alert('✨ 能量連結成功！歡迎回來，' + user.username);
+            window.location.href = 'index.html';
         });
+        document.addEventListener('contextmenu', e => e.preventDefault());
     </script>
 </body>
 </html>
