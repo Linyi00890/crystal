@@ -96,7 +96,6 @@ function render(data) {
                         <span class="info-label">推薦組合</span>
                         <p class="back-text">${c.combo}</p>
                     </div>
-                    <a href="quartz/${c.id}.html" class="detail-btn">探索奧祕</a>
                 </div>
             </div>
         </div>
