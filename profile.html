@@ -2,58 +2,51 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>個人資料管理 | CrystalMagic</title>
+    <title>個人資料 | CrystalMagic</title>
     <style>
-        :root { --primary-purple: #6a1b9a; --glass-white: rgba(255, 255, 255, 0.9); }
-        body { margin: 0; font-family: sans-serif; background: linear-gradient(-45deg, #f3e5f5, #e1f5fe, #fff3e0, #fce4ec); background-size: 400% 400%; animation: gradientBG 15s ease infinite; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        .back-home { position: fixed; bottom: 30px; left: 30px; text-decoration: none; color: var(--primary-purple); font-weight: bold; padding: 12px 24px; background: var(--glass-white); border-radius: 50px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); transition: 0.3s; display: flex; align-items: center; gap: 8px; z-index: 9999; backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.5); }
-        .back-home:hover { background: var(--primary-purple); color: white; transform: translateY(-5px); }
-        .profile-card { background: var(--glass-white); backdrop-filter: blur(15px); padding: 40px; border-radius: 28px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
-        h2 { color: var(--primary-purple); margin-bottom: 25px; }
-        .info-item { margin-bottom: 20px; text-align: left; }
-        label { display: block; font-size: 0.85rem; color: #555; margin-bottom: 8px; font-weight: bold; }
-        input { width: 100%; padding: 12px; border: 1px solid #eee; border-radius: 12px; box-sizing: border-box; }
-        .btn-save { width: 100%; padding: 15px; border: none; border-radius: 12px; background: var(--primary-purple); color: white; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.3s; }
-        .btn-save:hover { opacity: 0.9; }
+        body { font-family: sans-serif; background: #f3e5f5; display: flex; justify-content: center; padding: 50px; }
+        .card { background: white; padding: 40px; border-radius: 20px; width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .info-group { margin-bottom: 20px; }
+        label { display: block; font-size: 0.8rem; color: #666; margin-bottom: 5px; }
+        input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .btn-home { display: inline-block; margin-top: 20px; text-decoration: none; color: #6a1b9a; font-weight: bold; }
+        #saveBtn { display: none; width: 100%; padding: 12px; background: #6a1b9a; color: white; border: none; border-radius: 8px; cursor: pointer; margin-top: 10px; }
     </style>
 </head>
 <body>
-    <a href="index.html" class="back-home">🏠 返回首頁</a>
-    <div class="profile-card">
-        <h2 id="page-title">個人資料確認</h2>
-        <form id="profile-form">
-            <div class="info-item"><label>使用者名稱</label><input type="text" id="p-username" readonly></div>
-            <div class="info-item"><label>電子郵件 (不可改)</label><input type="email" id="p-email" readonly></div>
-            <div class="info-item"><label>更改密碼 (不改請留空)</label><input type="password" id="p-password" placeholder="********"></div>
-            <button type="submit" id="save-btn" class="btn-save" style="display:none;">儲存修改</button>
+    <div class="card">
+        <h2 id="title">個人資料確認</h2>
+        <form id="profileForm">
+            <div class="info-group"><label>名稱</label><input type="text" id="p-name" readonly></div>
+            <div class="info-group"><label>Email</label><input type="email" id="p-email" readonly></div>
+            <div class="info-group"><label>密碼 (修改時輸入)</label><input type="password" id="p-pw" placeholder="********"></div>
+            <button type="submit" id="saveBtn">儲存修改</button>
         </form>
+        <a href="index.html" class="btn-home">🏠 返回首頁</a>
     </div>
     <script>
         const userEmail = localStorage.getItem('loggedInUserEmail');
         const userData = JSON.parse(localStorage.getItem(userEmail));
-        const urlParams = new URLSearchParams(window.location.search);
-        const mode = urlParams.get('mode');
+        const mode = new URLSearchParams(window.location.search).get('mode');
 
         if (!userData) window.location.href = 'login.html';
 
-        document.getElementById('p-username').value = userData.username;
+        document.getElementById('p-name').value = userData.username;
         document.getElementById('p-email').value = userData.email;
 
         if (mode === 'edit') {
-            document.getElementById('page-title').innerText = "⚙️ 修改資料";
-            document.getElementById('p-username').readOnly = false;
-            document.getElementById('save-btn').style.display = "block";
+            document.getElementById('title').innerText = "⚙️ 修改資料";
+            document.getElementById('p-name').readOnly = false;
+            document.getElementById('saveBtn').style.display = "block";
         }
 
-        document.getElementById('profile-form').addEventListener('submit', (e) => {
+        document.getElementById('profileForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            userData.username = document.getElementById('p-username').value;
-            const newPw = document.getElementById('p-password').value;
+            userData.username = document.getElementById('p-name').value;
+            const newPw = document.getElementById('p-pw').value;
             if (newPw) userData.password = newPw;
             localStorage.setItem(userEmail, JSON.stringify(userData));
-            alert("✨ 資料更新成功！");
+            alert("✨ 更新成功！");
             window.location.href = 'index.html';
         });
     </script>
