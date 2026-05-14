@@ -1,150 +1,235 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>淨化工具與教學課程 - 產品列表 | CrystalMagic</title>
-    <!-- 引入外部 CSS -->
-    <link rel="stylesheet" href="course.css">
+    <title>CrystalMagic | 淨化工具與課程專區</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap');
+        body { font-family: 'Noto Serif TC', serif; background-color: #fcfaf8; }
+        .hidden { display: none; }
+        .product-card { transition: all 0.3s ease; border: 1px solid #f3f2f0; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(0,0,0,0.05); border-color: #e5e7eb; }
+        .promo-banner { background: #1c1917; color: white; overflow: hidden; white-space: nowrap; padding: 10px 0; font-size: 12px; letter-spacing: 2px; }
+        .promo-content { display: inline-block; animation: marquee 30s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        /* --- 下拉選單黑金樣式 --- */
+        .filter-section { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
+        .dropdown-container { position: relative; display: inline-block; }
+        .dropdown-btn, .btn-all { 
+            background-color: #1a1a1a; color: #d4af37; border: 1px solid #3d3d3d; 
+            padding: 10px 24px; cursor: pointer; font-size: 14px; display: flex; 
+            align-items: center; gap: 8px; transition: all 0.3s; border-radius: 4px;
+        }
+        .dropdown-btn:hover, .btn-all:hover { border-color: #d4af37; background-color: #262626; }
+        .dropdown-content { 
+            display: none; position: absolute; background-color: #1a1a1a; min-width: 180px; 
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.5); z-index: 100; border: 1px solid #3d3d3d; 
+            margin-top: 5px; list-style: none; padding: 0; left: 0;
+        }
+        .dropdown-content li { color: #e5e5e5; padding: 12px 16px; cursor: pointer; transition: background 0.2s; font-size: 14px; }
+        .dropdown-content li:hover { background-color: #333; color: #d4af37; }
+        .show { display: block; }
+    </style>
 </head>
-<body>
+<body class="pb-24">
 
-<header class="main-header">
-    <a href="index.html" class="logo">🔮 CrystalMagic</a>
-    <div class="auth-buttons">
-        <a href="index.html" class="nav-button login">回首頁</a>
-        <a href="quiz.html" class="nav-button register">能量測驗</a>
+    <div class="promo-banner">
+        <div class="promo-content">
+            ✦ 全館滿 $3,000 免運費 ✦ 線上課程購買後立即開課 ✦ 實體工具附使用說明指南 ✦ 專業療癒音頻永久下載 ✦ 
+        </div>
     </div>
-</header>
 
-<main>
-    <section class="page-header">
-        <h1>✨ 淨化工具與療癒課程</h1>
-        <p>提供專業的能量清理方案，從實體工具到深度課程，全方位守護您的身心靈空間。</p>
-    </section>
-
-    <!-- 01 實體淨化工具 -->
-    <h2 class="section-title">🛒 01 實體淨化工具</h2>
-    <section class="product-grid">
-        <article class="product-item">
-            <img src="picture/sacred01.jpg" alt="秘魯聖木">
-            <div class="product-details">
-                <div>
-                    <span class="badge">空間淨化</span>
-                    <h4>頂級秘魯聖木 (原木條)</h4>
-                    <p>古老部落傳承，煙燻淨化首選，能有效轉化負能量，帶來神聖祝福。</p>
-                </div>
-                <div class="product-price">NT$ xxxxx</div>
-                <a href="#" class="view-detail">立即購買</a>
+    <header class="py-6 bg-white border-b border-stone-100 mb-8">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-stone-800">🔮 CrystalMagic</a>
+            <div class="flex gap-6 items-center">
+                <select class="bg-transparent text-sm outline-none">
+                    <option>繁體中文</option>
+                    <option>English</option>
+                </select>
+                <i class="fa-regular fa-user text-xl cursor-pointer"></i>
             </div>
-        </article>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-6">
+        <h2 class="text-center text-stone-700 text-xl mt-4 mb-6 tracking-widest">淨化工具與專業課程</h2>
+
+        <div class="filter-section">
+            <button class="btn-all" onclick="filterItems('all', 'all')">全部類別</button>
+
+            <div class="dropdown-container">
+                <div class="dropdown-btn" onclick="toggleDropdown('categoryDropdown')">✨ 按類型 <span>▼</span></div>
+                <ul class="dropdown-content" id="categoryDropdown">
+                    <li onclick="filterItems('實體工具', 'category')">🛠️ 實體淨化工具</li>
+                    <li onclick="filterItems('療癒香氛', 'category')">🕯️ 療癒香氛系列</li>
+                    <li onclick="filterItems('祭壇道具', 'category')">🏛️ 能量祭壇道具</li>
+                    <li onclick="filterItems('教學課程', 'category')">🎓 專業教學課程</li>
+                    <li onclick="filterItems('療癒音頻', 'category')">🎧 高頻療癒音頻</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="productGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"></div>
+    </main>
+
+    <div class="fixed bottom-6 left-6 z-50">
+        <button onclick="history.back()" class="flex items-center justify-center w-12 h-12 bg-white shadow-lg rounded-full text-stone-600 border border-stone-100"><i class="fa-solid fa-arrow-left"></i></button>
+    </div>
+
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 items-end">
+        <div class="flex gap-3">
+            <a href="bracelet.html" class="px-4 py-2 bg-stone-700 text-white text-xs rounded-full shadow-lg">手鍊飾品</a>
+            <a href="natural.html" class="px-4 py-2 bg-stone-700 text-white text-xs rounded-full shadow-lg">原礦擺件</a>
+        </div>
+        <div class="flex gap-3">
+            <button onclick="toggleModal('wishlistModal')" class="relative w-14 h-14 bg-white shadow-lg rounded-full border border-stone-100">
+                <i class="fa-regular fa-heart text-xl text-stone-600"></i>
+                <span id="wishCount" class="absolute -top-1 -right-1 bg-red-400 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center">0</span>
+            </button>
+            <button onclick="toggleModal('cartModal')" class="relative w-14 h-14 bg-stone-900 shadow-lg rounded-full text-white">
+                <i class="fa-solid fa-bag-shopping text-xl"></i>
+                <span id="cartCount" class="absolute -top-1 -right-1 bg-amber-500 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center">0</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="cartModal" class="hidden fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm flex justify-end">
+        <div class="w-full max-w-md bg-white h-full p-8 flex flex-col">
+            <div class="flex justify-between mb-8 border-b pb-4">
+                <h3 class="text-2xl font-bold">購物車 (含所有商品)</h3>
+                <button onclick="toggleModal('cartModal')"><i class="fa-solid fa-xmark text-2xl"></i></button>
+            </div>
+            <div id="cartItems" class="flex-1 space-y-4 overflow-y-auto"></div>
+            <div class="mt-8 border-t pt-4">
+                <div class="flex justify-between text-xl font-bold"><span>總計</span><span>NT$ <span id="cartTotalPrice">0</span></span></div>
+                <p class="text-xs text-stone-400 mt-2 text-center">* 包含手鍊、擺件及目前所選商品</p>
+                <button onclick="goToCheckout()" class="w-full bg-stone-900 text-white py-4 mt-4 rounded font-bold tracking-widest">前往結帳</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="wishlistModal" class="hidden fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm flex justify-end">
+        <div class="w-full max-w-md bg-white h-full p-8 flex flex-col">
+            <div class="flex justify-between mb-8 border-b pb-4">
+                <h3 class="text-2xl font-bold">我的收藏</h3>
+                <button onclick="toggleModal('wishlistModal')"><i class="fa-solid fa-xmark text-2xl"></i></button>
+            </div>
+            <div id="wishItems" class="flex-1 space-y-4 overflow-y-auto"></div>
+        </div>
+    </div>
+
+    <script>
+        // 資料庫內容全面轉換為淨化工具與課程
+        const items = [
+            { name: "白鼠尾草束", category: "實體工具", effect: "空間空間大淨化", price: 450, stock: 50, img: "sage01.jfif" },
+            { name: "祕魯聖木條 (50g)", category: "實體工具", effect: "消除負能量", price: 380, stock: 35, img: "palo01.jfif" },
+            { name: "雪松葉淨化粉", category: "實體工具", effect: "招財與豐盛", price: 520, stock: 20, img: "cedar01.jfif" },
+            { name: "檀香香氛精油", category: "療癒香氛", effect: "深層冥想引導", price: 880, stock: 15, img: "oil01.jpg" },
+            { name: "喜馬拉雅玫瑰鹽燈", category: "實體工具", effect: "溫暖守護能量", price: 1200, stock: 10, img: "salt01.jfif" },
+            { name: "七脈輪平衡蠟燭組", category: "療癒香氛", effect: "脈輪調頻對接", price: 1580, stock: 8, img: "candle07.jfif" },
+            { name: "生命之花木製祭壇盤", category: "祭壇道具", effect: "能量放大與連結", price: 950, stock: 5, img: "flower05.jfif" },
+            { name: "黃銅香爐座", category: "祭壇道具", effect: "穩定與神聖空間", price: 780, stock: 12, img: "burner05.jfif" },
+            { name: "入門水晶淨化課程", category: "教學課程", effect: "線上/含證書", price: 3200, stock: 99, img: "course01.png" },
+            { name: "高階能量場修復教學", category: "教學課程", effect: "線上/深度實作", price: 6800, stock: 99, img: "course02.png" },
+            { name: "432Hz 冥想修復音頻", category: "療癒音頻", effect: "MP3/數位下載", price: 450, stock: 999, img: "audio01.png" },
+            { name: "海底輪地基穩定音頻", category: "療癒音頻", effect: "MP3/數位下載", price: 300, stock: 999, img: "audio02.png" },
+            { name: "神聖幾何水晶陣套組", category: "祭壇道具", effect: "願望顯化工具", price: 2400, stock: 3, img: "grid01.png" },
+            { name: "晨間淨化儀式噴霧", category: "療癒香氛", effect: "瞬間轉換氣場", price: 650, stock: 25, img: "spray01.png" },
+            { name: "切面藍水晶消磁皿", category: "祭壇道具", effect: "水元素與淨化", price: 620, stock: 5, img: "bowl01.png" }
+        ];
+
+        // 統一使用 'cart' 與 'wishlist'，確保與 bracelet.html / natural.html 同步
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+        function render(data = items) {
+            const grid = document.getElementById('productGrid');
+            if (data.length === 0) {
+                grid.innerHTML = `<p class="col-span-full text-center py-10 text-stone-400 font-bold">🔮 能量調頻中，暫無匹配項目...</p>`;
+                return;
+            }
+            grid.innerHTML = data.map(p => `
+                <div class="product-card bg-white rounded-xl overflow-hidden flex flex-col">
+                    <div class="relative overflow-hidden h-64 bg-gray-100">
+                        <img src="picture/${p.img}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400x400?text=Category+Img'">
+                        <button onclick='addToWish(${JSON.stringify(p)})' class="absolute top-3 right-3 w-8 h-8 bg-white/80 rounded-full flex items-center justify-center text-stone-400 hover:text-red-500 shadow-sm"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                    <div class="p-5 text-center flex-1 flex flex-col">
+                        <div class="mb-2"><span class="text-[10px] border border-stone-400 text-stone-500 px-2 py-0.5 rounded-full font-bold">${p.category}</span></div>
+                        <h3 class="font-bold text-stone-800 mb-1">${p.name}</h3>
+                        <p class="text-[11px] text-amber-600 mb-3 font-medium">${p.effect}</p>
+                        <div class="mt-auto">
+                            <p class="text-lg font-bold text-stone-900 mb-3">NT$ ${p.price}</p>
+                            <button onclick='addToCart(${JSON.stringify(p)})' class="w-full bg-stone-800 text-white py-2 rounded-lg text-sm hover:bg-stone-700 transition-colors">加入購物車</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            updateUI();
+        }
+
+        function toggleDropdown(id) {
+            document.querySelectorAll('.dropdown-content').forEach(c => { if(c.id !== id) c.classList.remove('show'); });
+            document.getElementById(id).classList.toggle('show');
+        }
+
+        function filterItems(keyword, type) {
+            if (keyword === 'all') { render(items); return; }
+            const filtered = items.filter(p => p[type] === keyword);
+            render(filtered);
+        }
+
+        window.onclick = (e) => {
+            if (!e.target.matches('.dropdown-btn')) {
+                document.querySelectorAll('.dropdown-content').forEach(c => c.classList.remove('show'));
+            }
+        };
+
+        function addToCart(product) { cart.push(product); saveData(); updateUI(); }
+        function addToWish(product) { if (!wishlist.find(i => i.name === product.name)) { wishlist.push(product); saveData(); updateUI(); } }
+        function removeFromCart(i) { cart.splice(i, 1); saveData(); updateUI(); }
+        function removeFromWish(i) { wishlist.splice(i, 1); saveData(); updateUI(); }
+        function saveData() { 
+            localStorage.setItem('cart', JSON.stringify(cart)); 
+            localStorage.setItem('wishlist', JSON.stringify(wishlist)); 
+        }
         
-        <article class="product-item">
-            <img src="picture/white03.jpg" alt="白水晶碎石">
-            <div class="product-details">
-                <div>
-                    <span class="badge">水晶消磁</span>
-                    <h4>高頻白水晶碎石 (500g)</h4>
-                    <p>如同讓手鍊洗澡，用於每日配戴後的消磁恢復，保持能量透明純淨。</p>
+        function updateUI() {
+            document.getElementById('cartCount').innerText = cart.length;
+            document.getElementById('wishCount').innerText = wishlist.length;
+            document.getElementById('cartTotalPrice').innerText = cart.reduce((s, i) => s + i.price, 0).toLocaleString();
+            
+            document.getElementById('cartItems').innerHTML = cart.map((item, i) => `
+                <div class="flex items-center gap-4 border-b pb-3">
+                    <img src="picture/${item.img}" class="w-12 h-12 object-cover rounded" onerror="this.src='https://via.placeholder.com/50x50'">
+                    <div class="flex-1 text-sm font-bold">${item.name}<p class="text-xs text-stone-400">NT$ ${item.price}</p></div>
+                    <button onclick="removeFromCart(${i})" class="text-stone-300 hover:text-red-500"><i class="fa-solid fa-trash-can"></i></button>
                 </div>
-                <div class="product-price">NT$ xxxxx</div>
-                <a href="#" class="view-detail">立即購買</a>
-            </div>
-        </article>
-    </section>
+            `).join('');
 
-    <!-- 02 療癒香氛系列 -->
-    <h2 class="section-title">🕯️ 02 療癒香氛系列</h2>
-    <section class="product-grid">
-        <article class="product-item">
-            <img src="picture/candle01.jpg" alt="蠟燭">
-            <div class="product-details">
-                <div>
-                    <span class="badge">氣氛營造</span>
-                    <h4>脈輪能量蠟燭</h4>
-                    <p>搭配對應水晶與天然精油，點燃後釋放柔和光芒，安定紛亂情緒。</p>
+            document.getElementById('wishItems').innerHTML = wishlist.map((item, i) => `
+                <div class="flex items-center gap-4 border-b pb-3">
+                    <img src="picture/${item.img}" class="w-12 h-12 object-cover rounded" onerror="this.src='https://via.placeholder.com/50x50'">
+                    <div class="flex-1 text-sm font-bold">${item.name}<p class="text-amber-600 text-[10px]">${item.category}</p></div>
+                    <button onclick="removeFromWish(${i})" class="text-stone-300 hover:text-red-500"><i class="fa-solid fa-trash-can"></i></button>
                 </div>
-                <div class="product-price">NT$ xxxxx</div>
-                <a href="#" class="view-detail">查看詳情</a>
-            </div>
-        </article>
-    </section>
+            `).join('');
+        }
 
-    <!-- 03 能量祭壇道具 -->
-    <h2 class="section-title">⛩️ 03 能量祭壇道具</h2>
-    <section class="product-grid">
-        <article class="product-item">
-            <img src="picture/bowl01.jpg" alt="頌缽">
-            <div class="product-details">
-                <div>
-                    <span class="badge">聲波療癒</span>
-                    <h4>手工尼泊爾頌缽 (手工製)</h4>
-                    <p>渾厚深層的振動頻率，可用於脈輪清理與深度冥想，平衡內在磁場。</p>
-                </div>
-                <div class="product-price">NT$ xxxxx</div>
-                <a href="#" class="view-detail">立即結緣</a>
-            </div>
-        </article>
-    </section>
+        function toggleModal(id) { document.getElementById(id).classList.toggle('hidden'); }
+        function goToCheckout() { if (cart.length === 0) return alert('購物車是空的喔！'); location.href = 'checkout.html'; }
 
-    <!-- 04 專業教學課程 (線上) -->
-    <h2 class="section-title">👩‍🏫 04 專業教學課程 (線上)</h2>
-    <section class="product-grid">
-        <article class="product-item course-item">
-            <img src="picture/course_beginner.jpg" alt="入門課">
-            <div class="product-details">
-                <div>
-                    <span class="badge badge-hot">熱門預約</span>
-                    <h4>水晶能量療癒入門 (初階)</h4>
-                    <p>從零開始學習感受水晶頻率、基礎消磁手法，建立正確的能量觀念。</p>
-                </div>
-                <div class="product-price">NT$ xxxxx</div>
-                <a href="#" class="view-detail">立即報名</a>
-            </div>
-        </article>
-    </section>
-
-    <!-- 05 能量實踐指南 (E-Book) -->
-    <h2 class="section-title">📖 05 能量實踐指南 (E-Book)</h2>
-    <section class="product-grid">
-        <article class="product-item">
-            <img src="picture/ebook.jpg" alt="電子書">
-            <div class="product-details">
-                <div>
-                    <span class="badge">即時下載</span>
-                    <h4>21天水晶連結冥想指南</h4>
-                    <p>隨時隨地開啟數位閱讀，引導您透過冥想與自身水晶達成深度連結。</p>
-                </div>
-                <div class="product-price">NT$ xxxxx</div>
-                <a href="#" class="view-detail">購買下載</a>
-            </div>
-        </article>
-    </section>
-
-    <!-- 06 高頻療癒音頻 -->
-    <h2 class="section-title">🎧 06 高頻療癒音頻</h2>
-    <section class="product-grid">
-        <article class="product-item">
-            <img src="picture/audio.jpg" alt="療癒音樂">
-            <div class="product-details">
-                <div>
-                    <span class="badge">數位內容</span>
-                    <h4>432Hz 宇宙頻率療癒專輯</h4>
-                    <p>專為睡眠與深度放鬆設計，消除壓力，幫助您進入修復性睡眠。</p>
-                </div>
-                <div class="product-price">NT$ xxxxx</div>
-                <a href="#" class="view-detail">立即試聽</a>
-            </div>
-        </article>
-    </section>
-</main>
-
-<footer class="footer">
-    <p>&copy; 2026 CrystalMagic. 每一顆水晶都承載著大地的祝福。</p>
-</footer>
-
-<!-- 引入外部 JS -->
-<script src="course.js"></script>
-
+        // 初次加載時，先抓取一次 localStorage
+        window.onload = () => {
+            render();
+            // 每秒同步一次，確保在其他分頁加入商品時這裡也會更新數字
+            setInterval(updateUI, 1000); 
+        };
+    </script>
 </body>
 </html>
