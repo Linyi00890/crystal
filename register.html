@@ -15,7 +15,7 @@
         h1 { color: var(--primary-purple); font-size: 1.8rem; margin-bottom: 25px; }
         .form-group { margin-bottom: 18px; text-align: left; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #555; font-size: 0.85rem; }
-        .form-group input { width: 100%; padding: 13px 16px; border: 1.5px solid #eee; border-radius: 12px; font-size: 1rem; background: rgba(255, 255, 255, 0.8); box-sizing: border-box; user-select: text; }
+        .form-group input { width: 100%; padding: 13px 16px; border: 1.5px solid #eee; border-radius: 12px; font-size: 1rem; background: rgba(255, 255, 255, 0.8); box-sizing: border-box; }
         .submit-button { width: 100%; background: linear-gradient(135deg, #ff8a65, #ff5722); color: white; padding: 16px; border: none; border-radius: 14px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
         .auth-links { margin-top: 25px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.9rem; }
         .auth-links a { color: var(--primary-purple); text-decoration: none; font-weight: bold; }
@@ -26,38 +26,31 @@
     <main class="auth-wrapper">
         <section class="auth-card">
             <h1>新會員註冊</h1>
-            <form onsubmit="event.preventDefault();">
-                <div class="form-group"><label>使用者名稱</label><input type="text" required></div>
-                <div class="form-group"><label>電子郵件</label><input type="email" required></div>
-                <div class="form-group"><label>設定密碼</label><input type="password" required minlength="8"></div>
-                <div class="form-group"><label>確認密碼</label><input type="password" required minlength="8"></div>
+            <form id="regForm">
+                <div class="form-group"><label>使用者名稱</label><input type="text" id="regName" required></div>
+                <div class="form-group"><label>電子郵件</label><input type="email" id="regEmail" required></div>
+                <div class="form-group"><label>設定密碼 (需含大小寫與數字)</label><input type="password" id="regPw" required minlength="8"></div>
+                <div class="form-group"><label>確認密碼</label><input type="password" id="regPwConfirm" required minlength="8"></div>
                 <button type="submit" class="submit-button">完成召喚並註冊</button>
             </form>
             <div class="auth-links">已經有帳號？<a href="login.html">立即登入</a></div>
         </section>
     </main>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.querySelector('form');
-            const inputs = form.querySelectorAll('input');
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const username = inputs[0].value.trim();
-                const email = inputs[1].value.trim();
-                const password = inputs[2].value;
-                const confirmPassword = inputs[3].value;
+        document.getElementById('regForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const password = document.getElementById('regPw').value;
+            const confirm = document.getElementById('regPwConfirm').value;
 
-                if (username.length < 2) { alert("🔮 使用者名稱至少需2個字。"); return; }
-                const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-                if (!passwordRegex.test(password)) { alert("🔮 密碼需包含大小寫字母與數字。"); return; }
-                if (password !== confirmPassword) { alert("🔮 兩次密碼不一致。"); return; }
+            const pwRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+            if (!pwRegex.test(password)) { alert("🔮 密碼需至少8位，且包含大小寫字母與數字。"); return; }
+            if (password !== confirm) { alert("🔮 兩次密碼輸入不一致。"); return; }
 
-                // 存入 localStorage
-                const userData = { username, email, password };
-                localStorage.setItem(email, JSON.stringify(userData));
-                alert('✨ 召喚成功！請登入連結能量。');
-                window.location.href = 'login.html';
-            });
+            localStorage.setItem(email, JSON.stringify({ username, email, password }));
+            alert('✨ 註冊成功！');
+            window.location.href = 'login.html';
         });
         document.addEventListener('contextmenu', e => e.preventDefault());
     </script>
