@@ -16,7 +16,7 @@
             <span class="bar"></span><span class="bar"></span><span class="bar"></span>
         </div>
         <ul class="nav-links" id="nav-menu">
-             <li><a href="origin.html">水晶起源</a></li>
+            <li><a href="origin.html">水晶起源</a></li>
             <li><a href="effect.html">功效解讀</a></li>
             <li><a href="pages.html">淨化保養</a></li>
             <li><a href="pick.html">挑選指南</a></li> 
@@ -28,12 +28,15 @@
     </div>
 </header>
 
-<section class="filter-section">
-    <div class="filter-container">
-        <button class="btn-all" onclick="filterCrystals('all', 'effect')">全部水晶</button>
+<main style="margin-top: 100px;">
+    <!-- 篩選區塊：整合了原始代碼的全部按鈕與雙下拉選單 -->
+    <div class="filter-section" style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 20px; flex-wrap: wrap;">
         
+        <button class="btn-all" onclick="filterCrystals('all', 'effect')" style="padding: 10px 20px; cursor: pointer;">全部水晶</button>
+        
+        <!-- 按功效篩選 -->
         <div class="dropdown">
-            <div class="dropdown-btn" onclick="toggleDropdown('effectDropdown')">✨ 按功效 <span>▼</span></div>
+            <button class="dropdown-btn" onclick="toggleDropdown('effectDropdown')">✨ 按功效 <span>▼</span></button>
             <ul class="dropdown-content" id="effectDropdown">
                 <li onclick="filterCrystals('spirit', 'effect')">🧘 靈性智慧</li>
                 <li onclick="filterCrystals('wealth', 'effect')">💰 財富事業</li>
@@ -44,8 +47,9 @@
             </ul>
         </div>
 
-       <div class="dropdown">
-            <div class="dropdown-btn" onclick="toggleDropdown('colorDropdown')">🎨 按顏色 <span>▼</span></div>
+        <!-- 按顏色篩選 (從原始代碼補回) -->
+        <div class="dropdown">
+            <button class="dropdown-btn" onclick="toggleDropdown('colorDropdown')">🎨 按顏色 <span>▼</span></button>
             <ul class="dropdown-content" id="colorDropdown">
                 <li onclick="filterCrystals('white', 'color')">🤍 白色系</li>
                 <li onclick="filterCrystals('pink', 'color')">💗 粉色系</li>
@@ -57,9 +61,10 @@
             </ul>
         </div>
     </div>
-</section>
 
-<main class="crystal-grid" id="crystalGrid"></main>
+    <!-- 水晶展示網格 -->
+    <div class="crystal-grid" id="crystalGrid"></div>
+</main>
 
 <script src="type.js"></script>
 </body>
