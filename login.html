@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員登入 | CrystalMagic 水晶魔法</title>
+    <style>
+        :root {
+            --primary-purple: #6a1b9a;
+            --dark-purple: #4a148c;
+            --accent-orange: #ff8a65;
+            --glass-white: rgba(255, 255, 255, 0.9);
+        }
+        body {
+            margin: 0; padding: 0; min-height: 100vh;
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+            background: linear-gradient(-45deg, #f3e5f5, #e1f5fe, #fff3e0, #fce4ec);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            display: flex; flex-direction: column;
+            -webkit-user-select: none; user-select: none; /* 禁用選取 */
+            overflow-x: hidden;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* 左下角固定按鈕 */
+        .back-home {
+            position: fixed; bottom: 30px; left: 30px;
+            text-decoration: none; color: var(--primary-purple);
+            font-weight: bold; padding: 12px 24px;
+            background: var(--glass-white); border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;
+            z-index: 9999; backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .back-home:hover { background: var(--primary-purple); color: white; transform: translateY(-5px); }
+        .auth-wrapper { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+        .auth-card {
+            background: var(--glass-white); backdrop-filter: blur(15px);
+            width: 100%; max-width: 400px; padding: 50px 40px;
+            border-radius: 28px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.4); text-align: center; box-sizing: border-box;
+        }
+        .brand-icon { font-size: 3.5rem; margin-bottom: 15px; display: block; }
+        h1 { color: var(--primary-purple); font-size: 1.8rem; margin: 0 0 10px 0; letter-spacing: 2px; }
+        .subtitle { color: #888; font-size: 0.9rem; margin-bottom: 35px; display: block; }
+        .form-group { margin-bottom: 25px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #555; font-size: 0.85rem; }
+        .form-group input {
+            width: 100%; padding: 14px 16px; border: 1.5px solid #eee;
+            border-radius: 14px; font-size: 1rem; transition: 0.3s;
+            background: rgba(255, 255, 255, 0.7); box-sizing: border-box; user-select: text;
+        }
+        .login-btn {
+            width: 100%; background: linear-gradient(135deg, #7b1fa2, #4a148c);
+            color: white; padding: 16px; border: none; border-radius: 14px;
+            font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s;
+        }
+        .auth-links { margin-top: 30px; font-size: 0.9rem; }
+        .auth-links a { color: var(--accent-orange); text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-home">🏠 返回首頁</a>
+
+    <main class="auth-wrapper">
+        <section class="auth-card">
+            <span class="brand-icon">🔮</span>
+            <h1>歡迎回來</h1>
+            <span class="subtitle">連結您的專屬水晶能量</span>
+            <form onsubmit="event.preventDefault(); alert('登入成功！'); window.location.href='index.html';">
+                <div class="form-group"><label>電子郵件</label><input type="email" required></div>
+                <div class="form-group"><label>密碼</label><input type="password" required></div>
+                <button type="submit" class="login-btn">開啟連結</button>
+            </form>
+            <div class="auth-links">還不是會員？<a href="register.html">探索新能量</a></div>
+        </section>
+    </main>
+
+    <script>
+    // --- 1. 資料檢查與表單接管 ---
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        const inputs = form.querySelectorAll('input');
+        
+        // 清除行內的舊邏輯
+        form.onsubmit = null; 
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = inputs[0].value.trim();
+            const password = inputs[1].value;
+
+            // 1. 檢查電子郵件
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("🔮 魔法提醒：請輸入正確的能量傳遞地址 (電子郵件格式)。");
+                inputs[0].focus();
+                return;
+            }
+
+            // 2. 密碼格式檢查 (同步 register.html 的規則：大寫 + 小寫 + 數字)
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+            if (!passwordRegex.test(password)) {
+                alert("🔮 魔法提醒：密碼格式不符合安全規範（需包含大小寫字母與數字，且至少 8 位）。");
+                inputs[1].focus();
+                return;
+            }
+
+            // 驗證通過
+            alert('✨ 能量連結成功！歡迎回來。');
+            window.location.href = 'index.html';
+        });
+    });
+
+    // --- 2. 魔法守護腳本 (原有的右鍵與快捷鍵限制) ---
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+        alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
+    }, false);
+
+    document.onkeydown = function (e) {
+        if (e.keyCode === 123) return false;
+        if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) return false;
+        if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83)) return false;
+    };
+</script>
+
+</body>
+</html>
