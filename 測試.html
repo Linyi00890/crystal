@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常見問題：新手 Q&A 快速解答 - 水晶魔法 | CrystalMagic</title>
+    
+    <!-- 引入 Google Fonts 提升質感 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --light-blue: #eff6ff;
+            --dark-blue: #1e3a8a;
+            --accent-gold: #fbbf24; /* 增加點綴金 */
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --glass: rgba(255, 255, 255, 0.85);
+            --max-width: 1400px; 
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Inter', sans-serif;
+            background: radial-gradient(circle at top right, #f0f9ff, #f8fafc);
+            color: var(--text-main);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* --- 導覽列 (毛玻璃效果) --- */
+        .navbar {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            width: 100%;
+            min-height: 80px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-content {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-decoration: none;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 10px 16px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+            background: var(--light-blue);
+        }
+
+        /* --- 頁首區塊 --- */
+        .faq-intro {
+            text-align: center;
+            padding: 120px 20px;
+            background: linear-gradient(160deg, #dbeafe 0%, #ffffff 100%);
+            position: relative;
+            width: 100%;
+        }
+
+        .faq-intro h1 {
+            color: var(--dark-blue);
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .faq-intro p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- 主內容區 --- */
+        .main-content {
+            width: 100%;
+            max-width: 850px; 
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--primary-blue);
+            margin-bottom: 50px;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: var(--accent-gold);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        /* 手風琴精緻化 */
+        .accordion-item {
+            border-radius: 20px;
+            margin-bottom: 24px;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #f1f5f9;
+        }
+
+        .accordion-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+        }
+
+        .accordion-header {
+            width: 100%;
+            padding: 30px 35px;
+            background-color: #fff;
+            color: var(--text-main);
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            transition: 0.3s;
+            border-left: 6px solid transparent;
+        }
+
+        .accordion-header:hover {
+            background-color: #fcfdfe;
+        }
+
+        .accordion-header.active {
+            background: linear-gradient(90deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: #fff;
+            border-left: 6px solid var(--accent-gold);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+            background-color: #fff;
+        }
+
+        .accordion-content .inner-text {
+            padding: 30px 40px 40px;
+            border-top: 1px solid #f1f5f9;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 2;
+            background-color: #fafbfc;
+        }
+
+        /* --- 呼籲行動區 (CTA) --- */
+        .cta-section {
+            text-align: center;
+            margin-top: 60px;
+            padding: 80px 40px;
+            background: white;
+            border-radius: 30px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.05);
+        }
+
+        .cta-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 48px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            margin: 12px;
+            transition: 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        .primary-cta { 
+            background: linear-gradient(135deg, var(--primary-blue), #60a5fa); 
+            color: white; 
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+        }
+        
+        .primary-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.3);
+        }
+
+        .secondary-cta { 
+            background: var(--light-blue); 
+            color: var(--primary-blue); 
+        }
+
+        .secondary-cta:hover {
+            background: #dbeafe;
+        }
+
+        /* --- 頁尾 --- */
+        .footer {
+            text-align: center;
+            padding: 60px 0;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            width: 100%;
+        }
+
+        /* RWD 響應式 */
+        @media (max-width: 992px) {
+            .nav-content { padding: 0 20px; flex-direction: column; padding-bottom: 15px; }
+            .nav-links { flex-wrap: wrap; justify-content: center; }
+            .faq-intro h1 { font-size: 2.4rem; }
+            .accordion-header { font-size: 1.1rem; padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-content">
+        <a href="index.html" class="logo">🔮 CrystalMagic</a>
+        <ul class="nav-links">
+            <li><a href="origin.html">水晶起源</a></li>
+            <li><a href="type.html">水晶種類</a></li>
+            <li><a href="effect.html">功效解讀</a></li>
+            <li><a href="pages.html">淨化保養</a></li>
+            <li><a href="pick.html">挑選指南</a></li> 
+            <li><a href="exclusive.html">專屬商品</a></li>
+            <li><a href="share.html">粉絲回饋</a></li>
+            <li><a href="contact.html">客服諮詢</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main>
+    <section class="faq-intro">
+        <h1>❓ 新手 Q&A 迷思破解</h1>
+        <p>為您解答關於水晶佩戴、淨化與能量使用的所有疑慮</p>
+    </section>
+
+    <div class="main-content">
+        <h2 class="section-title">常見問題快速導覽</h2>
+
+        <!-- Q1 -->
+        <div class="accordion-item">
+            <button class="accordion-header">
+                Q1: 水晶手鍊應該戴在左手還是右手？
+                <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="inner-text">
+                    通常遵循<strong>「左進右出」</strong>原則：
+                    <ul style="margin-top: 15px; margin-left: 20px; list-style-type: circle;">
+                        <li><strong>左手（吸納）：</strong> 適合佩戴招財、招桃花、求好運的水晶（如：黃水晶、粉晶、紫晶）。</li>
+                        <li style="margin-top: 8px;"><strong>右手（排出）：</strong> 適合佩戴辟邪、擋煞、過濾負能量的水晶（如：黑曜石、黑碧璽）。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="accordion-item">
+            <button class="accordion-header">
+                Q2: 我可以同時佩戴多條不同種類的水晶嗎？
+                <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="inner-text">
+                    <strong>完全可以！</strong> 水晶能量通常是互補的。建議新手一次佩戴不超過 3 條，以免能量感過於強烈造成頭暈。另外要注意硬度不同的水晶（如莫氏硬度較低的與較高的）摩擦可能產生刮痕。
+                </div>
+            </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="accordion-item">
+            <button class="accordion-header">
+                Q3: 水晶需要多久淨化（消磁）一次？
+                <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="inner-text">
+                    建議<strong>每個月至少大淨化一次</strong>，或是在出入醫院、墳場等能量較混雜的場所後立即消磁。若感覺水晶看起來變得暗沈、觸摸時感覺黏膩或沉重，也是需要淨化的信號。
+                </div>
+            </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="accordion-item">
+            <button class="accordion-header">
+                Q4: 睡覺時可以戴著水晶嗎？
+                <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="inner-text">
+                    <strong>不建議。</strong> 睡眠是身體與水晶共同休息的時間。像黃水晶或鈦晶等高能量水晶容易讓思緒活躍，影響睡眠品質。除非是為了助眠佩戴的月光石或紫水晶，否則建議睡前取下放回消磁盒。
+                </div>
+            </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="accordion-item">
+            <button class="accordion-header">
+                Q5: 水晶斷了或珠子裂開代表什麼？
+                <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="inner-text">
+                    從能量角度看，這通常代表水晶<strong>為主人擋下了災難或能量已飽和</strong>。不必過於驚慌，若是線斷了重新串起即可；若是珠子碎裂，建議將其埋入土中回歸自然，不宜繼續佩戴。
+                </div>
+            </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="accordion-item">
+            <button class="accordion-header">
+                Q6: 洗澡時可以戴著水晶嗎？
+                <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content">
+                <div class="inner-text">
+                    <strong>建議取下。</strong> 洗髮精、沐浴乳等化學藥劑會侵蝕水晶表層的亮度，長期接觸也會使彈力繩加速老化、斷裂。特別是像青金石、珍珠等較敏感的種類，更應避免碰水。
+                </div>
+            </div>
+        </div>
+
+        <section class="cta-section">
+            <h3>還有其他想了解的疑問嗎？</h3>
+            <p>我們的能量諮詢師隨時為您提供協助。</p>
+            <div style="margin-top: 30px;">
+                <a href="pick.html" class="cta-button primary-cta">前往挑選指南</a>
+                <a href="#" class="cta-button secondary-cta">聯絡在線客服</a>
+            </div>
+        </section>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="index.html" style="color: var(--text-muted); text-decoration: none; font-weight: 500;">← 返回首頁探索更多</a>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2026 CrystalMagic 水晶魔法版權所有</p>
+</footer>
+
+<script>
+    document.querySelectorAll('.accordion-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.icon');
+
+            if (header.classList.contains('active')) {
+                header.classList.remove('active');
+                content.style.maxHeight = '0';
+                icon.textContent = '▼';
+            } else {
+                // 關閉其他已展開的項目
+                document.querySelectorAll('.accordion-header').forEach(h => {
+                    h.classList.remove('active');
+                    h.nextElementSibling.style.maxHeight = '0';
+                    h.querySelector('.icon').textContent = '▼';
+                });
+
+                // 展開當前點擊項目
+                header.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.textContent = '▲';
+                
+                // 平滑滾動至可見區域
+                setTimeout(() => {
+                    header.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 300);
+            }
+        });
+    });
+
+    // 防止右鍵與 F12 檢視 (維持原本魔法守護功能)
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.onkeydown = e => {
+        if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && e.keyCode === 85)) {
+            return false;
+        }
+    };
+</script>
+
+</body>
+</html>
