@@ -33,6 +33,12 @@
         .dropdown-content li { color: #e5e5e5; padding: 12px 16px; cursor: pointer; transition: background 0.2s; font-size: 14px; }
         .dropdown-content li:hover { background-color: #333; color: #d4af37; }
         .show { display: block; }
+
+        /* 修正 Logo 與 Header 樣式確保顯示 */
+        .main-header { background: white; border-bottom: 1px solid #eee; padding: 1rem 0; }
+        .nav-container { max-w: 80rem; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 1.5rem; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #1c1917; text-decoration: none; }
+        .header-right { display: flex; align-items: center; gap: 1.5rem; }
     </style>
 </head>
 <body class="pb-24">
@@ -44,26 +50,20 @@
     </div>
 
     <header class="main-header">
-    <div class="nav-container">
-        <a href="index.html" class="logo">🔮 CrystalMagic</a>
-        
-        <div class="header-right">
-            <select id="langSelect" class="lang-select">
-                <option value="zh">繁體中文</option>
-                <option value="en">English</option>
-            </select>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🔮 CrystalMagic</a>
             
-            <button onclick="toggleModal('userModal')" class="user-btn">
-                <i class="fa-regular fa-user"></i>
-            </button>
-
-            <div class="menu-toggle" id="mobile-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <div class="header-right">
+                <select id="langSelect" class="bg-transparent text-sm outline-none">
+                    <option value="zh">繁體中文</option>
+                    <option value="en">English</option>
+                </select>
+                
+                <button onclick="toggleModal('userModal')" class="text-xl">
+                    <i class="fa-regular fa-user"></i>
+                </button>
             </div>
         </div>
-    </div>
     </header>
 
     <main class="max-w-7xl mx-auto p-6">
@@ -147,7 +147,6 @@
     </div>
 
     <script>
-        // 資料庫路徑已更新
         const products = [
             { name: "薰衣草紫水晶", eff: "穩定情緒", price: 1280, stock: 5, img: "lavender01.jpg" },
             { name: "星光粉水晶", eff: "招好桃花", price: 980, stock: 12, img: "rose05.jpg" },
@@ -165,7 +164,7 @@
             { name: "白水晶淨化款", eff: "淨化磁場", price: 680, stock: 30, img: "white10.jfif" },
             { name: "南紅瑪瑙飾品", eff: "鴻運當頭", price: 1200, stock: 5, img: "agate10.jfif" },
             { name: "綠幽靈事業款", eff: "事業招財", price: 3200, stock: 2, img: "green10.jpg" },
-            { name: "葡萄石設計款", eff: "希望之光", price: 1180, stock: 9, img: "preh10.jpg"jfif },
+            { name: "葡萄石設計款", eff: "希望之光", price: 1180, stock: 9, img: "preh10.jfif" },
             { name: "金太陽設計款", eff: "正向能量", price: 1980, stock: 3, img: "sun10.jfif" },
             { name: "藍晶石優雅款", eff: "平穩情緒", price: 1600, stock: 6, img: "kyan10.jfif" },
             { name: "彩螢石手鍊", eff: "專注學業", price: 750, stock: 18, img: "fluor10.jpg" },
@@ -185,7 +184,6 @@
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
-        // 核心渲染函數
         function render(data = products) {
             const grid = document.getElementById('productGrid');
             if (data.length === 0) {
@@ -212,7 +210,6 @@
             updateUI();
         }
 
-        // --- 篩選與下拉邏輯 ---
         function toggleDropdown(id) {
             document.querySelectorAll('.dropdown-content').forEach(c => { if(c.id !== id) c.classList.remove('show'); });
             document.getElementById(id).classList.toggle('show');
@@ -230,7 +227,6 @@
             }
         };
 
-        // --- 購物功能 ---
         function addToCart(product) { cart.push(product); saveData(); updateUI(); }
         function addToWish(product) { if (!wishlist.find(i => i.name === product.name)) { wishlist.push(product); saveData(); updateUI(); } }
         function removeFromCart(i) { cart.splice(i, 1); saveData(); updateUI(); }
@@ -262,7 +258,6 @@
         function toggleModal(id) { document.getElementById(id).classList.toggle('hidden'); }
         function goToCheckout() { if (cart.length === 0) return alert('購物車是空的喔！'); location.href = 'checkout.html'; }
 
-        // --- 魔法守護腳本 ---
         document.addEventListener('contextmenu', e => { e.preventDefault(); alert("🔮 魔法能量守護中：本站圖文受智慧財產保護。"); });
 
         window.onload = () => render();
