@@ -2,35 +2,28 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>會員登入 | CrystalMagic</title>
     <style>
-        :root { --primary-purple: #6a1b9a; --glass-white: rgba(255, 255, 255, 0.9); }
-        body { margin: 0; padding: 0; min-height: 100vh; font-family: sans-serif; background: linear-gradient(-45deg, #f3e5f5, #e1f5fe, #fff3e0, #fce4ec); background-size: 400% 400%; animation: gradientBG 15s ease infinite; display: flex; align-items: center; justify-content: center; }
-        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        .back-home { position: fixed; bottom: 30px; left: 30px; text-decoration: none; color: var(--primary-purple); font-weight: bold; padding: 12px 24px; background: var(--glass-white); border-radius: 50px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-        .auth-card { background: var(--glass-white); padding: 50px 40px; border-radius: 28px; width: 100%; max-width: 400px; text-align: center; }
-        .form-group { margin-bottom: 20px; text-align: left; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.8rem; }
-        .form-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
-        .login-btn { width: 100%; background: var(--primary-purple); color: white; padding: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        body { font-family: sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #f3e5f5; }
+        .card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; width: 350px; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #6a1b9a; color: white; border: none; border-radius: 8px; cursor: pointer; }
     </style>
 </head>
 <body>
-    <a href="index.html" class="back-home">🏠 返回首頁</a>
-    <div class="auth-card">
-        <h1>歡迎回來</h1>
+    <div class="card">
+        <h1>登入</h1>
         <form id="loginForm">
-            <div class="form-group"><label>電子郵件</label><input type="email" id="loginEmail" required></div>
-            <div class="form-group"><label>密碼</label><input type="password" id="loginPw" required></div>
-            <button type="submit" class="login-btn">開啟連結</button>
+            <input type="email" id="email" placeholder="電子郵件" required>
+            <input type="password" id="pw" placeholder="密碼" required>
+            <button type="submit">開啟連結</button>
         </form>
     </div>
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPw').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('pw').value;
             const userData = JSON.parse(localStorage.getItem(email));
 
             if (userData && userData.password === password) {
@@ -39,7 +32,7 @@
                 alert('✨ 登入成功！');
                 window.location.href = 'index.html';
             } else {
-                alert("🔮 郵件或密碼錯誤。");
+                alert('🔮 資料不匹配，請檢查帳密。');
             }
         });
     </script>
