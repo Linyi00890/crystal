@@ -15,6 +15,7 @@ body {
     overflow-x: hidden;
 }
 
+/* --- 導覽列 (保留原始代碼) --- */
 .main-header { 
     position: fixed; top: 0; width: 100%; 
     background: rgba(5, 8, 10, 0.9); 
@@ -45,64 +46,38 @@ body {
     font-family: 'Noto Serif TC'; transition: 0.3s;
 }
 
-/* --- 修改的部分：下拉選單樣式 --- */
+/* --- 下拉選單樣式 --- */
 .dropdown { position: relative; }
-
 .dropdown-btn { 
     background: rgba(255, 255, 255, 0.05); 
     border: 1px solid rgba(212, 175, 55, 0.4);
-    color: #ddd; 
-    padding: 10px 20px; 
-    cursor: pointer; 
-    border-radius: 4px;
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
-    min-width: 160px; 
-    justify-content: space-between;
+    color: #ddd; padding: 10px 20px; cursor: pointer; border-radius: 4px;
+    display: flex; align-items: center; gap: 10px; min-width: 160px; justify-content: space-between;
 }
 
 .dropdown-content { 
-    position: absolute; 
-    top: 110%; 
-    left: 0; 
-    background: #0f161d; 
-    border: 1px solid var(--gold); 
-    list-style: none; 
-    min-width: 100%; 
-    border-radius: 4px; 
-    display: none; 
-    z-index: 1500;
+    position: absolute; top: 110%; left: 0; background: #0f161d; 
+    border: 1px solid var(--gold); list-style: none; min-width: 100%; 
+    border-radius: 4px; display: none; z-index: 1500;
 }
-
-.dropdown-content.show { 
-    display: block; 
-}
-
+.dropdown-content.show { display: block; }
 .dropdown-content li { 
-    padding: 12px 20px; 
-    color: #ccc; 
-    cursor: pointer; 
-    text-align: left; 
-    transition: 0.2s; 
-    font-size: 0.9rem; 
+    padding: 12px 20px; color: #ccc; cursor: pointer; text-align: left; 
+    transition: 0.2s; font-size: 0.9rem; 
 }
+.dropdown-content li:hover { background: var(--gold); color: #000; }
 
-.dropdown-content li:hover { 
-    background: var(--gold); 
-    color: #000; 
-}
-
-/* 水晶網格 */
+/* --- 水晶網格與卡牌 --- */
 .crystal-grid { 
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
     gap: 40px; max-width: 1300px; margin: 50px auto; padding: 0 30px 100px; 
 }
 
-.card-container { perspective: 1000px; height: 480px; }
+.card-container { perspective: 1000px; height: 480px; margin-bottom: 30px; }
 .crystal-card { 
     position: relative; width: 100%; height: 100%; 
-    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1); transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); transform-style: preserve-3d;
+    cursor: pointer;
 }
 .card-container:hover .crystal-card { transform: rotateY(180deg); }
 
@@ -114,41 +89,53 @@ body {
     transition: 0.3s;
 }
 
-/* 懸停發光效果 */
 .card-container:hover .flip-front,
 .card-container:hover .flip-back {
     border-color: var(--gold);
     box-shadow: 0 0 25px var(--card-glow);
 }
 
+/* --- 正面樣式 --- */
 .flip-front { background: #070b0f; }
-.crystal-img { width: 100%; height: 100%; object-fit: cover; }
+.crystal-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.5s; }
+.card-container:hover .crystal-img { transform: scale(1.1); opacity: 0.5; }
 
 .front-overlay {
-    position: absolute; bottom: 0; width: 100%; height: 50%;
+    position: absolute; bottom: 0; width: 100%; padding: 30px 20px;
     background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, transparent 100%);
-    padding: 30px 20px; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px;
+    display: flex; flex-direction: column; justify-content: flex-end; gap: 8px;
 }
+.tag { color: var(--card-color); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+.crystal-name { font-family: 'Cinzel'; font-size: 1.4rem; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
 
-.tag { background: var(--card-color); color: #000; padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; width: fit-content; }
-.crystal-name { font-family: 'Cinzel'; font-size: 1.3rem; color: #fff; }
-
+/* --- 背面樣式 (整合目標代碼的精細資訊結構) --- */
 .flip-back { 
     background: linear-gradient(145deg, #0f161d 0%, #05080a 100%); 
     transform: rotateY(180deg); display: flex; flex-direction: column; 
-    align-items: center; justify-content: center; padding: 35px; text-align: center;
+    padding: 25px; align-items: flex-start; justify-content: space-between;
 }
 
-.back-title { color: var(--card-color); font-size: 1.1rem; margin-bottom: 20px; font-weight: 600; border-bottom: 1px solid var(--card-color); padding-bottom: 5px; }
-.back-desc { font-size: 0.95rem; color: #ccc; line-height: 1.8; margin-bottom: 30px; font-family: 'Noto Serif TC'; }
+.back-title { 
+    color: var(--card-color); font-size: 1.3rem; font-weight: 700; width: 100%;
+    text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; margin-bottom: 15px;
+}
+
+.info-item { width: 100%; margin-bottom: 12px; }
+.info-label { 
+    font-size: 0.7rem; color: var(--card-color); font-weight: 600; 
+    text-transform: uppercase; display: block; margin-bottom: 3px; opacity: 0.8;
+}
+
+.back-desc { font-size: 0.85rem; color: #fff; line-height: 1.5; font-family: 'Noto Serif TC'; }
+.back-text { font-size: 0.85rem; color: #bbb; font-family: 'Noto Serif TC'; }
 
 .detail-btn { 
-    text-decoration: none; color: #000; background: var(--card-color); 
-    padding: 10px 25px; border-radius: 30px; font-size: 0.85rem; font-weight: 600; transition: 0.3s; 
+    align-self: center; text-decoration: none; color: #000; background: var(--card-color); 
+    padding: 10px 30px; border-radius: 30px; font-size: 0.85rem; font-weight: 600; transition: 0.3s;
 }
-.detail-btn:hover { transform: translateY(-3px); filter: brightness(1.1); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+.detail-btn:hover { transform: translateY(-3px); filter: brightness(1.1); box-shadow: 0 5px 15px var(--card-glow); }
 
-/* 手機版導覽 */
+/* --- 手機版導覽 (保留原始代碼) --- */
 .menu-toggle { display: none; flex-direction: column; cursor: pointer; z-index: 2001; }
 .bar { width: 25px; height: 2px; background-color: var(--gold); margin: 3px 0; transition: 0.3s; }
 
@@ -161,4 +148,5 @@ body {
         transition: 0.5s; z-index: 1999;
     }
     .nav-links.active { right: 0; }
+    .crystal-grid { gap: 20px; padding: 20px; }
 }
