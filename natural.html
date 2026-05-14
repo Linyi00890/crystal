@@ -43,7 +43,7 @@
 
     <div class="promo-banner">
         <div class="promo-content">
-            ✦ 全館滿 $3,000 免運費 ✦ 高品質原礦鑑定書隨附 ✦ 能量空間佈置諮詢預約中 ✦ 限量新品：大尺寸巴西烏拉圭晶洞到貨 ✦ 
+            ✦ 全館滿 $3,000 免運費 ✦ 高高品質原礦鑑定書隨附 ✦ 能量空間佈置諮詢預約中 ✦ 限量新品：大尺寸巴西烏拉圭晶洞到貨 ✦ 
         </div>
     </div>
 
@@ -159,7 +159,6 @@
             { name: "藍磷灰原石標本", eff: "激發動力", price: 1350, stock: 7, img: "apatite02.jfif" }
         ];
 
-        // 核心：使用同一個 localStorage 鍵名 'cart' 實現跨頁面結帳
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
@@ -181,7 +180,7 @@
                         <div class="mt-auto">
                             <p class="text-[10px] text-red-500 font-bold mb-1">收藏限定：${p.stock} 件</p>
                             <p class="text-lg font-bold text-stone-900 mb-3">NT$ ${p.price}</p>
-                            <button onclick='addToCart(${JSON.stringify(p)})' class="w-full bg-stone-800 text-white py-2 rounded-lg text-sm hover:bg-stone-700 transition-colors">收藏此原礦</button>
+                            <button onclick='addToCart(${JSON.stringify(p)})' class="w-full bg-stone-800 text-white py-2 rounded-lg text-sm hover:bg-stone-700 transition-colors">加入購物車</button>
                         </div>
                     </div>
                 </div>
