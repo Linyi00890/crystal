@@ -5,172 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>個人資料管理 | CrystalMagic</title>
     <style>
-        :root { 
-            --primary-purple: #6a1b9a; 
-            --glass-white: rgba(255, 255, 255, 0.9); 
-        }
-        body { 
-            margin: 0; 
-            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif; 
-            background: linear-gradient(-45deg, #f3e5f5, #e1f5fe, #fff3e0, #fce4ec);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; 
-        }
-        
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* 🖼️ 建立如圖片上的返回首頁按鈕樣式 */
-        .back-home {
-            position: fixed; 
-            bottom: 30px; 
-            left: 30px;
-            text-decoration: none; 
-            color: var(--primary-purple);
-            font-weight: bold; 
-            padding: 12px 24px;
-            background: var(--glass-white); 
-            border-radius: 50px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            transition: all 0.3s ease; 
-            display: flex; 
-            align-items: center; 
-            gap: 8px;
-            z-index: 9999; 
-            backdrop-filter: blur(5px); 
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-        .back-home:hover { 
-            background: var(--primary-purple); 
-            color: white; 
-            transform: translateY(-5px); 
-        }
-
-        .profile-card { 
-            background: var(--glass-white); 
-            backdrop-filter: blur(15px);
-            padding: 40px; 
-            border-radius: 28px; 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1); 
-            width: 100%; 
-            max-width: 400px; 
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-        h2 { color: var(--primary-purple); text-align: center; margin-bottom: 30px; }
+        :root { --primary-purple: #6a1b9a; --glass-white: rgba(255, 255, 255, 0.9); }
+        body { margin: 0; font-family: sans-serif; background: linear-gradient(-45deg, #f3e5f5, #e1f5fe, #fff3e0, #fce4ec); background-size: 400% 400%; animation: gradientBG 15s ease infinite; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .back-home { position: fixed; bottom: 30px; left: 30px; text-decoration: none; color: var(--primary-purple); font-weight: bold; padding: 12px 24px; background: var(--glass-white); border-radius: 50px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); transition: 0.3s; display: flex; align-items: center; gap: 8px; z-index: 9999; backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.5); }
+        .back-home:hover { background: var(--primary-purple); color: white; transform: translateY(-5px); }
+        .profile-card { background: var(--glass-white); backdrop-filter: blur(15px); padding: 40px; border-radius: 28px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
+        h2 { color: var(--primary-purple); margin-bottom: 25px; }
         .info-item { margin-bottom: 20px; text-align: left; }
-        label { display: block; font-size: 0.85rem; font-weight: 600; color: #555; margin-bottom: 8px; }
-        input { 
-            width: 100%; 
-            padding: 13px 16px; 
-            border: 1.5px solid #eee; 
-            border-radius: 12px; 
-            box-sizing: border-box; 
-            font-size: 1rem;
-            background: rgba(255, 255, 255, 0.8);
-        }
-        input[readonly] { background: #f9f9f9; cursor: not-allowed; }
-        .btn-save { 
-            width: 100%; 
-            padding: 16px; 
-            border: none; 
-            border-radius: 14px; 
-            cursor: pointer; 
-            font-weight: bold; 
-            font-size: 1.1rem;
-            margin-top: 20px;
-            background: linear-gradient(135deg, #7b1fa2, #4a148c);
-            color: white;
-            transition: 0.3s;
-        }
-        .btn-save:hover { opacity: 0.9; transform: scale(1.02); }
+        label { display: block; font-size: 0.85rem; color: #555; margin-bottom: 8px; font-weight: bold; }
+        input { width: 100%; padding: 12px; border: 1px solid #eee; border-radius: 12px; box-sizing: border-box; }
+        .btn-save { width: 100%; padding: 15px; border: none; border-radius: 12px; background: var(--primary-purple); color: white; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+        .btn-save:hover { opacity: 0.9; }
     </style>
 </head>
 <body>
-
     <a href="index.html" class="back-home">🏠 返回首頁</a>
-
     <div class="profile-card">
         <h2 id="page-title">個人資料確認</h2>
         <form id="profile-form">
-            <div class="info-item">
-                <label>使用者名稱</label>
-                <input type="text" id="p-username" readonly>
-            </div>
-            <div class="info-item">
-                <label>電子郵件 (不可修改)</label>
-                <input type="email" id="p-email" readonly>
-            </div>
-            <div class="info-item" id="pw-group">
-                <label>更改密碼 (如不修改請留空)</label>
-                <input type="password" id="p-password" placeholder="********">
-            </div>
-            <button type="submit" id="save-btn" class="btn-save" style="display:none;">儲存能量修改</button>
+            <div class="info-item"><label>使用者名稱</label><input type="text" id="p-username" readonly></div>
+            <div class="info-item"><label>電子郵件 (不可改)</label><input type="email" id="p-email" readonly></div>
+            <div class="info-item"><label>更改密碼 (不改請留空)</label><input type="password" id="p-password" placeholder="********"></div>
+            <button type="submit" id="save-btn" class="btn-save" style="display:none;">儲存修改</button>
         </form>
     </div>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // 從儲存空間取得登入資訊
-            const userEmail = localStorage.getItem('userEmail'); 
-            const userData = JSON.parse(localStorage.getItem(userEmail));
-            
-            // 解析網址參數 (mode=view 或 mode=edit)
-            const urlParams = new URLSearchParams(window.location.search);
-            const mode = urlParams.get('mode') || window.location.hash.replace('#', '');
+        const userEmail = localStorage.getItem('loggedInUserEmail');
+        const userData = JSON.parse(localStorage.getItem(userEmail));
+        const urlParams = new URLSearchParams(window.location.search);
+        const mode = urlParams.get('mode');
 
-            if (!userData) {
-                alert("🔮 魔法提醒：請先登入以連結能量。");
-                window.location.href = 'login.html';
-                return;
-            }
+        if (!userData) window.location.href = 'login.html';
 
-            // 填充畫面資料
-            document.getElementById('p-username').value = userData.username;
-            document.getElementById('p-email').value = userData.email;
+        document.getElementById('p-username').value = userData.username;
+        document.getElementById('p-email').value = userData.email;
 
-            // 根據模式切換顯示邏輯
-            if (mode === 'edit') {
-                document.getElementById('page-title').innerText = "⚙️ 修改能量資料";
-                document.getElementById('p-username').readOnly = false;
-                document.getElementById('save-btn').style.display = "block";
-            }
+        if (mode === 'edit') {
+            document.getElementById('page-title').innerText = "⚙️ 修改資料";
+            document.getElementById('p-username').readOnly = false;
+            document.getElementById('save-btn').style.display = "block";
+        }
 
-            // 處理表單儲存
-            document.getElementById('profile-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const newUsername = document.getElementById('p-username').value.trim();
-                const newPassword = document.getElementById('p-password').value;
-
-                if (newUsername.length < 2) {
-                    alert("🔮 魔法提醒：使用者名稱太短囉。");
-                    return;
-                }
-
-                // 更新資料物件
-                userData.username = newUsername;
-                if (newPassword) {
-                    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-                    if (!passwordRegex.test(newPassword)) {
-                        alert("🔮 魔法提醒：新密碼格式不符 (需含大小寫與數字，至少8位)。");
-                        return;
-                    }
-                    userData.password = newPassword;
-                }
-
-                // 儲存回 localStorage
-                localStorage.setItem(userEmail, JSON.stringify(userData));
-                localStorage.setItem('username', newUsername); // 同步更新首頁顯示的名稱
-                
-                alert("✨ 能量資料更新成功！");
-                window.location.href = 'index.html';
-            });
+        document.getElementById('profile-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            userData.username = document.getElementById('p-username').value;
+            const newPw = document.getElementById('p-password').value;
+            if (newPw) userData.password = newPw;
+            localStorage.setItem(userEmail, JSON.stringify(userData));
+            alert("✨ 資料更新成功！");
+            window.location.href = 'index.html';
         });
     </script>
 </body>
