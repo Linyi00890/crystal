@@ -15,7 +15,7 @@ body {
     overflow-x: hidden;
 }
 
-/* --- 導覽列 (保留原始代碼) --- */
+/* --- 導覽列 --- */
 .main-header { 
     position: fixed; top: 0; width: 100%; 
     background: rgba(5, 8, 10, 0.9); 
@@ -38,13 +38,13 @@ body {
 
 /* --- 篩選區塊 --- */
 .filter-section { padding-top: 120px; text-align: center; }
-.filter-container { display: flex; justify-content: center; gap: 15px; align-items: center; flex-wrap: wrap; }
 
 .btn-all { 
     background: rgba(212, 175, 55, 0.1); border: 1px solid var(--gold);
     color: var(--gold); padding: 10px 25px; cursor: pointer; border-radius: 4px;
     font-family: 'Noto Serif TC'; transition: 0.3s;
 }
+.btn-all:hover { background: var(--gold); color: #000; }
 
 /* --- 下拉選單樣式 --- */
 .dropdown { position: relative; }
@@ -108,7 +108,7 @@ body {
 .tag { color: var(--card-color); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
 .crystal-name { font-family: 'Cinzel'; font-size: 1.4rem; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
 
-/* --- 背面樣式 (整合目標代碼的精細資訊結構) --- */
+/* --- 背面樣式 --- */
 .flip-back { 
     background: linear-gradient(145deg, #0f161d 0%, #05080a 100%); 
     transform: rotateY(180deg); display: flex; flex-direction: column; 
@@ -129,13 +129,7 @@ body {
 .back-desc { font-size: 0.85rem; color: #fff; line-height: 1.5; font-family: 'Noto Serif TC'; }
 .back-text { font-size: 0.85rem; color: #bbb; font-family: 'Noto Serif TC'; }
 
-.detail-btn { 
-    align-self: center; text-decoration: none; color: #000; background: var(--card-color); 
-    padding: 10px 30px; border-radius: 30px; font-size: 0.85rem; font-weight: 600; transition: 0.3s;
-}
-.detail-btn:hover { transform: translateY(-3px); filter: brightness(1.1); box-shadow: 0 5px 15px var(--card-glow); }
-
-/* --- 手機版導覽 (保留原始代碼) --- */
+/* --- 手機版導覽 --- */
 .menu-toggle { display: none; flex-direction: column; cursor: pointer; z-index: 2001; }
 .bar { width: 25px; height: 2px; background-color: var(--gold); margin: 3px 0; transition: 0.3s; }
 
