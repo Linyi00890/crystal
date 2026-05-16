@@ -3,199 +3,368 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>星座運勢水晶神諭 2026</title>
+    <title>星靈之鏡  - 七脈輪能量觀測站</title>
     <style>
         :root {
-            --gold: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            --gold-solid: #d4af37;
-            --mystic-purple: #4a148c;
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
+            /* 主要與亮色對比 */
+            --primary-gold: #cfa134;      
+            --gold-solid: #b38728;        
+            --gold-gradient: linear-gradient(45deg, #a67c1e, #d9b455, #bf953f, #eedaa2, #aa771c);
+            
+            /* 大背景：冷調未來感極光微光漸層 */
+            --bg-bright-tech: radial-gradient(circle at 50% 30%, #f6faff 0%, #eef3fa 40%, #e2eaf5 100%);
+            
+            /* 文字與結果框底色 */
+            --text-main: #334155;        
+            --card-front-bg: #ffffff; 
+            --poker-back: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); 
+            
+            /* 左右星座卡牌微光亮色系 */
+            --tech-gold-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(252, 246, 220, 0.5) 100%);
+            --tech-gold-border: rgba(220, 190, 130, 0.5);
+            --tech-gold-glow: rgba(238, 218, 162, 0.4);
+            
+            --tech-ruby-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 240, 242, 0.5) 100%);
+            --tech-ruby-border: rgba(240, 170, 180, 0.5);
+            --tech-ruby-glow: rgba(255, 192, 203, 0.4);
+
+            /* === 魔法分頁主題色彩與動態基礎變數 === */
+            --fortune-glow: rgba(238, 218, 162, 0.35);
+            --chakra-glow: rgba(52, 211, 153, 0.25);
+            --transit-glow: rgba(139, 92, 246, 0.25);
         }
 
         body {
-            font-family: 'Noto Sans TC', sans-serif;
-            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #000000);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: #fff;
             margin: 0; padding: 0;
-            min-height: 100vh;
-            display: flex; flex-direction: column; align-items: center;
-            overflow-x: hidden;
+            font-family: 'Segoe UI', 'Noto Sans TC', Microsoft JhengHei, sans-serif;
+            background: var(--bg-bright-tech);
+            color: var(--text-main); min-height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            box-sizing: border-box;
+            padding-bottom: 90px;
+            transition: background 0.8s ease;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* 中央主卡牌容器：基礎設定 */
+        .container {
+            width: 95%; max-width: 900px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 40px; padding: 45px 35px; text-align: center;
+            margin: 20px 0;
+            transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 30px 70px rgba(165, 185, 210, 0.35), inset 0 0 30px rgba(255, 255, 255, 0.6);
         }
 
-        header { text-align: center; padding: 40px 20px 10px; }
-        h1 { 
-            background: var(--gold);
+        /* === 魔法感：動態與底色區隔樣式 === */
+        /* 1. 當處於「直覺抽卡」時的主面板效果 */
+        .container.theme-fortune {
+            background: rgba(255, 255, 255, 0.78);
+            border-color: rgba(238, 218, 162, 0.6);
+            box-shadow: 0 30px 70px rgba(180, 170, 140, 0.3), 0 0 40px var(--fortune-glow), inset 0 0 30px rgba(255, 255, 255, 0.6);
+        }
+
+        /* 2. 當處於「七脈輪檢測」時的主面板效果（帶有療癒綠與靈性藍底色感） */
+        .container.theme-chakra {
+            background: rgba(240, 253, 244, 0.8);
+            border-color: rgba(52, 211, 153, 0.5);
+            box-shadow: 0 30px 70px rgba(130, 170, 150, 0.3), 0 0 40px var(--chakra-glow), inset 0 0 30px rgba(255, 255, 255, 0.8);
+        }
+
+        /* 3. 當處於「今日星象」時的主面板效果（深邃星辰紫光感底色） */
+        .container.theme-transit {
+            background: rgba(245, 243, 255, 0.82);
+            border-color: rgba(167, 139, 250, 0.5);
+            box-shadow: 0 30px 70px rgba(150, 140, 180, 0.3), 0 0 40px var(--transit-glow), inset 0 0 30px rgba(255, 255, 255, 0.6);
+        }
+        /* ==================================== */
+
+        h1 {
+            background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size: 1.8rem; letter-spacing: 5px; margin: 0; 
-            filter: drop-shadow(0 0 10px rgba(212,175,55,0.5));
+            letter-spacing: 6px; 
+            margin-bottom: 8px;
+            font-size: 2.4rem;
+            filter: drop-shadow(0 2px 4px rgba(150, 110, 30, 0.15));
+        }
+        
+        .subtitle { 
+            font-size: 0.95em; 
+            color: #64748b; 
+            margin-bottom: 35px;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+        
+        .step { display: none; }
+        .step.active { display: block; animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+
+        h3 {
+            color: #475569;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
         }
 
-        .zodiac-selector {
-            margin: 20px 0;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 15px 30px;
-            border-radius: 50px;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        /* 分頁導覽按鈕 */
+        .nav-buttons { display: flex; justify-content: center; gap: 12px; margin-bottom: 35px; flex-wrap: wrap; }
+        .nav-btn {
+            background: rgba(0, 0, 0, 0.03); 
+            border: 1px solid rgba(0, 0, 0, 0.08); 
+            padding: 11px 22px;
+            color: #475569; border-radius: 25px; cursor: pointer; 
+            font-weight: bold; transition: all 0.3s ease;
+            letter-spacing: 1px;
         }
-        select {
-            padding: 5px 15px; border-radius: 20px; border: none; font-weight: bold; cursor: pointer;
+        .nav-btn:hover {
+            background: rgba(0, 0, 0, 0.06);
+            border-color: rgba(0, 0, 0, 0.15);
+            color: #1e293b;
         }
-
-        /* 3D 卡牌舞台 */
-        .card-stage {
-            perspective: 1500px;
-            margin: 20px auto;
-            cursor: pointer;
-            padding-bottom: 20px;
-        }
-
-        .card-inner {
-            width: 320px;
-            min-height: 520px; /* 改為最小高度，讓它能隨內容增長 */
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+        .nav-btn.active { 
+            background: var(--gold-gradient); 
+            color: #ffffff; 
+            border-color: transparent;
+            box-shadow: 0 8px 20px rgba(179, 135, 40, 0.3); 
         }
 
-        .card-inner.is-flipped { transform: rotateY(180deg); }
-
-        .card-face {
-            position: absolute; width: 100%; height: 100%;
-            backface-visibility: hidden;
-            border-radius: 25px;
-            box-sizing: border-box;
-            /* 金色漸層邊框效果 */
-            border: 3px solid transparent;
-            background-image: linear-gradient(white, white), var(--gold);
-            background-origin: border-box;
-            background-clip: content-box, border-box;
+        /* 雙分區網格結構 */
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 24px; 
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .zodiac-zone {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+        
+        button.action-btn {
+            padding: 18px 12px; border-radius: 18px; 
+            font-weight: 600; cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            letter-spacing: 2px;
+            font-size: 0.95rem;
         }
 
-        /* 卡片背面 */
-        .card-back {
-            background-image: linear-gradient(#1a1a2e, #1a1a2e), var(--gold);
-            display: flex; align-items: center; justify-content: center;
+        /* 左側群組：微金光澤卡牌 */
+        .zone-left button.action-btn {
+            border: 1px solid var(--tech-gold-border);
+            background: var(--tech-gold-bg);
+            box-shadow: 0 4px 12px rgba(180, 160, 120, 0.1), inset 0 0 10px rgba(255,255,255,0.8);
+            color: #7c5e10;
         }
-        .card-back::after { content: "✨"; font-size: 80px; filter: drop-shadow(0 0 20px var(--gold-solid)); }
-
-        /* 卡片正面 */
-        .card-front {
-            background: #fff; color: #333;
-            transform: rotateY(180deg);
-            padding: 20px;
-            display: flex; flex-direction: column; align-items: center;
-            height: auto;
-            position: relative;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        .zone-left button.action-btn:hover {
+            background: #ffffff;
+            border-color: #d4af37;
+            box-shadow: 0 8px 20px var(--tech-gold-glow), inset 0 0 10px rgba(255,255,255,1);
+            transform: translateY(-3px);
         }
 
-        .crystal-img {
-            width: 100%; height: 200px; border-radius: 15px;
-            object-fit: cover; margin-bottom: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        /* 右側群組：櫻粉光澤卡牌 */
+        .zone-right button.action-btn {
+            border: 1px solid var(--tech-ruby-border);
+            background: var(--tech-ruby-bg);
+            box-shadow: 0 4px 12px rgba(200, 150, 160, 0.1), inset 0 0 10px rgba(255,255,255,0.8);
+            color: #9c4153;
+        }
+        .zone-right button.action-btn:hover {
+            background: #ffffff;
+            border-color: #fd3850;
+            box-shadow: 0 8px 20px var(--tech-ruby-glow), inset 0 0 10px rgba(255,255,255,1);
+            transform: translateY(-3px);
         }
 
-        .res-name { font-size: 1.6rem; color: var(--mystic-purple); margin: 0; font-weight: 900; }
-        .res-tag { 
-            background: var(--mystic-purple); color: #fff; 
-            padding: 4px 15px; border-radius: 20px; 
-            font-size: 0.8rem; margin: 8px 0; 
+        /* 撲克牌美化 */
+        .card-deck { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 25px; }
+        .poker-card {
+            width: 115px; height: 165px;
+            background: var(--poker-back); 
+            border: 1px solid rgba(0, 150, 255, 0.2); 
+            border-radius: 18px;
+            color: #3b82f6;
+            cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            display: flex; align-items: center; justify-content: center; font-size: 2.6em;
+            text-shadow: 0 2px 6px rgba(59, 130, 246, 0.2);
+            user-select: none;
+            box-shadow: 0 10px 25px rgba(160, 180, 200, 0.25);
+        }
+        .poker-card:hover { 
+            transform: translateY(-18px) rotate(3deg) scale(1.03); 
+            border-color: #3b82f6;
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4); 
+            color: #1d4ed8;
         }
 
-        .info-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-            width: 100%; margin: 10px 0;
+        /* 七脈輪人體圖與擴散粒子動態 */
+        .chakra-container { position: relative; width: 220px; height: 420px; margin: 15px auto; }
+        .human-svg { width: 100%; height: 100%; opacity: 0.7; filter: drop-shadow(0 0 8px rgba(0,0,0,0.05)); }
+        .chakra-dot {
+            position: absolute; width: 24px; height: 24px; border-radius: 50%;
+            left: 50%; transform: translateX(-50%); cursor: pointer;
+            box-shadow: 0 0 18px currentColor; transition: all 0.3s ease;
+            animation: pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+            border: 2px solid #fff;
         }
-        .info-item {
-            background: #f4f4f9; padding: 10px; border-radius: 12px;
-            font-size: 0.75rem; color: #666; text-align: center;
+        .chakra-dot:hover {
+            transform: translateX(-50%) scale(1.4);
+            filter: brightness(1.1);
+            box-shadow: 0 0 25px currentColor, 0 0 10px #ffffff;
         }
-        .info-item b { display: block; color: var(--mystic-purple); font-size: 0.85rem; margin-bottom: 2px; }
-
-        .fortune-box {
-            background: #fff9ea; border-radius: 15px; padding: 15px;
-            margin-top: 5px; font-size: 0.9rem; line-height: 1.6; color: #444;
-            border: 1px solid #faedcd; width: 100%; box-sizing: border-box;
-        }
-
-        .reset-btn {
-            background: var(--gold); border: none; padding: 12px 35px;
-            border-radius: 50px; cursor: pointer; font-weight: bold;
-            color: #4a148c; margin: 20px 0; display: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        /* 脈輪能量呼吸起伏動態修正 */
+        @keyframes pulse { 
+            0%, 100% { opacity: 0.75; transform: translateX(-50%) scale(1); box-shadow: 0 0 12px currentColor; } 
+            50% { opacity: 1; transform: translateX(-50%) scale(1.2); box-shadow: 0 0 22px currentColor, 0 0 8px rgba(255,255,255,0.5); } 
         }
 
+        /* 結果框與面板 */
+        .result-box {
+            background: var(--card-front-bg); 
+            padding: 30px; border-radius: 22px;
+            text-align: left; 
+            border-left: 8px solid #b38728; 
+            margin-top: 25px; line-height: 1.8;
+            color: #334155;
+            box-shadow: 0 15px 40px rgba(140, 160, 180, 0.2);
+        }
+        .result-box p { margin: 12px 0; font-size: 1rem; }
+        .result-box h3 { margin-top: 0; margin-bottom: 15px; font-weight: 700; font-size: 1.4rem; color: #1e293b; }
+        .highlight { color: #6d28d9; font-weight: bold; font-size: 1.05rem; }
+
+        /* 今日星象專用微暗晶透卡片（加上宇宙微光閃爍效果） */
+        #transit-report.result-box {
+            background: rgba(255, 255, 255, 0.9);
+            border-left: 6px solid #8b5cf6;
+            border-right: 1px solid rgba(0,0,0,0.03);
+            border-top: 1px solid rgba(0,0,0,0.03);
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+            color: #334155;
+            animation: cosmicGlimmer 4s infinite ease-in-out;
+        }
+        #transit-report.result-box .highlight {
+            color: #6d28d9;
+            text-shadow: none;
+        }
+        /* 星象專屬動態：星象面板軟調呼吸閃爍，模仿星塵流動 */
+        @keyframes cosmicGlimmer {
+            0%, 100% { box-shadow: 0 15px 40px rgba(140, 160, 180, 0.2); border-left-color: #8b5cf6; }
+            50% { box-shadow: 0 15px 45px rgba(139, 92, 246, 0.25); border-left-color: #d946ef; }
+        }
+
+        /* 重新測算大按鈕 */
+        #final-result button.action-btn {
+            background: var(--gold-gradient);
+            color: #ffffff;
+            font-size: 1.1rem;
+            padding: 16px;
+            border: none;
+            box-shadow: 0 8px 25px rgba(179, 135, 40, 0.3);
+            text-shadow: none;
+        }
+        #final-result button.action-btn:hover {
+            box-shadow: 0 12px 30px rgba(179, 135, 40, 0.5);
+            filter: brightness(1.05);
+        }
+
+        /* 底部固定導覽列 */
         .nav-container {
-            position: fixed; bottom: 20px; width: 100%;
+            position: fixed; bottom: 25px; width: 100%;
             display: flex; justify-content: space-between;
-            padding: 0 20px; box-sizing: border-box; pointer-events: none;
+            padding: 0 30px; box-sizing: border-box; pointer-events: none;
+            z-index: 1000;
         }
-        .nav-group { display: flex; gap: 10px; pointer-events: auto; }
+        .nav-group { display: flex; gap: 12px; pointer-events: auto; }
         .btn {
-            padding: 10px 15px; background: rgba(255,255,255,0.1); 
-            backdrop-filter: blur(5px); color: #fff;
-            text-decoration: none; border-radius: 30px; font-size: 0.75rem;
-            border: 1px solid var(--glass-border);
+            padding: 11px 18px; 
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); 
+            color: #475569;
+            text-decoration: none; border-radius: 30px; font-size: 0.8rem;
+            border: 1px solid rgba(0,0,0,0.06); 
+            font-weight: bold;
+            box-shadow: 0 6px 20px rgba(165, 185, 210, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn:hover { 
+            background: var(--gold-gradient); 
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 8px 20px rgba(179, 135, 40, 0.4);
         }
 
-        @media (max-width: 480px) {
-            .card-inner { width: 290px; }
-            h1 { font-size: 1.5rem; }
+        @media (max-width: 768px) { 
+            .grid { grid-template-columns: 1fr; gap: 14px; } 
+            .container { padding: 30px 15px; }
+            h1 { font-size: 1.9rem; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>水晶神諭．2026</h1>
-</header>
+<div class="container theme-fortune" id="main-panel">
+    <h1>星靈之鏡</h1>
+    <p class="subtitle">✧ 2026 脈輪與星座共振實驗室 ✧</p>
 
-<div class="zodiac-selector">
-    <select id="zodiacSelect">
-        <option value="牡羊座">牡羊座</option><option value="金牛座">金牛座</option>
-        <option value="雙子座">雙子座</option><option value="巨蟹座">巨蟹座</option>
-        <option value="獅子座">獅子座</option><option value="處女座">處女座</option>
-        <option value="天秤座">天秤座</option><option value="天蠍座">天蠍座</option>
-        <option value="射手座">射手座</option><option value="摩羯座">摩羯座</option>
-        <option value="水瓶座">水瓶座</option><option value="雙魚座">雙魚座</option>
-    </select>
-</div>
+    <div class="nav-buttons">
+        <button id="nav-btn-fortune" class="nav-btn active" onclick="switchMode(event, 'fortune')">直覺抽卡</button>
+        <button id="nav-btn-chakra" class="nav-btn" onclick="switchMode(event, 'chakra')">七脈輪檢測</button>
+        <button id="nav-btn-transit" class="nav-btn" onclick="switchMode(event, 'transit')">今日星象</button>
+    </div>
 
-<div class="card-stage" onclick="drawCard()">
-    <div class="card-inner" id="card">
-        <div class="card-face card-back"></div>
-        <div class="card-face card-front">
-            <img id="resImg" src="" class="crystal-img">
-            <h2 id="resName" class="res-name"></h2>
-            <div id="resTag" class="res-tag"></div>
+    <div id="mode-fortune" class="step active">
+        <div id="sub-step-1">
+            <h3>選擇守護星座</h3>
             
-            <div class="info-grid">
-                <div class="info-item"><b>對應脈輪</b><span id="resChakra"></span></div>
-                <div class="info-item"><b>開運色</b><span id="resColor"></span></div>
+            <div class="grid">
+                <div class="zodiac-zone zone-left" id="zodiac-grid-left"></div>
+                
+                <div class="zodiac-zone zone-right" id="zodiac-grid-right"></div>
             </div>
-
-            <div class="fortune-box">
-                <div style="font-weight: bold; color: #b38728; margin-bottom: 5px; text-align:center;" id="resLuck"></div>
-                <div id="resFortune"></div>
+            
+        </div>
+        <div id="sub-step-2" style="display:none;">
+            <h3>命定抽卡</h3>
+            <div class="card-deck">
+                <div class="poker-card" onclick="drawCrystal()">✧</div>
+                <div class="poker-card" onclick="drawCrystal()">✧</div>
+                <div class="poker-card" onclick="drawCrystal()">✧</div>
+                <div class="poker-card" onclick="drawCrystal()">✧</div>
             </div>
         </div>
     </div>
-</div>
 
-<button class="reset-btn" id="resetBtn" onclick="resetCard()">重新對應宇宙能量</button>
+    <div id="mode-chakra" class="step">
+        <h3>點擊感應不適或想加強的能量中心</h3>
+        <div class="chakra-container">
+            <img src="https://cdn-icons-png.flaticon.com/512/3004/3004353.png" class="human-svg">
+            <div class="chakra-dot" style="top: 5%; color: #9b59b6; background: #9b59b6;" onclick="checkChakra('頂輪 (Crown)', '紫色', '紫水晶 / 舒俱徠', '連接宇宙智慧，消除雜念與精神疲勞。')"></div>
+            <div class="chakra-dot" style="top: 18%; color: #3f51b5; background: #3f51b5;" onclick="checkChakra('眉心輪 (Third Eye)', '靛色', '青金石 / 藍晶石', '提升直覺力，看穿事物本質，改善睡眠。')"></div>
+            <div class="chakra-dot" style="top: 32%; color: #03a9f4; background: #03a9f4;" onclick="checkChakra('喉輪 (Throat)', '藍色', '海藍寶 / 藍紋瑪瑙', '強化表達與溝通能力，勇敢說出真心話。')"></div>
+            <div class="chakra-dot" style="top: 47%; color: #4caf50; background: #4caf50;" onclick="checkChakra('心輪 (Heart)', '綠色/粉色', '粉晶 / 綠幽靈 / 葡萄石', '療癒情感創傷，開啟愛與被愛的能力。')"></div>
+            <div class="chakra-dot" style="top: 60%; color: #ffeb3b; background: #ffeb3b;" onclick="checkChakra('太陽輪 (Solar Plexus)', '黃色', '黃水晶 / 虎眼石', '建立自信與勇氣，強化個人意志與財運。')"></div>
+            <div class="chakra-dot" style="top: 75%; color: #ff9800; background: #ff9800;" onclick="checkChakra('臍輪 (Sacral)', '橙色', '紅兔毛 / 橙石榴石', '激發創造力，平衡情緒與親密關係。')"></div>
+            <div class="chakra-dot" style="top: 90%; color: #f44336; background: #f44336;" onclick="checkChakra('海底輪 (Root)', '紅色/黑色', '黑曜石 / 茶晶 / 紅瑪瑙', '增加安全感與行動力，消除恐懼與焦慮。')"></div>
+        </div>
+    </div>
+
+    <div id="mode-transit" class="step">
+        <h3>當前宇宙能量觀測</h3>
+        <div id="transit-report" class="result-box"></div>
+    </div>
+
+    <div id="final-result" class="step">
+        <div id="result-display"></div>
+        <button class="action-btn" style="width:100%; margin-top:20px;" onclick="resetTest()">重新測算能量</button>
+    </div>
+</div>
 
 <div class="nav-container">
     <div class="nav-group">
@@ -208,93 +377,163 @@
 </div>
 
 <script>
+    let userZodiac = "";
+    let currentTestType = ""; 
+    
+    // 水晶數據
     const crystals = [
-        { name: "天河石", tag: "幸運自信", chakra: "喉輪", color: "青藍色", img: "picture/amazonite01.jfif", desc: "又稱信心之石，幫助人在投機中獲勝，舒緩緊張情緒。" },
-        { name: "紫水晶", tag: "靈性守護", chakra: "頂輪", color: "紫色", img: "picture/purple01.jpg", desc: "提升直覺與智慧，幫助你在複雜的局勢中保持清明。" },
-        { name: "粉水晶", tag: "溫柔愛意", chakra: "心輪", color: "粉紅色", img: "picture/rose01.jfif", desc: "修復內心創傷，吸引良好的人緣與純粹的愛情能量。" },
-        { name: "鈦晶", tag: "財富霸氣", chakra: "太陽神經叢", color: "金色", img: "picture/rutilated01.jfif", desc: "強化信心與決斷力，是事業突破與招財的最強助力。" },
-        { name: "黑曜石", tag: "極致防護", chakra: "海底輪", color: "黑色", img: "picture/obsidian01.jfif", desc: "吸收負面能量，避開小人與口舌是非，穩定身心磁場。" },
-        { name: "黃水晶", tag: "快樂招財", chakra: "太陽神經叢", color: "黃色", img: "picture/yellow01.jfif", desc: "帶來意外之財的驚喜，提升個人創造力與愉悅感。" },
-        { name: "海藍寶", tag: "寧靜溝通", chakra: "喉輪", color: "淺藍色", img: "picture/aquamarine01.jfif", desc: "增強表達能力，讓你在對話中更具說服力與平和感。" },
-        { name: "白水晶", tag: "淨化萬物", chakra: "全脈輪", color: "透明", img: "picture/white01.jfif", desc: "放大你的正向意圖，清除思緒雜訊，讓運勢重獲新生。" },
-        { name: "拉長石", tag: "宇宙連結", chakra: "眉心輪", color: "灰綠彩光", img: "picture/labradorite01.jfif", desc: "激發潛意識，發現平時忽略的契機，適合轉型中的你。" },
-        { name: "虎眼石", tag: "行動勇氣", chakra: "太陽神經叢", color: "黃褐色", img: "picture/tiger01.jfif", desc: "賦予如虎般的洞察力與勇氣，擊碎猶豫，立馬行動。" },
-        { name: "青金石", tag: "智慧真理", chakra: "眉心輪", color: "藏青色", img: "picture/lazuli01.jfif", desc: "幫助你冷靜思考，在困境中看清事情的真相與本質。" },
-        { name: "草莓晶", tag: "桃花人際", chakra: "心輪", color: "淡紅色", img: "picture/strawberry01", desc: "增強個人魅力，讓身邊的人不自覺想靠近你，和諧相處。" },
-        { name: "月光石", tag: "情感療癒", chakra: "頂輪", color: "奶油白", img: "moonlight02", desc: "溫柔舒緩情緒波動，平衡內分泌，提升柔性魅力。" },
-        { name: "綠幽靈", tag: "事業正財", chakra: "心輪", color: "綠色", img: "picture/green.jfif", desc: "助事業平步青雲，吸引貴人相助，是白手起家的守護神。" },
-        { name: "紅瑪瑙", tag: "活力自信", chakra: "海底輪", color: "紅色", img: "picture/carnelian01.jfif", desc: "改善血液循環，增加親和力與處事的靈活性。" },
-        { name: "螢石", tag: "天才之石", chakra: "眉心輪", color: "紫綠色", img: "picture/fluorite01.jfif", desc: "排除腦中雜念，提升工作與學習效率，是考生的良伴。" },
-        { name: "葡萄石", tag: "希望之石", chakra: "心輪", color: "嫩綠色", img: "picture/prehnite01.jfif", desc: "指引方向，舒緩工作壓力，讓生活重新充滿綠色希望。" },
-        { name: "金運石", tag: "極強辟邪", chakra: "海底輪", color: "黑金色", img: "picture/golden01.jfif", desc: "保平安與極強的招財效果，特別適合投資者與管理層。" },
-        { name: "藍磷灰", tag: "激發創意", chakra: "喉輪", color: "湛藍色", img: "picture/apatite01.jfif", desc: "打破固有的行為模式，讓靈感源源不絕，適合創意工作。" },
-        { name: "茶水晶", tag: "穩定情緒", chakra: "海底輪", color: "茶色", img: "picture/tea01.jfif", desc: "吸收負性能量，讓焦慮的心沈澱下來，增強生命力。" },
-        { name: "舒俱徠", tag: "能量淨化", chakra: "眉心輪", color: "深紫色", img: "picture/shuju01.jfif", desc: "被譽為抗癌之石，能淨化全身脈輪能量，阻擋負面因果。" },
-        { name: "摩根石", tag: "人緣之愛", chakra: "心輪", color: "桃橘色", img: "picture/morganite01.jfif", desc: "散發溫和的人緣磁場，特別適合增加異性緣與改善伴侶關係。" },
-        { name: "太陽石", tag: "陽光活力", chakra: "太陽神經叢", color: "橘紅色", img: "picture/sunstone01.jfif", desc: "如太陽般溫暖身心，驅散憂鬱，提升個人氣場與威嚴。" },
-        { name: "孔雀石", tag: "蛻變守護", chakra: "心輪", color: "深綠色", img: "picture/malachite.jfif", desc: "古老的旅人守護石，幫助在變革中平穩度過，釋放負能量。" },
-        { name: "天河石", tag: "幸運自信", chakra: "喉輪", color: "青藍色", img: "picture/amazonite01.jfif", desc: "又稱信心之石，幫助人在投機中獲勝，舒緩緊張情緒。" },
-        { name: "紅紋石", tag: "愛情契機", chakra: "心輪", color: "粉紅紋理", img: "picture/rhodochrosite01.jfif", desc: "引導愛情進入生活，增進夫妻感情，提升個人價值感。" },
-        { name: "黑髮晶", tag: "領袖魅力", chakra: "海底輪", color: "黑髮狀", img: "picture/black01.jfif", desc: "極強的辟邪除穢能力，助你提升領導能力，避開不潔之物。" },
-        { name: "蛋白石", tag: "藝術靈感", chakra: "頂輪", color: "幻彩", img: "picture/opal01.jpg", desc: "激發無限的想像力與創造力，讓你在藝術或寫作中突破自我。" },
-        { name: "紫龍晶", tag: "轉化心靈", chakra: "頂輪", color: "紫色紋理", img: "picture/amethyst01.jpg", desc: "幫助面對恐懼，將負面轉化為正面，適合靈性修行與沈思。" },
-        { name: "石榴石", tag: "氣血守護", chakra: "海底輪", color: "深紅色", img: "picture/garnet01.jfif", desc: "美容養顏，對抗疲勞，讓整個人容光煥發，增加親和力。" }
+        { name: "拉長石", key: "轉機與奇遇", desc: "引發你的潛在天賦，吸引生命中的貴人。" },
+        { name: "天河石", key: "希望與信念", desc: "遠離混亂思緒，幫助你在困境中找回信心。" },
+        { name: "月光石", key: "柔和與直覺", desc: "調和陽剛氣場，增加感性、魅力與預知夢能力。" },
+        { name: "鈦晶", key: "能量王者", desc: "強大的氣場提升，助你在事業與財運上突破僵局。" },
+        { name: "螢石", key: "思緒清理", desc: "掃除大腦迷霧，讓你在混亂中保持冷靜與專注。" },
+        { name: "拉利瑪", key: "海洋與和平", desc: "緩解壓力與憤怒，讓心靈如海洋般寧靜。" },
+        { name: "超七", key: "全能開發", desc: "同時對應七脈輪，全面提升運氣、財富與人緣。" },
+        { name: "坦桑石", key: "靈魂昇華", desc: "在高壓環境下維持優雅，提升溝通深度與智慧。" },
+        { name: "捷克隕石", key: "頻率共振", desc: "來自宇宙的強大能量，加速心靈覺醒與願望達成。" },
+        { name: "極光23", key: "古老修復", desc: "修復受損的能量場，連結高我，深層釋放舊傷。" },
+        { name: "磷灰石", key: "自我認同", desc: "打破內心自我懷疑的牆，勇敢表現真實的自己。" },
+        { name: "葡萄石", key: "預見與希望", desc: "綠色的希望之光，能舒緩緊張，預測發展先機。" },
+        { name: "黑髮晶", key: "領袖與辟邪", desc: "排除病氣、雜念，增加你在團隊中的威望感。" },
+        { name: "金運石", key: "極強招財", desc: "除了辟邪，更能鎖住財運，適合投資或商業決策。" },
+        { name: "紅紋石", key: "靈魂伴侶", desc: "喚醒心中最真摯的愛，吸引志同道合的伴侶。" },
+        { name: "藍紋瑪瑙", key: "溫柔溝通", desc: "平復焦慮，讓你以最溫暖的方式表達想法。" },
+        { name: "舒俱徠", key: "淨化因果", desc: "著名的抗癌之石，能淨化負面細胞，保護靈魂。" },
+        { name: "石榴石", key: "氣血活力", desc: "增加體力與耐力，守護忠誠與永恆的熱情。" },
+        { name: "天青石", key: "天使連結", desc: "高頻能量，協助你進入深層冥想，平定噩夢。" },
+        { name: "太陽石", key: "自信光芒", desc: "像太陽一樣照耀黑暗，帶來積極與正向的動力編排。" }
     ];
 
-    const fortuneTexts = [
-        "今天是你能量覺醒的一天，適合跨出舒適圈。",
-        "靜坐冥想能為你帶來答案，別急著做決定。",
-        "宇宙正準備送你一份驚喜，請保持開放的心態。",
-        "專注於你的核心目標，其他的紛擾將會散去。",
-        "這是一個修復關係的好時機，主動溝通吧。"
-    ];
+    // 初始化左右對稱排列的星座卡片（嚴格對應示意圖的 6對6 配置與排版順序）
+    const leftZodiacs = ['牡羊', '金牛', '獅子', '處女', '射手', '魔羯'];
+    const rightZodiacs = ['雙子', '巨蟹', '天秤', '天蠍', '水瓶', '雙魚'];
+    
+    const gridLeft = document.getElementById('zodiac-grid-left');
+    const gridRight = document.getElementById('zodiac-grid-right');
 
-    let isDrawing = false;
-
-    function drawCard() {
-        if (isDrawing) return;
-        isDrawing = true;
-
-        const crystal = crystals[Math.floor(Math.random() * crystals.length)];
-        const fortune = fortuneTexts[Math.floor(Math.random() * fortuneTexts.length)];
-        const starCount = 5;
-
-        document.getElementById('resImg').src = crystal.img;
-        document.getElementById('resName').innerText = crystal.name;
-        document.getElementById('resTag').innerText = "✦ " + crystal.tag + " ✦";
-        document.getElementById('resChakra').innerText = crystal.chakra;
-        document.getElementById('resColor').innerText = crystal.color;
-        document.getElementById('resLuck').innerText = "能量指數：" + "⭐".repeat(starCount);
-        document.getElementById('resFortune').innerText = fortune + " " + crystal.desc;
-
-        document.getElementById('card').classList.add('is-flipped');
-        setTimeout(() => {
-            document.getElementById('resetBtn').style.display = 'inline-block';
-        }, 800);
+    function createCard(z, targetGrid) {
+        const btn = document.createElement('button');
+        btn.className = "action-btn"; btn.innerText = z + '座';
+        btn.onclick = () => { 
+            userZodiac = z; 
+            document.getElementById('sub-step-1').style.display='none'; 
+            document.getElementById('sub-step-2').style.display='block'; 
+        };
+        targetGrid.appendChild(btn);
     }
 
-    function resetCard() {
-        document.getElementById('card').classList.remove('is-flipped');
-        document.getElementById('resetBtn').style.display = 'none';
-        setTimeout(() => { isDrawing = false; }, 800);
+    leftZodiacs.forEach(z => createCard(z, gridLeft));
+    rightZodiacs.forEach(z => createCard(z, gridRight));
+
+    // 切換功能分頁 (加入魔法動態底色類別切換邏輯)
+    function switchMode(e, mode) {
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        
+        document.getElementById('final-result').classList.remove('active');
+        
+        const targetMode = document.getElementById('mode-' + mode);
+        if (targetMode) {
+            targetMode.classList.add('active');
+        }
+        
+        if (e && e.currentTarget) {
+            e.currentTarget.classList.add('active');
+        } else {
+            document.getElementById('nav-btn-' + mode).classList.add('active');
+        }
+
+        // === 動態更換中央面板的魔法主題風格 ===
+        const panel = document.getElementById('main-panel');
+        panel.classList.remove('theme-fortune', 'theme-chakra', 'theme-transit');
+        panel.classList.add('theme-' + mode);
+        // ===================================
+
+        if(mode === 'transit') showTransit();
     }
 
-    // --- 魔法守護腳本 (全域執行) ---
-document.addEventListener('contextmenu', function (e) {
-    e.preventDefault();
-    alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
-}, false);
+    // 星象觀測邏輯
+    function showTransit() {
+        const date = new Date();
+        const d = date.getDate();
+        let energy = (d % 3 === 0) ? "【水星能量影響】注意細節，適合整理舊物與修補關係。" : 
+                     (d % 2 === 0) ? "【火星相位活躍】動力十足，適合開啟挑戰，避免口舌鬥爭。" : 
+                                     "【金星共鳴期】人緣滿分，適合社交、美化環境與寵愛自己。";
+        let stone = (d % 3 === 0) ? "螢石 / 藍晶石" : (d % 2 === 0) ? "黑曜石 / 虎眼石" : "粉晶 / 月光石";
 
-document.onkeydown = function (e) {
-    // 禁用 F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S
-    if (e.keyCode === 123 || 
-        (e.ctrlKey && e.shiftKey && e.keyCode === 73) || 
-        (e.ctrlKey && e.shiftKey && e.keyCode === 74) || 
-        (e.ctrlKey && e.keyCode === 85) || 
-        (e.ctrlKey && e.keyCode === 83)) {
-        return false;
+        document.getElementById('transit-report').innerHTML = `
+            <p><span class="highlight">● 今日星象：</span> ${energy}</p>
+            <p><span class="highlight">● 宇宙護身石：</span> ${stone}</p>
+            <p><span class="highlight">● 指引：</span> 保持覺察，將護身石隨身攜帶或設為螢幕桌布。</p>
+        `;
     }
-};
+
+    // 點擊脈輪檢測
+    function checkChakra(name, color, stone, effect) {
+        currentTestType = "chakra"; 
+        hideAllSteps();
+        document.getElementById('final-result').classList.add('active');
+        document.getElementById('result-display').innerHTML = `
+            <div class="result-box">
+                <h3 style="color:var(--gold-solid)">脈輪能量檢測報告</h3>
+                <p><span class="highlight">針對位置：</span> ${name}</p>
+                <p><span class="highlight">對應色彩：</span> ${color}</p>
+                <p><span class="highlight">療癒水晶：</span> ${stone}</p>
+                <hr style="border:0; border-top:1px solid rgba(0,0,0,0.08)">
+                <p><span class="highlight">【能量解讀】</span><br>${effect}</p>
+                <p><span class="highlight">【建議練習】</span> 閉上眼，想像此位置充滿 ${color} 的光芒，深呼吸三次，感受能量流動。</p>
+            </div>
+        `;
+    }
+
+    // 直覺抽卡邏輯
+    function drawCrystal() {
+        currentTestType = "fortune"; 
+        const c = crystals[Math.floor(Math.random() * crystals.length)];
+        hideAllSteps();
+        document.getElementById('final-result').classList.add('active');
+        document.getElementById('result-display').innerHTML = `
+            <div class="result-box">
+                <h3 style="color:var(--gold-solid)">${userZodiac}座 · 抽卡導引</h3>
+                <p><span class="highlight">命定水晶：</span> ${c.name}</p>
+                <p><span class="highlight">共振頻率：</span> ${c.key}</p>
+                <hr style="border:0; border-top:1px solid rgba(0,0,0,0.08)">
+                <p><span class="highlight">【靈魂訊息】</span><br>${c.desc}</p>
+                <p><span class="highlight">【今日行動】</span> 在生活中尋找與「${c.name}」顏色相近的物品，這能幫助你維持頻率穩步上升。</p>
+            </div>
+        `;
+    }
+
+    function hideAllSteps() {
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    }
+
+    // 重新測算（智能判斷返回分頁與重設主題樣式）
+    function resetTest() {
+        if (currentTestType === "chakra") {
+            switchMode(null, 'chakra');
+        } else {
+            document.getElementById('sub-step-2').style.display = 'none';
+            document.getElementById('sub-step-1').style.display = 'block';
+            switchMode(null, 'fortune');
+        }
+    }
+
+    // --- 魔法守護腳本 ---
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+        alert("🔮 魔法能量守護中：本站圖文受智慧財產保護，無法使用右鍵選單。");
+    }, false);
+
+    document.onkeydown = function (e) {
+        if (e.keyCode === 123 || 
+            (e.ctrlKey && e.shiftKey && e.keyCode === 73) || 
+            (e.ctrlKey && e.shiftKey && e.keyCode === 74) || 
+            (e.ctrlKey && e.keyCode === 85) || 
+            (e.ctrlKey && e.keyCode === 83)) {
+            return false;
+        }
+    };
 </script>
 
 </body>
