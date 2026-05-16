@@ -29,40 +29,36 @@
 </header>
 
 <main style="margin-top: 100px;">
-    <!-- 篩選區塊：整合了原始代碼的全部按鈕與雙下拉選單 -->
     <div class="filter-section" style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 20px; flex-wrap: wrap;">
         
-        <button class="btn-all" onclick="filterCrystals('all', 'effect')" style="padding: 10px 20px; cursor: pointer;">全部水晶</button>
+        <button class="btn-all" onclick="filterCrystals('all', 'all')" style="padding: 10px 20px; cursor: pointer;">全部水晶</button>
         
-        <!-- 按功效篩選 -->
         <div class="dropdown">
             <button class="dropdown-btn" onclick="toggleDropdown('effectDropdown')">✨ 按功效 <span>▼</span></button>
             <ul class="dropdown-content" id="effectDropdown">
-                <li onclick="filterCrystals('spirit', 'effect')">🧘 靈性智慧</li>
-                <li onclick="filterCrystals('wealth', 'effect')">💰 財富事業</li>
-                <li onclick="filterCrystals('protection', 'effect')">🛡️ 守護避邪</li>
-                <li onclick="filterCrystals('peace', 'effect')">🌊 溝通平靜</li>
-                <li onclick="filterCrystals('love', 'effect')">💖 感情人緣</li>
-                <li onclick="filterCrystals('health', 'effect')">🌿 健康療癒</li>
+                <li onclick="filterCrystals('spirit', 'effect', this.innerText)">🧘 靈性智慧</li>
+                <li onclick="filterCrystals('wealth', 'effect', this.innerText)">💰 財富事業</li>
+                <li onclick="filterCrystals('protection', 'effect', this.innerText)">🛡️ 守護避邪</li>
+                <li onclick="filterCrystals('peace', 'effect', this.innerText)">🌊 溝通平靜</li>
+                <li onclick="filterCrystals('love', 'effect', this.innerText)">💖 感情人緣</li>
+                <li onclick="filterCrystals('health', 'effect', this.innerText)">🌿 健康療癒</li>
             </ul>
         </div>
 
-        <!-- 按顏色篩選 (從原始代碼補回) -->
         <div class="dropdown">
             <button class="dropdown-btn" onclick="toggleDropdown('colorDropdown')">🎨 按顏色 <span>▼</span></button>
             <ul class="dropdown-content" id="colorDropdown">
-                <li onclick="filterCrystals('white', 'color')">🤍 白色系</li>
-                <li onclick="filterCrystals('pink', 'color')">💗 粉色系</li>
-                <li onclick="filterCrystals('yellow', 'color')">💛 黃色系</li>
-                <li onclick="filterCrystals('purple', 'color')">💜 紫色系</li>
-                <li onclick="filterCrystals('green', 'color')">💚 綠色系</li>
-                <li onclick="filterCrystals('blue', 'color')">💙 藍色系</li>
-                <li onclick="filterCrystals('black', 'color')">🖤 黑色系</li>
+                <li onclick="filterCrystals('white', 'color', this.innerText)">🤍 白色系</li>
+                <li onclick="filterCrystals('pink', 'color', this.innerText)">💗 粉色系</li>
+                <li onclick="filterCrystals('yellow', 'color', this.innerText)">💛 黃色系</li>
+                <li onclick="filterCrystals('purple', 'color', this.innerText)">💜 紫色系</li>
+                <li onclick="filterCrystals('green', 'color', this.innerText)">💚 綠色系</li>
+                <li onclick="filterCrystals('blue', 'color', this.innerText)">💙 藍色系</li>
+                <li onclick="filterCrystals('black', 'color', this.innerText)">🖤 黑色系</li>
             </ul>
         </div>
     </div>
 
-    <!-- 水晶展示網格 -->
     <div class="crystal-grid" id="crystalGrid"></div>
 </main>
 
