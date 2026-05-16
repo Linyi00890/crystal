@@ -66,8 +66,14 @@ const colorTheme = {
     health: { color: "#26de81", glow: "rgba(38, 222, 129, 0.4)", bg: "rgba(38, 222, 129, 0.1)" }
 };
 
+// 全域變數：儲存當前的交叉篩選狀態
+let currentFilters = {
+    effect: 'all',
+    color: 'all'
+};
+
 function render(data) {
-    const grid = document.getElementById('crystalGrid');
+    const grid = document.getElementById('crystalGrid'); // 修正為對應 HTML 的大寫開頭 ID
     if (!grid) return;
     grid.innerHTML = data.map(c => {
         const theme = colorTheme[c.effect] || { color: "#ddd", glow: "rgba(255,255,255,0.1)", bg: "rgba(255,255,255,0.05)" };
@@ -103,7 +109,7 @@ function render(data) {
     }).join('');
 }
 
-// 控制邏輯
+// 下拉選單展開/收合控制
 function toggleDropdown(id) {
     const menu = document.getElementById(id);
     const allMenus = document.querySelectorAll('.dropdown-content');
@@ -112,18 +118,45 @@ function toggleDropdown(id) {
     if (!isOpen) menu.classList.add('show');
 }
 
-function filterCrystals(value, type) {
+// 核心修正：支援雙重條件交叉過濾，並動態更新按鈕文字
+function filterCrystals(value, type, labelText) {
+    // 1. 更新全域篩選狀態
+    if (type === 'all') {
+        currentFilters.effect = 'all';
+        currentFilters.color = 'all';
+        // 重設按鈕為初始文字
+        document.querySelector('#effectDropdown').previousElementSibling.innerHTML = `✨ 按功效 <span>▼</span>`;
+        document.querySelector('#colorDropdown').previousElementSibling.innerHTML = `🎨 按顏色 <span>▼</span>`;
+    } else {
+        currentFilters[type] = value;
+        // 動態將點選的項目文字（如：💰 財富事業）替換到選單按鈕上
+        if (labelText) {
+            const btn = document.querySelector(`#${type}Dropdown`).previousElementSibling;
+            btn.innerHTML = `${labelText} <span>▼</span>`;
+        }
+    }
+
+    // 2. 同時驗證 effect 與 color 進行交叉篩選
     const cards = document.querySelectorAll('.card-container');
     cards.forEach(card => {
-        if (value === 'all' || card.getAttribute(`data-${type}`) === value) {
+        const cardEffect = card.getAttribute('data-effect');
+        const cardColor = card.getAttribute('data-color');
+
+        const matchEffect = (currentFilters.effect === 'all' || cardEffect === currentFilters.effect);
+        const matchColor = (currentFilters.color === 'all' || cardColor === currentFilters.color);
+
+        if (matchEffect && matchColor) {
             card.style.display = 'block';
         } else {
             card.style.display = 'none';
         }
     });
+
+    // 3. 點選完選項後，立刻自動收合下拉選單
+    document.querySelectorAll('.dropdown-content').forEach(m => m.classList.remove('show'));
 }
 
-// 點擊空白處關閉選單
+// 點擊選單外部空白處時關閉選單
 window.addEventListener('click', (event) => {
     if (!event.target.closest('.dropdown')) {
         document.querySelectorAll('.dropdown-content').forEach(m => m.classList.remove('show'));
@@ -146,7 +179,6 @@ document.addEventListener('contextmenu', function (e) {
 }, false);
 
 document.onkeydown = function (e) {
-    // 禁用 F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S
     if (e.keyCode === 123 || 
        (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || 
        (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83))) {
